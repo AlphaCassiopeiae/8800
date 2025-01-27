@@ -4,6 +4,11 @@
 	(generator_version "8.0")
 	(uuid "b682b302-8ca4-4b40-b0cb-fd99f4675538")
 	(paper "A4")
+	(title_block
+		(title "Nathan Huang")
+		(date "2025-01-27")
+		(rev "Version 0")
+	)
 	(lib_symbols
 		(symbol "Device:L"
 			(pin_numbers hide)
