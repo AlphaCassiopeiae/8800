@@ -1,0 +1,11 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "77804144-8eff-412b-bde1-9ff9003d2b9d")
+	(paper "A4")
+	(title_block
+		(title "Buck Converter")
+	)
+	(lib_symbols)
+)

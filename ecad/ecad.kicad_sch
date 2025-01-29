@@ -5,11 +5,31 @@
 	(uuid "b682b302-8ca4-4b40-b0cb-fd99f4675538")
 	(paper "A4")
 	(title_block
-		(title "Nathan Huang")
+		(title "Buck Converter")
 		(date "2025-01-27")
-		(rev "Version 0")
+		(rev "Team 15")
 	)
 	(lib_symbols)
+	(text "Converted Size:\n"
+		(exclude_from_sim no)
+		(at 21.59 166.116 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "7642ecd9-a441-45a7-b72d-9f2a6def3ff2")
+	)
+	(text "Original Size: 17 inches (length of front panel) x 7 inches (height of front panel) x 18 inches (depth of machine)\n"
+		(exclude_from_sim no)
+		(at 71.12 157.988 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "f9fd6969-571d-45fe-a37c-54c0e06b43f9")
+	)
 	(sheet
 		(at 16.51 16.51)
 		(size 46.99 45.72)
@@ -22,7 +42,7 @@
 			(color 0 0 0 0.0000)
 		)
 		(uuid "5253468e-4c42-405b-92ec-3a7d75655417")
-		(property "Sheetname" "Buck Converter (Power)"
+		(property "Sheetname" "Buck Converter"
 			(at 16.51 15.7984 0)
 			(effects
 				(font
@@ -43,14 +63,14 @@
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538"
-					(page "2")
+					(page "1")
 				)
 			)
 		)
 	)
 	(sheet
 		(at 69.85 16.51)
-		(size 50.8 48.26)
+		(size 50.8 45.72)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -70,7 +90,45 @@
 			)
 		)
 		(property "Sheetfile" "Front_Panel_sch.kicad_sch"
-			(at 69.85 65.3546 0)
+			(at 69.85 62.8146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "ecad"
+				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 127 16.51)
+		(size 48.26 45.72)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "e08a8eba-02fb-4e38-adf7-fcea5ff4dd58")
+		(property "Sheetname" "Back Panel"
+			(at 127 15.7984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Back_Panel_sch.kicad_sch"
+			(at 127 62.8146 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -88,7 +146,7 @@
 	)
 	(sheet_instances
 		(path "/"
-			(page "1")
+			(page "0")
 		)
 	)
 )
