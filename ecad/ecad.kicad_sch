@@ -31,6 +31,44 @@
 		(uuid "f9fd6969-571d-45fe-a37c-54c0e06b43f9")
 	)
 	(sheet
+		(at 184.15 16.51)
+		(size 35.56 45.72)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "2b76b2e1-4674-498d-877d-fd40f416b010")
+		(property "Sheetname" "Front_Panel (P)"
+			(at 184.15 15.7984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Original Front.kicad_sch"
+			(at 184.15 62.8146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "ecad"
+				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 16.51 16.51)
 		(size 46.99 45.72)
 		(fields_autoplaced yes)
