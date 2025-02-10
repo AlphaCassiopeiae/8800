@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
 
-members = [ "cycle", "recall",
+members = [ "cycle", "pico", "recall",
     "tram",
 ]
