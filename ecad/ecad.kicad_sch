@@ -182,6 +182,44 @@
 			)
 		)
 	)
+	(sheet
+		(at 232.41 16.51)
+		(size 46.99 45.72)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "ee1cc61d-5804-42b6-bb30-ea873f013756")
+		(property "Sheetname" "Card"
+			(at 232.41 15.7984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Card.kicad_sch"
+			(at 232.41 62.8146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "ecad"
+				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538"
+					(page "6")
+				)
+			)
+		)
+	)
 	(sheet_instances
 		(path "/"
 			(page "0")
