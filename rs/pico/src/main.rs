@@ -86,11 +86,9 @@ fn main() -> ! {
 /// Program metadata for `picotool info`
 #[link_section = ".bi_entries"]
 #[used]
-pub static PICOTOOL_ENTRIES: [hal::binary_info::EntryAddr; 5] = [
-    hal::binary_info::rp_cargo_bin_name!(),
+pub static PICOTOOL_ENTRIES: [hal::binary_info::EntryAddr; 3] = [
     hal::binary_info::rp_cargo_version!(),
     hal::binary_info::rp_program_description!(c"Blinky Example"),
-    hal::binary_info::rp_cargo_homepage_url!(),
     hal::binary_info::rp_program_build_attribute!(),
 ];
 
