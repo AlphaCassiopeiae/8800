@@ -1,0 +1,63 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "a8d8ef75-ab98-4eee-91be-b1dbc247e97d")
+	(paper "A4")
+	(lib_symbols)
+	(rectangle
+		(start 24.13 21.59)
+		(end 191.77 81.28)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid db2ebdfa-867e-41d8-b039-27223e33bf13)
+	)
+	(text "MCP23017: https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP23017-Data-Sheet-DS20001952.pdf\n"
+		(exclude_from_sim no)
+		(at 104.902 30.988 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "33d59e7e-5f25-4f68-8210-a9295c596514")
+	)
+	(text "MCP23008: https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP23008-MCP23S08-Data-Sheet-DS20001919.pdf"
+		(exclude_from_sim no)
+		(at 110.49 34.29 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.1588)
+			)
+		)
+		(uuid "6f4f4d49-add9-48b2-abdc-24f93cd3301e")
+	)
+	(text "TLC59211IN: https://www.ti.com/lit/ds/symlink/tlc59211.pdf?ts=1740344136025&ref_url=https%253A%252F%252Fwww.google.com%252F\n"
+		(exclude_from_sim no)
+		(at 94.996 27.178 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "a707b314-c7ec-421a-9983-a4fe3838bdfc")
+	)
+	(text "DATASHEET LINKS:\n"
+		(exclude_from_sim no)
+		(at 34.036 19.304 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+				(bold yes)
+			)
+		)
+		(uuid "ea9686e5-5803-40e5-9411-68d560979598")
+	)
+)

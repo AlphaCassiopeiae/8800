@@ -588,10 +588,6 @@
       "Buck_Converter"
     ],
     [
-      "2b76b2e1-4674-498d-877d-fd40f416b010",
-      "Front_Panel (Clone)"
-    ],
-    [
       "ee1cc61d-5804-42b6-bb30-ea873f013756",
       "Card 1 (CPU)"
     ],
@@ -601,7 +597,11 @@
     ],
     [
       "48366f94-62d2-4ab0-8d85-b81df107fb71",
-      "Card 3 (UART) - Stretch"
+      "Card 3 (UART) - Stretch PSDR"
+    ],
+    [
+      "d17c5ef5-ff75-4cf4-bcb0-b6105df449b1",
+      "References"
     ]
   ],
   "text_variables": {}
