@@ -580,20 +580,28 @@
       "Root"
     ],
     [
-      "5253468e-4c42-405b-92ec-3a7d75655417",
-      "Buck Converter"
+      "8ac99590-cdb7-457f-9b2c-c22421ccb183",
+      "Back_Plane"
     ],
     [
-      "8ac99590-cdb7-457f-9b2c-c22421ccb183",
-      "Front Panel"
+      "b634cce5-68f2-492b-8de2-08cd2bb51e98",
+      "Buck_Converter"
     ],
     [
       "2b76b2e1-4674-498d-877d-fd40f416b010",
-      "Front_Panel (P)"
+      "Front_Panel (Clone)"
     ],
     [
       "ee1cc61d-5804-42b6-bb30-ea873f013756",
-      "Card"
+      "Card 1 (CPU)"
+    ],
+    [
+      "b23e4679-0631-41a6-8eef-8889eca23f58",
+      "Card 2 (RAM)"
+    ],
+    [
+      "48366f94-62d2-4ab0-8d85-b81df107fb71",
+      "Card 3 (UART) - Stretch"
     ]
   ],
   "text_variables": {}
