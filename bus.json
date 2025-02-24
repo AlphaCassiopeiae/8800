@@ -1,0 +1,33 @@
+{
+    "signal": [
+      { "name": "Phase (Bus Cycle Phase)", "wave": "12.34.5....", "data": ["Addr", "Wait", "Data"] },
+      { "name": "CLOCK (Bus Clock)", "wave": "P..........." },
+      { "name": "A0-A15 (Address Bus)", "wave": "x===..x.....", "data": "Address" },
+      { "name": "D0-D7 (Data Bus)", "wave": "z...===z....", "data": "Data" },
+      {},
+      { "name": "SMEMR (Memory Read Strobe)", "wave": "0...1.0....." },
+      { "name": "PDBIN (Data Bus Enable)", "wave": "0...1.0....." },
+      { "name": "MWRT (Memory Write Strobe)", "wave": "0..........0" },
+      {},
+      { "name": "SSTACK (Stack Operation)", "wave": "0..........0" },
+      { "name": "SOUT (Output I/O Cycle)", "wave": "0..........0" },
+      { "name": "SINP (Input I/O Cycle)", "wave": "0..........0" },
+      { "name": "SM1 (First Machine Cycle)", "wave": "1..........0" },
+      {},
+      { "name": "XRDY (Memory Ready)", "wave": "1....0.1...." },
+      { "name": "PWAIT (Memory/I-O Wait)", "wave": "0....1.0...." },
+      { "name": "PRDY (I/O Ready)", "wave": "1....0.1...." },
+      {},
+      { "name": "PINTE (Interrupt Enable)", "wave": "1..........0" },
+      { "name": "~PINT (Interrupt Request)", "wave": "0....1......" },
+      { "name": "SINTA (Interrupt Acknowledge)", "wave": "0....1......" },
+      {},
+      { "name": "SHLTA (Halt Signal)", "wave": "0..........0" },
+      { "name": "UNPROT (Memory Protection Override)", "wave": "0..........0" },
+      {},
+      { "name": "~PHOLD (Bus Hold Control)", "wave": "1..........0" },
+      { "name": "~PRESET (Reset Signal)", "wave": "1..........0" }
+    ],
+    "config": { "hscale": 1.2 }
+  }
+  
