@@ -612,15 +612,7 @@
     ],
     [
       "ee1cc61d-5804-42b6-bb30-ea873f013756",
-      "Card 1 (CPU)"
-    ],
-    [
-      "b23e4679-0631-41a6-8eef-8889eca23f58",
-      "Card 2 (RAM)"
-    ],
-    [
-      "48366f94-62d2-4ab0-8d85-b81df107fb71",
-      "Card 3 (UART)"
+      "Card (Generic)"
     ]
   ],
   "text_variables": {}

@@ -123568,7 +123568,25 @@
 			"WX2k4l7Ec8MEdYslZgMgnvtuxaNobQ/heriOmn7kGT4xmaJtGKbToSRen8nY+F7UA40W4pWGCJ9p"
 			"qZWg986Y1jPza7Yc+sieTjRK8sRql/Tg+D2HB/Tdvy9BkT/uKgMTET1JqMd9fS1M1eKfz6r1EkA3"
 			"w/c7GF84mtdnUICAk83yng6xTXNHQN9fnf4bIRsEMTy5O34/hm4aH/+/dwBeEMgkko0AAAAASUVO"
-			"RK5CYII="
+			"RK5CYIIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+			"AAAAAA=="
 		)
 	)
 	(table
@@ -131206,13 +131224,13 @@
 			)
 		)
 		(pin "1"
-			(uuid "e7f0ebe4-7529-45bc-8673-a5020aa4099f")
+			(uuid "e7f0ebe4-7529-45bc-8673-a5020aa409a0")
 		)
 		(pin "3"
-			(uuid "39c1f6ee-3ca1-4052-96d6-0451fe2542da")
+			(uuid "39c1f6ee-3ca1-4052-96d6-0451fe2542db")
 		)
 		(pin "2"
-			(uuid "df472424-787a-43e0-bcd8-2929ed48da44")
+			(uuid "df472424-787a-43e0-bcd8-2929ed48da45")
 		)
 		(instances
 			(project ""
@@ -133300,13 +133318,13 @@
 			)
 		)
 		(pin "1"
-			(uuid "e7f0ebe4-7529-45bc-8673-a5020aa4099f")
+			(uuid "e7f0ebe4-7529-45bc-8673-a5020aa409a1")
 		)
 		(pin "3"
-			(uuid "39c1f6ee-3ca1-4052-96d6-0451fe2542da")
+			(uuid "39c1f6ee-3ca1-4052-96d6-0451fe2542dc")
 		)
 		(pin "2"
-			(uuid "df472424-787a-43e0-bcd8-2929ed48da44")
+			(uuid "df472424-787a-43e0-bcd8-2929ed48da46")
 		)
 		(instances
 			(project ""
@@ -138279,48 +138297,6 @@
 		)
 	)
 	(sheet
-		(at 567.4211 444.5001)
-		(size 25.1311 24.1301)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 255 237 58 1.0000)
-		)
-		(uuid "48366f94-62d2-4ab0-8d85-b81df107fb71")
-		(property "Sheetname" "Card 3 (UART)"
-			(at 567.4211 443.7885 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "Card_3.kicad_sch"
-			(at 567.4211 469.2148 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "ecad"
-				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538"
-					(page "5")
-				)
-			)
-		)
-	)
-	(sheet
 		(at 471.17 444.5)
 		(size 30.48 17.78)
 		(exclude_from_sim no)
@@ -138367,48 +138343,6 @@
 		)
 	)
 	(sheet
-		(at 537.21 444.5)
-		(size 25.1311 24.1301)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 255 237 58 1.0000)
-		)
-		(uuid "b23e4679-0631-41a6-8eef-8889eca23f58")
-		(property "Sheetname" "Card 2 (RAM)"
-			(at 537.21 443.7884 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "Card_2.kicad_sch"
-			(at 537.21 469.2147 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "ecad"
-				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538"
-					(page "4")
-				)
-			)
-		)
-	)
-	(sheet
 		(at 508 444.5)
 		(size 25.4 24.13)
 		(exclude_from_sim no)
@@ -138424,7 +138358,7 @@
 			(color 255 237 58 1.0000)
 		)
 		(uuid "ee1cc61d-5804-42b6-bb30-ea873f013756")
-		(property "Sheetname" "Card 1 (CPU)"
+		(property "Sheetname" "Card (Generic)"
 			(at 508 443.7884 0)
 			(effects
 				(font
