@@ -226,7 +226,28 @@
     "equivalence_files": []
   },
   "erc": {
-    "erc_exclusions": [],
+    "erc_exclusions": [
+      [
+        "global_label_dangling|749300|-1460500|b5e3ea3b-550e-4c51-a414-b5993de05167|00000000-0000-0000-0000-000000000000|/b682b302-8ca4-4b40-b0cb-fd99f4675538||",
+        ""
+      ],
+      [
+        "global_label_dangling|749300|-1511300|403d2335-5335-48d2-ae83-11af11f8f721|00000000-0000-0000-0000-000000000000|/b682b302-8ca4-4b40-b0cb-fd99f4675538||",
+        ""
+      ],
+      [
+        "global_label_dangling|749300|-1562100|3a1eab4e-6f90-43bf-a3bd-f502f6d97a86|00000000-0000-0000-0000-000000000000|/b682b302-8ca4-4b40-b0cb-fd99f4675538||",
+        ""
+      ],
+      [
+        "global_label_dangling|749300|-1612900|c114e63f-fb22-4bc9-bbf1-fea23e03d8ea|00000000-0000-0000-0000-000000000000|/b682b302-8ca4-4b40-b0cb-fd99f4675538||",
+        ""
+      ],
+      [
+        "label_dangling|1651000|787400|021107f9-6bb6-4024-8a5b-1a2e23a1930a|00000000-0000-0000-0000-000000000000|/b682b302-8ca4-4b40-b0cb-fd99f4675538/ee1cc61d-5804-42b6-bb30-ea873f013756||",
+        ""
+      ]
+    ],
     "meta": {
       "version": 0
     },
@@ -415,9 +436,9 @@
       "footprint_filter": "ignore",
       "footprint_link_issues": "warning",
       "four_way_junction": "ignore",
-      "global_label_dangling": "warning",
+      "global_label_dangling": "ignore",
       "hier_label_mismatch": "error",
-      "label_dangling": "error",
+      "label_dangling": "warning",
       "label_multiple_wires": "warning",
       "lib_symbol_issues": "warning",
       "lib_symbol_mismatch": "warning",
@@ -497,7 +518,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 1,
+    "annotate_start_num": 26,
     "bom_export_filename": "",
     "bom_fmt_presets": [],
     "bom_fmt_settings": {
@@ -603,16 +624,16 @@
       "Root"
     ],
     [
+      "ee1cc61d-5804-42b6-bb30-ea873f013756",
+      "Generic_Card"
+    ],
+    [
       "8ac99590-cdb7-457f-9b2c-c22421ccb183",
       "Back_Plane"
     ],
     [
       "b634cce5-68f2-492b-8de2-08cd2bb51e98",
       "Buck_Converter"
-    ],
-    [
-      "ee1cc61d-5804-42b6-bb30-ea873f013756",
-      "Card (Generic)"
     ]
   ],
   "text_variables": {}

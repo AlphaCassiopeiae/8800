@@ -680,142 +680,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Switch:SW_SPST"
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "SW"
-				(at 0 3.175 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "SW_SPST"
-				(at 0 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Single Pole Single Throw (SPST) switch"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "switch lever"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "SW_SPST_0_0"
-				(circle
-					(center -2.032 0)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 0.254) (xy 1.524 1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.032 0)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "SW_SPST_1_1"
-				(pin passive line
-					(at -5.08 0 0)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 0 180)
-					(length 2.54)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "power:+5V"
 			(power)
 			(pin_numbers
@@ -1193,12 +1057,6 @@
 		(uuid "80fb4464-4d14-4b28-a443-00f461971095")
 	)
 	(junction
-		(at 68.58 87.63)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9d1c0601-3937-4cb7-859e-5472370ca804")
-	)
-	(junction
 		(at 153.67 87.63)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1328,16 +1186,6 @@
 	)
 	(wire
 		(pts
-			(xy 81.28 73.66) (xy 91.44 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "40772f03-ab47-4664-88dd-3f5db346c8d7")
-	)
-	(wire
-		(pts
 			(xy 107.95 87.63) (xy 107.95 91.44)
 		)
 		(stroke
@@ -1398,7 +1246,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 73.66) (xy 68.58 73.66)
+			(xy 68.58 73.66) (xy 91.44 73.66)
 		)
 		(stroke
 			(width 0)
@@ -1663,7 +1511,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4d80da21-2102-43b8-a702-943c5e6550e7")
-		(property "Reference" "C4"
+		(property "Reference" "C52"
 			(at 171.45 77.4699 0)
 			(effects
 				(font
@@ -1717,74 +1565,7 @@
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "C4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 68.58 87.63 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "5bc8b834-aa16-41c5-8aa7-b820652b5925")
-		(property "Reference" "#FLG02"
-			(at 66.675 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 64.77 87.6299 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 68.58 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 68.58 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 68.58 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "409b6591-3565-49ea-bb36-f704ebeb67a8")
-		)
-		(instances
-			(project "ecad"
-				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "#FLG02")
+					(reference "C52")
 					(unit 1)
 				)
 			)
@@ -1800,7 +1581,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "614e319e-60a1-43d0-abaf-95573388f27c")
-		(property "Reference" "C2"
+		(property "Reference" "C50"
 			(at 127 57.15 90)
 			(effects
 				(font
@@ -1852,7 +1633,7 @@
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "C2")
+					(reference "C50")
 					(unit 1)
 				)
 			)
@@ -1868,7 +1649,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7709ac44-a8c5-4ad5-9f2a-c18f963b7e38")
-		(property "Reference" "C3"
+		(property "Reference" "C49"
 			(at 157.48 77.4699 0)
 			(effects
 				(font
@@ -1922,7 +1703,7 @@
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "C3")
+					(reference "C49")
 					(unit 1)
 				)
 			)
@@ -1938,7 +1719,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "79bd1cb2-c9f8-4e54-8ff5-81f2eb6b52aa")
-		(property "Reference" "U1"
+		(property "Reference" "U20"
 			(at 107.95 60.96 0)
 			(effects
 				(font
@@ -2003,7 +1784,7 @@
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "U1")
+					(reference "U20")
 					(unit 1)
 				)
 			)
@@ -2019,7 +1800,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9149bf92-8bd8-4925-901e-06f30d160f12")
-		(property "Reference" "R41"
+		(property "Reference" "R51"
 			(at 127 69.85 90)
 			(effects
 				(font
@@ -2071,7 +1852,7 @@
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "R41")
+					(reference "R51")
 					(unit 1)
 				)
 			)
@@ -2087,7 +1868,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9cc7548b-2689-450d-ad79-a460311df3b7")
-		(property "Reference" "R40"
+		(property "Reference" "R50"
 			(at 123.19 81.2799 0)
 			(effects
 				(font
@@ -2141,7 +1922,7 @@
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "R40")
+					(reference "R50")
 					(unit 1)
 				)
 			)
@@ -2157,7 +1938,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9f5c786f-da73-4fe2-bfba-85f3329c59e7")
-		(property "Reference" "L2"
+		(property "Reference" "L3"
 			(at 138.43 66.04 90)
 			(effects
 				(font
@@ -2209,7 +1990,7 @@
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "L2")
+					(reference "L3")
 					(unit 1)
 				)
 			)
@@ -2282,73 +2063,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Switch:SW_SPST")
-		(at 76.2 73.66 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "af477f29-6f41-480b-a7ec-da50215bd455")
-		(property "Reference" "SW22"
-			(at 76.2 75.438 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "SW_SPST"
-			(at 76.2 77.978 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Button_Switch_SMD:SW_DIP_SPSTx01_Slide_6.7x4.1mm_W6.73mm_P2.54mm_LowProfile_JPin"
-			(at 76.2 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 76.2 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Single Pole Single Throw (SPST) switch"
-			(at 76.2 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "c894b10d-29d5-47be-ab26-76dd7b8c4895")
-		)
-		(pin "2"
-			(uuid "eac8d7eb-a6cd-4c00-8bdc-43bcaa4c220a")
-		)
-		(instances
-			(project "ecad"
-				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "SW22")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 68.58 82.55 0)
 		(unit 1)
@@ -2358,7 +2072,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d439ad14-3b24-42f2-bee4-3572ddd0ce4b")
-		(property "Reference" "C1"
+		(property "Reference" "C51"
 			(at 72.39 81.2799 0)
 			(effects
 				(font
@@ -2412,7 +2126,7 @@
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "C1")
+					(reference "C51")
 					(unit 1)
 				)
 			)
@@ -2494,7 +2208,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f9bad48e-b8ce-45f0-9ec6-897568f31f8b")
-		(property "Reference" "R39"
+		(property "Reference" "R49"
 			(at 93.98 80.0099 0)
 			(effects
 				(font
@@ -2548,7 +2262,7 @@
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "R39")
+					(reference "R49")
 					(unit 1)
 				)
 			)
