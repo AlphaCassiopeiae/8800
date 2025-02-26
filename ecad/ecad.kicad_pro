@@ -431,7 +431,7 @@
       "no_connect_dangling": "warning",
       "pin_not_connected": "error",
       "pin_not_driven": "error",
-      "pin_to_pin": "warning",
+      "pin_to_pin": "error",
       "power_pin_not_driven": "error",
       "same_local_global_label": "warning",
       "similar_label_and_power": "warning",
@@ -624,7 +624,7 @@
     ],
     [
       "48366f94-62d2-4ab0-8d85-b81df107fb71",
-      "Card 3 (UART) - Stretch"
+      "Card 3 (UART)"
     ]
   ],
   "text_variables": {}

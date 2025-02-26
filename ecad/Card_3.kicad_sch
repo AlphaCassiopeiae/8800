@@ -5155,6 +5155,18 @@
 		)
 		(uuid "cecf5384-c8a5-4085-8048-61eb59093235")
 	)
+	(text "This is a STRETCH PDSR\n"
+		(exclude_from_sim no)
+		(at 34.544 22.86 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+				(bold yes)
+			)
+		)
+		(uuid "f7069bc4-6497-4eb6-9fc4-03223201e6e7")
+	)
 	(junction
 		(at 44.45 74.93)
 		(diameter 0)
