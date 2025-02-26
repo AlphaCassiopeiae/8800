@@ -28,13 +28,8 @@
       "vias": true,
       "zones": true
     },
-    "visible_items": [
-      "ratsnest",
-      "grid",
-      "zones",
-      "shapes"
-    ],
-    "visible_layers": "ffffffff_ffffffff_ffffffff_ffffffff",
+    "visible_items": [],
+    "visible_layers": "fffffff_ffffffff",
     "zone_display_mode": 0
   },
   "git": {
@@ -45,7 +40,7 @@
   },
   "meta": {
     "filename": "ecad.kicad_prl",
-    "version": 5
+    "version": 3
   },
   "net_inspector_panel": {
     "col_hidden": [
