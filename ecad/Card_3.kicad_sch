@@ -5,6 +5,8 @@
 	(uuid "a4adba0b-fb6d-4df2-80d0-0462131920cd")
 	(paper "A3")
 	(title_block
+		(date "2025-02-26")
+		(company "ECE 477: Digital Systems Design")
 		(comment 1 "Brian Lu")
 		(comment 2 "Nathan Huang")
 		(comment 3 "Caleb Shinkle")

@@ -497,7 +497,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 0,
+    "annotate_start_num": 1,
     "bom_export_filename": "",
     "bom_fmt_presets": [],
     "bom_fmt_settings": {
@@ -609,10 +609,6 @@
     [
       "b634cce5-68f2-492b-8de2-08cd2bb51e98",
       "Buck_Converter"
-    ],
-    [
-      "2b76b2e1-4674-498d-877d-fd40f416b010",
-      "Front_Panel (Clone)"
     ],
     [
       "ee1cc61d-5804-42b6-bb30-ea873f013756",
