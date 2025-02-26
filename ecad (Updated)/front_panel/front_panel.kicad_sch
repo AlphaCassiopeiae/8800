@@ -1,0 +1,24 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "9e6367af-c814-4c06-a637-909c1dd44c08")
+	(paper "A4")
+	(title_block
+		(title "Front Panel Design")
+		(date "2025-02-26")
+		(rev "1")
+		(company "ECE 47700: Digital Systems Design - αCassiopeiae")
+		(comment 1 "Nathan Huang")
+		(comment 2 "Brian Lu")
+		(comment 3 "Caleb Shinkle")
+		(comment 4 "Seth Deegan")
+	)
+	(lib_symbols)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)
