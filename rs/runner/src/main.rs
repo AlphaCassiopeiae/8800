@@ -62,9 +62,13 @@ impl CPU {
 }
 
 
-
-
 fn get_mem() {} // write to memory on the s100 bus
 
 
 fn write_mem() {}// write to memory on the s100 bus
+
+fn main() -> ! {
+    loop {
+
+    }
+}
