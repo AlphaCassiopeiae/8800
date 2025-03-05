@@ -9105,6 +9105,7 @@
 	)
 	(label "EXT09"
 		(at 209.55 165.1 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9115,6 +9116,7 @@
 	)
 	(label "ADDR10"
 		(at 148.59 142.24 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9125,6 +9127,7 @@
 	)
 	(label "EXT04"
 		(at 209.55 149.86 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9135,6 +9138,7 @@
 	)
 	(label "ADDR04"
 		(at 148.59 127 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9145,6 +9149,7 @@
 	)
 	(label "I2C1_SCL"
 		(at 218.44 142.24 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9155,6 +9160,7 @@
 	)
 	(label "BUS04"
 		(at 148.59 104.14 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9165,6 +9171,7 @@
 	)
 	(label "EXT10"
 		(at 209.55 167.64 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9175,6 +9182,7 @@
 	)
 	(label "EXT18"
 		(at 270.51 144.78 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9185,6 +9193,7 @@
 	)
 	(label "~{RESET}"
 		(at 53.34 165.1 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9195,6 +9204,7 @@
 	)
 	(label "BUS21"
 		(at 176.53 81.28 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9205,6 +9215,7 @@
 	)
 	(label "EXT22"
 		(at 270.51 154.94 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9215,6 +9226,7 @@
 	)
 	(label "EXT16"
 		(at 270.51 139.7 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9225,6 +9237,7 @@
 	)
 	(label "ADDR06"
 		(at 148.59 132.08 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9235,6 +9248,7 @@
 	)
 	(label "ADDR12"
 		(at 148.59 147.32 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9245,6 +9259,7 @@
 	)
 	(label "DATA1"
 		(at 148.59 162.56 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9255,6 +9270,7 @@
 	)
 	(label "EXT13"
 		(at 209.55 175.26 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9265,6 +9281,7 @@
 	)
 	(label "BUS20"
 		(at 176.53 91.44 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9275,6 +9292,7 @@
 	)
 	(label "BUS05"
 		(at 148.59 101.6 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9285,6 +9303,7 @@
 	)
 	(label "EXT29"
 		(at 270.51 175.26 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9295,6 +9314,7 @@
 	)
 	(label "ADDR08"
 		(at 148.59 137.16 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9305,6 +9325,7 @@
 	)
 	(label "DATA6"
 		(at 148.59 175.26 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9315,6 +9336,7 @@
 	)
 	(label "ADDR15"
 		(at 148.59 154.94 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9325,6 +9347,7 @@
 	)
 	(label "I2C1_SDA"
 		(at 218.44 139.7 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9335,6 +9358,7 @@
 	)
 	(label "I2C0_SCL"
 		(at 157.48 142.24 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9345,6 +9369,7 @@
 	)
 	(label "USB_D+"
 		(at 270.51 54.61 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9355,6 +9380,7 @@
 	)
 	(label "EXT21"
 		(at 270.51 152.4 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9365,6 +9391,7 @@
 	)
 	(label "I2C0_SDA"
 		(at 157.48 139.7 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9375,6 +9402,7 @@
 	)
 	(label "EXT08"
 		(at 209.55 162.56 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9385,6 +9413,7 @@
 	)
 	(label "DATA5"
 		(at 148.59 172.72 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9395,6 +9424,7 @@
 	)
 	(label "BUS03"
 		(at 148.59 106.68 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9405,6 +9435,7 @@
 	)
 	(label "EXT03"
 		(at 209.55 147.32 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9415,6 +9446,7 @@
 	)
 	(label "EXT28"
 		(at 270.51 172.72 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9425,6 +9457,7 @@
 	)
 	(label "ADDR09"
 		(at 148.59 139.7 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9435,6 +9468,7 @@
 	)
 	(label "EXT01"
 		(at 209.55 142.24 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9445,6 +9479,7 @@
 	)
 	(label "EXT14"
 		(at 209.55 177.8 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9455,6 +9490,7 @@
 	)
 	(label "ADDR14"
 		(at 148.59 152.4 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9465,6 +9501,7 @@
 	)
 	(label "EXT25"
 		(at 270.51 165.1 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9475,6 +9512,7 @@
 	)
 	(label "BUS18"
 		(at 148.59 68.58 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9485,6 +9523,7 @@
 	)
 	(label "I2C1_SCL"
 		(at 176.53 86.36 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9495,6 +9534,7 @@
 	)
 	(label "~{RESET}"
 		(at 218.44 162.56 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9505,6 +9545,7 @@
 	)
 	(label "EXT06"
 		(at 209.55 154.94 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9515,6 +9556,7 @@
 	)
 	(label "~{USB_BOOT}"
 		(at 38.1 91.44 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9525,6 +9567,7 @@
 	)
 	(label "ADDR07"
 		(at 148.59 134.62 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9535,6 +9578,7 @@
 	)
 	(label "USB_D+"
 		(at 158.75 40.64 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9545,6 +9589,7 @@
 	)
 	(label "DATA2"
 		(at 148.59 165.1 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9555,6 +9600,7 @@
 	)
 	(label "EXT07"
 		(at 209.55 157.48 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9565,6 +9611,7 @@
 	)
 	(label "I2C1_SDA"
 		(at 176.53 76.2 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9575,6 +9622,7 @@
 	)
 	(label "USB_D-"
 		(at 158.75 48.26 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9585,6 +9633,7 @@
 	)
 	(label "EXT31"
 		(at 270.51 180.34 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9595,6 +9644,7 @@
 	)
 	(label "BUS16"
 		(at 148.59 73.66 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9605,6 +9655,7 @@
 	)
 	(label "ADDR01"
 		(at 148.59 119.38 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9615,6 +9666,7 @@
 	)
 	(label "VREG_LX"
 		(at 58.42 59.69 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9625,6 +9677,7 @@
 	)
 	(label "BUS02"
 		(at 148.59 109.22 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9635,6 +9688,7 @@
 	)
 	(label "BUS07"
 		(at 148.59 96.52 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9645,6 +9699,7 @@
 	)
 	(label "EXT11"
 		(at 209.55 170.18 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9655,6 +9710,7 @@
 	)
 	(label "BUS23"
 		(at 176.53 60.96 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9665,6 +9721,7 @@
 	)
 	(label "I2C0_SDA"
 		(at 176.53 55.88 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9675,6 +9732,7 @@
 	)
 	(label "ADDR13"
 		(at 148.59 149.86 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9685,6 +9743,7 @@
 	)
 	(label "BUS19"
 		(at 148.59 66.04 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9695,6 +9754,7 @@
 	)
 	(label "BUS22"
 		(at 176.53 71.12 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9705,6 +9765,7 @@
 	)
 	(label "EXT00"
 		(at 209.55 139.7 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9715,6 +9776,7 @@
 	)
 	(label "BUS09"
 		(at 148.59 91.44 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9725,6 +9787,7 @@
 	)
 	(label "BUS17"
 		(at 148.59 71.12 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9735,6 +9798,7 @@
 	)
 	(label "EXT26"
 		(at 270.51 167.64 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9745,6 +9809,7 @@
 	)
 	(label "BUS11"
 		(at 148.59 86.36 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9755,6 +9820,7 @@
 	)
 	(label "EXT19"
 		(at 270.51 147.32 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9765,6 +9831,7 @@
 	)
 	(label "QSPI_SS"
 		(at 57.15 91.44 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9775,6 +9842,7 @@
 	)
 	(label "~{RESET}"
 		(at 157.48 162.56 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9785,6 +9853,7 @@
 	)
 	(label "BUS12"
 		(at 148.59 83.82 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9795,6 +9864,7 @@
 	)
 	(label "USB_D-"
 		(at 270.51 60.96 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9805,6 +9875,7 @@
 	)
 	(label "BUS00"
 		(at 148.59 114.3 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9815,6 +9886,7 @@
 	)
 	(label "ADDR02"
 		(at 148.59 121.92 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9825,6 +9897,7 @@
 	)
 	(label "BUS06"
 		(at 148.59 99.06 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9835,6 +9908,7 @@
 	)
 	(label "DATA0"
 		(at 148.59 160.02 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9845,6 +9919,7 @@
 	)
 	(label "EXT20"
 		(at 270.51 149.86 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9855,6 +9930,7 @@
 	)
 	(label "EXT24"
 		(at 270.51 162.56 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9865,6 +9941,7 @@
 	)
 	(label "DATA3"
 		(at 148.59 167.64 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9875,6 +9952,7 @@
 	)
 	(label "DATA7"
 		(at 148.59 177.8 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9885,6 +9963,7 @@
 	)
 	(label "BUS08"
 		(at 148.59 93.98 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9895,6 +9974,7 @@
 	)
 	(label "BUS14"
 		(at 148.59 78.74 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9905,6 +9985,7 @@
 	)
 	(label "EXT02"
 		(at 209.55 144.78 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9915,6 +9996,7 @@
 	)
 	(label "EXT12"
 		(at 209.55 172.72 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9925,6 +10007,7 @@
 	)
 	(label "ADDR11"
 		(at 148.59 144.78 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9935,6 +10018,7 @@
 	)
 	(label "EXT27"
 		(at 270.51 170.18 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9945,6 +10029,7 @@
 	)
 	(label "EXT17"
 		(at 270.51 142.24 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9955,6 +10040,7 @@
 	)
 	(label "EXT05"
 		(at 209.55 152.4 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9965,6 +10051,7 @@
 	)
 	(label "I2C0_SCL"
 		(at 176.53 66.04 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9975,6 +10062,7 @@
 	)
 	(label "EXT23"
 		(at 270.51 157.48 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9985,6 +10073,7 @@
 	)
 	(label "VREG_AVDD"
 		(at 58.42 38.1 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9995,6 +10084,7 @@
 	)
 	(label "ADDR03"
 		(at 148.59 124.46 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10005,6 +10095,7 @@
 	)
 	(label "EXT30"
 		(at 270.51 177.8 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10015,6 +10106,7 @@
 	)
 	(label "BUS13"
 		(at 148.59 81.28 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10025,6 +10117,7 @@
 	)
 	(label "DATA4"
 		(at 148.59 170.18 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10035,6 +10128,7 @@
 	)
 	(label "BUS01"
 		(at 148.59 111.76 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10045,6 +10139,7 @@
 	)
 	(label "BUS15"
 		(at 148.59 76.2 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10055,6 +10150,7 @@
 	)
 	(label "ADDR05"
 		(at 148.59 129.54 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10065,6 +10161,7 @@
 	)
 	(label "EXT15"
 		(at 209.55 180.34 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10075,6 +10172,7 @@
 	)
 	(label "BUS10"
 		(at 148.59 88.9 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10085,6 +10183,7 @@
 	)
 	(label "ADDR00"
 		(at 148.59 116.84 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10095,6 +10194,7 @@
 	)
 	(label "~{RESET}"
 		(at 43.18 195.58 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10249,7 +10349,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "05e18c8b-9cb8-4708-b7e4-22f3d376412a")
-		(property "Reference" "J"
+		(property "Reference" "J2"
 			(at 315.976 37.592 0)
 			(effects
 				(font
@@ -10386,7 +10486,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "J")
+					(reference "J2")
 					(unit 1)
 				)
 			)
