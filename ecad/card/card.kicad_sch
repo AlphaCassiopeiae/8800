@@ -9789,7 +9789,8 @@
 		(uuid "fe88a28e-ad78-499e-8339-5e71b74b7983")
 	)
 	(label "EXT09"
-		(at 208.28 179.07 180)
+		(at 209.55 165.1 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9799,7 +9800,8 @@
 		(uuid "022e6d44-728b-4915-80e0-63fd5a56fdea")
 	)
 	(label "ADDR10"
-		(at 149.86 156.21 180)
+		(at 148.59 142.24 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9809,7 +9811,8 @@
 		(uuid "03074ca1-89d4-4769-b3e0-2e23a3558802")
 	)
 	(label "EXT04"
-		(at 208.28 163.83 180)
+		(at 209.55 149.86 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9819,7 +9822,8 @@
 		(uuid "0556ce10-b13e-4d67-a2fe-181102fc30db")
 	)
 	(label "ADDR04"
-		(at 149.86 140.97 180)
+		(at 148.59 127 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9829,7 +9833,8 @@
 		(uuid "0797b3b7-7615-44a8-aba0-da5e9d604a4f")
 	)
 	(label "I2C1_SCL"
-		(at 217.17 156.21 0)
+		(at 218.44 142.24 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9839,7 +9844,8 @@
 		(uuid "0a4fa7ec-6960-4a26-a5cc-d85f140318b6")
 	)
 	(label "BUS04"
-		(at 149.86 118.11 180)
+		(at 148.59 104.14 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9849,7 +9855,8 @@
 		(uuid "13429208-8d70-4a16-bf75-6785814dbdaa")
 	)
 	(label "EXT10"
-		(at 208.28 181.61 180)
+		(at 209.55 167.64 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9859,7 +9866,8 @@
 		(uuid "1556c5b5-01fc-4b50-b013-8e904551c51a")
 	)
 	(label "EXT18"
-		(at 269.24 158.75 180)
+		(at 270.51 144.78 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9869,7 +9877,8 @@
 		(uuid "15f0359b-673a-47a0-b228-157226580e53")
 	)
 	(label "~{RESET}"
-		(at 54.61 179.07 0)
+		(at 53.34 165.1 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9879,7 +9888,8 @@
 		(uuid "1846e20d-7a67-4da1-b1e6-4636290c5924")
 	)
 	(label "BUS21"
-		(at 177.8 95.25 180)
+		(at 176.53 81.28 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9889,7 +9899,8 @@
 		(uuid "29db9229-216b-436b-8a18-384a6cd65eea")
 	)
 	(label "EXT22"
-		(at 269.24 168.91 180)
+		(at 270.51 154.94 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9899,7 +9910,8 @@
 		(uuid "2a4d7e98-d706-4dbb-90ad-e07680cfde0a")
 	)
 	(label "EXT16"
-		(at 269.24 153.67 180)
+		(at 270.51 139.7 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9909,7 +9921,8 @@
 		(uuid "2c8a40e9-bc2c-4b57-ab21-2d8392108bd5")
 	)
 	(label "ADDR06"
-		(at 149.86 146.05 180)
+		(at 148.59 132.08 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9919,7 +9932,8 @@
 		(uuid "2d0818f5-79cd-4ea9-9139-b8fdc0a9ff6b")
 	)
 	(label "ADDR12"
-		(at 149.86 161.29 180)
+		(at 148.59 147.32 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9929,7 +9943,8 @@
 		(uuid "2e4f544d-f68a-4f57-80c6-12e732ce2653")
 	)
 	(label "DATA1"
-		(at 149.86 176.53 180)
+		(at 148.59 162.56 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9939,7 +9954,8 @@
 		(uuid "328486f0-0478-4cd8-9e61-48ec0930ca34")
 	)
 	(label "EXT13"
-		(at 208.28 189.23 180)
+		(at 209.55 175.26 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9949,7 +9965,8 @@
 		(uuid "36a9f71b-e111-4dd1-a89e-b586c0a2ead1")
 	)
 	(label "BUS20"
-		(at 177.8 105.41 180)
+		(at 176.53 91.44 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9959,7 +9976,8 @@
 		(uuid "39caff0a-8c94-40bf-bcc6-0f5f9233177d")
 	)
 	(label "BUS05"
-		(at 149.86 115.57 180)
+		(at 148.59 101.6 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9969,7 +9987,8 @@
 		(uuid "3a85316e-515d-489e-bc46-3bbbfd438376")
 	)
 	(label "EXT29"
-		(at 269.24 189.23 180)
+		(at 270.51 175.26 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9979,7 +9998,8 @@
 		(uuid "3b0ea4a2-1539-48c4-89a7-eb75372b2729")
 	)
 	(label "ADDR08"
-		(at 149.86 151.13 180)
+		(at 148.59 137.16 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9989,7 +10009,8 @@
 		(uuid "3d894aa5-a353-4ab6-a5cd-d14b34950d9b")
 	)
 	(label "DATA6"
-		(at 149.86 189.23 180)
+		(at 148.59 175.26 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9999,7 +10020,8 @@
 		(uuid "3deff43a-6c8c-4a9a-9522-72c03e6e9a63")
 	)
 	(label "ADDR15"
-		(at 149.86 168.91 180)
+		(at 148.59 154.94 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10009,7 +10031,8 @@
 		(uuid "41762069-1a76-4534-a213-fdf476a8cc4d")
 	)
 	(label "I2C1_SDA"
-		(at 217.17 153.67 0)
+		(at 218.44 139.7 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10019,7 +10042,8 @@
 		(uuid "4839d7a5-63c8-4f3e-9bc8-9649f8c1cf36")
 	)
 	(label "I2C0_SCL"
-		(at 156.21 156.21 0)
+		(at 157.48 142.24 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10029,7 +10053,8 @@
 		(uuid "488dcddc-b12d-4206-900c-740bf2a727ac")
 	)
 	(label "USB_D+"
-		(at 184.15 68.58 0)
+		(at 270.51 54.61 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10039,7 +10064,8 @@
 		(uuid "4a21f6e4-9440-4d13-9126-985bcf55fdeb")
 	)
 	(label "EXT21"
-		(at 269.24 166.37 180)
+		(at 270.51 152.4 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10049,7 +10075,8 @@
 		(uuid "4a3c30c2-a39f-4a1d-aae6-7232bb828449")
 	)
 	(label "I2C0_SDA"
-		(at 156.21 153.67 0)
+		(at 157.48 139.7 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10059,7 +10086,8 @@
 		(uuid "50eecb21-c645-4b27-9bee-18260f9d12ec")
 	)
 	(label "EXT08"
-		(at 208.28 176.53 180)
+		(at 209.55 162.56 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10069,7 +10097,8 @@
 		(uuid "53fe93f7-29e8-46b7-a56b-02b3120b32ce")
 	)
 	(label "DATA5"
-		(at 149.86 186.69 180)
+		(at 148.59 172.72 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10079,7 +10108,8 @@
 		(uuid "5525e34b-6838-4743-b1e3-4ce7a4e20df9")
 	)
 	(label "BUS03"
-		(at 149.86 120.65 180)
+		(at 148.59 106.68 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10089,7 +10119,8 @@
 		(uuid "5742ca79-cb87-427f-943e-8845569bddd8")
 	)
 	(label "EXT03"
-		(at 208.28 161.29 180)
+		(at 209.55 147.32 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10099,7 +10130,8 @@
 		(uuid "575bb10f-a813-4b82-890a-80e542a73b3f")
 	)
 	(label "EXT28"
-		(at 269.24 186.69 180)
+		(at 270.51 172.72 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10109,7 +10141,8 @@
 		(uuid "579400cd-034e-4e41-938a-0bbf8522ee80")
 	)
 	(label "ADDR09"
-		(at 149.86 153.67 180)
+		(at 148.59 139.7 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10119,7 +10152,8 @@
 		(uuid "5946790c-889d-4c8d-bfdb-32a1c77ad536")
 	)
 	(label "EXT01"
-		(at 208.28 156.21 180)
+		(at 209.55 142.24 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10129,7 +10163,8 @@
 		(uuid "59e68cf0-cfc1-40ca-8f9a-3a51c2e6074f")
 	)
 	(label "EXT14"
-		(at 208.28 191.77 180)
+		(at 209.55 177.8 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10139,7 +10174,8 @@
 		(uuid "6554b225-6580-4951-a7b5-d410c76d71a9")
 	)
 	(label "ADDR14"
-		(at 149.86 166.37 180)
+		(at 148.59 152.4 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10149,7 +10185,8 @@
 		(uuid "671449c9-dbcc-436e-aeec-74fa433030c8")
 	)
 	(label "EXT25"
-		(at 269.24 179.07 180)
+		(at 270.51 165.1 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10159,7 +10196,8 @@
 		(uuid "6ac022ec-241e-4cde-a3ff-31370832df69")
 	)
 	(label "BUS18"
-		(at 149.86 82.55 180)
+		(at 148.59 68.58 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10169,7 +10207,8 @@
 		(uuid "6cbaa6e7-7273-4bbc-b295-d89912b1e98b")
 	)
 	(label "I2C1_SCL"
-		(at 177.8 100.33 180)
+		(at 176.53 86.36 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10179,7 +10218,8 @@
 		(uuid "707cd278-f102-4e85-bb62-6c61f04b3ce7")
 	)
 	(label "~{RESET}"
-		(at 217.17 176.53 0)
+		(at 218.44 162.56 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10189,7 +10229,8 @@
 		(uuid "732d5bcb-8481-4aff-83d3-9146713db9a5")
 	)
 	(label "EXT06"
-		(at 208.28 168.91 180)
+		(at 209.55 154.94 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10199,7 +10240,8 @@
 		(uuid "7493c672-5959-40e8-996b-eca933da4edd")
 	)
 	(label "~{USB_BOOT}"
-		(at 39.37 92.71 0)
+		(at 38.1 91.44 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10209,7 +10251,8 @@
 		(uuid "771af818-5ff8-4d21-a533-67112729d65d")
 	)
 	(label "ADDR07"
-		(at 149.86 148.59 180)
+		(at 148.59 134.62 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10219,7 +10262,8 @@
 		(uuid "77aa364e-0987-4ad7-b1d5-e37f7e3495c2")
 	)
 	(label "USB_D+"
-		(at 160.02 54.61 180)
+		(at 158.75 40.64 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10229,7 +10273,8 @@
 		(uuid "7849f541-3d60-436b-aacd-ce7e4e44d1f1")
 	)
 	(label "DATA2"
-		(at 149.86 179.07 180)
+		(at 148.59 165.1 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10239,7 +10284,8 @@
 		(uuid "7a3ec137-f17f-4394-a6bc-9c2b03c5e4a5")
 	)
 	(label "EXT07"
-		(at 208.28 171.45 180)
+		(at 209.55 157.48 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10249,7 +10295,8 @@
 		(uuid "81d4013f-97aa-41b1-b423-7fa28c52aa04")
 	)
 	(label "I2C1_SDA"
-		(at 177.8 90.17 180)
+		(at 176.53 76.2 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10259,7 +10306,8 @@
 		(uuid "8360f90a-2f79-4add-86f3-5d2d0d9b4ed7")
 	)
 	(label "USB_D-"
-		(at 160.02 62.23 180)
+		(at 158.75 48.26 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10269,7 +10317,8 @@
 		(uuid "8cc740d0-2532-47a2-8183-f6e2c4388def")
 	)
 	(label "EXT31"
-		(at 269.24 194.31 180)
+		(at 270.51 180.34 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10279,7 +10328,8 @@
 		(uuid "9084ac89-a4fe-40bb-8477-aafcd21e2c46")
 	)
 	(label "BUS16"
-		(at 149.86 87.63 180)
+		(at 148.59 73.66 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10289,7 +10339,8 @@
 		(uuid "962658c7-86d0-4715-86a6-129fc70a37e6")
 	)
 	(label "ADDR01"
-		(at 149.86 133.35 180)
+		(at 148.59 119.38 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10299,7 +10350,8 @@
 		(uuid "96742a06-520a-4763-af1a-817f35557f0f")
 	)
 	(label "VREG_LX"
-		(at 59.69 73.66 0)
+		(at 58.42 59.69 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10309,7 +10361,8 @@
 		(uuid "98ae25be-d4c7-49c3-bd5e-e73e4b7d977f")
 	)
 	(label "BUS02"
-		(at 149.86 123.19 180)
+		(at 148.59 109.22 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10319,7 +10372,8 @@
 		(uuid "9c4a209e-5473-45d2-aa82-9f4186bad5df")
 	)
 	(label "BUS07"
-		(at 149.86 110.49 180)
+		(at 148.59 96.52 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10329,7 +10383,8 @@
 		(uuid "9d1d3bc7-a52d-4314-ad5f-f21829dc2775")
 	)
 	(label "EXT11"
-		(at 208.28 184.15 180)
+		(at 209.55 170.18 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10339,7 +10394,8 @@
 		(uuid "9e4dc27a-0070-4293-8b4b-a9b5f5bc1a2f")
 	)
 	(label "BUS23"
-		(at 177.8 74.93 180)
+		(at 176.53 60.96 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10349,7 +10405,8 @@
 		(uuid "a0dc2638-0f43-498f-9eea-6069f1fd2ec2")
 	)
 	(label "I2C0_SDA"
-		(at 177.8 69.85 180)
+		(at 176.53 55.88 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10359,7 +10416,8 @@
 		(uuid "a18860c7-69b9-4934-90ad-06966bb94efb")
 	)
 	(label "ADDR13"
-		(at 149.86 163.83 180)
+		(at 148.59 149.86 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10369,7 +10427,8 @@
 		(uuid "a1e359ba-b526-4c20-9e73-44ec6b144fe0")
 	)
 	(label "BUS19"
-		(at 149.86 80.01 180)
+		(at 148.59 66.04 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10379,7 +10438,8 @@
 		(uuid "a39b2674-634f-49c6-9e46-97966dc6872f")
 	)
 	(label "BUS22"
-		(at 177.8 85.09 180)
+		(at 176.53 71.12 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10389,7 +10449,8 @@
 		(uuid "a3cc44e3-e1c2-483f-8a3a-c1e37b9496ce")
 	)
 	(label "EXT00"
-		(at 208.28 153.67 180)
+		(at 209.55 139.7 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10399,7 +10460,8 @@
 		(uuid "a57c29f4-a446-4761-9c40-081ce0de1721")
 	)
 	(label "BUS09"
-		(at 149.86 105.41 180)
+		(at 148.59 91.44 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10409,7 +10471,8 @@
 		(uuid "a90403bd-a2cd-4cdf-a4f5-eb5fb917afe7")
 	)
 	(label "BUS17"
-		(at 149.86 85.09 180)
+		(at 148.59 71.12 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10419,7 +10482,8 @@
 		(uuid "acf936b3-00eb-4653-a823-db5fcab007db")
 	)
 	(label "EXT26"
-		(at 269.24 181.61 180)
+		(at 270.51 167.64 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10429,7 +10493,8 @@
 		(uuid "af6657bc-66f2-43e7-9d01-ad6b8e5063e8")
 	)
 	(label "BUS11"
-		(at 149.86 100.33 180)
+		(at 148.59 86.36 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10439,7 +10504,8 @@
 		(uuid "b0574a36-f220-4b25-9a2f-5e4f45e7eb47")
 	)
 	(label "EXT19"
-		(at 269.24 161.29 180)
+		(at 270.51 147.32 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10449,7 +10515,8 @@
 		(uuid "b0b19d47-ab3c-4a9b-b5d3-bd10a32832aa")
 	)
 	(label "QSPI_SS"
-		(at 58.42 92.71 0)
+		(at 57.15 91.44 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10459,7 +10526,8 @@
 		(uuid "b316c7b0-1b4b-481d-83b8-c6dd928c4e49")
 	)
 	(label "~{RESET}"
-		(at 156.21 176.53 0)
+		(at 157.48 162.56 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10469,7 +10537,8 @@
 		(uuid "b4d7c2cd-ffd1-48ed-8582-d0a55124ec2f")
 	)
 	(label "BUS12"
-		(at 149.86 97.79 180)
+		(at 148.59 83.82 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10479,7 +10548,8 @@
 		(uuid "b5553fbc-75cc-493d-839c-137ffc60f9ca")
 	)
 	(label "USB_D-"
-		(at 184.15 74.93 0)
+		(at 270.51 60.96 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10489,7 +10559,8 @@
 		(uuid "bc3e24ae-4006-4a49-bce9-106ee85fce8f")
 	)
 	(label "BUS00"
-		(at 149.86 128.27 180)
+		(at 148.59 114.3 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10499,7 +10570,8 @@
 		(uuid "bc659e08-f23e-474d-9f84-e2936205798e")
 	)
 	(label "ADDR02"
-		(at 149.86 135.89 180)
+		(at 148.59 121.92 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10509,7 +10581,8 @@
 		(uuid "bf74eb74-c46d-44cc-8a81-214edb7ec2cf")
 	)
 	(label "BUS06"
-		(at 149.86 113.03 180)
+		(at 148.59 99.06 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10519,7 +10592,8 @@
 		(uuid "bf7c7d0f-d0cf-4fc1-b99b-e652043f8f36")
 	)
 	(label "DATA0"
-		(at 149.86 173.99 180)
+		(at 148.59 160.02 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10529,7 +10603,8 @@
 		(uuid "c67c75fc-9cca-4892-b1bc-eac3d2ad312d")
 	)
 	(label "EXT20"
-		(at 269.24 163.83 180)
+		(at 270.51 149.86 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10539,7 +10614,8 @@
 		(uuid "c81769b8-5e3c-4dae-a508-3b9ad2193d8e")
 	)
 	(label "EXT24"
-		(at 269.24 176.53 180)
+		(at 270.51 162.56 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10549,7 +10625,8 @@
 		(uuid "c9222546-90fa-4454-a7e0-78b2724d63e5")
 	)
 	(label "DATA3"
-		(at 149.86 181.61 180)
+		(at 148.59 167.64 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10559,7 +10636,8 @@
 		(uuid "cb889e2a-1129-404f-816d-47ada6d97035")
 	)
 	(label "DATA7"
-		(at 149.86 191.77 180)
+		(at 148.59 177.8 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10569,7 +10647,8 @@
 		(uuid "ccb871d1-9582-4859-84b2-7b87b2fe4e7e")
 	)
 	(label "BUS08"
-		(at 149.86 107.95 180)
+		(at 148.59 93.98 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10579,7 +10658,8 @@
 		(uuid "cdb7b316-b9fa-40bd-ae26-5b6f9b459773")
 	)
 	(label "BUS14"
-		(at 149.86 92.71 180)
+		(at 148.59 78.74 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10589,7 +10669,8 @@
 		(uuid "ce6b2858-11e8-41d3-8c79-654a94b68e25")
 	)
 	(label "EXT02"
-		(at 208.28 158.75 180)
+		(at 209.55 144.78 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10599,7 +10680,8 @@
 		(uuid "cee2a277-4dd9-4ed0-bbda-18ae497ccfc3")
 	)
 	(label "EXT12"
-		(at 208.28 186.69 180)
+		(at 209.55 172.72 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10609,7 +10691,8 @@
 		(uuid "d30adad9-a670-4684-a3f6-0f14fd9702ee")
 	)
 	(label "ADDR11"
-		(at 149.86 158.75 180)
+		(at 148.59 144.78 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10619,7 +10702,8 @@
 		(uuid "d8064168-2fca-4b43-9a58-7763bc2830d9")
 	)
 	(label "EXT27"
-		(at 269.24 184.15 180)
+		(at 270.51 170.18 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10629,7 +10713,8 @@
 		(uuid "d891dbb8-6d3c-4a6d-a1bf-60112661cd94")
 	)
 	(label "EXT17"
-		(at 269.24 156.21 180)
+		(at 270.51 142.24 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10639,7 +10724,8 @@
 		(uuid "d96759b3-1b1f-4405-9c8a-64adc46b0beb")
 	)
 	(label "EXT05"
-		(at 208.28 166.37 180)
+		(at 209.55 152.4 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10649,7 +10735,8 @@
 		(uuid "dec3e2f0-5845-451d-bd48-9b7355878c0e")
 	)
 	(label "I2C0_SCL"
-		(at 177.8 80.01 180)
+		(at 176.53 66.04 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10659,7 +10746,8 @@
 		(uuid "df4de02f-3173-4256-8889-0dfe3c7455b9")
 	)
 	(label "EXT23"
-		(at 269.24 171.45 180)
+		(at 270.51 157.48 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10669,7 +10757,8 @@
 		(uuid "e0a685ba-e8b8-4173-a12e-ef50b1b22e39")
 	)
 	(label "VREG_AVDD"
-		(at 59.69 52.07 0)
+		(at 58.42 38.1 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10679,7 +10768,8 @@
 		(uuid "e132a5ce-1767-4d1f-bfa5-5a8520e43174")
 	)
 	(label "ADDR03"
-		(at 149.86 138.43 180)
+		(at 148.59 124.46 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10689,7 +10779,8 @@
 		(uuid "e3fcbd5c-24b7-4612-8b30-084c6ae3f1c8")
 	)
 	(label "EXT30"
-		(at 269.24 191.77 180)
+		(at 270.51 177.8 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10699,7 +10790,8 @@
 		(uuid "e9768e2f-88df-408b-96a7-f253f188d669")
 	)
 	(label "BUS13"
-		(at 149.86 95.25 180)
+		(at 148.59 81.28 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10709,7 +10801,8 @@
 		(uuid "e98801dd-e0e5-4e26-a370-f3fe4df5bd87")
 	)
 	(label "DATA4"
-		(at 149.86 184.15 180)
+		(at 148.59 170.18 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10719,7 +10812,8 @@
 		(uuid "eab6fe1a-a618-400c-8479-3a532c40f153")
 	)
 	(label "BUS01"
-		(at 149.86 125.73 180)
+		(at 148.59 111.76 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10729,7 +10823,8 @@
 		(uuid "ed4e5600-dd72-4af4-83b6-01605df61157")
 	)
 	(label "BUS15"
-		(at 149.86 90.17 180)
+		(at 148.59 76.2 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10739,7 +10834,8 @@
 		(uuid "ed6d8bd6-ebee-44fa-933d-c4988a7f56b6")
 	)
 	(label "ADDR05"
-		(at 149.86 143.51 180)
+		(at 148.59 129.54 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10749,7 +10845,8 @@
 		(uuid "f27d3393-d94a-44f6-a6be-9ab4986eef00")
 	)
 	(label "EXT15"
-		(at 208.28 194.31 180)
+		(at 209.55 180.34 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10759,7 +10856,8 @@
 		(uuid "f639d258-6545-42dc-9bb9-9863dc2b8409")
 	)
 	(label "BUS10"
-		(at 149.86 102.87 180)
+		(at 148.59 88.9 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10769,7 +10867,8 @@
 		(uuid "f6c0502a-65ce-4d89-af9d-aec1d2d4c05e")
 	)
 	(label "ADDR00"
-		(at 149.86 130.81 180)
+		(at 148.59 116.84 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10779,7 +10878,8 @@
 		(uuid "f71a5b2f-f7db-4084-9916-1bfcab90fb41")
 	)
 	(label "~{RESET}"
-		(at 43.18 198.12 180)
+		(at 43.18 195.58 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10934,8 +11034,8 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "05e18c8b-9cb8-4708-b7e4-22f3d376412a")
-		(property "Reference" "J"
-			(at 229.616 51.562 0)
+		(property "Reference" "J2"
+			(at 315.976 37.592 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11071,7 +11171,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "J")
+					(reference "J2")
 					(unit 1)
 				)
 			)

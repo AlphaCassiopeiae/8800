@@ -1,12 +1,10 @@
 (kicad_sch
-	(version 20250114)
+	(version 20231120)
 	(generator "eeschema")
-	(generator_version "9.0")
+	(generator_version "8.0")
 	(uuid "d8b48790-1320-4356-b6f7-c1cc2bd34ac6")
 	(paper "A4")
 	(title_block
-		(date "2025-02-26")
-		(company "ECE 477: Digital Systems Design")
 		(comment 1 "Brian Lu")
 		(comment 2 "Nathan Huang")
 		(comment 3 "Caleb Shinkle")
@@ -14,9 +12,7 @@
 	)
 	(lib_symbols
 		(symbol "Device:C"
-			(pin_numbers
-				(hide yes)
-			)
+			(pin_numbers hide)
 			(pin_names
 				(offset 0.254)
 			)
@@ -89,7 +85,7 @@
 			(symbol "C_0_1"
 				(polyline
 					(pts
-						(xy -2.032 0.762) (xy 2.032 0.762)
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -101,7 +97,7 @@
 				)
 				(polyline
 					(pts
-						(xy -2.032 -0.762) (xy 2.032 -0.762)
+						(xy -2.032 0.762) (xy 2.032 0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -150,16 +146,11 @@
 					)
 				)
 			)
-			(embedded_fonts no)
 		)
 		(symbol "Device:L"
-			(pin_numbers
-				(hide yes)
-			)
+			(pin_numbers hide)
 			(pin_names
-				(offset 1.016)
-				(hide yes)
-			)
+				(offset 1.016) hide)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -226,32 +217,8 @@
 			)
 			(symbol "L_0_1"
 				(arc
-					(start 0 2.54)
-					(mid 0.6323 1.905)
-					(end 0 1.27)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start 0 1.27)
-					(mid 0.6323 0.635)
-					(end 0 0)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start 0 0)
-					(mid 0.6323 -0.635)
+					(start 0 -2.54)
+					(mid 0.6323 -1.905)
 					(end 0 -1.27)
 					(stroke
 						(width 0)
@@ -263,8 +230,32 @@
 				)
 				(arc
 					(start 0 -1.27)
-					(mid 0.6323 -1.905)
-					(end 0 -2.54)
+					(mid 0.6323 -0.635)
+					(end 0 0)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0 0)
+					(mid 0.6323 0.635)
+					(end 0 1.27)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0 1.27)
+					(mid 0.6323 1.905)
+					(end 0 2.54)
 					(stroke
 						(width 0)
 						(type default)
@@ -312,12 +303,9 @@
 					)
 				)
 			)
-			(embedded_fonts no)
 		)
 		(symbol "Device:R_US"
-			(pin_numbers
-				(hide yes)
-			)
+			(pin_numbers hide)
 			(pin_names
 				(offset 0)
 			)
@@ -388,31 +376,19 @@
 			(symbol "R_US_0_1"
 				(polyline
 					(pts
+						(xy 0 -2.286) (xy 0 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
 						(xy 0 2.286) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
 					)
 					(stroke
 						(width 0)
@@ -436,7 +412,19 @@
 				)
 				(polyline
 					(pts
-						(xy 0 -2.286) (xy 0 -2.54)
+						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
 					)
 					(stroke
 						(width 0)
@@ -485,7 +473,6 @@
 					)
 				)
 			)
-			(embedded_fonts no)
 		)
 		(symbol "Regulator_Switching:MCP16331x-xCH"
 			(exclude_from_sim no)
@@ -569,35 +556,17 @@
 				)
 			)
 			(symbol "MCP16331x-xCH_1_1"
-				(pin power_in line
-					(at -10.16 5.08 0)
-					(length 2.54)
-					(name "V_{IN}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 				(pin input line
-					(at -10.16 0 0)
+					(at 10.16 5.08 180)
 					(length 2.54)
-					(name "EN"
+					(name "BOOST"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "4"
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -624,16 +593,52 @@
 					)
 				)
 				(pin input line
-					(at 10.16 5.08 180)
+					(at 10.16 -2.54 180)
 					(length 2.54)
-					(name "BOOST"
+					(name "V_{FB}"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "1"
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 0 0)
+					(length 2.54)
+					(name "EN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -10.16 5.08 0)
+					(length 2.54)
+					(name "V_{IN}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -659,17 +664,132 @@
 						)
 					)
 				)
-				(pin input line
-					(at 10.16 -2.54 180)
+			)
+		)
+		(symbol "Switch:SW_SPST"
+			(pin_names
+				(offset 0) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "SW"
+				(at 0 3.175 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "SW_SPST"
+				(at 0 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Single Pole Single Throw (SPST) switch"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "switch lever"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "SW_SPST_0_0"
+				(circle
+					(center -2.032 0)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 0.254) (xy 1.524 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.032 0)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "SW_SPST_1_1"
+				(pin passive line
+					(at -5.08 0 0)
 					(length 2.54)
-					(name "V_{FB}"
+					(name "A"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "3"
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 0 180)
+					(length 2.54)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -678,17 +798,12 @@
 					)
 				)
 			)
-			(embedded_fonts no)
 		)
 		(symbol "power:+5V"
 			(power)
-			(pin_numbers
-				(hide yes)
-			)
+			(pin_numbers hide)
 			(pin_names
-				(offset 0)
-				(hide yes)
-			)
+				(offset 0) hide)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -760,7 +875,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
+						(xy 0 0) (xy 0 2.54)
 					)
 					(stroke
 						(width 0)
@@ -772,7 +887,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0 2.54)
+						(xy 0 2.54) (xy 0.762 1.27)
 					)
 					(stroke
 						(width 0)
@@ -803,17 +918,12 @@
 					)
 				)
 			)
-			(embedded_fonts no)
 		)
 		(symbol "power:GND"
 			(power)
-			(pin_numbers
-				(hide yes)
-			)
+			(pin_numbers hide)
 			(pin_names
-				(offset 0)
-				(hide yes)
-			)
+				(offset 0) hide)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -904,17 +1014,12 @@
 					)
 				)
 			)
-			(embedded_fonts no)
 		)
 		(symbol "power:PWR_FLAG"
 			(power)
-			(pin_numbers
-				(hide yes)
-			)
+			(pin_numbers hide)
 			(pin_names
-				(offset 0)
-				(hide yes)
-			)
+				(offset 0) hide)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1005,7 +1110,6 @@
 					)
 				)
 			)
-			(embedded_fonts no)
 		)
 	)
 	(junction
@@ -1055,6 +1159,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "80fb4464-4d14-4b28-a443-00f461971095")
+	)
+	(junction
+		(at 68.58 87.63)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9d1c0601-3937-4cb7-859e-5472370ca804")
 	)
 	(junction
 		(at 153.67 87.63)
@@ -1186,6 +1296,16 @@
 	)
 	(wire
 		(pts
+			(xy 81.28 73.66) (xy 91.44 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "40772f03-ab47-4664-88dd-3f5db346c8d7")
+	)
+	(wire
+		(pts
 			(xy 107.95 87.63) (xy 107.95 91.44)
 		)
 		(stroke
@@ -1246,7 +1366,7 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 73.66) (xy 91.44 73.66)
+			(xy 71.12 73.66) (xy 68.58 73.66)
 		)
 		(stroke
 			(width 0)
@@ -1490,7 +1610,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "6f2f880b-4274-4369-ad5e-286fa1d81646")
+			(uuid "04cbd1c4-9d0a-428b-bd45-30e521f260da")
 		)
 		(instances
 			(project "ecad"
@@ -1511,7 +1631,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4d80da21-2102-43b8-a702-943c5e6550e7")
-		(property "Reference" "C52"
+		(property "Reference" "C4"
 			(at 171.45 77.4699 0)
 			(effects
 				(font
@@ -1557,15 +1677,82 @@
 			)
 		)
 		(pin "1"
-			(uuid "0d4d5638-b903-4ae6-9dbd-790a9c7e65f5")
+			(uuid "f6e376db-fd41-487d-89ba-bfbe84f07b95")
 		)
 		(pin "2"
-			(uuid "197d6e50-b529-49b3-89ed-e6eae6bee016")
+			(uuid "ae1b15ef-1563-4c59-baa9-8b3403654aa5")
 		)
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "C52")
+					(reference "C4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 68.58 87.63 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5bc8b834-aa16-41c5-8aa7-b820652b5925")
+		(property "Reference" "#FLG02"
+			(at 66.675 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 64.77 87.6299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 68.58 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 68.58 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 68.58 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1d99bea2-116f-4510-9670-e673e86d9566")
+		)
+		(instances
+			(project "ecad"
+				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
+					(reference "#FLG02")
 					(unit 1)
 				)
 			)
@@ -1581,7 +1768,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "614e319e-60a1-43d0-abaf-95573388f27c")
-		(property "Reference" "C50"
+		(property "Reference" "C2"
 			(at 127 57.15 90)
 			(effects
 				(font
@@ -1625,15 +1812,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "9a659ad5-22f3-4010-9e34-8854621966cf")
+			(uuid "4bd5e78a-2337-4c89-826b-543e44cecc98")
 		)
 		(pin "1"
-			(uuid "3caf5760-cef3-4dfb-9afb-11a97a041269")
+			(uuid "457c5457-977c-4169-ac01-8fb2af184f30")
 		)
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "C50")
+					(reference "C2")
 					(unit 1)
 				)
 			)
@@ -1649,7 +1836,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7709ac44-a8c5-4ad5-9f2a-c18f963b7e38")
-		(property "Reference" "C49"
+		(property "Reference" "C3"
 			(at 157.48 77.4699 0)
 			(effects
 				(font
@@ -1695,15 +1882,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "9b311457-fd4f-4c8d-a246-aef5b48e1427")
+			(uuid "b6786382-feba-4af6-a6ae-0b447743ce87")
 		)
 		(pin "2"
-			(uuid "a2b5f8c5-2be1-4b75-b8c5-dec5c5924e83")
+			(uuid "26df6810-8fac-4b00-9b6f-0f57ef7d7919")
 		)
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "C49")
+					(reference "C3")
 					(unit 1)
 				)
 			)
@@ -1719,7 +1906,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "79bd1cb2-c9f8-4e54-8ff5-81f2eb6b52aa")
-		(property "Reference" "U20"
+		(property "Reference" "U1"
 			(at 107.95 60.96 0)
 			(effects
 				(font
@@ -1764,27 +1951,27 @@
 			)
 		)
 		(pin "1"
-			(uuid "6db53202-e09a-477b-b136-d2fe22518014")
+			(uuid "a45ab936-062c-4902-a1d9-9cda583edbbe")
 		)
 		(pin "5"
-			(uuid "4e528a59-0ad5-4dac-b442-7b652824ca15")
+			(uuid "83435bdd-fee9-4e67-a6c5-a90de314299b")
 		)
 		(pin "4"
-			(uuid "c70c7396-66ab-4762-befd-000d05b5b201")
+			(uuid "1150f5e0-ce5c-465c-8ec9-521cd8e0b402")
 		)
 		(pin "6"
-			(uuid "4ecfe3b5-a09e-45e9-9883-4cd17d57e258")
+			(uuid "a5a7ab98-d70d-4157-ba4c-1ca9e8a6695e")
 		)
 		(pin "2"
-			(uuid "1558de00-62f1-47b0-b4ed-a5b11fbd77ac")
+			(uuid "c77213d4-2d44-47db-8e88-9919e2bfefc2")
 		)
 		(pin "3"
-			(uuid "3c8168f9-62f0-4836-bdf3-dffbf54c45fa")
+			(uuid "e04a0f54-e85a-4dcf-be53-c6d19e2c5584")
 		)
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "U20")
+					(reference "U1")
 					(unit 1)
 				)
 			)
@@ -1800,7 +1987,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9149bf92-8bd8-4925-901e-06f30d160f12")
-		(property "Reference" "R51"
+		(property "Reference" "R41"
 			(at 127 69.85 90)
 			(effects
 				(font
@@ -1844,15 +2031,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "7ce4935e-4f52-4272-9f9d-3c9b536a2cb9")
+			(uuid "028a4e2f-5582-409b-ab43-715fe129a709")
 		)
 		(pin "2"
-			(uuid "597e467f-8783-44d2-aa7f-f78edca6ffe2")
+			(uuid "d5e67398-6164-44b3-ae5d-8c47d2431b3f")
 		)
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "R51")
+					(reference "R41")
 					(unit 1)
 				)
 			)
@@ -1868,7 +2055,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9cc7548b-2689-450d-ad79-a460311df3b7")
-		(property "Reference" "R50"
+		(property "Reference" "R40"
 			(at 123.19 81.2799 0)
 			(effects
 				(font
@@ -1914,15 +2101,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "c34d21e0-9602-4402-af62-4502bc2cb02e")
+			(uuid "9ad855ad-8a79-4422-8ef3-042c137ad735")
 		)
 		(pin "2"
-			(uuid "7dafb31e-bce3-4cef-bc9c-4276da26ea03")
+			(uuid "93d3a5d5-f05a-4bc7-a8fc-22d29d57354b")
 		)
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "R50")
+					(reference "R40")
 					(unit 1)
 				)
 			)
@@ -1938,7 +2125,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9f5c786f-da73-4fe2-bfba-85f3329c59e7")
-		(property "Reference" "L3"
+		(property "Reference" "L2"
 			(at 138.43 66.04 90)
 			(effects
 				(font
@@ -1982,15 +2169,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "9c988e6a-a8eb-4ffe-96f6-e416268201ba")
+			(uuid "8e39270c-6ff3-4244-9b6f-42a3f129a538")
 		)
 		(pin "2"
-			(uuid "302b3076-4c82-41ee-a4da-91b15c9e58e0")
+			(uuid "6b4ef122-b2ab-421a-8a3a-a3a24f63f941")
 		)
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "L3")
+					(reference "L2")
 					(unit 1)
 				)
 			)
@@ -2051,12 +2238,79 @@
 			)
 		)
 		(pin "1"
-			(uuid "39425e3a-1629-4f28-a128-444ea0a2072f")
+			(uuid "f1f7b4cb-d4a0-42bc-8870-12a736ba599f")
 		)
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
 					(reference "#PWR02")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_SPST")
+		(at 76.2 73.66 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "af477f29-6f41-480b-a7ec-da50215bd455")
+		(property "Reference" "SW22"
+			(at 76.2 75.438 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SW_SPST"
+			(at 76.2 77.978 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Button_Switch_SMD:SW_DIP_SPSTx01_Slide_6.7x4.1mm_W6.73mm_P2.54mm_LowProfile_JPin"
+			(at 76.2 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 76.2 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Single Pole Single Throw (SPST) switch"
+			(at 76.2 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "25fa930e-5fd2-40b4-8cf4-337ba591145a")
+		)
+		(pin "2"
+			(uuid "1f961817-b3ff-4b25-938d-daf5ecca426b")
+		)
+		(instances
+			(project "ecad"
+				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
+					(reference "SW22")
 					(unit 1)
 				)
 			)
@@ -2072,7 +2326,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d439ad14-3b24-42f2-bee4-3572ddd0ce4b")
-		(property "Reference" "C51"
+		(property "Reference" "C1"
 			(at 72.39 81.2799 0)
 			(effects
 				(font
@@ -2118,15 +2372,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "a8db613a-9417-47d7-8fde-228287f1b778")
+			(uuid "7bf3b6a2-03b1-48aa-950e-f30adda88da4")
 		)
 		(pin "1"
-			(uuid "deb77465-d41a-4c68-b34d-a15985a7586d")
+			(uuid "3bb97e55-0189-4684-8674-e78de058dd4c")
 		)
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "C51")
+					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -2187,7 +2441,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "cb8d95e9-293e-4ed6-927b-853487bf4d7a")
+			(uuid "e14e6a73-3b80-4dfa-9d7b-457e51f91759")
 		)
 		(instances
 			(project "ecad"
@@ -2208,7 +2462,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f9bad48e-b8ce-45f0-9ec6-897568f31f8b")
-		(property "Reference" "R49"
+		(property "Reference" "R39"
 			(at 93.98 80.0099 0)
 			(effects
 				(font
@@ -2254,15 +2508,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "a657bf60-c5ed-4697-be5a-2572e6f41280")
+			(uuid "bcc528ad-00bd-4c61-99eb-047afce4f1b3")
 		)
 		(pin "2"
-			(uuid "b17c7f98-3e85-4b1d-8231-6f7ac7f49c64")
+			(uuid "23c37efe-0f05-4b7c-9ebc-09f4c1170b6c")
 		)
 		(instances
 			(project "ecad"
 				(path "/b682b302-8ca4-4b40-b0cb-fd99f4675538/8ac99590-cdb7-457f-9b2c-c22421ccb183/b634cce5-68f2-492b-8de2-08cd2bb51e98"
-					(reference "R49")
+					(reference "R39")
 					(unit 1)
 				)
 			)
