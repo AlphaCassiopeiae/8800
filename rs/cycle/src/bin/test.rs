@@ -1,67 +1,131 @@
+//! This example shows powerful PIO module in the RP2040 chip.
+
 #![no_std]
 #![no_main]
-
-use embassy_executor::Spawner;
-use embassy_rp::gpio::{Input, Pull};
-use embassy_rp::pio::{Config as PioConfig, Pio};
-use embassy_rp::uart;
 use defmt::info;
+use embassy_executor::Spawner;
+use embassy_rp::bind_interrupts;
+use embassy_rp::peripherals::PIO0;
+use embassy_rp::pio::program::pio_asm;
+use embassy_rp::pio::{Common, Config, InterruptHandler, Irq, Pio, PioPin, ShiftDirection, StateMachine};
+use fixed::traits::ToFixed;
+use fixed_macro::types::U56F8;
 use {defmt_rtt as _, panic_probe as _};
 
-#[embassy_executor::main]
-async fn main(_spawner: Spawner) {
-    let p = embassy_rp::init(Default::default());
+bind_interrupts!(struct Irqs {
+    PIO0_IRQ_0 => InterruptHandler<PIO0>;
+});
 
-    // Setup UART1 on pins 42 (TX) and 43 (RX) for logging.
-    let mut uart = uart::Uart::new_blocking(p.UART1, p.PIN_42, p.PIN_43, uart::Config::default());
+fn setup_pio_task_sm0<'a>(pio: &mut Common<'a, PIO0>, sm: &mut StateMachine<'a, PIO0, 0>, pin: impl PioPin) {
+    // Setup sm0
 
-    // Define a PIO program that writes a byte on an 8-bit bus and pulses a write-strobe (WR).
-    // Data bus is output via the "pins" group (8 pins) and WR is driven via side-set.
-    let prg = embassy_rp::pio::program::pio_asm!(
-        "
-        pull             ; pull data from TX FIFO into OSR
-        out pins, 8 side 1  ; drive 8-bit data on data bus, set WR high (inactive) via side-set
-        nop         side  ; pulse: set WR low (active)
-        nop         side 1  ; return WR high
-        "
+    // Send data serially to pin
+    let prg = pio_asm!(
+        ".origin 16",
+        "set pindirs, 1",
+        ".wrap_target",
+        "out pins,1 [19]",
+        ".wrap",
     );
 
-    // Initialize the PIO state machine.
-    let pio = Pio::new(p.PIO0);
-    let mut cfg = PioConfig::default();
-    // Configure to use 8 consecutive pins for the data bus and one separate GPIO for WR:
-    // Here, data bus: pins 10..17, and WR: pin 18.
-    cfg.out_pin_base = p.PIN_10.number();
-    cfg.side_set_config = Some(embassy_rp::pio::SideSetConfig {
-        enabled: true,
-        optional: false,
-        num_pins: 1,
-        base_pin: p.PIN_18.number(),
-    });
-    // Load the program into PIO instruction memory.
-    cfg.use_program(&pio.common().load_program(&prg.program), &[]);
+    let mut cfg = Config::default();
+    cfg.use_program(&pio.load_program(&prg.program), &[]);
+    let out_pin = pio.make_pio_pin(pin);
+    cfg.set_out_pins(&[&out_pin]);
+    cfg.set_set_pins(&[&out_pin]);
+    cfg.clock_divider = (U56F8!(125_000_000) / 20 / 200).to_fixed();
+    cfg.shift_out.auto_fill = true;
+    sm.set_config(&cfg);
+}
 
-    // Initialize state machine 0 with the configuration.
-    let mut sm = pio.init_sm(0, &cfg);
+#[embassy_executor::task]
+async fn pio_task_sm0(mut sm: StateMachine<'static, PIO0, 0>) {
+    sm.set_enable(true);
 
-    // Use an input pin for ACK (from the reader) on pin 19.
-    let ack_pin = Input::new(p.PIN_19, Pull::None);
-
-    let mut counter: u8 = 0;
+    let mut v = 0x0f0caffa;
     loop {
-        // Push the data byte to the state machine's TX FIFO.
-        sm.tx().push(counter as u32);
-
-        // Log the value being written.
-        let msg = defmt::format!("Writing value: {}\r\n", counter);
-        uart.blocking_write(msg.as_bytes()).unwrap();
-
-        // Wait for an ACK pulse:
-        // Block until the ACK pin goes high then low, ensuring the reader has processed the data.
-        while !ack_pin.is_high() {}
-        while ack_pin.is_high() {}
-
-        counter = counter.wrapping_add(1);
-        cortex_m::asm::delay(500_000);
+        sm.tx().wait_push(v).await;
+        v ^= 0xffff;
+        info!("Pushed {:032b} to FIFO", v);
     }
+}
+
+fn setup_pio_task_sm1<'a>(pio: &mut Common<'a, PIO0>, sm: &mut StateMachine<'a, PIO0, 1>) {
+    // Setupm sm1
+
+    // Read 0b10101 repeatedly until ISR is full
+    let prg = pio_asm!(
+        //
+        ".origin 8",
+        "set x, 0x15",
+        ".wrap_target",
+        "in x, 5 [31]",
+        ".wrap",
+    );
+
+    let mut cfg = Config::default();
+    cfg.use_program(&pio.load_program(&prg.program), &[]);
+    cfg.clock_divider = (U56F8!(125_000_000) / 2000).to_fixed();
+    cfg.shift_in.auto_fill = true;
+    cfg.shift_in.direction = ShiftDirection::Right;
+    sm.set_config(&cfg);
+}
+
+#[embassy_executor::task]
+async fn pio_task_sm1(mut sm: StateMachine<'static, PIO0, 1>) {
+    sm.set_enable(true);
+    loop {
+        let rx = sm.rx().wait_pull().await;
+        info!("Pulled {:032b} from FIFO", rx);
+    }
+}
+
+fn setup_pio_task_sm2<'a>(pio: &mut Common<'a, PIO0>, sm: &mut StateMachine<'a, PIO0, 2>) {
+    // Setup sm2
+
+    // Repeatedly trigger IRQ 3
+    let prg = pio_asm!(
+        ".origin 0",
+        ".wrap_target",
+        "set x,10",
+        "delay:",
+        "jmp x-- delay [15]",
+        "irq 3 [15]",
+        ".wrap",
+    );
+    let mut cfg = Config::default();
+    cfg.use_program(&pio.load_program(&prg.program), &[]);
+    cfg.clock_divider = (U56F8!(125_000_000) / 2000).to_fixed();
+    sm.set_config(&cfg);
+}
+
+#[embassy_executor::task]
+async fn pio_task_sm2(mut irq: Irq<'static, PIO0, 3>, mut sm: StateMachine<'static, PIO0, 2>) {
+    sm.set_enable(true);
+    loop {
+        irq.wait().await;
+        info!("IRQ trigged");
+    }
+}
+
+#[embassy_executor::main]
+async fn main(spawner: Spawner) {
+    let p = embassy_rp::init(Default::default());
+    let pio = p.PIO0;
+
+    let Pio {
+        mut common,
+        irq3,
+        mut sm0,
+        mut sm1,
+        mut sm2,
+        ..
+    } = Pio::new(pio, Irqs);
+
+    // setup_pio_task_sm0(&mut common, &mut sm0, p.PIN_25);
+    setup_pio_task_sm1(&mut common, &mut sm1);
+    //setup_pio_task_sm2(&mut common, &mut sm2);
+    //spawner.spawn(pio_task_sm0(sm0)).unwrap();
+    spawner.spawn(pio_task_sm1(sm1)).unwrap();
+    //spawner.spawn(pio_task_sm2(irq3, sm2)).unwrap();
 }

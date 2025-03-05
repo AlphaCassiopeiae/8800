@@ -10,7 +10,7 @@ embassy-embedded-hal = { version = "0.3.0", git = "https://github.com/embassy-rs
 embassy-sync = { version = "0.6.2", git = "https://github.com/embassy-rs/embassy", rev = "00ef474b94d99a1fd933e79bd66628cd3a16e3c4", features = ["defmt"] }
 embassy-executor = { version = "0.7.0", git = "https://github.com/embassy-rs/embassy", rev = "00ef474b94d99a1fd933e79bd66628cd3a16e3c4", features = ["task-arena-size-98304", "arch-cortex-m", "executor-thread", "executor-interrupt", "defmt"] }
 embassy-time = { version = "0.4.0", git = "https://github.com/embassy-rs/embassy", rev = "00ef474b94d99a1fd933e79bd66628cd3a16e3c4", features = ["defmt", "defmt-timestamp-uptime"] }
-embassy-rp = { version = "0.3.0", git = "https://github.com/embassy-rs/embassy", rev = "00ef474b94d99a1fd933e79bd66628cd3a16e3c4", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl", "rp235xb", "binary-info"] }
+embassy-rp = { version = "0.3.0", git = "https://github.com/embassy-rs/embassy", rev = "00ef474b94d99a1fd933e79bd66628cd3a16e3c4", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl", "rp235xa", "binary-info"] }
 embassy-usb = { version = "0.4.0", git = "https://github.com/embassy-rs/embassy", rev = "00ef474b94d99a1fd933e79bd66628cd3a16e3c4", features = ["defmt"] }
 embassy-net = { version = "0.7.0", git = "https://github.com/embassy-rs/embassy", rev = "00ef474b94d99a1fd933e79bd66628cd3a16e3c4", features = ["defmt", "tcp", "udp", "raw", "dhcpv4", "medium-ethernet", "dns"] }
 embassy-net-wiznet = { version = "0.2.0", git = "https://github.com/embassy-rs/embassy", rev = "00ef474b94d99a1fd933e79bd66628cd3a16e3c4", features = ["defmt"] }
