@@ -1,0 +1,231 @@
+(footprint "AA3528SECKTJ309"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "3.2*2.8*1.9")
+	(tags "LED")
+	(property "Reference" "LED**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(uuid "137e1e13-7ccb-42e9-8c8b-998ef835a546")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "AA3528SECKTJ309"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "30d58ba6-f5af-4ca3-82a9-122a7fa252d7")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "411869e9-cebe-4f5d-926e-78bb23ccd9aa")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://www.kingbrightusa.com/images/catalog/SPEC/AA3528SECKT-J309.pdf"
+		(at 0 3 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "dd6f45a3-7715-479b-9499-5b22799951bb")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f3fb72fa-7763-47ea-9244-afd156fdf4f6")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -3.8 -0.2)
+		(end -3.8 -0.2)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "b4a1e595-8e0e-43fe-ad73-49b05cc26aea")
+	)
+	(fp_line
+		(start -3.7 -0.2)
+		(end -3.7 -0.2)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "2f316f90-ad2e-4349-a6e9-9b58918a5cbe")
+	)
+	(fp_arc
+		(start -3.8 -0.2)
+		(mid -3.75 -0.25)
+		(end -3.7 -0.2)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "0be95232-56b6-4288-b97a-d6002818fec3")
+	)
+	(fp_arc
+		(start -3.7 -0.2)
+		(mid -3.75 -0.15)
+		(end -3.8 -0.2)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "83944a58-8aa6-4780-bc3d-00c14a630d4b")
+	)
+	(fp_line
+		(start -4.3 -2.6)
+		(end 4.3 -2.6)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "206b0228-6a79-41ce-a0f1-d425d0992c6f")
+	)
+	(fp_line
+		(start -4.3 2.6)
+		(end -4.3 -2.6)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "2055684f-b506-4375-afb5-7d8a3ccac8ea")
+	)
+	(fp_line
+		(start 4.3 -2.6)
+		(end 4.3 2.6)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "b8e1f1f4-3977-4a81-bc07-c03e6b1d3499")
+	)
+	(fp_line
+		(start 4.3 2.6)
+		(end -4.3 2.6)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "5eda64a2-523a-484f-af31-abbb5229d6ee")
+	)
+	(fp_line
+		(start -1.6 -1.4)
+		(end 1.6 -1.4)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "e99515e1-1473-4be4-b970-8b982b0c2974")
+	)
+	(fp_line
+		(start -1.6 1.4)
+		(end -1.6 -1.4)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "aabc23b3-a309-4ca4-9f36-6df9fbe9705f")
+	)
+	(fp_line
+		(start 1.6 -1.4)
+		(end 1.6 1.4)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "c7a8cf1c-9a5c-4323-9e78-3c8ed7c1972a")
+	)
+	(fp_line
+		(start 1.6 1.4)
+		(end -1.6 1.4)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "979a03c4-73cb-476c-95f3-18b37d4e1eb1")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "d70a1b46-ef71-464a-b53d-9161a673af7a")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "" np_thru_hole circle
+		(at 0 0)
+		(size 3.2 3.2)
+		(drill 3.2)
+		(layers "*.Cu" "*.Mask")
+		(uuid "64f62ed7-77e6-4da0-9ef4-08885e299784")
+	)
+	(pad "1" smd rect
+		(at -2.6 0)
+		(size 1.4 2.6)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "2db00ffa-eae8-4ed6-832d-ccd24bf2b702")
+	)
+	(pad "2" smd rect
+		(at 2.6 0)
+		(size 1.4 2.6)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "27fed452-2724-49cc-8f7a-d918a75f017e")
+	)
+	(model "AA3528-09.STEP"
+		(offset
+			(xyz -218.87 14.45 29.4)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
