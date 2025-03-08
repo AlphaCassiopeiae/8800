@@ -54,6 +54,7 @@
 			)
 			(layer "F.Mask"
 				(type "Top Solder Mask")
+				(color "Black")
 				(thickness 0.01)
 			)
 			(layer "F.Cu"
@@ -62,6 +63,7 @@
 			)
 			(layer "dielectric 1"
 				(type "prepreg")
+				(color "FR4 natural")
 				(thickness 0.1)
 				(material "FR4")
 				(epsilon_r 4.5)
@@ -73,6 +75,7 @@
 			)
 			(layer "dielectric 2"
 				(type "core")
+				(color "FR4 natural")
 				(thickness 0.3)
 				(material "FR4")
 				(epsilon_r 4.5)
@@ -84,6 +87,7 @@
 			)
 			(layer "dielectric 3"
 				(type "prepreg")
+				(color "FR4 natural")
 				(thickness 0.1)
 				(material "FR4")
 				(epsilon_r 4.5)
@@ -95,6 +99,7 @@
 			)
 			(layer "dielectric 4"
 				(type "core")
+				(color "FR4 natural")
 				(thickness 0.3)
 				(material "FR4")
 				(epsilon_r 4.5)
@@ -106,6 +111,7 @@
 			)
 			(layer "dielectric 5"
 				(type "prepreg")
+				(color "FR4 natural")
 				(thickness 0.1)
 				(material "FR4")
 				(epsilon_r 4.5)
@@ -117,6 +123,7 @@
 			)
 			(layer "dielectric 6"
 				(type "core")
+				(color "FR4 natural")
 				(thickness 0.3)
 				(material "FR4")
 				(epsilon_r 4.5)
@@ -128,6 +135,7 @@
 			)
 			(layer "dielectric 7"
 				(type "prepreg")
+				(color "FR4 natural")
 				(thickness 0.1)
 				(material "FR4")
 				(epsilon_r 4.5)
@@ -139,6 +147,7 @@
 			)
 			(layer "B.Mask"
 				(type "Bottom Solder Mask")
+				(color "Black")
 				(thickness 0.01)
 			)
 			(layer "B.Paste"
@@ -146,6 +155,7 @@
 			)
 			(layer "B.SilkS"
 				(type "Bottom Silk Screen")
+				(color "White")
 			)
 			(copper_finish "None")
 			(dielectric_constraints no)
