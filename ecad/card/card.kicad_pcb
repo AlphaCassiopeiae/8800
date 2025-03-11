@@ -6536,7 +6536,7 @@
 			(pintype "passive")
 			(uuid "b55be81f-1208-418b-a5bf-83373f80f33c")
 		)
-		(model "${KICAD8_3DMODEL_DIR}/Button_Switch_SMD.3dshapes/SW_Push_1P1T_NO_Vertical_Wuerth_434133025816.wrl"
+		(model "${KIPRJMOD}/../Library.pretty/Download_STP_4341x30258x6_rev1.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -6544,7 +6544,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -90 0 -90)
 			)
 		)
 	)
@@ -8206,7 +8206,7 @@
 			(pintype "passive")
 			(uuid "5662442b-0a9f-4916-af10-8de373670f30")
 		)
-		(model "${KICAD8_3DMODEL_DIR}/Connector_JST.3dshapes/JST_XH_B3B-XH-AM_1x03_P2.50mm_Vertical.wrl"
+		(model "${KICAD8_3DMODEL_DIR}/Connector_JST.3dshapes/JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -28997,7 +28997,7 @@
 			(pintype "passive")
 			(uuid "7e38641a-a662-4c07-abb2-e00756e302c3")
 		)
-		(model "${KICAD8_3DMODEL_DIR}/Button_Switch_SMD.3dshapes/SW_Push_1P1T_NO_Vertical_Wuerth_434133025816.wrl"
+		(model "${KIPRJMOD}/../Library.pretty/Download_STP_4341x30258x6_rev1.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -29005,7 +29005,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -90 0 -90)
 			)
 		)
 	)
@@ -30843,7 +30843,7 @@
 			(pintype "power_in")
 			(uuid "49320c3c-526a-4a84-af24-486f91cc9e89")
 		)
-		(model "${KICAD8_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-8_5.23x5.23mm_P1.27mm.wrl"
+		(model "${KICAD8_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-8_5.275x5.275mm_P1.27mm.step"
 			(offset
 				(xyz 0 0 0)
 			)
