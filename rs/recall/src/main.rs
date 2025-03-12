@@ -4,6 +4,8 @@
 use defmt::*;
 use embassy_executor::Spawner;
 use embassy_rp::gpio;
+use embassy_rp::gpio::{Input, Pull};
+use embassy_rp::Peripherals;
 use embassy_time::Timer;
 use gpio::{Level, Output};
 use {defmt_rtt as _, panic_probe as _};
@@ -23,7 +25,7 @@ pub static PICOTOOL_ENTRIES: [embassy_rp::binary_info::EntryAddr; 4] = [
 ];
 
 #[embassy_executor::main]
-async fn main(_spawner: Spawner) -> ! {
+async fn main(_spawner: Spawner) {
     let mut memory: RAM = RAM::new();
 
     // testing basic read/write
@@ -54,16 +56,16 @@ async fn main(_spawner: Spawner) -> ! {
     // high active
     let mut xrdy: Output<'_> = Output::new(p.PIN_18, Level::Low);
     // high active
-    let mut pdbin: Input<_> = Input::new(p.PIN_12, Pull::Down);
+    let mut pdbin: Input<'_>= Input::new(p.PIN_12, Pull::Down);
     // low active
-    let mut swo: Input<_> = Input::new(p.PIN_13, Pull::Up);
+    let mut swo: Input<'_>= Input::new(p.PIN_13, Pull::Up);
     // low active
-    let mut mwrt: Input<_> = Input::new(p.PIN_19, Pull::Up);
+    let mut mwrt: Input<'_> = Input::new(p.PIN_19, Pull::Up);
     // low active
-    let mut smemr: Input<_> = Input::new(p.PIN_20, Pull::Up);
+    let mut smemr: Input<'_> = Input::new(p.PIN_20, Pull::Up);
 
     // address lines A15-A0
-    let mut addr_lines: [Input<_>; 16] = [
+    let mut addr_lines: [Input<'_>; 16] = [
         Input::new(p.PIN_39, Pull::Down), // A0
         Input::new(p.PIN_38, Pull::Down), // A1
         Input::new(p.PIN_37, Pull::Down), // ...
@@ -87,27 +89,9 @@ async fn main(_spawner: Spawner) -> ! {
     //          - might also be a tram thing idk
     //          -- callback functions, args data, addr, etc
 
-    loop {
+    // loop {
         // this is where we will be checking if memory control signals are asserted
         // respond accordingly (read or write)
-        // signals need to come through tram somehow (?)
-
-        // GPIO 18 is XRDY
-        // 24-39 are A15-A0
-        // 40-47 are D7-D0
-        // 12 is PDBIN
-        // 20 is SMEMR
-        // 19 is MWRT
-        // 13 is SWO
-        // should be everything needed to handle read/write machine cycles
-
-        // which pins are inputs and which are outputs
-        // A15-A0 definitely input
-        // D7-D0 (input for write operations, output for read operations)
-        // MWRT/SMEMR are inputs
-        // XRDY is output
-        // PDBIN is input
-        // SWO is input
 
         // if write operation, D lines are inputs
         // let mut d7 = Input::new(p.PIN_40, Pull::Up)
@@ -124,8 +108,7 @@ async fn main(_spawner: Spawner) -> ! {
         // D0 high
         // this seems ass
 
-
         // new strat gonna use an arr of pins, use lshift and mod to assign a u8 bit by bit
         // maybe bitwise &
-    }
+    // }
 }
