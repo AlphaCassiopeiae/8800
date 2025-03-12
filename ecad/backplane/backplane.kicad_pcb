@@ -17845,6 +17845,17 @@
 			)
 		)
 	)
+	(gr_rect
+		(start -5.1 -27.45)
+		(end 214.9 132.55)
+		(stroke
+			(width 0.2)
+			(type default)
+		)
+		(fill none)
+		(layer "Edge.Cuts")
+		(uuid "2b0f17cd-bead-448f-b8f6-6b2570badf0a")
+	)
 	(segment
 		(start 54.4 100.05)
 		(end 55.02 99.43)

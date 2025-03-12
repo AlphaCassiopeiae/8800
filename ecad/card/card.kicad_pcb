@@ -60,7 +60,7 @@
 			)
 			(layer "F.Cu"
 				(type "copper")
-				(thickness 0.07)
+				(thickness 0.035)
 			)
 			(layer "dielectric 1"
 				(type "prepreg")
@@ -72,19 +72,19 @@
 			)
 			(layer "In1.Cu"
 				(type "copper")
-				(thickness 0.035)
+				(thickness 0.017)
 			)
 			(layer "dielectric 2"
 				(type "core")
 				(color "FR4 natural")
-				(thickness 0.77)
+				(thickness 0.816)
 				(material "FR4")
 				(epsilon_r 4.5)
 				(loss_tangent 0.02)
 			)
 			(layer "In2.Cu"
 				(type "copper")
-				(thickness 0.035)
+				(thickness 0.017)
 			)
 			(layer "dielectric 3"
 				(type "prepreg")
@@ -101,7 +101,7 @@
 			(layer "B.Mask"
 				(type "Bottom Solder Mask")
 				(color "Black")
-				(thickness 0.01)
+				(thickness 0.035)
 				(material "Liquid Ink")
 				(epsilon_r 3.8)
 				(loss_tangent 0)
@@ -15222,8 +15222,28 @@
 			(uuid "af4fcbaa-0e06-4750-97bd-9ec7f370da71")
 		)
 		(fp_line
+			(start -67.75 -30.75)
+			(end -65.15 -30.75)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.CrtYd")
+			(uuid "a42c681a-8186-4302-ad16-c1d91ada8ef4")
+		)
+		(fp_line
+			(start -67.75 1)
+			(end -67.75 -30.75)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.CrtYd")
+			(uuid "fd3c7229-3661-402a-b561-9fca827ff702")
+		)
+		(fp_line
 			(start -65.15 -2.5)
-			(end -65.15 -29.75)
+			(end -65.15 -30.75)
 			(stroke
 				(width 0.15)
 				(type solid)
@@ -15242,14 +15262,44 @@
 			(uuid "57b356e3-67cc-42ec-9fae-baa81dd36e7c")
 		)
 		(fp_line
+			(start 62.6 -30.75)
+			(end 65.25 -30.75)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.CrtYd")
+			(uuid "0fbf6719-d042-40d5-b225-21f1e2dca84f")
+		)
+		(fp_line
 			(start 62.6 -2.5)
-			(end 62.6 -29.75)
+			(end 62.6 -30.75)
 			(stroke
 				(width 0.15)
 				(type solid)
 			)
 			(layer "F.CrtYd")
 			(uuid "f20d5b28-850f-49e7-99c1-3aa6e0f03af6")
+		)
+		(fp_line
+			(start 65.25 -30.75)
+			(end 65.25 1)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.CrtYd")
+			(uuid "68d913cf-daa7-4dcf-8ffa-c0ed1e0be26b")
+		)
+		(fp_line
+			(start 65.25 1)
+			(end -67.75 1)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.CrtYd")
+			(uuid "4e2d50c2-856f-4197-b5f2-23cebbcd5d0c")
 		)
 		(pad "1" smd roundrect
 			(at -64.6 -0.25)
@@ -28069,7 +28119,7 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 0 1.16 360)
+			(at 0 1.16 0)
 			(layer "F.Fab")
 			(uuid "5988d39d-5b5c-447c-9942-20a825438576")
 			(effects
@@ -28224,7 +28274,7 @@
 			(uuid "9a281e56-a801-4ad4-91c4-23b3898635c3")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "1cf7894f-f0a8-4d05-ba74-358963470ee7")
 			(effects
