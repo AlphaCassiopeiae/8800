@@ -898,7 +898,7 @@
 		(layers "F.Cu" "F.Paste" "F.Mask")
 		(uuid "11a87147-c4f9-4281-b695-0b07669561c8")
 	)
-	(model "C:/Users/cappy/ECAD/8800/ecad/Library.pretty/5017868090.stp"
+	(model "5017868090.stp"
 		(offset
 			(xyz 0 2 9)
 		)
