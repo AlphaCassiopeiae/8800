@@ -15139,12 +15139,6 @@
 		(uuid "357aa811-cb18-474a-b046-50f7f08a293f")
 	)
 	(junction
-		(at 269.24 118.11)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "361588a2-7b21-4b68-9b88-1eca38c02eb2")
-	)
-	(junction
 		(at 298.45 204.47)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -15355,6 +15349,12 @@
 		(uuid "a548a49f-0e81-496f-8e6d-94468250119b")
 	)
 	(junction
+		(at 312.42 179.07)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a5d1cd2e-b27a-4d1c-96a0-7e1322a6c993")
+	)
+	(junction
 		(at 546.1 255.27)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -15479,12 +15479,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "fb18c32c-1af4-4f5a-b0da-08e362812aa5")
-	)
-	(junction
-		(at 299.72 118.11)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "fd5a8ec8-f5c2-4e96-9c4f-a86c134f6506")
 	)
 	(junction
 		(at 181.61 35.56)
@@ -16117,16 +16111,6 @@
 			(type default)
 		)
 		(uuid "20534bcf-dcbe-4495-a985-8d749f8d6881")
-	)
-	(wire
-		(pts
-			(xy 269.24 118.11) (xy 280.67 118.11)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "20aabd0e-2e46-4e33-8901-6322fdeac3b9")
 	)
 	(wire
 		(pts
@@ -17190,16 +17174,6 @@
 	)
 	(wire
 		(pts
-			(xy 312.42 179.07) (xy 303.53 179.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "560ce16f-7fd3-4e35-abff-148a2ede97c5")
-	)
-	(wire
-		(pts
 			(xy 417.83 39.37) (xy 427.99 39.37)
 		)
 		(stroke
@@ -17900,16 +17874,6 @@
 	)
 	(wire
 		(pts
-			(xy 288.29 118.11) (xy 299.72 118.11)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "808aa752-4ef3-4d99-8b3f-a2b8879e5ee3")
-	)
-	(wire
-		(pts
 			(xy 546.1 189.23) (xy 553.72 189.23)
 		)
 		(stroke
@@ -18070,7 +18034,7 @@
 	)
 	(wire
 		(pts
-			(xy 269.24 118.11) (xy 269.24 128.27)
+			(xy 269.24 115.57) (xy 269.24 128.27)
 		)
 		(stroke
 			(width 0)
@@ -18840,6 +18804,16 @@
 	)
 	(wire
 		(pts
+			(xy 303.53 179.07) (xy 312.42 179.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b5cc7531-732d-499f-a608-a8ff212dd68a")
+	)
+	(wire
+		(pts
 			(xy 193.04 43.18) (xy 204.47 43.18)
 		)
 		(stroke
@@ -18880,7 +18854,7 @@
 	)
 	(wire
 		(pts
-			(xy 299.72 115.57) (xy 299.72 118.11)
+			(xy 299.72 100.33) (xy 299.72 102.87)
 		)
 		(stroke
 			(width 0)
@@ -19180,7 +19154,7 @@
 	)
 	(wire
 		(pts
-			(xy 299.72 118.11) (xy 299.72 128.27)
+			(xy 299.72 110.49) (xy 299.72 128.27)
 		)
 		(stroke
 			(width 0)
@@ -19747,16 +19721,6 @@
 			(type default)
 		)
 		(uuid "e933ce4e-3c58-4a2a-9002-58607c00f5fc")
-	)
-	(wire
-		(pts
-			(xy 269.24 115.57) (xy 269.24 118.11)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e95392ed-686f-4460-b5fa-50ef3ffca083")
 	)
 	(wire
 		(pts
@@ -25382,7 +25346,7 @@
 	)
 	(global_label "3.3V"
 		(shape input)
-		(at 299.72 115.57 90)
+		(at 299.72 100.33 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -25393,7 +25357,7 @@
 		)
 		(uuid "4ed11853-6dc6-4232-b234-49bd713baa7a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 299.72 108.4724 90)
+			(at 299.72 93.2324 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -30792,6 +30756,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:D_Schottky")
+		(at 299.72 106.68 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0915bc29-6883-43cb-a949-530f8ec6068b")
+		(property "Reference" "D41"
+			(at 302.26 105.0924 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "D_Schottky"
+			(at 302.26 107.6324 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
+			(at 299.72 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 299.72 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Schottky diode"
+			(at 299.72 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7c363d5d-3b0e-4285-bf72-384668603856")
+		)
+		(pin "2"
+			(uuid "7722529b-852c-4ca8-b6b6-24331373c362")
+		)
+		(instances
+			(project "panel"
+				(path "/53fb923b-a98b-45c5-8e11-289a5d1ad382"
+					(reference "D41")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:PWR_FLAG")
 		(at 403.86 212.09 90)
 		(unit 1)
@@ -31410,74 +31444,6 @@
 			(project "panel"
 				(path "/53fb923b-a98b-45c5-8e11-289a5d1ad382"
 					(reference "#FLG015")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D_Schottky")
-		(at 284.48 118.11 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "0e9b3473-dc8c-4d65-909e-d72a1f8b95c2")
-		(property "Reference" "D40"
-			(at 284.1625 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "D_Schottky"
-			(at 284.1625 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 284.48 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 284.48 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Schottky diode"
-			(at 284.48 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "401b65b4-fae9-4f1b-a08d-f0e9c8175021")
-		)
-		(pin "2"
-			(uuid "0423ca51-451a-4945-954f-fdef4f4d6c16")
-		)
-		(instances
-			(project "panel"
-				(path "/53fb923b-a98b-45c5-8e11-289a5d1ad382"
-					(reference "D40")
 					(unit 1)
 				)
 			)
@@ -38852,6 +38818,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 326.39 180.34 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "544c4acb-145e-434d-bfcd-11560fa7c614")
+		(property "Reference" "R89"
+			(at 328.93 179.0699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "R"
+			(at 328.93 181.6099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 324.612 180.34 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 326.39 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 326.39 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "09661a97-6532-472b-a6e0-efde047990f2")
+		)
+		(pin "2"
+			(uuid "2c21c60d-0c1e-440d-8b11-6bec8e4ab450")
+		)
+		(instances
+			(project ""
+				(path "/53fb923b-a98b-45c5-8e11-289a5d1ad382"
+					(reference "R89")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 549.91 295.91 90)
 		(unit 1)
@@ -40258,7 +40294,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 303.53 175.26 270)
+		(at 312.42 175.26 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -40267,7 +40303,7 @@
 		(fields_autoplaced yes)
 		(uuid "61db1872-af02-472b-b450-ced5e5d19f5c")
 		(property "Reference" "D37"
-			(at 306.07 172.4024 90)
+			(at 314.96 172.4024 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -40276,7 +40312,7 @@
 			)
 		)
 		(property "Value" "DEBUG"
-			(at 306.07 174.9424 90)
+			(at 314.96 174.9424 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -40285,7 +40321,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_0402_1005Metric_Pad0.77x0.64mm_HandSolder"
-			(at 303.53 175.26 0)
+			(at 312.42 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -40294,7 +40330,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 303.53 175.26 0)
+			(at 312.42 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -40303,7 +40339,7 @@
 			)
 		)
 		(property "Description" "Light emitting diode"
-			(at 303.53 175.26 0)
+			(at 312.42 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -43662,6 +43698,75 @@
 			(project "panel"
 				(path "/53fb923b-a98b-45c5-8e11-289a5d1ad382"
 					(reference "D19")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:D_Schottky")
+		(at 303.53 175.26 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8ae3216b-7dd2-4553-a2c9-f85a369f2a25")
+		(property "Reference" "D40"
+			(at 292.1 169.926 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "D_Schottky"
+			(at 292.1 172.466 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 303.53 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 303.53 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Schottky diode"
+			(at 303.53 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e2d5d85b-8a6a-4809-b40d-fe629242ed5a")
+		)
+		(pin "2"
+			(uuid "aa18eedf-b397-4fe7-b14c-9daf3311b300")
+		)
+		(instances
+			(project ""
+				(path "/53fb923b-a98b-45c5-8e11-289a5d1ad382"
+					(reference "D40")
 					(unit 1)
 				)
 			)
