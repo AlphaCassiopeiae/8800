@@ -23169,7 +23169,7 @@
 		)
 		(uuid "0111603b-bd36-4ccc-972b-ed35ebaa976f")
 	)
-	(label "BUS18"
+	(label "DATA01"
 		(at 43.18 76.2 180)
 		(effects
 			(font
@@ -23211,7 +23211,7 @@
 		)
 		(uuid "074a2936-e673-4fea-a243-3049519e9944")
 	)
-	(label "BUS19"
+	(label "DATA02"
 		(at 43.18 78.74 180)
 		(effects
 			(font
@@ -23303,7 +23303,7 @@
 		)
 		(uuid "110942ea-54f7-4d54-97ff-79e7df87dcb5")
 	)
-	(label "BUS07"
+	(label "CTRL04"
 		(at 43.18 48.26 180)
 		(effects
 			(font
@@ -23410,7 +23410,7 @@
 		)
 		(uuid "2267d352-7a60-47bc-a599-d0aad1306f18")
 	)
-	(label "BUS20"
+	(label "DATA03"
 		(at 43.18 81.28 180)
 		(effects
 			(font
@@ -23474,7 +23474,7 @@
 		)
 		(uuid "27e2c32f-a7bf-44a3-8fcf-6bc81f0c0b52")
 	)
-	(label "BUS22"
+	(label "DATA05"
 		(at 43.18 86.36 180)
 		(effects
 			(font
@@ -23569,7 +23569,7 @@
 		)
 		(uuid "32999133-88a0-4f36-ae44-cf742a71f745")
 	)
-	(label "BUS30"
+	(label "ADDR01"
 		(at 43.18 106.68 180)
 		(effects
 			(font
@@ -23631,7 +23631,7 @@
 		)
 		(uuid "3a113eb6-135e-4b9d-8f82-73b675ccf5ff")
 	)
-	(label "BUS29"
+	(label "ADDR00"
 		(at 43.18 104.14 180)
 		(effects
 			(font
@@ -23663,7 +23663,7 @@
 		)
 		(uuid "3cfda6e0-d0c7-4638-96bf-4334621c089e")
 	)
-	(label "BUS41"
+	(label "ADDR08"
 		(at 83.82 35.56 0)
 		(effects
 			(font
@@ -23748,7 +23748,7 @@
 		)
 		(uuid "4cc7c88e-0e0a-4597-8dcf-fbe393c5e970")
 	)
-	(label "BUS43"
+	(label "ADDR09"
 		(at 83.82 40.64 0)
 		(effects
 			(font
@@ -23810,7 +23810,7 @@
 		)
 		(uuid "52ade47d-ee0f-43f2-ad65-58ce1dcaad37")
 	)
-	(label "BUS11"
+	(label "CTRL07"
 		(at 43.18 58.42 180)
 		(effects
 			(font
@@ -23947,7 +23947,7 @@
 		)
 		(uuid "620515f5-0c54-4ac4-92d0-54053acc98e3")
 	)
-	(label "BUS21"
+	(label "DATA04"
 		(at 43.18 83.82 180)
 		(effects
 			(font
@@ -23958,7 +23958,7 @@
 		)
 		(uuid "62f5ff89-4c70-4cf0-8128-b282b158ee6b")
 	)
-	(label "BUS31"
+	(label "ADDR02"
 		(at 43.18 109.22 180)
 		(effects
 			(font
@@ -24010,7 +24010,7 @@
 		)
 		(uuid "647020cd-3ac7-4474-8f10-764e4c982ec9")
 	)
-	(label "BUS17"
+	(label "DATA00"
 		(at 43.18 73.66 180)
 		(effects
 			(font
@@ -24138,7 +24138,7 @@
 		)
 		(uuid "6f622f92-0cd1-4cfa-82db-5bb40297f1a6")
 	)
-	(label "BUS24"
+	(label "DATA07"
 		(at 43.18 91.44 180)
 		(effects
 			(font
@@ -24201,7 +24201,7 @@
 		)
 		(uuid "77e7f602-95f9-4bc0-9773-d8052e15bf04")
 	)
-	(label "BUS35"
+	(label "ADDR06"
 		(at 43.18 119.38 180)
 		(effects
 			(font
@@ -24212,7 +24212,7 @@
 		)
 		(uuid "79ef25d3-ecd2-49df-a68f-a2d35a834359")
 	)
-	(label "BUS10"
+	(label "CTRL06"
 		(at 43.18 55.88 180)
 		(effects
 			(font
@@ -24276,7 +24276,7 @@
 		)
 		(uuid "832443c5-881c-457b-89e1-af254745630d")
 	)
-	(label "BUS44"
+	(label "CTRL18"
 		(at 83.82 43.18 0)
 		(effects
 			(font
@@ -24307,7 +24307,7 @@
 		)
 		(uuid "87c9f560-419c-40f6-b376-0505fc38fd8f")
 	)
-	(label "BUS36"
+	(label "ADDR07"
 		(at 43.18 121.92 180)
 		(effects
 			(font
@@ -24328,7 +24328,7 @@
 		)
 		(uuid "89c417a3-f64a-4a14-b67d-0a38e9a13d61")
 	)
-	(label "BUS08"
+	(label "CTRL05"
 		(at 43.18 50.8 180)
 		(effects
 			(font
@@ -24380,7 +24380,7 @@
 		)
 		(uuid "93e29a7f-3292-4164-b436-d166ca82bd61")
 	)
-	(label "BUS06"
+	(label "CTRL02"
 		(at 43.18 45.72 180)
 		(effects
 			(font
@@ -24534,7 +24534,7 @@
 		)
 		(uuid "b0395f95-9f77-40b6-b2b0-865c6dbf9b7b")
 	)
-	(label "BUS33"
+	(label "ADDR04"
 		(at 43.18 114.3 180)
 		(effects
 			(font
@@ -24566,7 +24566,7 @@
 		)
 		(uuid "b2c1862a-a01d-481a-abaf-341b400b16ca")
 	)
-	(label "BUS34"
+	(label "ADDR05"
 		(at 43.18 116.84 180)
 		(effects
 			(font
@@ -24609,7 +24609,7 @@
 		)
 		(uuid "bb49a3a0-c524-4511-b864-8cb058315adf")
 	)
-	(label "BUS09"
+	(label "CTRL01"
 		(at 43.18 53.34 180)
 		(effects
 			(font
@@ -24640,7 +24640,7 @@
 		)
 		(uuid "bc952318-43ea-4192-9c2f-bc59a6e37eda")
 	)
-	(label "BUS23"
+	(label "DATA06"
 		(at 43.18 88.9 180)
 		(effects
 			(font
@@ -24695,7 +24695,7 @@
 		)
 		(uuid "c1447f16-0af2-4d47-bf82-3b806cd7bb50")
 	)
-	(label "BUS12"
+	(label "CTRL00"
 		(at 43.18 60.96 180)
 		(effects
 			(font
@@ -24861,7 +24861,7 @@
 		)
 		(uuid "dea7314b-b1df-45dc-8cf0-45dd91b75fb0")
 	)
-	(label "BUS42"
+	(label "CTRL19"
 		(at 83.82 38.1 0)
 		(effects
 			(font
@@ -24935,7 +24935,7 @@
 		)
 		(uuid "e40afd02-0a80-41ab-aa15-8910dc6d07ac")
 	)
-	(label "BUS32"
+	(label "ADDR03"
 		(at 43.18 111.76 180)
 		(effects
 			(font
@@ -25009,7 +25009,7 @@
 		)
 		(uuid "eb309c31-5809-4748-ae69-4c7751d3926e")
 	)
-	(label "BUS05"
+	(label "CTRL03"
 		(at 43.18 43.18 180)
 		(effects
 			(font
