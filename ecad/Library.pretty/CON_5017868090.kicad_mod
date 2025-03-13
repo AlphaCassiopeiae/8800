@@ -52,7 +52,7 @@
 			)
 		)
 	)
-	(property "Description" ""
+	(property "Description" "https://tools.molex.com/pdm_docs/ps/PS-501786-002.pdf"
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
@@ -61,6 +61,78 @@
 			(font
 				(size 1.27 1.27)
 				(thickness 0.15)
+			)
+		)
+	)
+	(property "Link" "https://www.digikey.com/en/products/detail/molex/5017868090/2818882"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "b4ce4d28-8ef7-4956-b7a4-e384a64e592d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Price" "4.82"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "7eb54604-ff5f-4619-9070-cd7b8cb60f9f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Jacket Link" "https://www.digikey.com/en/products/detail/molex/5017838009/3197181"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "7ac0e126-f24a-4bb1-af67-ff1b3c4f9ad7")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Jacket Price" "0.61"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "59341f46-9ade-4dd1-851a-5e0226eb5dca")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Cable Link" "https://www.digikey.com/en/products/detail/molex/0150220480/7908373?_gl=1*1ks6wrv*_up*MQ..*_gs*MQ..&gclid=Cj0KCQjw4cS-BhDGARIsABg4_J1Mn4CI9htlT13p5OKGh7UL-XFlw41kN82CMwK7-aoGnMsChfWb188aAnF0EALw_wcB&gclsrc=aw.ds"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "edda093c-261c-4027-99e9-906901bdc54f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Cable Price" "14.85"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "f8186396-0760-4b7c-9db7-5df5697e24da")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
 			)
 		)
 	)

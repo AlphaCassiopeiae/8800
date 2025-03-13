@@ -61,6 +61,30 @@
 			)
 		)
 	)
+	(property "Link" "https://www.digikey.com/en/products/detail/e-switch/500SSP1S1M7QEA/378949"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "3b8470bd-537b-4202-9646-d1a39c7db658")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Price" "4.13"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "2056201c-763b-4b65-97d3-ee9c3e47bb41")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
 	(attr through_hole)
 	(fp_line
 		(start -12.215 -1.925)
