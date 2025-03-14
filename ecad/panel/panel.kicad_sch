@@ -16278,16 +16278,6 @@
 	)
 	(wire
 		(pts
-			(xy 269.24 118.11) (xy 280.67 118.11)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0aca8646-d59d-490f-a470-13a172766adf")
-	)
-	(wire
-		(pts
 			(xy 27.94 384.81) (xy 31.75 384.81)
 		)
 		(stroke
@@ -18158,6 +18148,16 @@
 	)
 	(wire
 		(pts
+			(xy 300.99 156.21) (xy 300.99 158.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "71ff1b20-8403-4dad-bbc5-ba171e7a6e54")
+	)
+	(wire
+		(pts
 			(xy 417.83 41.91) (xy 427.99 41.91)
 		)
 		(stroke
@@ -20018,6 +20018,16 @@
 	)
 	(wire
 		(pts
+			(xy 300.99 166.37) (xy 300.99 168.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cf67d335-90ae-44cb-97cf-390cf2435bb9")
+	)
+	(wire
+		(pts
 			(xy 80.01 340.36) (xy 90.17 340.36)
 		)
 		(stroke
@@ -20075,6 +20085,16 @@
 			(type default)
 		)
 		(uuid "d3be0fe4-ddac-458c-b6a0-d66fe7d42ea9")
+	)
+	(wire
+		(pts
+			(xy 300.99 176.53) (xy 300.99 179.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d3ff772b-6318-4cf1-9609-097a416b064f")
 	)
 	(wire
 		(pts
@@ -31449,7 +31469,7 @@
 				)
 			)
 		)
-		(property "Value" "D_Schottky"
+		(property "Value" "LSM115JE3/TR13"
 			(at 284.1625 114.3 0)
 			(effects
 				(font
@@ -31457,7 +31477,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
+		(property "Footprint" "Library:DO-214BA_MCH-L"
 			(at 284.48 118.11 0)
 			(effects
 				(font
@@ -34554,15 +34574,15 @@
 				)
 			)
 		)
-		(property "Value" "Protection"
-			(at 176.784 323.85 0)
+		(property "Value" "LSM115JE3/TR13"
+			(at 180.848 323.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Library:DO-214BA_MCH-L"
 			(at 173.99 327.66 0)
 			(effects
 				(font
@@ -37828,6 +37848,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 300.99 156.21 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4389976f-de9e-44f9-81b7-61cf3ffe4973")
+		(property "Reference" "#PWR01"
+			(at 300.99 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 300.99 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 300.99 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 300.99 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 300.99 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "18dfedc8-8fd9-4f7c-94a9-735851d664d7")
+		)
+		(instances
+			(project "panel"
+				(path "/53fb923b-a98b-45c5-8e11-289a5d1ad382"
+					(reference "#PWR01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 181.61 39.37 0)
 		(unit 1)
@@ -39494,7 +39581,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 328.93 175.26 0)
+		(at 300.99 172.72 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -39503,7 +39590,7 @@
 		(fields_autoplaced yes)
 		(uuid "544c4acb-145e-434d-bfcd-11560fa7c614")
 		(property "Reference" "R89"
-			(at 331.47 173.9899 0)
+			(at 303.53 171.4499 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -39512,7 +39599,7 @@
 			)
 		)
 		(property "Value" "150"
-			(at 331.47 176.5299 0)
+			(at 303.53 173.9899 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -39520,8 +39607,8 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 327.152 175.26 90)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder"
+			(at 299.212 172.72 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -39530,7 +39617,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 328.93 175.26 0)
+			(at 300.99 172.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -39539,7 +39626,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 328.93 175.26 0)
+			(at 300.99 172.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -40969,7 +41056,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 328.93 165.1 270)
+		(at 300.99 162.56 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -40978,7 +41065,7 @@
 		(fields_autoplaced yes)
 		(uuid "61db1872-af02-472b-b450-ced5e5d19f5c")
 		(property "Reference" "D37"
-			(at 331.47 162.2424 90)
+			(at 303.53 159.7024 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -40987,7 +41074,7 @@
 			)
 		)
 		(property "Value" "DEBUG"
-			(at 331.47 164.7824 90)
+			(at 303.53 162.2424 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -40995,8 +41082,8 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric_Pad0.77x0.64mm_HandSolder"
-			(at 328.93 165.1 0)
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
+			(at 300.99 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -41005,7 +41092,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 328.93 165.1 0)
+			(at 300.99 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -41014,7 +41101,7 @@
 			)
 		)
 		(property "Description" "Light emitting diode"
-			(at 328.93 165.1 0)
+			(at 300.99 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -54481,15 +54568,15 @@
 				)
 			)
 		)
-		(property "Value" "Protection"
-			(at 114.046 325.628 0)
+		(property "Value" "LSM115JE3/TR13"
+			(at 117.348 325.374 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Library:DO-214BA_MCH-L"
 			(at 111.76 328.93 0)
 			(effects
 				(font
