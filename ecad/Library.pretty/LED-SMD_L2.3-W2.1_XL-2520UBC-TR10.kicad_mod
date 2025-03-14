@@ -3,7 +3,7 @@
 	(generator "pcbnew")
 	(generator_version "8.0")
 	(layer "F.Cu")
-	(property "Reference" ""
+	(property "Reference" "Ref**"
 		(at 0.0125 -2.3351 0)
 		(layer "F.SilkS")
 		(uuid "09a99bc2-8829-40ca-808c-675ffaa2ca69")
