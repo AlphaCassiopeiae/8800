@@ -2842,7 +2842,7 @@
 		(descr "Mounting Hole 3.5mm, no annular")
 		(tags "mounting hole 3.5mm no annular")
 		(property "Reference" "H2"
-			(at 0 4.541579 0)
+			(at 3.128422 0 0)
 			(layer "B.SilkS")
 			(uuid "74be6f7c-e8ab-4620-9e34-7b502dd817c1")
 			(effects
@@ -7208,7 +7208,7 @@
 		(descr "Mounting Hole 3.5mm, no annular")
 		(tags "mounting hole 3.5mm no annular")
 		(property "Reference" "H4"
-			(at 0 -4.5 0)
+			(at 3.128422 0 0)
 			(layer "B.SilkS")
 			(uuid "093f3961-fdea-4823-8324-7eff6f270f5d")
 			(effects
@@ -17608,7 +17608,7 @@
 			)
 		)
 		(property "Value" "30p"
-			(at 0 -1.16 360)
+			(at 0 -1.16 0)
 			(layer "B.Fab")
 			(uuid "f66b2124-521d-47e0-99e6-7e35909f4220")
 			(effects
@@ -17767,7 +17767,7 @@
 			(uuid "ba2a3e21-8545-4b15-bb34-a04025584f3f")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(uuid "2098fc7a-2306-4876-96de-6d0393f1300a")
 			(effects
@@ -20966,7 +20966,7 @@
 		(descr "module CMS SOT223 4 pins")
 		(tags "CMS SOT")
 		(property "Reference" "U10"
-			(at 0 4.5 360)
+			(at 0 4.5 0)
 			(layer "B.SilkS")
 			(uuid "f26fad9d-62da-4554-9ea4-5e716171debf")
 			(effects
@@ -20978,7 +20978,7 @@
 			)
 		)
 		(property "Value" "NCP1117-3.3_SOT223"
-			(at 0 -4.5 360)
+			(at 0 -4.5 0)
 			(layer "B.Fab")
 			(uuid "9732c422-f9dd-4544-820f-d208eb8a18e1")
 			(effects
@@ -35959,7 +35959,7 @@
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor handsolder")
 		(property "Reference" "R90"
-			(at 0 1.17 360)
+			(at 0 1.17 0)
 			(layer "B.SilkS")
 			(uuid "298e7ff6-8dd5-4798-93d9-c354dcfb4971")
 			(effects
@@ -35971,7 +35971,7 @@
 			)
 		)
 		(property "Value" "1k"
-			(at 0 -1.17 360)
+			(at 0 -1.17 0)
 			(layer "B.Fab")
 			(uuid "8d73260e-ef61-4f34-9b6d-807301d0baa0")
 			(effects
@@ -36130,7 +36130,7 @@
 			(uuid "8a3af591-f7f7-4c8b-be25-205cde9e1467")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(uuid "a41d22c6-004e-41c2-851d-a31e90ab701e")
 			(effects
@@ -39027,7 +39027,7 @@
 		(descr "https://katalog.we-online.com/em/datasheet/434133025816.pdf")
 		(tags "tactile switch Wurth Wuerth")
 		(property "Reference" "SW30"
-			(at 0 3.775 360)
+			(at 0 3.775 0)
 			(layer "B.SilkS")
 			(uuid "4f681632-571d-437d-9649-a834277421d8")
 			(effects
@@ -39039,7 +39039,7 @@
 			)
 		)
 		(property "Value" "SW_Push"
-			(at 0 -2.55 360)
+			(at 0 -2.55 0)
 			(layer "B.Fab")
 			(uuid "45ac8da2-33a8-4a0f-a7d9-4d31c865db98")
 			(effects
@@ -39299,7 +39299,7 @@
 			(uuid "8d77f5f1-28df-4186-a09f-7ee9f5538628")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0.05 0 360)
+			(at 0.05 0 0)
 			(layer "B.Fab")
 			(uuid "c3232bfa-0087-42d7-b6db-4a7978cf36c1")
 			(effects
@@ -41187,7 +41187,7 @@
 			)
 		)
 		(property "Value" "1k"
-			(at 0 -1.17 360)
+			(at 0 -1.17 0)
 			(layer "B.Fab")
 			(uuid "8199d529-e541-45ea-af87-12d45e03f7e3")
 			(effects
@@ -41346,7 +41346,7 @@
 			(uuid "4d13fa29-a437-4118-bd76-11d025cf172b")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(uuid "9def2553-533e-4538-9721-72da19519a6d")
 			(effects
@@ -64746,6 +64746,45 @@
 		)
 		(layer "B.CrtYd")
 		(uuid "ff63d7b9-5c83-4578-8803-f1c830e0f198")
+	)
+	(gr_text "Brian Lu Nathan Huang\nSeth Deegan Caleb Shinkle"
+		(at 191.8437 72.1815 0)
+		(layer "B.SilkS")
+		(uuid "3493da49-734b-438d-843b-ca2889427b21")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.2)
+				(bold yes)
+			)
+			(justify left bottom mirror)
+		)
+	)
+	(gr_text "ECE 477 Team 15"
+		(at 196.239075 61.332816 0)
+		(layer "B.SilkS" knockout)
+		(uuid "c74d0692-66a6-47aa-8bae-c74e0bb01817")
+		(effects
+			(font
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
+			)
+			(justify left bottom mirror)
+		)
+	)
+	(gr_text "αCassiopeiae 8800 Computer\nFront Panel Board\nrev. 01 3/14/2025"
+		(at 196 66.1 0)
+		(layer "B.SilkS")
+		(uuid "f65f623b-697b-4a6b-9ecf-fbb347242d9d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.2)
+				(bold yes)
+			)
+			(justify left bottom mirror)
+		)
 	)
 	(gr_text "9"
 		(at 109.4 45.15 0)
