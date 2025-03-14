@@ -20227,6 +20227,16 @@
 	)
 	(wire
 		(pts
+			(xy 266.7 375.92) (xy 266.7 386.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "79b1822f-0c7b-4c39-a335-4ae8623ee25d")
+	)
+	(wire
+		(pts
 			(xy 312.42 73.66) (xy 328.93 73.66)
 		)
 		(stroke
@@ -20424,16 +20434,6 @@
 			(type default)
 		)
 		(uuid "85570fa5-8b17-4a74-99df-ae37e4e0fbc4")
-	)
-	(wire
-		(pts
-			(xy 266.7 375.92) (xy 266.7 382.27)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "868fa3f4-cbd7-497f-8e90-5b1842311d6b")
 	)
 	(wire
 		(pts
@@ -40259,7 +40259,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 202.8952 391.16 0)
 			(effects
 				(font
@@ -47299,10 +47299,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "482aa3ff-cc8e-40e1-b90e-48eb113bb225")
-		(property "Reference" "C2"
-			(at 311.15 373.3799 0)
+		(property "Reference" "Cout_2"
+			(at 310.388 372.618 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -47311,7 +47310,7 @@
 			)
 		)
 		(property "Value" "10u"
-			(at 311.15 375.9199 0)
+			(at 310.388 375.158 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -47355,7 +47354,7 @@
 		(instances
 			(project "backplane"
 				(path "/37626d4a-e2f8-4dc8-ba70-7956f3e14d24"
-					(reference "C2")
+					(reference "Cout_2")
 					(unit 1)
 				)
 			)
@@ -50049,10 +50048,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "61eb35fd-607c-4ce7-abd0-c1ff81a65b47")
-		(property "Reference" "C1"
-			(at 300.99 373.3799 0)
+		(property "Reference" "Cout_1"
+			(at 288.036 372.364 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -50061,7 +50059,7 @@
 			)
 		)
 		(property "Value" "10u"
-			(at 300.99 375.9199 0)
+			(at 288.036 374.904 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -50105,7 +50103,7 @@
 		(instances
 			(project ""
 				(path "/37626d4a-e2f8-4dc8-ba70-7956f3e14d24"
-					(reference "C1")
+					(reference "Cout_1")
 					(unit 1)
 				)
 			)
@@ -55990,7 +55988,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_0402_1005Metric_Pad0.77x0.64mm_HandSolder"
+		(property "Footprint" "Library:DR73-150-R"
 			(at 271.78 375.92 0)
 			(effects
 				(font
@@ -57403,7 +57401,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9a3dc466-cadc-4a27-bdcc-165864270652")
-		(property "Reference" "RBot"
+		(property "Reference" "RBot1"
 			(at 256.54 383.5399 0)
 			(effects
 				(font
@@ -57457,7 +57455,7 @@
 		(instances
 			(project ""
 				(path "/37626d4a-e2f8-4dc8-ba70-7956f3e14d24"
-					(reference "RBot")
+					(reference "RBot1")
 					(unit 1)
 				)
 			)
@@ -62353,7 +62351,7 @@
 		(dnp no)
 		(uuid "a9c7dfc2-c89d-43fd-a0a2-4dad744a17ec")
 		(property "Reference" "R3"
-			(at 269.748 378.46 90)
+			(at 271.78 378.206 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -62361,7 +62359,7 @@
 			)
 		)
 		(property "Value" "10"
-			(at 274.066 378.46 90)
+			(at 271.78 383.794 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -63661,7 +63659,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 266.7 389.89 0)
+		(at 266.7 393.7 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -63670,7 +63668,7 @@
 		(fields_autoplaced yes)
 		(uuid "bcec9a4a-c43c-497f-8743-8f9c286945ee")
 		(property "Reference" "#PWR032"
-			(at 266.7 396.24 0)
+			(at 266.7 400.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -63679,7 +63677,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 266.7 394.97 0)
+			(at 266.7 398.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -63687,7 +63685,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 266.7 389.89 0)
+			(at 266.7 393.7 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -63696,7 +63694,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 266.7 389.89 0)
+			(at 266.7 393.7 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -63705,7 +63703,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 266.7 389.89 0)
+			(at 266.7 393.7 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -64272,7 +64270,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c75568ca-d243-4868-96f8-d5e6d9b93c44")
-		(property "Reference" "RTop"
+		(property "Reference" "RTop1"
 			(at 260.35 374.65 90)
 			(effects
 				(font
@@ -64324,7 +64322,7 @@
 		(instances
 			(project ""
 				(path "/37626d4a-e2f8-4dc8-ba70-7956f3e14d24"
-					(reference "RTop")
+					(reference "RTop1")
 					(unit 1)
 				)
 			)
@@ -64332,7 +64330,7 @@
 	)
 	(symbol
 		(lib_id "Device:D_Schottky")
-		(at 266.7 386.08 270)
+		(at 266.7 389.89 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -64341,7 +64339,7 @@
 		(fields_autoplaced yes)
 		(uuid "c81fbaab-1ee3-494e-b10b-44163cb6dcc2")
 		(property "Reference" "D1"
-			(at 269.24 384.4924 90)
+			(at 269.24 388.3024 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -64350,7 +64348,7 @@
 			)
 		)
 		(property "Value" "D_Schottky"
-			(at 269.24 387.0324 90)
+			(at 269.24 390.8424 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -64358,8 +64356,8 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric_Pad0.77x0.64mm_HandSolder"
-			(at 266.7 386.08 0)
+		(property "Footprint" "Library:DO-214BA_MCH-L"
+			(at 266.7 389.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -64368,7 +64366,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 266.7 386.08 0)
+			(at 266.7 389.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -64377,7 +64375,7 @@
 			)
 		)
 		(property "Description" "Schottky diode"
-			(at 266.7 386.08 0)
+			(at 266.7 389.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -65884,7 +65882,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 214.3252 391.16 0)
 			(effects
 				(font
