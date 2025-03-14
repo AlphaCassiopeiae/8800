@@ -42,12 +42,14 @@
 		(stackup
 			(layer "F.SilkS"
 				(type "Top Silk Screen")
+				(color "White")
 			)
 			(layer "F.Paste"
 				(type "Top Solder Paste")
 			)
 			(layer "F.Mask"
 				(type "Top Solder Mask")
+				(color "Black")
 				(thickness 0.01)
 			)
 			(layer "F.Cu"
@@ -67,6 +69,7 @@
 			)
 			(layer "B.Mask"
 				(type "Bottom Solder Mask")
+				(color "Black")
 				(thickness 0.01)
 			)
 			(layer "B.Paste"
@@ -74,6 +77,7 @@
 			)
 			(layer "B.SilkS"
 				(type "Bottom Silk Screen")
+				(color "White")
 			)
 			(copper_finish "None")
 			(dielectric_constraints no)
@@ -1312,7 +1316,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 0 1.17 360)
+			(at 0 1.17 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "3a00986d-e7c7-46b6-9322-bd3d6610ad2c")
@@ -1468,7 +1472,7 @@
 			(uuid "f3290145-8137-4ac2-b472-533ad437dd28")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "7835ebb5-dc71-4567-b101-4d1fa4345d24")
 			(effects
@@ -1941,7 +1945,7 @@
 		(uuid "329a4859-8abf-42dc-b22a-1303f5b62ee4")
 		(at 228 163.616666)
 		(property "Reference" "J4"
-			(at -76.85 -8.241666 360)
+			(at -76.85 -8.241666 0)
 			(layer "F.SilkS")
 			(uuid "1fc98e14-eab0-465c-9d16-9dbcf615b0ca")
 			(effects
@@ -1952,7 +1956,7 @@
 			)
 		)
 		(property "Value" "10145891-0320J13LF"
-			(at -76.425 -5.841666 360)
+			(at -76.425 -5.841666 0)
 			(layer "F.Fab")
 			(uuid "d947450d-bf62-423f-9a97-2fd27edf1331")
 			(effects
@@ -1963,7 +1967,7 @@
 			)
 		)
 		(property "Footprint" "Library:AMPHENOL_10145891-0320J13LF"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "310624b0-06ac-477d-9919-ef6944b49440")
@@ -1975,7 +1979,7 @@
 			)
 		)
 		(property "Datasheet" "https://cdn.amphenol-cs.com/media/wysiwyg/files/documentation/datasheet/ssio/ssio_ddr4.pdf"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "eaf5b382-e274-4179-bf3e-2eee998d97ed")
@@ -1987,7 +1991,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "36afe264-5045-4657-8b7f-9347f0c8b3be")
@@ -5695,7 +5699,7 @@
 		(uuid "408befd5-8700-4351-8f76-3a16b4d0bb2c")
 		(at 228 128.633333)
 		(property "Reference" "J3"
-			(at -76.275 -8.608333 360)
+			(at -76.275 -8.608333 0)
 			(layer "F.SilkS")
 			(uuid "967f655b-caa4-467d-b8c9-c94f7c742451")
 			(effects
@@ -5706,7 +5710,7 @@
 			)
 		)
 		(property "Value" "10145891-0320J13LF"
-			(at -76.55 -6.433333 360)
+			(at -76.55 -6.433333 0)
 			(layer "F.Fab")
 			(uuid "7309f0fd-f23d-4c8c-aaa2-3de454840e5e")
 			(effects
@@ -5717,7 +5721,7 @@
 			)
 		)
 		(property "Footprint" "Library:AMPHENOL_10145891-0320J13LF"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "d35f813b-803d-4745-ba1d-958b72ff2782")
@@ -5729,7 +5733,7 @@
 			)
 		)
 		(property "Datasheet" "https://cdn.amphenol-cs.com/media/wysiwyg/files/documentation/datasheet/ssio/ssio_ddr4.pdf"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "fbb2db9e-2a70-4a93-9e6c-afd78cb60a55")
@@ -5741,7 +5745,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "3191d2f8-e27d-4046-940e-d77535e5c502")
@@ -9044,7 +9048,7 @@
 			)
 		)
 		(property "Value" "31.6k"
-			(at 0 1.17 360)
+			(at 0 1.17 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "21da15d0-cca8-4d42-880e-a734a5124af9")
@@ -9200,7 +9204,7 @@
 			(uuid "0055f498-ebb6-4212-abfa-ee2740c0e282")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "99a0fc2e-41e4-4fa8-bcf4-eeba44a7c721")
 			(effects
@@ -9247,7 +9251,7 @@
 		(descr "LED SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf), generated with kicad-footprint-generator")
 		(tags "LED handsolder")
 		(property "Reference" "D4"
-			(at 0.015 -2.2 360)
+			(at 0.015 -2.2 0)
 			(layer "F.SilkS")
 			(uuid "08ad684a-34bc-46cf-89a8-f79e17d50a06")
 			(effects
@@ -9258,7 +9262,7 @@
 			)
 		)
 		(property "Value" "HEARTBEAT"
-			(at 0 1.43 360)
+			(at 0 1.43 0)
 			(layer "F.Fab")
 			(uuid "7dd994e6-fed4-46ad-ae43-4fc451911b32")
 			(effects
@@ -9433,7 +9437,7 @@
 			(uuid "69736b11-588f-4f29-a05e-3c0109533a27")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "76321bc5-ef21-44df-9c3f-7d122febadb0")
 			(effects
@@ -9506,7 +9510,7 @@
 			)
 		)
 		(property "Footprint" "Library:DO-214BA_MCH-L"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "8e950d7e-1cf0-490e-994a-022f9fec33ad")
@@ -9518,7 +9522,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "75194c4a-e561-4cf0-a25f-324a8bc4e34a")
@@ -9530,7 +9534,7 @@
 			)
 		)
 		(property "Description" "Schottky diode"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "86397056-7fd5-4562-80e5-6b20bd8e3206")
@@ -9884,7 +9888,7 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 0 1.16 360)
+			(at 0 1.16 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "acad8ff0-a52f-48be-8aef-829e26adf080")
@@ -10040,7 +10044,7 @@
 			(uuid "b4b1f004-f2f6-4f39-8c1f-592b6609a6ec")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "de7267ab-e6b2-4173-a728-0fd64283493b")
 			(effects
@@ -10301,7 +10305,7 @@
 		(descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "capacitor handsolder")
 		(property "Reference" "Cln_1"
-			(at 5.05 0.1 360)
+			(at 5.05 0.1 0)
 			(layer "F.SilkS")
 			(uuid "4c1dfc71-22cf-4b08-bda0-dc12199dd38f")
 			(effects
@@ -10312,7 +10316,7 @@
 			)
 		)
 		(property "Value" "10u"
-			(at 0 1.43 360)
+			(at 0 1.43 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "49e5ecba-c31c-4506-bed2-131e5c040f3d")
@@ -10468,7 +10472,7 @@
 			(uuid "04d1db4f-0faa-4e04-8b37-fdf8b6b180ae")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "dce2282a-d58d-47a1-926b-4f7d8e17ff88")
 			(effects
@@ -10526,7 +10530,7 @@
 			)
 		)
 		(property "Value" "1N4148"
-			(at 0 1.17 360)
+			(at 0 1.17 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "5f799c09-eefc-4267-9cf6-bb12b854af78")
@@ -10719,7 +10723,7 @@
 			(uuid "b462c5bf-90a8-4d83-9a26-8c5c294e7167")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "18f12466-9252-4557-b7ed-cb4891155258")
 			(effects
@@ -10768,7 +10772,7 @@
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R5"
-			(at 0 -1.17 360)
+			(at 0 -1.17 0)
 			(layer "F.SilkS")
 			(uuid "9fc9c26b-d4b1-447a-8ecc-a5552eabcb1e")
 			(effects
@@ -10779,7 +10783,7 @@
 			)
 		)
 		(property "Value" "150"
-			(at 0 1.17 360)
+			(at 0 1.17 0)
 			(layer "F.Fab")
 			(uuid "159ac2dc-91d1-4ce2-ab0b-8807942cf6aa")
 			(effects
@@ -10934,7 +10938,7 @@
 			(uuid "c58a9902-f4c0-4fb5-a637-7c22486977f1")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "e94d07c9-7332-4c75-98cf-98ef5cf065ef")
 			(effects
@@ -10979,7 +10983,7 @@
 		(uuid "b08a47a8-1c43-44f1-bccc-eac968d8113d")
 		(at 228 93.65)
 		(property "Reference" "J2"
-			(at -77.625 -7.4 360)
+			(at -77.625 -7.4 0)
 			(layer "F.SilkS")
 			(uuid "92a2ae94-8048-4118-8068-844d55c927a5")
 			(effects
@@ -10990,7 +10994,7 @@
 			)
 		)
 		(property "Value" "10145891-0320J13LF"
-			(at -77.775 -4.95 360)
+			(at -77.775 -4.95 0)
 			(layer "F.Fab")
 			(uuid "5111ff58-e75f-4a48-85df-d82c56e7e588")
 			(effects
@@ -11001,7 +11005,7 @@
 			)
 		)
 		(property "Footprint" "Library:AMPHENOL_10145891-0320J13LF"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "1b61bc7b-b6f8-47c4-a8ba-364df0cd7a29")
@@ -11013,7 +11017,7 @@
 			)
 		)
 		(property "Datasheet" "https://cdn.amphenol-cs.com/media/wysiwyg/files/documentation/datasheet/ssio/ssio_ddr4.pdf"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "5b2213f7-abce-4d74-bc4a-e0b402b8e0e5")
@@ -11025,7 +11029,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "4d164edb-0e8a-4d30-b872-c9fef9c06018")
@@ -14317,7 +14321,7 @@
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R4"
-			(at 0.1 1.4 360)
+			(at 0.1 1.4 0)
 			(layer "F.SilkS")
 			(uuid "aea5c901-cfbb-4c98-af7b-81b50e2f4f16")
 			(effects
@@ -14328,7 +14332,7 @@
 			)
 		)
 		(property "Value" "150"
-			(at -0.05 -1.55 360)
+			(at -0.05 -1.55 0)
 			(layer "F.Fab")
 			(uuid "9b10f28b-bd65-4a79-9c0a-ad41660b3c18")
 			(effects
@@ -14483,7 +14487,7 @@
 			(uuid "d0f132e4-b01e-4e14-b608-c7482b05bfe9")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "7a889ac9-83c9-4700-b96a-06c401fe45b1")
 			(effects
@@ -14528,7 +14532,7 @@
 		(uuid "e0e4c6d8-6a1e-4d7d-b743-45634333bf62")
 		(at 228 198.6)
 		(property "Reference" "J1"
-			(at -78.025 7.35 360)
+			(at -78.025 7.35 0)
 			(layer "F.SilkS")
 			(uuid "bbce9f9e-9613-4e79-9a18-4b7fccd72d8e")
 			(effects
@@ -14539,7 +14543,7 @@
 			)
 		)
 		(property "Value" "10145891-0320J13LF"
-			(at -78.075 5.35 360)
+			(at -78.075 5.35 0)
 			(layer "F.Fab")
 			(uuid "c896e74c-1942-4cbb-9d7c-edc55cbc253f")
 			(effects
@@ -14550,7 +14554,7 @@
 			)
 		)
 		(property "Footprint" "Library:AMPHENOL_10145891-0320J13LF"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "d0c6d32d-9e89-47df-bb65-53a389912187")
@@ -14562,7 +14566,7 @@
 			)
 		)
 		(property "Datasheet" "https://cdn.amphenol-cs.com/media/wysiwyg/files/documentation/datasheet/ssio/ssio_ddr4.pdf"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "9448ca7c-b298-44f0-bfe2-791f86677cbf")
@@ -14574,7 +14578,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "4456f03b-a299-4f95-a58d-d7e727b2c727")
@@ -14586,7 +14590,7 @@
 			)
 		)
 		(property "Price" "3.64"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "01edd8e9-7c39-46b9-9416-26ba6d74c0c7")
@@ -14598,7 +14602,7 @@
 			)
 		)
 		(property "Link" "https://www.digikey.com/en/products/detail/amphenol-cs-fci/10145891-0320J13LF/10233357"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "519e4cda-099a-4f52-84d6-0e2beca5348e")
@@ -14610,7 +14614,7 @@
 			)
 		)
 		(property "Drawing" "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/6180/10145891.pdf"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "64d78e1a-92b0-4bba-a468-9a751ddf5baf")
@@ -19382,7 +19386,7 @@
 			)
 		)
 		(property "Footprint" "Library:DR73-150-R"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "9a70152f-d967-4519-8580-ae4210fdd5ab")
@@ -19394,7 +19398,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "1167ba10-e4ca-4b21-b85e-f0f09314f02f")
@@ -19406,7 +19410,7 @@
 			)
 		)
 		(property "Description" "Inductor"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "d52d917a-6ccf-43d2-b2e4-a7f8cb885b4b")
@@ -19922,7 +19926,7 @@
 		(descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "capacitor handsolder")
 		(property "Reference" "Cln_2"
-			(at 5.05 -0.05 360)
+			(at 5.05 -0.05 0)
 			(layer "F.SilkS")
 			(uuid "294d1547-6aef-4447-95ae-4f1aafadb8dc")
 			(effects
@@ -19933,7 +19937,7 @@
 			)
 		)
 		(property "Value" "10u"
-			(at 0 1.43 360)
+			(at 0 1.43 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "d40b8795-3eff-4729-8158-f37244a97bbf")
@@ -20089,7 +20093,7 @@
 			(uuid "6e029340-d991-44c5-b287-8c2c1e28a86c")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "c97bf3ce-be82-4e20-aeeb-f370702db440")
 			(effects
@@ -20136,7 +20140,7 @@
 		(descr "SOT, 6 Pin (JEDEC MO-178 Var AB https://www.jedec.org/document_search?search_api_views_fulltext=MO-178), generated with kicad-footprint-generator ipc_gullwing_generator.py")
 		(tags "SOT TO_SOT_SMD")
 		(property "Reference" "U1"
-			(at -0.0375 3.05 360)
+			(at -0.0375 3.05 0)
 			(layer "F.SilkS")
 			(uuid "928f1f89-4f0f-4124-85a8-7238971282a6")
 			(effects
@@ -20147,7 +20151,7 @@
 			)
 		)
 		(property "Value" "MCP16331x-xCH"
-			(at -3.1375 7.1 360)
+			(at -3.1375 7.1 0)
 			(layer "F.Fab")
 			(uuid "9481a25f-6512-4325-95fa-5dd77d5bb56a")
 			(effects
@@ -20158,7 +20162,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-6"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "fce701b2-a63b-4f62-9c58-19fec6cbff8d")
@@ -20170,7 +20174,7 @@
 			)
 		)
 		(property "Datasheet" "http://ww1.microchip.com/downloads/en/DeviceDoc/20005308C.pdf"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "5f0477a6-87aa-44e7-8fa5-54e44ac788dd")
@@ -20182,7 +20186,7 @@
 			)
 		)
 		(property "Description" "High-Voltage Input Integrated Switch Step-Down Regulator, VDD +4.4V to 50V, Out +2.0V to +24V, SOT-23"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "69fa2ef0-2747-423a-b4d3-8e7c5b247107")
@@ -20341,7 +20345,7 @@
 			(uuid "e5478b7f-040b-4421-960a-299039f413a0")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "6692222a-b827-4414-b543-8e7a8fad8d45")
 			(effects
@@ -20430,7 +20434,7 @@
 		(descr "LED SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf), generated with kicad-footprint-generator")
 		(tags "LED handsolder")
 		(property "Reference" "D2"
-			(at 0 -1.43 360)
+			(at 0 -1.43 0)
 			(layer "F.SilkS")
 			(uuid "803db885-dbb7-4539-a1ad-6e3d39644c04")
 			(effects
@@ -20441,7 +20445,7 @@
 			)
 		)
 		(property "Value" "HEARTBEAT"
-			(at 0 1.43 360)
+			(at 0 1.43 0)
 			(layer "F.Fab")
 			(uuid "125f2633-78d1-4638-ab4f-75041ad6339a")
 			(effects
@@ -20616,7 +20620,7 @@
 			(uuid "22dba737-a96d-439a-8f40-9f1170fb0af8")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "7494f399-985f-4739-89e8-eeea6a581b57")
 			(effects
@@ -20701,6 +20705,19 @@
 		(at 289.6 158 0)
 		(layer "B.SilkS")
 		(uuid "695e5f19-70ea-48fa-b849-7e6b81c1992d")
+		(effects
+			(font
+				(size 5 5)
+				(thickness 0.3)
+				(bold yes)
+			)
+			(justify left bottom mirror)
+		)
+	)
+	(gr_text "Card"
+		(at 311.05 206.8 270)
+		(layer "B.SilkS")
+		(uuid "72513e0f-611d-45e9-8d85-a70877a80beb")
 		(effects
 			(font
 				(size 5 5)
