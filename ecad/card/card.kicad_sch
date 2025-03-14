@@ -1010,169 +1010,6 @@
 				)
 			)
 		)
-		(symbol "Device:D"
-			(pin_numbers hide)
-			(pin_names
-				(offset 1.016) hide)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "D"
-				(at 0 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "D"
-				(at 0 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Diode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Device" "D"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Pins" "1=K 2=A"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "diode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "D_0_1"
-				(polyline
-					(pts
-						(xy -1.27 1.27) (xy -1.27 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 0) (xy -1.27 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "D_1_1"
-				(pin passive line
-					(at -3.81 0 0)
-					(length 2.54)
-					(name "K"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 3.81 0 180)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "Device:D_Schottky"
 			(pin_numbers hide)
 			(pin_names
@@ -11217,12 +11054,6 @@
 		(uuid "b6d2867f-f935-421d-8837-13ae199cef47")
 	)
 	(junction
-		(at 222.25 58.42)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b7bb6f44-9e13-448d-a940-16081475d970")
-	)
-	(junction
 		(at 100.33 50.8)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -11233,12 +11064,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c4ec133d-efb3-404a-abd9-0e6f51a0eca3")
-	)
-	(junction
-		(at 212.09 27.94)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c550eb39-7b9d-4e16-a312-0667a3f5e07e")
 	)
 	(junction
 		(at 189.23 27.94)
@@ -11996,6 +11821,16 @@
 	)
 	(wire
 		(pts
+			(xy 205.74 166.37) (xy 205.74 168.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0f12c4f4-f49e-4bd9-bc82-8f6ed077f16a")
+	)
+	(wire
+		(pts
 			(xy 220.98 118.11) (xy 229.87 118.11)
 		)
 		(stroke
@@ -12133,16 +11968,6 @@
 			(type default)
 		)
 		(uuid "1589172f-0ca9-49dc-8bd1-9e2c7e35f932")
-	)
-	(wire
-		(pts
-			(xy 223.52 36.83) (xy 223.52 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "15c82596-a467-4ad6-94fb-c86d82cfda6e")
 	)
 	(wire
 		(pts
@@ -12683,16 +12508,6 @@
 			(type default)
 		)
 		(uuid "3da4541f-e450-460f-80f6-b8d7d488ccb6")
-	)
-	(wire
-		(pts
-			(xy 226.06 58.42) (xy 222.25 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3e005a05-1ca2-4e3c-8c97-6a999830843e")
 	)
 	(wire
 		(pts
@@ -13996,6 +13811,16 @@
 	)
 	(wire
 		(pts
+			(xy 208.28 166.37) (xy 205.74 166.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7fec0682-c331-47d9-816d-12a828852b21")
+	)
+	(wire
+		(pts
 			(xy 265.43 148.59) (xy 273.05 148.59)
 		)
 		(stroke
@@ -14246,7 +14071,7 @@
 	)
 	(wire
 		(pts
-			(xy 173.99 173.99) (xy 184.15 173.99)
+			(xy 173.99 173.99) (xy 208.28 173.99)
 		)
 		(stroke
 			(width 0)
@@ -14696,16 +14521,6 @@
 	)
 	(wire
 		(pts
-			(xy 223.52 27.94) (xy 223.52 29.21)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b81626b1-f88a-45e7-a128-ca6523c476a1")
-	)
-	(wire
-		(pts
 			(xy 30.48 210.82) (xy 30.48 213.36)
 		)
 		(stroke
@@ -14793,16 +14608,6 @@
 			(type default)
 		)
 		(uuid "be198d4b-fc39-4259-9f7d-952bfc951872")
-	)
-	(wire
-		(pts
-			(xy 212.09 27.94) (xy 223.52 27.94)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "be6e9e7b-7755-4f55-9c61-0066980401b2")
 	)
 	(wire
 		(pts
@@ -14966,7 +14771,7 @@
 	)
 	(wire
 		(pts
-			(xy 173.99 163.83) (xy 184.15 163.83)
+			(xy 173.99 163.83) (xy 208.28 163.83)
 		)
 		(stroke
 			(width 0)
@@ -15323,16 +15128,6 @@
 			(type default)
 		)
 		(uuid "df785d89-15bf-42fa-82d3-2df542e528da")
-	)
-	(wire
-		(pts
-			(xy 223.52 38.1) (xy 212.09 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "df78dfe5-6dbb-4c4d-a5eb-171fda46b395")
 	)
 	(wire
 		(pts
@@ -16662,6 +16457,16 @@
 		)
 		(uuid "6554b225-6580-4951-a7b5-d410c76d71a9")
 	)
+	(label "UART1_RX"
+		(at 195.58 173.99 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "6588238f-f1e3-4746-9dd4-22353b2336ef")
+	)
 	(label "CTRL14"
 		(at 149.86 166.37 180)
 		(effects
@@ -17051,6 +16856,16 @@
 			(justify right bottom)
 		)
 		(uuid "bf7c7d0f-d0cf-4fc1-b99b-e652043f8f36")
+	)
+	(label "UART1_TX"
+		(at 195.58 163.83 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c59ad357-3dbf-41fc-9a7a-4d7c207b3fff")
 	)
 	(label "CTRL16"
 		(at 149.86 173.99 180)
@@ -24312,7 +24127,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "056bc97d-0a47-4f6c-aaf5-81ef7b82dafa")
-		(property "Reference" "#FLG17"
+		(property "Reference" "#FLG017"
 			(at 461.645 53.34 0)
 			(effects
 				(font
@@ -24363,7 +24178,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG17")
+					(reference "#FLG017")
 					(unit 1)
 				)
 			)
@@ -24532,7 +24347,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "062bdd3f-37cc-42d5-b849-dc1b475a8893")
-		(property "Reference" "#FLG24"
+		(property "Reference" "#FLG024"
 			(at 434.975 73.66 0)
 			(effects
 				(font
@@ -24583,7 +24398,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG24")
+					(reference "#FLG024")
 					(unit 1)
 				)
 			)
@@ -24599,7 +24414,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "069ed514-9bef-45ed-a33b-4ba1dd0492ca")
-		(property "Reference" "#FLG46"
+		(property "Reference" "#FLG046"
 			(at 461.645 96.52 0)
 			(effects
 				(font
@@ -24650,7 +24465,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG46")
+					(reference "#FLG046")
 					(unit 1)
 				)
 			)
@@ -24666,7 +24481,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "07218e9a-c3fd-4462-92f1-290b8347ac44")
-		(property "Reference" "#FLG11"
+		(property "Reference" "#FLG011"
 			(at 461.645 45.72 0)
 			(effects
 				(font
@@ -24717,7 +24532,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG11")
+					(reference "#FLG011")
 					(unit 1)
 				)
 			)
@@ -24956,7 +24771,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Connector_JST:JST_XH_B3B-XH-AM_1x03_P2.50mm_Vertical"
+		(property "Footprint" "Connector_JST:JST_XH_S3B-XH-A-1_1x03_P2.50mm_Horizontal"
 			(at 213.36 186.69 0)
 			(effects
 				(font
@@ -25012,7 +24827,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "091be4bd-a91d-43be-8da2-6b0ca1300fb2")
-		(property "Reference" "#FLG68"
+		(property "Reference" "#FLG068"
 			(at 523.875 63.5 0)
 			(effects
 				(font
@@ -25063,7 +24878,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG68")
+					(reference "#FLG068")
 					(unit 1)
 				)
 			)
@@ -25147,7 +24962,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0a41e558-b98e-47be-9c09-d1df52798af5")
-		(property "Reference" "#FLG19"
+		(property "Reference" "#FLG019"
 			(at 461.645 58.42 0)
 			(effects
 				(font
@@ -25198,7 +25013,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG19")
+					(reference "#FLG019")
 					(unit 1)
 				)
 			)
@@ -25266,76 +25081,6 @@
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
 					(reference "#PWR032")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D_Schottky")
-		(at 223.52 33.02 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "0bdbb371-6a93-4b9b-841a-dbd44baed804")
-		(property "Reference" "D3"
-			(at 226.06 31.4324 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Protection"
-			(at 226.06 33.9724 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric_Pad0.77x0.64mm_HandSolder"
-			(at 223.52 33.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 223.52 33.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Schottky diode"
-			(at 223.52 33.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "84a500f9-aceb-4e6d-8e16-85ed15139d2c")
-		)
-		(pin "1"
-			(uuid "221bcd1f-69bf-49bc-a34f-c6c2cb31493c")
-		)
-		(instances
-			(project ""
-				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "D3")
 					(unit 1)
 				)
 			)
@@ -25419,7 +25164,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0da2df2b-9343-4252-bbfe-5ae3779e7089")
-		(property "Reference" "#FLG59"
+		(property "Reference" "#FLG059"
 			(at 523.875 91.44 0)
 			(effects
 				(font
@@ -25470,7 +25215,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG59")
+					(reference "#FLG059")
 					(unit 1)
 				)
 			)
@@ -26231,7 +25976,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1a22fcd8-d895-4d1c-bc68-8e833493f4dc")
-		(property "Reference" "#FLG9"
+		(property "Reference" "#FLG09"
 			(at 461.645 40.64 0)
 			(effects
 				(font
@@ -26282,7 +26027,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG9")
+					(reference "#FLG09")
 					(unit 1)
 				)
 			)
@@ -26298,7 +26043,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1aea44d8-74da-483e-adda-944123473837")
-		(property "Reference" "#FLG50"
+		(property "Reference" "#FLG050"
 			(at 461.645 111.76 0)
 			(effects
 				(font
@@ -26349,7 +26094,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG50")
+					(reference "#FLG050")
 					(unit 1)
 				)
 			)
@@ -27623,7 +27368,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2db39a3f-00e2-4331-9683-8854676a1762")
-		(property "Reference" "#FLG71"
+		(property "Reference" "#FLG071"
 			(at 490.855 45.72 0)
 			(effects
 				(font
@@ -27674,7 +27419,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG71")
+					(reference "#FLG071")
 					(unit 1)
 				)
 			)
@@ -27758,7 +27503,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2f06d342-4ceb-45f7-975b-1b8dc84d98b5")
-		(property "Reference" "#FLG30"
+		(property "Reference" "#FLG030"
 			(at 434.975 96.52 0)
 			(effects
 				(font
@@ -27809,7 +27554,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG30")
+					(reference "#FLG030")
 					(unit 1)
 				)
 			)
@@ -27892,7 +27637,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3120cda1-b4d8-455b-b020-b5f524347b9f")
-		(property "Reference" "#FLG79"
+		(property "Reference" "#FLG079"
 			(at 490.855 76.2 0)
 			(effects
 				(font
@@ -27943,7 +27688,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG79")
+					(reference "#FLG079")
 					(unit 1)
 				)
 			)
@@ -28242,7 +27987,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "330ddd9a-8cfb-41f9-8cc5-1578d36d4242")
-		(property "Reference" "#FLG76"
+		(property "Reference" "#FLG076"
 			(at 490.855 63.5 0)
 			(effects
 				(font
@@ -28293,7 +28038,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG76")
+					(reference "#FLG076")
 					(unit 1)
 				)
 			)
@@ -28760,7 +28505,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "37ced09d-0f73-4eff-9570-4385e58d0704")
-		(property "Reference" "#FLG72"
+		(property "Reference" "#FLG072"
 			(at 490.855 48.26 0)
 			(effects
 				(font
@@ -28811,7 +28556,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG72")
+					(reference "#FLG072")
 					(unit 1)
 				)
 			)
@@ -28895,7 +28640,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3a99e2b7-9803-40b5-9e1b-389e1346fe3d")
-		(property "Reference" "#FLG48"
+		(property "Reference" "#FLG048"
 			(at 461.645 101.6 0)
 			(effects
 				(font
@@ -28946,7 +28691,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG48")
+					(reference "#FLG048")
 					(unit 1)
 				)
 			)
@@ -28977,7 +28722,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_JST:JST_XH_B3B-XH-AM_1x03_P2.50mm_Vertical"
+		(property "Footprint" "Connector_JST:JST_XH_S3B-XH-A-1_1x03_P2.50mm_Horizontal"
 			(at 54.61 194.31 0)
 			(effects
 				(font
@@ -29102,7 +28847,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3c0cb43c-7c1b-4eee-8e6d-b597640b2238")
-		(property "Reference" "#FLG36"
+		(property "Reference" "#FLG036"
 			(at 434.975 115.57 0)
 			(effects
 				(font
@@ -29153,7 +28898,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG36")
+					(reference "#FLG036")
 					(unit 1)
 				)
 			)
@@ -29715,7 +29460,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "40b5814d-11c5-4fe0-805f-b9f37a765ce3")
-		(property "Reference" "#FLG64"
+		(property "Reference" "#FLG064"
 			(at 523.875 48.26 0)
 			(effects
 				(font
@@ -29766,7 +29511,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG64")
+					(reference "#FLG064")
 					(unit 1)
 				)
 			)
@@ -29782,7 +29527,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "41232bab-c8ba-45ee-b755-517f67aa1f73")
-		(property "Reference" "#FLG51"
+		(property "Reference" "#FLG051"
 			(at 461.645 114.3 0)
 			(effects
 				(font
@@ -29833,7 +29578,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG51")
+					(reference "#FLG051")
 					(unit 1)
 				)
 			)
@@ -30109,6 +29854,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 205.74 168.91 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "43ca0f5a-d34a-4720-916d-657913d46453")
+		(property "Reference" "#PWR016"
+			(at 205.74 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 205.74 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 205.74 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 205.74 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 205.74 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2ab4fec9-efe8-44cd-bcfe-2f0a5e0aeade")
+		)
+		(instances
+			(project "card"
+				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
+					(reference "#PWR016")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:PWR_FLAG")
 		(at 488.95 93.98 270)
 		(unit 1)
@@ -30118,7 +29930,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4421e7b6-1533-4b96-a5e9-0f371f462e93")
-		(property "Reference" "#FLG84"
+		(property "Reference" "#FLG084"
 			(at 490.855 93.98 0)
 			(effects
 				(font
@@ -30169,7 +29981,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG84")
+					(reference "#FLG084")
 					(unit 1)
 				)
 			)
@@ -30185,7 +29997,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "45a6331b-161a-4ccc-81dd-3e98126ab4c6")
-		(property "Reference" "#FLG16"
+		(property "Reference" "#FLG016"
 			(at 434.975 60.96 0)
 			(effects
 				(font
@@ -30236,7 +30048,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG16")
+					(reference "#FLG016")
 					(unit 1)
 				)
 			)
@@ -30321,7 +30133,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "483e4a62-623e-4009-bc21-3796471866b7")
-		(property "Reference" "#FLG63"
+		(property "Reference" "#FLG063"
 			(at 523.875 45.72 0)
 			(effects
 				(font
@@ -30372,7 +30184,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG63")
+					(reference "#FLG063")
 					(unit 1)
 				)
 			)
@@ -30658,7 +30470,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "49d2734b-70f8-46c4-a0ac-8f33a6ca3626")
-		(property "Reference" "#FLG4"
+		(property "Reference" "#FLG04"
 			(at 434.975 36.83 0)
 			(effects
 				(font
@@ -30709,7 +30521,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG4")
+					(reference "#FLG04")
 					(unit 1)
 				)
 			)
@@ -30860,7 +30672,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4c7f0ce1-53ac-4cf4-9fed-9e8f065b5dd6")
-		(property "Reference" "#FLG7"
+		(property "Reference" "#FLG07"
 			(at 434.975 45.72 0)
 			(effects
 				(font
@@ -30911,7 +30723,7 @@
 		(instances
 			(project ""
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG7")
+					(reference "#FLG07")
 					(unit 1)
 				)
 			)
@@ -31063,7 +30875,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4f17bad5-aab1-4982-bb19-9373253f03f7")
-		(property "Reference" "#FLG58"
+		(property "Reference" "#FLG058"
 			(at 523.875 88.9 0)
 			(effects
 				(font
@@ -31114,7 +30926,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG58")
+					(reference "#FLG058")
 					(unit 1)
 				)
 			)
@@ -31198,7 +31010,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "52f1071e-ef3c-428d-81c7-af5b31a16745")
-		(property "Reference" "#FLG69"
+		(property "Reference" "#FLG069"
 			(at 490.855 40.64 0)
 			(effects
 				(font
@@ -31249,7 +31061,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG69")
+					(reference "#FLG069")
 					(unit 1)
 				)
 			)
@@ -31266,7 +31078,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "54a19428-1205-474d-8628-0ba38f41ff43")
-		(property "Reference" "#FLG65"
+		(property "Reference" "#FLG065"
 			(at 523.875 55.88 0)
 			(effects
 				(font
@@ -31317,7 +31129,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG65")
+					(reference "#FLG065")
 					(unit 1)
 				)
 			)
@@ -31468,7 +31280,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5805d4b8-9846-4b50-a861-0e2bb30f6ac9")
-		(property "Reference" "#FLG49"
+		(property "Reference" "#FLG049"
 			(at 461.645 109.22 0)
 			(effects
 				(font
@@ -31519,74 +31331,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG49")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 233.68 58.42 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "59fe76d1-d053-4bca-9f8f-5c73715e499d")
-		(property "Reference" "#PWR82"
-			(at 240.03 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 237.49 58.4199 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 233.68 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 233.68 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 233.68 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "06761ed5-e49e-4e4b-b4c7-b5a5a5e85725")
-		)
-		(instances
-			(project ""
-				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#PWR82")
+					(reference "#FLG049")
 					(unit 1)
 				)
 			)
@@ -31942,7 +31687,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5eb4688c-bb66-4a0b-a6ea-85129b5807c7")
-		(property "Reference" "#FLG81"
+		(property "Reference" "#FLG081"
 			(at 490.855 86.36 0)
 			(effects
 				(font
@@ -31993,7 +31738,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG81")
+					(reference "#FLG081")
 					(unit 1)
 				)
 			)
@@ -32077,7 +31822,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "604ec97a-e9a0-40be-98c4-773e45a3cc53")
-		(property "Reference" "#FLG12"
+		(property "Reference" "#FLG012"
 			(at 461.645 48.26 0)
 			(effects
 				(font
@@ -32128,7 +31873,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG12")
+					(reference "#FLG012")
 					(unit 1)
 				)
 			)
@@ -32211,7 +31956,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "624c9741-72b2-4ad6-8bde-f277d63bcc80")
-		(property "Reference" "#FLG52"
+		(property "Reference" "#FLG052"
 			(at 461.645 116.84 0)
 			(effects
 				(font
@@ -32262,7 +32007,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG52")
+					(reference "#FLG052")
 					(unit 1)
 				)
 			)
@@ -32278,7 +32023,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "62db9dc3-713b-4d1a-b4ae-d0250d3effee")
-		(property "Reference" "#FLG34"
+		(property "Reference" "#FLG034"
 			(at 434.975 110.49 0)
 			(effects
 				(font
@@ -32329,7 +32074,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG34")
+					(reference "#FLG034")
 					(unit 1)
 				)
 			)
@@ -32548,7 +32293,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6572118e-3cea-4adc-b49f-a6d3c1ef03f2")
-		(property "Reference" "#FLG42"
+		(property "Reference" "#FLG042"
 			(at 461.645 82.55 0)
 			(effects
 				(font
@@ -32599,7 +32344,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG42")
+					(reference "#FLG042")
 					(unit 1)
 				)
 			)
@@ -32615,7 +32360,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "65bef251-612c-4ea5-b82c-340f153000be")
-		(property "Reference" "#FLG75"
+		(property "Reference" "#FLG075"
 			(at 490.855 60.96 0)
 			(effects
 				(font
@@ -32666,7 +32411,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG75")
+					(reference "#FLG075")
 					(unit 1)
 				)
 			)
@@ -32682,7 +32427,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "661c1237-e94d-4319-8967-20b133f5f4d4")
-		(property "Reference" "#FLG41"
+		(property "Reference" "#FLG041"
 			(at 461.645 80.01 0)
 			(effects
 				(font
@@ -32733,7 +32478,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG41")
+					(reference "#FLG041")
 					(unit 1)
 				)
 			)
@@ -32749,7 +32494,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6689d85f-4c8c-4acd-b558-65818ae9605c")
-		(property "Reference" "#FLG25"
+		(property "Reference" "#FLG025"
 			(at 434.975 80.01 0)
 			(effects
 				(font
@@ -32800,7 +32545,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG25")
+					(reference "#FLG025")
 					(unit 1)
 				)
 			)
@@ -33288,7 +33033,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6adcf2a3-851f-4a07-813f-f8aff87ff0b2")
-		(property "Reference" "#FLG18"
+		(property "Reference" "#FLG018"
 			(at 461.645 55.88 0)
 			(effects
 				(font
@@ -33339,7 +33084,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG18")
+					(reference "#FLG018")
 					(unit 1)
 				)
 			)
@@ -33355,7 +33100,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6b45fe83-e64a-4d76-8fa4-e56218baf9e4")
-		(property "Reference" "#FLG70"
+		(property "Reference" "#FLG070"
 			(at 490.855 43.18 0)
 			(effects
 				(font
@@ -33406,7 +33151,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG70")
+					(reference "#FLG070")
 					(unit 1)
 				)
 			)
@@ -33490,7 +33235,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6c008ba0-93f8-42b9-9ae3-bc29e8441ee8")
-		(property "Reference" "#FLG40"
+		(property "Reference" "#FLG040"
 			(at 461.645 73.66 0)
 			(effects
 				(font
@@ -33541,7 +33286,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG40")
+					(reference "#FLG040")
 					(unit 1)
 				)
 			)
@@ -33557,7 +33302,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6cb73eb7-19aa-4080-9b45-4d2dc7d5862b")
-		(property "Reference" "#FLG1"
+		(property "Reference" "#FLG01"
 			(at 434.975 29.21 0)
 			(effects
 				(font
@@ -33608,7 +33353,7 @@
 		(instances
 			(project ""
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG1")
+					(reference "#FLG01")
 					(unit 1)
 				)
 			)
@@ -33896,7 +33641,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "73353572-0264-4ec3-b63c-afd1a589f7b8")
-		(property "Reference" "#FLG57"
+		(property "Reference" "#FLG057"
 			(at 523.875 86.36 0)
 			(effects
 				(font
@@ -33947,7 +33692,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG57")
+					(reference "#FLG057")
 					(unit 1)
 				)
 			)
@@ -34229,92 +33974,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:D")
-		(at 229.87 58.42 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "78145281-f2ba-4370-a6ef-347db3c883d7")
-		(property "Reference" "D2"
-			(at 229.87 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Debugging"
-			(at 229.87 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric_Pad0.77x0.64mm_HandSolder"
-			(at 229.87 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 229.87 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Diode"
-			(at 229.87 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 229.87 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 229.87 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "3290827f-0de4-4048-99e1-7129c0184e3d")
-		)
-		(pin "1"
-			(uuid "46765e22-e849-4495-aaa8-5578794728ed")
-		)
-		(instances
-			(project ""
-				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "D2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:PWR_FLAG")
 		(at 488.95 73.66 270)
 		(unit 1)
@@ -34324,7 +33983,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "781d0463-e558-43f3-9be4-d7f0747edbc8")
-		(property "Reference" "#FLG78"
+		(property "Reference" "#FLG078"
 			(at 490.855 73.66 0)
 			(effects
 				(font
@@ -34375,7 +34034,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG78")
+					(reference "#FLG078")
 					(unit 1)
 				)
 			)
@@ -34391,7 +34050,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "783ae224-a815-4380-bf24-c3e9e771130d")
-		(property "Reference" "#FLG38"
+		(property "Reference" "#FLG038"
 			(at 461.645 68.58 0)
 			(effects
 				(font
@@ -34442,7 +34101,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG38")
+					(reference "#FLG038")
 					(unit 1)
 				)
 			)
@@ -34458,7 +34117,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "788195cd-c59a-4fcb-aaa9-a1bbef17aa59")
-		(property "Reference" "#FLG28"
+		(property "Reference" "#FLG028"
 			(at 434.975 87.63 0)
 			(effects
 				(font
@@ -34509,7 +34168,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG28")
+					(reference "#FLG028")
 					(unit 1)
 				)
 			)
@@ -34878,7 +34537,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "81447493-bb07-491e-bcf5-139cfa79d6a1")
-		(property "Reference" "#FLG60"
+		(property "Reference" "#FLG060"
 			(at 523.875 93.98 0)
 			(effects
 				(font
@@ -34929,7 +34588,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG60")
+					(reference "#FLG060")
 					(unit 1)
 				)
 			)
@@ -34945,7 +34604,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "81a8a972-6dc5-4098-bff1-83607f435280")
-		(property "Reference" "#FLG10"
+		(property "Reference" "#FLG010"
 			(at 461.645 43.18 0)
 			(effects
 				(font
@@ -34996,7 +34655,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG10")
+					(reference "#FLG010")
 					(unit 1)
 				)
 			)
@@ -35012,7 +34671,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "82db776b-9929-4122-83ea-4b99e0f8c376")
-		(property "Reference" "#FLG13"
+		(property "Reference" "#FLG013"
 			(at 434.975 53.34 0)
 			(effects
 				(font
@@ -35063,7 +34722,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG13")
+					(reference "#FLG013")
 					(unit 1)
 				)
 			)
@@ -35417,7 +35076,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "89dad0bc-c92e-4ea0-98d8-e4116ae9a97e")
-		(property "Reference" "#FLG15"
+		(property "Reference" "#FLG015"
 			(at 434.975 58.42 0)
 			(effects
 				(font
@@ -35468,7 +35127,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG15")
+					(reference "#FLG015")
 					(unit 1)
 				)
 			)
@@ -35484,7 +35143,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "89e865b0-9a2b-4cb1-b26c-118b067fbfdf")
-		(property "Reference" "#FLG6"
+		(property "Reference" "#FLG06"
 			(at 434.975 43.18 0)
 			(effects
 				(font
@@ -35535,7 +35194,7 @@
 		(instances
 			(project ""
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG6")
+					(reference "#FLG06")
 					(unit 1)
 				)
 			)
@@ -35618,7 +35277,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8b9c2cd9-6646-468a-a5c3-cba8a0288dd0")
-		(property "Reference" "#FLG14"
+		(property "Reference" "#FLG014"
 			(at 434.975 55.88 0)
 			(effects
 				(font
@@ -35669,7 +35328,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG14")
+					(reference "#FLG014")
 					(unit 1)
 				)
 			)
@@ -35886,7 +35545,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8eae265e-2440-4653-ad3d-459b2794007f")
-		(property "Reference" "#FLG83"
+		(property "Reference" "#FLG083"
 			(at 490.855 91.44 0)
 			(effects
 				(font
@@ -35937,7 +35596,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG83")
+					(reference "#FLG083")
 					(unit 1)
 				)
 			)
@@ -36036,7 +35695,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric_Pad0.77x0.64mm_HandSolder"
+		(property "Footprint" "Library:DO-214BA_MCH-M"
 			(at 189.23 121.92 0)
 			(effects
 				(font
@@ -36427,7 +36086,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "97c5baae-07b5-4fa3-8e85-6461a04f6518")
-		(property "Reference" "#FLG55"
+		(property "Reference" "#FLG055"
 			(at 523.875 76.2 0)
 			(effects
 				(font
@@ -36478,7 +36137,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG55")
+					(reference "#FLG055")
 					(unit 1)
 				)
 			)
@@ -36562,7 +36221,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "98e6c07c-d787-403f-885f-a375a873ba80")
-		(property "Reference" "#FLG44"
+		(property "Reference" "#FLG044"
 			(at 461.645 87.63 0)
 			(effects
 				(font
@@ -36613,7 +36272,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG44")
+					(reference "#FLG044")
 					(unit 1)
 				)
 			)
@@ -36966,7 +36625,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9f9022b3-e238-4abd-91c0-e45b8a23bd89")
-		(property "Reference" "#FLG21"
+		(property "Reference" "#FLG021"
 			(at 434.975 66.04 0)
 			(effects
 				(font
@@ -37017,7 +36676,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG21")
+					(reference "#FLG021")
 					(unit 1)
 				)
 			)
@@ -37033,7 +36692,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9fe71d48-a980-402e-a775-aaecbeeb36cd")
-		(property "Reference" "#FLG85"
+		(property "Reference" "#FLG085"
 			(at 434.975 25.4 0)
 			(effects
 				(font
@@ -37084,7 +36743,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG85")
+					(reference "#FLG085")
 					(unit 1)
 				)
 			)
@@ -37100,7 +36759,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a0084644-affc-4d00-92e7-55952f38d6f2")
-		(property "Reference" "#FLG82"
+		(property "Reference" "#FLG082"
 			(at 490.855 88.9 0)
 			(effects
 				(font
@@ -37151,7 +36810,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG82")
+					(reference "#FLG082")
 					(unit 1)
 				)
 			)
@@ -37301,7 +36960,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a31e49b9-d1a8-4d84-b645-9249c19f9af2")
-		(property "Reference" "#FLG37"
+		(property "Reference" "#FLG037"
 			(at 461.645 66.04 0)
 			(effects
 				(font
@@ -37352,7 +37011,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG37")
+					(reference "#FLG037")
 					(unit 1)
 				)
 			)
@@ -40660,7 +40319,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b884ebcd-4cca-4000-8530-0b4e94ced8b1")
-		(property "Reference" "#FLG62"
+		(property "Reference" "#FLG062"
 			(at 523.875 43.18 0)
 			(effects
 				(font
@@ -40711,7 +40370,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG62")
+					(reference "#FLG062")
 					(unit 1)
 				)
 			)
@@ -40727,7 +40386,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b9add33e-342a-4bfd-8760-286a5f99d367")
-		(property "Reference" "#FLG77"
+		(property "Reference" "#FLG077"
 			(at 490.855 71.12 0)
 			(effects
 				(font
@@ -40778,7 +40437,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG77")
+					(reference "#FLG077")
 					(unit 1)
 				)
 			)
@@ -40996,7 +40655,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "baceee2b-10f4-4e7b-ab59-8c248c56f10b")
-		(property "Reference" "#FLG80"
+		(property "Reference" "#FLG080"
 			(at 490.855 78.74 0)
 			(effects
 				(font
@@ -41047,7 +40706,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG80")
+					(reference "#FLG080")
 					(unit 1)
 				)
 			)
@@ -41333,7 +40992,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c1601d0b-98be-4d4c-9560-3ba012439bb1")
-		(property "Reference" "#FLG27"
+		(property "Reference" "#FLG027"
 			(at 434.975 85.09 0)
 			(effects
 				(font
@@ -41384,7 +41043,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG27")
+					(reference "#FLG027")
 					(unit 1)
 				)
 			)
@@ -41401,7 +41060,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c337a2bd-1c07-4864-99ed-d56dbe80d2cc")
-		(property "Reference" "#FLG61"
+		(property "Reference" "#FLG061"
 			(at 523.875 40.64 0)
 			(effects
 				(font
@@ -41452,7 +41111,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG61")
+					(reference "#FLG061")
 					(unit 1)
 				)
 			)
@@ -41469,7 +41128,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c4c2c046-11c3-4d4e-bdb4-4258369c235c")
-		(property "Reference" "#FLG66"
+		(property "Reference" "#FLG066"
 			(at 523.875 58.42 0)
 			(effects
 				(font
@@ -41520,7 +41179,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG66")
+					(reference "#FLG066")
 					(unit 1)
 				)
 			)
@@ -41876,7 +41535,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ca058b5c-4ea2-4137-8372-5a5ab7baf370")
-		(property "Reference" "#PWR4"
+		(property "Reference" "#PWR04"
 			(at 436.88 29.21 0)
 			(effects
 				(font
@@ -41927,7 +41586,7 @@
 		(instances
 			(project ""
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#PWR4")
+					(reference "#PWR04")
 					(unit 1)
 				)
 			)
@@ -43114,7 +42773,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ce195c77-4b89-43bd-83d9-88e1750a4f7e")
-		(property "Reference" "#FLG43"
+		(property "Reference" "#FLG043"
 			(at 461.645 85.09 0)
 			(effects
 				(font
@@ -43165,7 +42824,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG43")
+					(reference "#FLG043")
 					(unit 1)
 				)
 			)
@@ -43386,7 +43045,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ceccd4b5-a151-484a-8923-b77c6be38737")
-		(property "Reference" "#FLG53"
+		(property "Reference" "#FLG053"
 			(at 523.875 71.12 0)
 			(effects
 				(font
@@ -43437,7 +43096,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG53")
+					(reference "#FLG053")
 					(unit 1)
 				)
 			)
@@ -43453,7 +43112,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d0acf3f9-a4d0-4ed6-851e-b6c0c146f7ac")
-		(property "Reference" "#FLG23"
+		(property "Reference" "#FLG023"
 			(at 434.975 71.12 0)
 			(effects
 				(font
@@ -43504,7 +43163,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG23")
+					(reference "#FLG023")
 					(unit 1)
 				)
 			)
@@ -43675,7 +43334,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d1a92dbf-be25-429c-86e6-95da0352d353")
-		(property "Reference" "#FLG73"
+		(property "Reference" "#FLG073"
 			(at 490.855 55.88 0)
 			(effects
 				(font
@@ -43726,7 +43385,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG73")
+					(reference "#FLG073")
 					(unit 1)
 				)
 			)
@@ -43742,7 +43401,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d1daa4bf-2c8b-44ce-b259-ca2c859f386f")
-		(property "Reference" "#FLG20"
+		(property "Reference" "#FLG020"
 			(at 461.645 60.96 0)
 			(effects
 				(font
@@ -43793,7 +43452,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG20")
+					(reference "#FLG020")
 					(unit 1)
 				)
 			)
@@ -43810,7 +43469,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d2ddda75-c59f-4f56-88aa-5ca7eaf88c86")
-		(property "Reference" "#FLG67"
+		(property "Reference" "#FLG067"
 			(at 523.875 60.96 0)
 			(effects
 				(font
@@ -43861,7 +43520,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG67")
+					(reference "#FLG067")
 					(unit 1)
 				)
 			)
@@ -44012,7 +43671,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d4a6141a-05f3-4d27-8f46-d4ae08f81012")
-		(property "Reference" "#FLG47"
+		(property "Reference" "#FLG047"
 			(at 461.645 99.06 0)
 			(effects
 				(font
@@ -44063,7 +43722,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG47")
+					(reference "#FLG047")
 					(unit 1)
 				)
 			)
@@ -44145,7 +43804,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d59fe4da-bd5f-4bb6-ba48-6ab375251782")
-		(property "Reference" "#FLG22"
+		(property "Reference" "#FLG022"
 			(at 434.975 68.58 0)
 			(effects
 				(font
@@ -44196,7 +43855,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG22")
+					(reference "#FLG022")
 					(unit 1)
 				)
 			)
@@ -44280,7 +43939,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d6b62e6b-8b97-4c05-9413-d1aba3b850ff")
-		(property "Reference" "#FLG39"
+		(property "Reference" "#FLG039"
 			(at 461.645 71.12 0)
 			(effects
 				(font
@@ -44331,7 +43990,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG39")
+					(reference "#FLG039")
 					(unit 1)
 				)
 			)
@@ -44347,7 +44006,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d7df97c4-e9fa-4c09-a4d9-f40c8df1cdcd")
-		(property "Reference" "#FLG26"
+		(property "Reference" "#FLG026"
 			(at 434.975 82.55 0)
 			(effects
 				(font
@@ -44398,7 +44057,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG26")
+					(reference "#FLG026")
 					(unit 1)
 				)
 			)
@@ -44620,7 +44279,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "db2896f0-3297-4f86-87b2-2df1ed31c453")
-		(property "Reference" "#FLG54"
+		(property "Reference" "#FLG054"
 			(at 523.875 73.66 0)
 			(effects
 				(font
@@ -44671,7 +44330,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG54")
+					(reference "#FLG054")
 					(unit 1)
 				)
 			)
@@ -44687,7 +44346,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "dc209e81-43c8-4633-9801-b148c6319d9c")
-		(property "Reference" "#PWR7"
+		(property "Reference" "#PWR07"
 			(at 426.72 36.83 0)
 			(effects
 				(font
@@ -44738,7 +44397,7 @@
 		(instances
 			(project ""
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#PWR7")
+					(reference "#PWR07")
 					(unit 1)
 				)
 			)
@@ -44806,6 +44465,79 @@
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
 					(reference "#PWR043")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_name "Conn_01x03_Pin_1")
+		(lib_id "Connector:Conn_01x03_Pin")
+		(at 213.36 168.91 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "dd44c246-22d0-4a7f-9462-72f2cbb01f33")
+		(property "Reference" "J5"
+			(at 211.074 162.306 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "Conn_01x03_Pin"
+			(at 197.866 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_XH_S3B-XH-A-1_1x03_P2.50mm_Horizontal"
+			(at 213.36 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 213.36 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x03, script generated"
+			(at 213.36 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "34cb91d1-8379-4b04-ab13-523877780c1c")
+		)
+		(pin "1"
+			(uuid "4f8a75a1-aec1-4710-a101-a93230bd9ad8")
+		)
+		(pin "3"
+			(uuid "03564592-6f8c-426b-aee7-fa33ef8059eb")
+		)
+		(instances
+			(project "card"
+				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
+					(reference "J5")
 					(unit 1)
 				)
 			)
@@ -45091,7 +44823,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e064d358-1773-46cf-913e-a70157233328")
-		(property "Reference" "#PWR14"
+		(property "Reference" "#PWR014"
 			(at 436.88 25.4 0)
 			(effects
 				(font
@@ -45142,7 +44874,7 @@
 		(instances
 			(project ""
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#PWR14")
+					(reference "#PWR014")
 					(unit 1)
 				)
 			)
@@ -46327,7 +46059,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e4d5316d-c606-46bb-83b9-9d3a7c8db04f")
-		(property "Reference" "#FLG29"
+		(property "Reference" "#FLG029"
 			(at 434.975 93.98 0)
 			(effects
 				(font
@@ -46378,7 +46110,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG29")
+					(reference "#FLG029")
 					(unit 1)
 				)
 			)
@@ -46529,7 +46261,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e6214e43-607e-4ca3-93d0-5f3f62b38854")
-		(property "Reference" "#FLG45"
+		(property "Reference" "#FLG045"
 			(at 461.645 93.98 0)
 			(effects
 				(font
@@ -46580,7 +46312,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG45")
+					(reference "#FLG045")
 					(unit 1)
 				)
 			)
@@ -46731,7 +46463,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e9e073e7-8745-4c03-aa7e-a25384845183")
-		(property "Reference" "#FLG74"
+		(property "Reference" "#FLG074"
 			(at 490.855 58.42 0)
 			(effects
 				(font
@@ -46782,7 +46514,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG74")
+					(reference "#FLG074")
 					(unit 1)
 				)
 			)
@@ -46932,7 +46664,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ec0c265a-6962-4e82-87b1-e57f5134d645")
-		(property "Reference" "#FLG31"
+		(property "Reference" "#FLG031"
 			(at 434.975 99.06 0)
 			(effects
 				(font
@@ -46983,7 +46715,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG31")
+					(reference "#FLG031")
 					(unit 1)
 				)
 			)
@@ -47204,7 +46936,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ed019383-65e4-4c27-824c-6edd3311c18a")
-		(property "Reference" "#FLG32"
+		(property "Reference" "#FLG032"
 			(at 434.975 101.6 0)
 			(effects
 				(font
@@ -47255,7 +46987,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG32")
+					(reference "#FLG032")
 					(unit 1)
 				)
 			)
@@ -47271,7 +47003,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f3a16b37-06e7-4239-b5d6-5894bbafbb13")
-		(property "Reference" "#FLG5"
+		(property "Reference" "#FLG05"
 			(at 434.975 40.64 0)
 			(effects
 				(font
@@ -47322,7 +47054,7 @@
 		(instances
 			(project ""
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG5")
+					(reference "#FLG05")
 					(unit 1)
 				)
 			)
@@ -47406,7 +47138,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f41ee06a-7ae7-4278-bddd-6891a6aa13e8")
-		(property "Reference" "#FLG35"
+		(property "Reference" "#FLG035"
 			(at 434.975 113.03 0)
 			(effects
 				(font
@@ -47457,7 +47189,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG35")
+					(reference "#FLG035")
 					(unit 1)
 				)
 			)
@@ -47881,7 +47613,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f7f2faa0-8b6f-4ed2-a7c6-c4a8a0383696")
-		(property "Reference" "#FLG8"
+		(property "Reference" "#FLG08"
 			(at 434.975 48.26 0)
 			(effects
 				(font
@@ -47932,7 +47664,7 @@
 		(instances
 			(project ""
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG8")
+					(reference "#FLG08")
 					(unit 1)
 				)
 			)
@@ -48286,7 +48018,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fd52f8d6-eba5-44a5-a1ee-57bb12385cc8")
-		(property "Reference" "#FLG33"
+		(property "Reference" "#FLG033"
 			(at 434.975 107.95 0)
 			(effects
 				(font
@@ -48337,7 +48069,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG33")
+					(reference "#FLG033")
 					(unit 1)
 				)
 			)
@@ -48490,7 +48222,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ffd623ba-1a0c-4fc8-978b-971c7233308f")
-		(property "Reference" "#FLG56"
+		(property "Reference" "#FLG056"
 			(at 523.875 78.74 0)
 			(effects
 				(font
@@ -48541,7 +48273,7 @@
 		(instances
 			(project "card"
 				(path "/9dd060f0-80a5-46f7-bd5a-b7a0ead0972f"
-					(reference "#FLG56")
+					(reference "#FLG056")
 					(unit 1)
 				)
 			)
