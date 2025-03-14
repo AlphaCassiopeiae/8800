@@ -5367,7 +5367,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://cdn.amphenol-cs.com/media/wysiwyg/files/documentation/datasheet/ssio/ssio_ddr4.pdf"
 			(at 0 0 0)
 			(effects
 				(font
@@ -10761,7 +10761,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1308111-1_SWITCHES_CORE_PROGRAM_CATALOG&DocType=Catalog%20Section&DocLang=English&DocFormat=pdf&PartCntxt=1825910-6"
 			(at 0 0 0)
 			(effects
 				(font
@@ -11084,8 +11084,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
-			(at 0 0 0)
+		(property "Datasheet" "https://configured-product-images.s3.amazonaws.com/Datasheets/500.pdf"
+			(at 1.016 -13.462 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21127,7 +21127,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://abracon.com/datasheets/AOTA-B201610S3R3-101-T.pdf"
 			(at 0 0 0)
 			(effects
 				(font
@@ -21316,7 +21316,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "DR73-150-R"
+		(property "Datasheet" "https://www.eaton.com/content/dam/eaton/products/electronic-components/resources/data-sheet/eaton-dr-high-power-density-high-efficiency-shielded-drum-core-power-inductors-data-sheet.pdf"
 			(at 0 0 0)
 			(effects
 				(font
@@ -21333,14 +21333,6 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
-			)
-		)
-		(property "ki_locked" ""
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
 			)
 		)
 		(property "ki_keywords" "DR73-150-R"
@@ -21924,7 +21916,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "MCP23017-E/ML"
+		(property "Datasheet" "https://ww1.microchip.com/downloads/en/devicedoc/20001952c.pdf"
 			(at 0 0 0)
 			(effects
 				(font
@@ -21941,14 +21933,6 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
-			)
-		)
-		(property "ki_locked" ""
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
 			)
 		)
 		(property "ki_keywords" "MCP23017-E/ML"
@@ -25132,7 +25116,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/6448/USB4235-03-C_Datasheet.pdf"
 			(at 0 0 0)
 			(effects
 				(font
