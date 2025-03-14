@@ -34181,7 +34181,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Button_Switch_SMD:SW_Push_1P1T_NO_Vertical_Wuerth_434133025816"
+		(property "Footprint" "Library:SW_TS-1088-AR02016"
 			(at 111.76 236.22 0)
 			(effects
 				(font
@@ -38215,7 +38215,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "Button_Switch_SMD:SW_Push_1P1T_NO_Vertical_Wuerth_434133025816"
+		(property "Footprint" "Library:SW_TS-1088-AR02016"
 			(at 100.33 135.89 0)
 			(effects
 				(font
