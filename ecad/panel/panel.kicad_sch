@@ -14283,7 +14283,7 @@
 				)
 			)
 		)
-		(symbol "Regulator_Linear:NCP1117-3.3_SOT223"
+		(symbol "Regulator_Linear:AMS1117-3.3"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -14295,7 +14295,7 @@
 					)
 				)
 			)
-			(property "Value" "NCP1117-3.3_SOT223"
+			(property "Value" "AMS1117-3.3"
 				(at 0 3.175 0)
 				(effects
 					(font
@@ -14313,7 +14313,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "http://www.onsemi.com/pub_link/Collateral/NCP1117-D.PDF"
+			(property "Datasheet" "http://www.advanced-monolithic.com/pdf/ds1117.pdf"
 				(at 2.54 -6.35 0)
 				(effects
 					(font
@@ -14322,7 +14322,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "1A Low drop-out regulator, Fixed Output 3.3V, SOT-223"
+			(property "Description" "1A Low Dropout regulator, positive, 3.3V fixed output, SOT-223"
 				(at 0 0 0)
 				(effects
 					(font
@@ -14331,7 +14331,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "REGULATOR LDO 3.3V"
+			(property "ki_keywords" "linear regulator ldo fixed positive"
 				(at 0 0 0)
 				(effects
 					(font
@@ -14349,7 +14349,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "NCP1117-3.3_SOT223_0_1"
+			(symbol "AMS1117-3.3_0_1"
 				(rectangle
 					(start -5.08 -5.08)
 					(end 5.08 1.905)
@@ -14362,7 +14362,7 @@
 					)
 				)
 			)
-			(symbol "NCP1117-3.3_SOT223_1_1"
+			(symbol "AMS1117-3.3_1_1"
 				(pin power_in line
 					(at 0 -7.62 90)
 					(length 2.54)
@@ -15393,6 +15393,12 @@
 		(uuid "791b1084-c15b-4a12-819f-d8baaa717eaf")
 	)
 	(junction
+		(at 224.79 69.85)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7a104679-39a6-4402-8db0-c3d03e831dd4")
+	)
+	(junction
 		(at 107.95 328.93)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -15411,6 +15417,12 @@
 		(uuid "87ede373-3e14-401e-a97c-90a625b4a9b3")
 	)
 	(junction
+		(at 212.09 77.47)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "899c5d30-8417-4ff9-ba76-51c975ac13f9")
+	)
+	(junction
 		(at 119.38 41.91)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -15421,6 +15433,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "980d8753-0c1a-4b0f-ad6d-b488a185e760")
+	)
+	(junction
+		(at 224.79 77.47)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9c2a283f-3ebb-458d-a8a6-874874f25bdc")
 	)
 	(junction
 		(at 546.1 173.99)
@@ -15535,6 +15553,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c4548296-05ca-4ffc-b2d3-a1e6e8d709e7")
+	)
+	(junction
+		(at 212.09 72.39)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d5e5bba8-2f2a-4266-8382-983305a8e314")
 	)
 	(junction
 		(at 196.85 35.56)
@@ -16302,6 +16326,16 @@
 	)
 	(wire
 		(pts
+			(xy 224.79 77.47) (xy 224.79 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0c88a569-7e97-4056-8a77-6ebf15a8845b")
+	)
+	(wire
+		(pts
 			(xy 204.47 106.68) (xy 220.98 106.68)
 		)
 		(stroke
@@ -16479,6 +16513,16 @@
 			(type default)
 		)
 		(uuid "16923f4a-dbf8-47e2-82cb-429ab2fe05ae")
+	)
+	(wire
+		(pts
+			(xy 224.79 69.85) (xy 224.79 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "16e5676d-66e9-4a59-9f7c-d06480e31017")
 	)
 	(wire
 		(pts
@@ -16942,6 +16986,16 @@
 	)
 	(wire
 		(pts
+			(xy 224.79 80.01) (xy 222.25 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2a05280f-5923-404d-af00-d4e551741f11")
+	)
+	(wire
+		(pts
 			(xy 300.99 184.15) (xy 300.99 181.61)
 		)
 		(stroke
@@ -17399,6 +17453,16 @@
 			(type default)
 		)
 		(uuid "453667e2-4bba-450b-9133-6bdc15b2287a")
+	)
+	(wire
+		(pts
+			(xy 229.87 77.47) (xy 224.79 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "457bc230-8a92-407c-bf70-a0808067a945")
 	)
 	(wire
 		(pts
@@ -18009,6 +18073,16 @@
 			(type default)
 		)
 		(uuid "65e861a0-6e53-4f6f-a85b-509c985db2b7")
+	)
+	(wire
+		(pts
+			(xy 212.09 77.47) (xy 212.09 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "66ded25b-ad9d-4ba5-bf5d-efdc416b9a63")
 	)
 	(wire
 		(pts
@@ -18872,6 +18946,16 @@
 	)
 	(wire
 		(pts
+			(xy 224.79 72.39) (xy 222.25 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "928c9ca8-e8ec-4582-a0cc-3db4c7980251")
+	)
+	(wire
+		(pts
 			(xy 234.95 248.92) (xy 236.22 248.92)
 		)
 		(stroke
@@ -19602,13 +19686,23 @@
 	)
 	(wire
 		(pts
-			(xy 209.55 77.47) (xy 213.36 77.47)
+			(xy 209.55 77.47) (xy 212.09 77.47)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "ba826799-c0fb-43d0-a309-88c86d2bcd3d")
+	)
+	(wire
+		(pts
+			(xy 212.09 72.39) (xy 214.63 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bb099e32-ac1a-441a-8a18-02e870925096")
 	)
 	(wire
 		(pts
@@ -20032,6 +20126,16 @@
 	)
 	(wire
 		(pts
+			(xy 222.25 69.85) (xy 224.79 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cfd29902-0e10-4766-8831-1fa1c02e68fb")
+	)
+	(wire
+		(pts
 			(xy 80.01 340.36) (xy 90.17 340.36)
 		)
 		(stroke
@@ -20352,6 +20456,16 @@
 	)
 	(wire
 		(pts
+			(xy 212.09 77.47) (xy 214.63 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e4a20bbf-3528-4d1c-9139-f6119b1d91d1")
+	)
+	(wire
+		(pts
 			(xy 27.94 313.69) (xy 31.75 313.69)
 		)
 		(stroke
@@ -20469,6 +20583,26 @@
 			(type default)
 		)
 		(uuid "ebfc7cdd-53e1-4d2f-b37d-1c67ebfca89c")
+	)
+	(wire
+		(pts
+			(xy 212.09 69.85) (xy 212.09 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ecfd94b4-0335-4524-8f96-cd89d9fad508")
+	)
+	(wire
+		(pts
+			(xy 224.79 69.85) (xy 229.87 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ed4f18dc-29fe-43cf-83d0-f174367176bc")
 	)
 	(wire
 		(pts
@@ -20592,13 +20726,23 @@
 	)
 	(wire
 		(pts
-			(xy 209.55 72.39) (xy 213.36 72.39)
+			(xy 209.55 72.39) (xy 212.09 72.39)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "f2e9ae65-860a-4f3f-8079-81f2ddee7d9c")
+	)
+	(wire
+		(pts
+			(xy 222.25 77.47) (xy 224.79 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f3a82ee7-c69d-4063-a4aa-3d5bd977f93a")
 	)
 	(wire
 		(pts
@@ -20609,6 +20753,16 @@
 			(type default)
 		)
 		(uuid "f4519e2f-3d46-4b4c-be4f-3d41496f53d6")
+	)
+	(wire
+		(pts
+			(xy 212.09 80.01) (xy 214.63 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f4a0b6ba-d2c8-4eba-9891-706b8db9964a")
 	)
 	(wire
 		(pts
@@ -20679,6 +20833,16 @@
 			(type default)
 		)
 		(uuid "f7f79c37-8a47-4af9-9e1b-4ba922d4ef19")
+	)
+	(wire
+		(pts
+			(xy 214.63 69.85) (xy 212.09 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f884bd33-3c43-4a15-ac9d-1db04b148c80")
 	)
 	(wire
 		(pts
@@ -21284,7 +21448,7 @@
 	)
 	(text "I2C LINES"
 		(exclude_from_sim no)
-		(at 227.838 80.772 0)
+		(at 234.188 83.566 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23173,13 +23337,13 @@
 		(uuid "ab61b02f-7b35-4d5c-a559-74b9c99d71d9")
 	)
 	(label "USB_D+"
-		(at 213.36 72.39 0)
+		(at 229.87 69.85 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(thickness 0.1588)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
 		(uuid "ae2b935a-6fa5-4f3b-ad9b-bef8b445a352")
 	)
@@ -23381,13 +23545,13 @@
 		(uuid "c5341cff-b88d-4311-aa95-f90a4b22cfc6")
 	)
 	(label "USB_D-"
-		(at 213.36 77.47 0)
+		(at 229.87 77.47 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(thickness 0.1588)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
 		(uuid "c64ace98-ae2d-409d-b766-3d9e2224c7a3")
 	)
@@ -30831,7 +30995,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10u"
+		(property "Value" "22u"
 			(at 303.53 134.6199 0)
 			(effects
 				(font
@@ -30840,7 +31004,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 300.6852 137.16 0)
 			(effects
 				(font
@@ -31405,7 +31569,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 173.99 252.73 90)
 			(effects
 				(font
@@ -31473,7 +31637,7 @@
 				)
 			)
 		)
-		(property "Value" "LSM115JE3/TR13"
+		(property "Value" "SS34"
 			(at 284.1625 114.3 0)
 			(effects
 				(font
@@ -31481,7 +31645,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Library:DO-214BA_MCH-L"
+		(property "Footprint" "Diode_SMD:D_SMA"
 			(at 284.48 118.11 0)
 			(effects
 				(font
@@ -32168,7 +32332,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 173.99 262.89 90)
 			(effects
 				(font
@@ -32236,7 +32400,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 304.8 381 90)
 			(effects
 				(font
@@ -32708,7 +32872,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 240.03 326.39 90)
 			(effects
 				(font
@@ -32997,7 +33161,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 304.8 309.88 90)
 			(effects
 				(font
@@ -33335,7 +33499,7 @@
 				)
 			)
 		)
-		(property "Value" "TLC59211IN"
+		(property "Value" "TLC59211IPWR"
 			(at 518.16 207.01 0)
 			(effects
 				(font
@@ -33729,7 +33893,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 240.03 245.11 90)
 			(effects
 				(font
@@ -34163,25 +34327,24 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "2215159b-887b-40ed-a6cd-ab09e286dc24")
 		(property "Reference" "SW30"
-			(at 111.76 233.68 0)
+			(at 111.76 236.982 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "SW_Push"
-			(at 111.76 236.22 0)
+		(property "Value" "TS-1187A-B-A-B"
+			(at 111.76 243.078 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Library:SW_TS-1088-AR02016"
+		(property "Footprint" "Button_Switch_SMD:SW_Push_1P1T_XKB_TS-1187A"
 			(at 111.76 236.22 0)
 			(effects
 				(font
@@ -34308,7 +34471,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 240.03 306.07 90)
 			(effects
 				(font
@@ -34511,7 +34674,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 240.03 234.95 90)
 			(effects
 				(font
@@ -34578,7 +34741,7 @@
 				)
 			)
 		)
-		(property "Value" "LSM115JE3/TR13"
+		(property "Value" "SS34"
 			(at 180.848 323.85 0)
 			(effects
 				(font
@@ -34586,7 +34749,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Library:DO-214BA_MCH-L"
+		(property "Footprint" "Diode_SMD:D_SMA"
 			(at 173.99 327.66 0)
 			(effects
 				(font
@@ -34882,7 +35045,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 173.99 232.41 90)
 			(effects
 				(font
@@ -35327,7 +35490,7 @@
 				)
 			)
 		)
-		(property "Value" "TLC59211IN"
+		(property "Value" "TLC59211IPWR"
 			(at 518.16 247.65 0)
 			(effects
 				(font
@@ -35725,6 +35888,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 218.44 69.85 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2f3d0b32-20df-461e-9746-60367ae593af")
+		(property "Reference" "R92"
+			(at 213.868 67.31 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10"
+			(at 218.44 69.85 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder"
+			(at 218.44 71.628 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 218.44 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 218.44 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "f7b14aa3-e88e-42ea-8dc3-0aba9ba6e3ac")
+		)
+		(pin "1"
+			(uuid "ae83d4f7-6a6a-4b65-ae60-14f32ab90f39")
+		)
+		(instances
+			(project "panel"
+				(path "/53fb923b-a98b-45c5-8e11-289a5d1ad382"
+					(reference "R92")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Mechanical:MountingHole")
 		(at 350.52 317.5 0)
 		(unit 1)
@@ -35865,15 +36095,15 @@
 		(dnp no)
 		(uuid "31678bb7-1dce-4861-828d-bb2f1db4508b")
 		(property "Reference" "R31"
-			(at 205.74 67.818 90)
+			(at 205.74 70.358 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "27"
-			(at 205.74 70.104 90)
+		(property "Value" "22"
+			(at 205.74 72.39 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -36295,7 +36525,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 304.8 279.4 90)
 			(effects
 				(font
@@ -36363,7 +36593,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 240.03 275.59 90)
 			(effects
 				(font
@@ -36431,7 +36661,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 304.8 350.52 90)
 			(effects
 				(font
@@ -37265,7 +37495,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 240.03 255.27 90)
 			(effects
 				(font
@@ -37381,6 +37611,73 @@
 			(project "panel"
 				(path "/53fb923b-a98b-45c5-8e11-289a5d1ad382"
 					(reference "SW8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 218.44 72.39 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "41997c44-bb75-4c18-ae40-448d0364820b")
+		(property "Reference" "R91"
+			(at 213.868 68.834 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10"
+			(at 218.44 72.39 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder"
+			(at 218.44 74.168 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 218.44 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 218.44 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "c2618086-57ab-4883-a242-af054c4c3906")
+		)
+		(pin "1"
+			(uuid "61242a51-5506-46ab-9f0e-74a452c40ff1")
+		)
+		(instances
+			(project "panel"
+				(path "/53fb923b-a98b-45c5-8e11-289a5d1ad382"
+					(reference "R91")
 					(unit 1)
 				)
 			)
@@ -37542,7 +37839,7 @@
 				)
 			)
 		)
-		(property "Value" "TLC59211IN"
+		(property "Value" "TLC59211IPWR"
 			(at 518.16 328.93 0)
 			(effects
 				(font
@@ -37734,7 +38031,7 @@
 				)
 			)
 		)
-		(property "Value" "30p"
+		(property "Value" "100n"
 			(at 549.91 209.55 90)
 			(effects
 				(font
@@ -38206,7 +38503,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_Push"
+		(property "Value" "TS-1187A-B-A-B"
 			(at 100.33 142.494 0)
 			(effects
 				(font
@@ -38215,7 +38512,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "Library:SW_TS-1088-AR02016"
+		(property "Footprint" "Button_Switch_SMD:SW_Push_1P1T_XKB_TS-1187A"
 			(at 100.33 135.89 0)
 			(effects
 				(font
@@ -39533,7 +39830,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 240.03 265.43 90)
 			(effects
 				(font
@@ -39602,7 +39899,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "150"
+		(property "Value" "200"
 			(at 303.53 173.9899 0)
 			(effects
 				(font
@@ -39671,7 +39968,7 @@
 				)
 			)
 		)
-		(property "Value" "30p"
+		(property "Value" "100n"
 			(at 549.91 290.83 90)
 			(effects
 				(font
@@ -39806,7 +40103,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 173.99 293.37 90)
 			(effects
 				(font
@@ -40216,8 +40513,8 @@
 				)
 			)
 		)
-		(property "Value" "27"
-			(at 205.74 80.01 90)
+		(property "Value" "22"
+			(at 205.74 77.47 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -40548,7 +40845,7 @@
 				)
 			)
 		)
-		(property "Value" "30p"
+		(property "Value" "100n"
 			(at 549.91 168.91 90)
 			(effects
 				(font
@@ -40884,7 +41181,7 @@
 				)
 			)
 		)
-		(property "Value" "TLC59211IN"
+		(property "Value" "TLC59211IPWR"
 			(at 518.16 166.37 0)
 			(effects
 				(font
@@ -41008,7 +41305,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 173.99 303.53 90)
 			(effects
 				(font
@@ -41077,7 +41374,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DEBUG"
+		(property "Value" "KT-0603R"
 			(at 303.53 162.2424 90)
 			(effects
 				(font
@@ -41594,7 +41891,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 304.8 320.04 90)
 			(effects
 				(font
@@ -41707,6 +42004,73 @@
 			(project "panel"
 				(path "/53fb923b-a98b-45c5-8e11-289a5d1ad382"
 					(reference "R57")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 218.44 77.47 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "6af67b86-626e-431f-aa79-f5397b743f76")
+		(property "Reference" "R93"
+			(at 213.868 74.676 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10"
+			(at 218.44 77.47 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder"
+			(at 218.44 79.248 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 218.44 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 218.44 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "c7284fdd-e3a2-4109-b5aa-46522123e110")
+		)
+		(pin "1"
+			(uuid "b6dd56a9-8b1f-4f24-a121-29e5b5725543")
+		)
+		(instances
+			(project "panel"
+				(path "/53fb923b-a98b-45c5-8e11-289a5d1ad382"
+					(reference "R93")
 					(unit 1)
 				)
 			)
@@ -41868,7 +42232,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 240.03 336.55 90)
 			(effects
 				(font
@@ -41936,7 +42300,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 240.03 367.03 90)
 			(effects
 				(font
@@ -42071,7 +42435,7 @@
 				)
 			)
 		)
-		(property "Value" "30p"
+		(property "Value" "100n"
 			(at 549.91 331.47 90)
 			(effects
 				(font
@@ -42494,7 +42858,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 240.03 377.19 90)
 			(effects
 				(font
@@ -43129,7 +43493,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 240.03 285.75 90)
 			(effects
 				(font
@@ -43538,7 +43902,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 240.03 356.87 90)
 			(effects
 				(font
@@ -45071,7 +45435,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 173.99 273.05 90)
 			(effects
 				(font
@@ -46477,7 +46841,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "RP2350_80QFN"
+		(property "Value" "RP2350B"
 			(at 164.7541 215.9 0)
 			(effects
 				(font
@@ -47052,7 +47416,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 304.8 370.84 90)
 			(effects
 				(font
@@ -47813,7 +48177,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 173.99 242.57 90)
 			(effects
 				(font
@@ -48838,6 +49202,73 @@
 	)
 	(symbol
 		(lib_id "Device:R")
+		(at 218.44 80.01 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "bdd59c7e-ee66-45c9-a4c1-9032e1426849")
+		(property "Reference" "R94"
+			(at 213.868 76.2 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10"
+			(at 218.44 80.01 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder"
+			(at 218.44 81.788 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 218.44 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 218.44 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "2eeb83f8-316a-4c2d-98aa-cb9a141cc641")
+		)
+		(pin "1"
+			(uuid "6e2d43ff-c834-4f0e-9fd4-f78e245ca322")
+		)
+		(instances
+			(project "panel"
+				(path "/53fb923b-a98b-45c5-8e11-289a5d1ad382"
+					(reference "R94")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
 		(at 240.03 350.52 90)
 		(unit 1)
 		(exclude_from_sim no)
@@ -48854,7 +49285,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 240.03 346.71 90)
 			(effects
 				(font
@@ -48993,7 +49424,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10u"
+		(property "Value" "22u"
 			(at 273.05 134.6199 0)
 			(effects
 				(font
@@ -49002,7 +49433,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 270.2052 137.16 0)
 			(effects
 				(font
@@ -49215,7 +49646,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 304.8 330.2 90)
 			(effects
 				(font
@@ -49891,7 +50322,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 240.03 295.91 90)
 			(effects
 				(font
@@ -51014,7 +51445,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 304.8 340.36 90)
 			(effects
 				(font
@@ -51149,7 +51580,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 304.8 391.16 90)
 			(effects
 				(font
@@ -52322,7 +52753,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 304.8 360.68 90)
 			(effects
 				(font
@@ -52390,7 +52821,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 173.99 283.21 90)
 			(effects
 				(font
@@ -52659,7 +53090,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 304.8 289.56 90)
 			(effects
 				(font
@@ -53285,7 +53716,7 @@
 				)
 			)
 		)
-		(property "Value" "30p"
+		(property "Value" "100n"
 			(at 549.91 250.19 90)
 			(effects
 				(font
@@ -54485,7 +54916,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Regulator_Linear:NCP1117-3.3_SOT223")
+		(lib_id "Regulator_Linear:AMS1117-3.3")
 		(at 284.48 128.27 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -54502,7 +54933,7 @@
 				)
 			)
 		)
-		(property "Value" "NCP1117-3.3_SOT223"
+		(property "Value" "AMS1117-3.3"
 			(at 284.48 124.46 0)
 			(effects
 				(font
@@ -54519,7 +54950,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.onsemi.com/pub_link/Collateral/NCP1117-D.PDF"
+		(property "Datasheet" "http://www.advanced-monolithic.com/pdf/ds1117.pdf"
 			(at 287.02 134.62 0)
 			(effects
 				(font
@@ -54528,7 +54959,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "1A Low drop-out regulator, Fixed Output 3.3V, SOT-223"
+		(property "Description" "1A Low Dropout regulator, positive, 3.3V fixed output, SOT-223"
 			(at 284.48 128.27 0)
 			(effects
 				(font
@@ -54572,7 +55003,7 @@
 				)
 			)
 		)
-		(property "Value" "LSM115JE3/TR13"
+		(property "Value" "SS34"
 			(at 117.348 325.374 0)
 			(effects
 				(font
@@ -54580,7 +55011,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Library:DO-214BA_MCH-L"
+		(property "Footprint" "Diode_SMD:D_SMA"
 			(at 111.76 328.93 0)
 			(effects
 				(font
@@ -54640,7 +55071,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 240.03 387.35 90)
 			(effects
 				(font
@@ -54708,7 +55139,7 @@
 				)
 			)
 		)
-		(property "Value" "TLC59211IN"
+		(property "Value" "TLC59211IPWR"
 			(at 518.16 288.29 0)
 			(effects
 				(font
@@ -54967,7 +55398,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 304.8 299.72 90)
 			(effects
 				(font
@@ -55370,7 +55801,7 @@
 				)
 			)
 		)
-		(property "Value" "68"
+		(property "Value" "49.9"
 			(at 240.03 316.23 90)
 			(effects
 				(font
