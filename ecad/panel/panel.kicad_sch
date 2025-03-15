@@ -21900,6 +21900,7 @@
 	)
 	(label "BUS74"
 		(at 417.83 110.49 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -21911,6 +21912,7 @@
 	)
 	(label "A15_LED"
 		(at 257.81 391.16 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -21922,6 +21924,7 @@
 	)
 	(label "OUT_LED"
 		(at 322.58 334.01 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -21933,6 +21936,7 @@
 	)
 	(label "BUS12"
 		(at 356.87 57.15 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -21944,6 +21948,7 @@
 	)
 	(label "INTE_LED"
 		(at 322.58 283.21 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -21955,6 +21960,7 @@
 	)
 	(label "BUS09"
 		(at 356.87 49.53 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -21966,6 +21972,7 @@
 	)
 	(label "WO_LED"
 		(at 562.61 267.97 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -21977,6 +21984,7 @@
 	)
 	(label "BUS65"
 		(at 417.83 87.63 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -21988,6 +21996,7 @@
 	)
 	(label "BUS52"
 		(at 212.09 116.84 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -21999,6 +22008,7 @@
 	)
 	(label "BUS45"
 		(at 212.09 129.54 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22010,6 +22020,7 @@
 	)
 	(label "BUS21"
 		(at 356.87 80.01 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22021,6 +22032,7 @@
 	)
 	(label "BUS44"
 		(at 212.09 132.08 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22032,6 +22044,7 @@
 	)
 	(label "BUS35"
 		(at 356.87 115.57 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22043,6 +22056,7 @@
 	)
 	(label "BUS59"
 		(at 417.83 72.39 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22054,6 +22068,7 @@
 	)
 	(label "~{RESET}"
 		(at 143.51 361.95 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22064,6 +22079,7 @@
 	)
 	(label "A3_LED"
 		(at 562.61 356.87 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22075,6 +22091,7 @@
 	)
 	(label "A8_LED"
 		(at 562.61 257.81 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22086,6 +22103,7 @@
 	)
 	(label "BUS58"
 		(at 212.09 106.68 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22097,6 +22115,7 @@
 	)
 	(label "M1_LED"
 		(at 322.58 323.85 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22108,6 +22127,7 @@
 	)
 	(label "A4_LED"
 		(at 562.61 298.45 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22119,6 +22139,7 @@
 	)
 	(label "BUS05"
 		(at 356.87 39.37 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22130,6 +22151,7 @@
 	)
 	(label "BUS77"
 		(at 417.83 118.11 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22141,6 +22163,7 @@
 	)
 	(label "BUS58"
 		(at 417.83 69.85 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22152,6 +22175,7 @@
 	)
 	(label "I2C1_SDA"
 		(at 80.01 340.36 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22162,6 +22186,7 @@
 	)
 	(label "~{RESET}"
 		(at 118.11 184.15 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22172,6 +22197,7 @@
 	)
 	(label "BUS22"
 		(at 356.87 82.55 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22183,6 +22209,7 @@
 	)
 	(label "BUS47"
 		(at 212.09 124.46 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22194,6 +22221,7 @@
 	)
 	(label "INT_LED"
 		(at 322.58 374.65 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22205,6 +22233,7 @@
 	)
 	(label "WAIT_LED"
 		(at 562.61 191.77 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22216,6 +22245,7 @@
 	)
 	(label "A6_LED"
 		(at 562.61 311.15 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22227,6 +22257,7 @@
 	)
 	(label "BUS35"
 		(at 212.09 139.7 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22238,6 +22269,7 @@
 	)
 	(label "BUS64"
 		(at 212.09 96.52 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22249,6 +22281,7 @@
 	)
 	(label "BUS51"
 		(at 212.09 119.38 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22260,6 +22293,7 @@
 	)
 	(label "BUS10"
 		(at 212.09 190.5 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22271,6 +22305,7 @@
 	)
 	(label "PUSH_INTA"
 		(at 80.01 358.14 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22281,6 +22316,7 @@
 	)
 	(label "BUS09"
 		(at 212.09 162.56 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22292,6 +22328,7 @@
 	)
 	(label "A12_LED"
 		(at 257.81 360.68 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22303,6 +22340,7 @@
 	)
 	(label "D1_LED"
 		(at 191.77 246.38 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22314,6 +22352,7 @@
 	)
 	(label "A3_LED"
 		(at 257.81 269.24 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22325,6 +22364,7 @@
 	)
 	(label "A1_LED"
 		(at 562.61 344.17 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22336,6 +22376,7 @@
 	)
 	(label "BUS27"
 		(at 356.87 95.25 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22347,6 +22388,7 @@
 	)
 	(label "BUS36"
 		(at 212.09 134.62 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22358,6 +22400,7 @@
 	)
 	(label "A12_LED"
 		(at 562.61 217.17 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22369,6 +22412,7 @@
 	)
 	(label "A15_LED"
 		(at 562.61 234.95 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22380,6 +22424,7 @@
 	)
 	(label "BUS11"
 		(at 356.87 54.61 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22391,6 +22436,7 @@
 	)
 	(label "BUS62"
 		(at 417.83 80.01 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22402,6 +22448,7 @@
 	)
 	(label "BUS23"
 		(at 356.87 85.09 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22413,6 +22460,7 @@
 	)
 	(label "A7_LED"
 		(at 562.61 308.61 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22424,6 +22472,7 @@
 	)
 	(label "WO_LED"
 		(at 322.58 364.49 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22435,6 +22484,7 @@
 	)
 	(label "BUS21"
 		(at 212.09 157.48 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22446,6 +22496,7 @@
 	)
 	(label "BUS74"
 		(at 212.09 200.66 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22456,6 +22507,7 @@
 	)
 	(label "BUS62"
 		(at 212.09 101.6 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22467,6 +22519,7 @@
 	)
 	(label "A6_LED"
 		(at 257.81 299.72 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22478,6 +22531,7 @@
 	)
 	(label "A7_LED"
 		(at 257.81 309.88 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22489,6 +22543,7 @@
 	)
 	(label "M1_LED"
 		(at 562.61 224.79 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22500,6 +22555,7 @@
 	)
 	(label "BUS18"
 		(at 356.87 72.39 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22511,6 +22567,7 @@
 	)
 	(label "WAIT_LED"
 		(at 322.58 384.81 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22522,6 +22579,7 @@
 	)
 	(label "BUS70"
 		(at 212.09 91.44 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22533,6 +22591,7 @@
 	)
 	(label "A4_LED"
 		(at 257.81 279.4 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22544,6 +22603,7 @@
 	)
 	(label "BUS06"
 		(at 212.09 165.1 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22555,6 +22615,7 @@
 	)
 	(label "HLTA_LED"
 		(at 562.61 275.59 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22566,6 +22627,7 @@
 	)
 	(label "A11_LED"
 		(at 562.61 270.51 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22577,6 +22639,7 @@
 	)
 	(label "I2C1_SDA"
 		(at 142.24 339.09 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22587,6 +22650,7 @@
 	)
 	(label "BUS17"
 		(at 356.87 69.85 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22598,6 +22662,7 @@
 	)
 	(label "I2C1_SCK"
 		(at 142.24 341.63 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22608,6 +22673,7 @@
 	)
 	(label "A14_LED"
 		(at 257.81 381 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22619,6 +22685,7 @@
 	)
 	(label "~{RESET}"
 		(at 81.28 363.22 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22629,6 +22696,7 @@
 	)
 	(label "BUS23"
 		(at 212.09 205.74 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22640,6 +22708,7 @@
 	)
 	(label "BUS15"
 		(at 356.87 64.77 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22651,6 +22720,7 @@
 	)
 	(label "BUS76"
 		(at 212.09 195.58 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22661,6 +22731,7 @@
 	)
 	(label "D0_LED"
 		(at 562.61 339.09 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22672,6 +22743,7 @@
 	)
 	(label "BUS68"
 		(at 417.83 95.25 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22683,6 +22755,7 @@
 	)
 	(label "BUS22"
 		(at 212.09 203.2 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22694,6 +22767,7 @@
 	)
 	(label "BUS47"
 		(at 417.83 41.91 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22705,6 +22779,7 @@
 	)
 	(label "BUS30"
 		(at 212.09 144.78 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22716,6 +22791,7 @@
 	)
 	(label "D2_LED"
 		(at 191.77 256.54 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22727,6 +22803,7 @@
 	)
 	(label "BUS36"
 		(at 356.87 118.11 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22738,6 +22815,7 @@
 	)
 	(label "BUS33"
 		(at 212.09 142.24 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22749,6 +22827,7 @@
 	)
 	(label "BUS75"
 		(at 212.09 198.12 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22759,6 +22838,7 @@
 	)
 	(label "BUS69"
 		(at 417.83 97.79 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22770,6 +22850,7 @@
 	)
 	(label "BUS10"
 		(at 356.87 52.07 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22781,6 +22862,7 @@
 	)
 	(label "BUS03"
 		(at 212.09 172.72 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22792,6 +22874,7 @@
 	)
 	(label "BUS34"
 		(at 356.87 113.03 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22803,6 +22886,7 @@
 	)
 	(label "BUS57"
 		(at 417.83 67.31 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22814,6 +22898,7 @@
 	)
 	(label "USB_D-"
 		(at 254 184.15 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22824,6 +22909,7 @@
 	)
 	(label "D4_LED"
 		(at 191.77 276.86 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22835,6 +22921,7 @@
 	)
 	(label "BUS11"
 		(at 212.09 160.02 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22846,6 +22933,7 @@
 	)
 	(label "BUS63"
 		(at 212.09 99.06 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22857,6 +22945,7 @@
 	)
 	(label "A5_LED"
 		(at 257.81 289.56 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22868,6 +22957,7 @@
 	)
 	(label "BUS70"
 		(at 417.83 100.33 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22879,6 +22969,7 @@
 	)
 	(label "PUSH_INTB"
 		(at 80.01 355.6 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22889,6 +22980,7 @@
 	)
 	(label "A10_LED"
 		(at 257.81 340.36 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22900,6 +22992,7 @@
 	)
 	(label "D0_LED"
 		(at 191.77 236.22 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22911,6 +23004,7 @@
 	)
 	(label "BUS45"
 		(at 417.83 36.83 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22922,6 +23016,7 @@
 	)
 	(label "D6_LED"
 		(at 562.61 313.69 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22933,6 +23028,7 @@
 	)
 	(label "BUS63"
 		(at 417.83 82.55 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22944,6 +23040,7 @@
 	)
 	(label "D2_LED"
 		(at 562.61 349.25 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22955,6 +23052,7 @@
 	)
 	(label "HLTA_LED"
 		(at 322.58 344.17 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22966,6 +23064,7 @@
 	)
 	(label "A2_LED"
 		(at 257.81 259.08 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22977,6 +23076,7 @@
 	)
 	(label "PUSH_INTB"
 		(at 218.44 177.8 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22987,6 +23087,7 @@
 	)
 	(label "BUS71"
 		(at 417.83 102.87 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -22998,6 +23099,7 @@
 	)
 	(label "PROT_LED"
 		(at 562.61 186.69 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23009,6 +23111,7 @@
 	)
 	(label "A0_LED"
 		(at 562.61 346.71 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23020,6 +23123,7 @@
 	)
 	(label "BUS06"
 		(at 356.87 41.91 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23031,6 +23135,7 @@
 	)
 	(label "BUS28"
 		(at 212.09 149.86 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23042,6 +23147,7 @@
 	)
 	(label "BUS76"
 		(at 417.83 115.57 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23053,6 +23159,7 @@
 	)
 	(label "STACK_LED"
 		(at 562.61 273.05 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23064,6 +23171,7 @@
 	)
 	(label "BUS68"
 		(at 212.09 83.82 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23075,6 +23183,7 @@
 	)
 	(label "BUS28"
 		(at 356.87 97.79 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23086,6 +23195,7 @@
 	)
 	(label "BUS16"
 		(at 356.87 67.31 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23097,6 +23207,7 @@
 	)
 	(label "BUS69"
 		(at 212.09 86.36 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23108,6 +23219,7 @@
 	)
 	(label "D7_LED"
 		(at 562.61 316.23 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23119,6 +23231,7 @@
 	)
 	(label "HDLA_LED"
 		(at 562.61 194.31 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23130,6 +23243,7 @@
 	)
 	(label "BUS64"
 		(at 417.83 85.09 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23141,6 +23255,7 @@
 	)
 	(label "MEMR_LED"
 		(at 562.61 229.87 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23152,6 +23267,7 @@
 	)
 	(label "BUS65"
 		(at 212.09 93.98 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23163,6 +23279,7 @@
 	)
 	(label "BUS04"
 		(at 356.87 36.83 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23174,6 +23291,7 @@
 	)
 	(label "USB_D+"
 		(at 218.44 72.39 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23185,6 +23303,7 @@
 	)
 	(label "BUS29"
 		(at 356.87 100.33 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23196,6 +23315,7 @@
 	)
 	(label "~{RESET}"
 		(at 102.87 229.87 270)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23207,6 +23327,7 @@
 	)
 	(label "BUS34"
 		(at 212.09 137.16 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23218,6 +23339,7 @@
 	)
 	(label "D3_LED"
 		(at 562.61 354.33 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23229,6 +23351,7 @@
 	)
 	(label "D4_LED"
 		(at 562.61 300.99 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23240,6 +23363,7 @@
 	)
 	(label "BUS30"
 		(at 356.87 102.87 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23251,6 +23375,7 @@
 	)
 	(label "BUS56"
 		(at 417.83 64.77 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23262,6 +23387,7 @@
 	)
 	(label "BUS50"
 		(at 417.83 49.53 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23273,6 +23399,7 @@
 	)
 	(label "A10_LED"
 		(at 562.61 265.43 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23284,6 +23411,7 @@
 	)
 	(label "D5_LED"
 		(at 562.61 306.07 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23295,6 +23423,7 @@
 	)
 	(label "A5_LED"
 		(at 562.61 303.53 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23306,6 +23435,7 @@
 	)
 	(label "HDLA_LED"
 		(at 322.58 394.97 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23317,6 +23447,7 @@
 	)
 	(label "BUS05"
 		(at 212.09 167.64 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23328,6 +23459,7 @@
 	)
 	(label "A11_LED"
 		(at 257.81 350.52 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23339,6 +23471,7 @@
 	)
 	(label "BUS52"
 		(at 417.83 54.61 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23350,6 +23483,7 @@
 	)
 	(label "A13_LED"
 		(at 562.61 219.71 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23361,6 +23495,7 @@
 	)
 	(label "BUS12"
 		(at 212.09 187.96 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23372,6 +23507,7 @@
 	)
 	(label "~{USB_BOOT}"
 		(at 105.41 140.97 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23382,6 +23518,7 @@
 	)
 	(label "USB_D-"
 		(at 218.44 77.47 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23393,6 +23530,7 @@
 	)
 	(label "USB_D+"
 		(at 254 179.07 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23403,6 +23541,7 @@
 	)
 	(label "D7_LED"
 		(at 191.77 307.34 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23414,6 +23553,7 @@
 	)
 	(label "BUS33"
 		(at 356.87 110.49 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23425,6 +23565,7 @@
 	)
 	(label "OUT_LED"
 		(at 562.61 222.25 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23436,6 +23577,7 @@
 	)
 	(label "A1_LED"
 		(at 257.81 248.92 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23447,6 +23589,7 @@
 	)
 	(label "INP_LED"
 		(at 562.61 232.41 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23458,6 +23601,7 @@
 	)
 	(label "BUS51"
 		(at 417.83 52.07 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23469,6 +23613,7 @@
 	)
 	(label "BUS53"
 		(at 212.09 111.76 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23480,6 +23625,7 @@
 	)
 	(label "INT_LED"
 		(at 562.61 262.89 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23491,6 +23637,7 @@
 	)
 	(label "BUS24"
 		(at 356.87 87.63 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23502,6 +23649,7 @@
 	)
 	(label "BUS53"
 		(at 417.83 57.15 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23513,6 +23661,7 @@
 	)
 	(label "PROT_LED"
 		(at 322.58 293.37 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23524,6 +23673,7 @@
 	)
 	(label "BUS75"
 		(at 417.83 113.03 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23535,6 +23685,7 @@
 	)
 	(label "A2_LED"
 		(at 562.61 351.79 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23546,6 +23697,7 @@
 	)
 	(label "D5_LED"
 		(at 191.77 287.02 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23557,6 +23709,7 @@
 	)
 	(label "BUS46"
 		(at 417.83 39.37 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23568,6 +23721,7 @@
 	)
 	(label "A9_LED"
 		(at 257.81 330.2 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23579,6 +23733,7 @@
 	)
 	(label "BUS56"
 		(at 212.09 114.3 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23590,6 +23745,7 @@
 	)
 	(label "PUSH_INTA"
 		(at 218.44 175.26 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23600,6 +23756,7 @@
 	)
 	(label "INTE_LED"
 		(at 562.61 189.23 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23611,6 +23768,7 @@
 	)
 	(label "I2C1_SCK"
 		(at 80.01 342.9 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23621,6 +23779,7 @@
 	)
 	(label "BUS50"
 		(at 212.09 121.92 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23632,6 +23791,7 @@
 	)
 	(label "A14_LED"
 		(at 562.61 227.33 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23643,6 +23803,7 @@
 	)
 	(label "BUS03"
 		(at 356.87 34.29 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23654,6 +23815,7 @@
 	)
 	(label "A13_LED"
 		(at 257.81 370.84 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23665,6 +23827,7 @@
 	)
 	(label "D6_LED"
 		(at 191.77 297.18 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23676,6 +23839,7 @@
 	)
 	(label "A8_LED"
 		(at 257.81 320.04 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23687,6 +23851,7 @@
 	)
 	(label "INP_LED"
 		(at 322.58 313.69 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23698,6 +23863,7 @@
 	)
 	(label "BUS57"
 		(at 212.09 109.22 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23709,6 +23875,7 @@
 	)
 	(label "MEMR_LED"
 		(at 322.58 303.53 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23720,6 +23887,7 @@
 	)
 	(label "BUS24"
 		(at 212.09 154.94 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23731,6 +23899,7 @@
 	)
 	(label "BUS77"
 		(at 212.09 193.04 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23741,6 +23910,7 @@
 	)
 	(label "D3_LED"
 		(at 191.77 266.7 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23752,6 +23922,7 @@
 	)
 	(label "BUS71"
 		(at 212.09 88.9 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23763,6 +23934,7 @@
 	)
 	(label "BUS29"
 		(at 212.09 147.32 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23774,6 +23946,7 @@
 	)
 	(label "A9_LED"
 		(at 562.61 260.35 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23785,6 +23958,7 @@
 	)
 	(label "BUS59"
 		(at 212.09 104.14 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23796,6 +23970,7 @@
 	)
 	(label "BUS27"
 		(at 212.09 152.4 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23807,6 +23982,7 @@
 	)
 	(label "D1_LED"
 		(at 562.61 341.63 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23818,6 +23994,7 @@
 	)
 	(label "BUS46"
 		(at 212.09 127 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23829,6 +24006,7 @@
 	)
 	(label "BUS44"
 		(at 417.83 34.29 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23840,6 +24018,7 @@
 	)
 	(label "A0_LED"
 		(at 257.81 238.76 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23851,6 +24030,7 @@
 	)
 	(label "BUS04"
 		(at 212.09 170.18 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -23862,6 +24042,7 @@
 	)
 	(label "STACK_LED"
 		(at 322.58 354.33 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -39343,7 +39524,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.ckswitches.com/media/1428/os.pdf"
 			(at 39.37 147.32 0)
 			(effects
 				(font
@@ -41162,7 +41343,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1308111-1_SWITCHES_CORE_PROGRAM_CATALOG&DocType=Catalog%20Section&DocLang=English&DocFormat=pdf&PartCntxt=1825910-6"
 			(at 36.83 298.45 0)
 			(effects
 				(font
@@ -54382,7 +54563,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1308111-1_SWITCHES_CORE_PROGRAM_CATALOG&DocType=Catalog%20Section&DocLang=English&DocFormat=pdf&PartCntxt=1825910-6"
 			(at 36.83 275.59 0)
 			(effects
 				(font
