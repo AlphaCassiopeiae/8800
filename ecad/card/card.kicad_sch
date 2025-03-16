@@ -32538,7 +32538,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_Push"
+		(property "Value" "TS-1187A-B-A-B"
 			(at 30.48 94.742 0)
 			(effects
 				(font
@@ -46708,7 +46708,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_Push"
+		(property "Value" "TS-1187A-B-A-B"
 			(at 32.512 205.74 0)
 			(effects
 				(font
