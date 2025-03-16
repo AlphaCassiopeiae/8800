@@ -1919,4 +1919,15 @@
 		(layers "F.Cu" "F.Paste" "F.Mask")
 		(uuid "d9f8290e-71f0-4cf1-ab96-2620317cdaa0")
 	)
+	(model "${KICAD8_3DMODEL_DIR}/Package_DFN_QFN.3dshapes/QFN-28-1EP_6x6mm_P0.65mm_EP4.25x4.25mm.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
 )
