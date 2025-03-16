@@ -8,7 +8,6 @@
 	)
 	(paper "A2")
 	(title_block
-		(title "ECE 477: Digital Systems Design")
 		(date "2025-03-10")
 		(company "Team 15")
 	)
@@ -56,7 +55,7 @@
 			)
 			(layer "F.Mask"
 				(type "Top Solder Mask")
-				(color "Black")
+				(color "Green")
 				(thickness 0.01)
 				(material "Liquid Ink")
 				(epsilon_r 3.8)
@@ -104,7 +103,7 @@
 			)
 			(layer "B.Mask"
 				(type "Bottom Solder Mask")
-				(color "Black")
+				(color "Green")
 				(thickness 0.01)
 				(material "Liquid Ink")
 				(epsilon_r 3.3)
@@ -21725,7 +21724,7 @@
 		(path "/596e6858-b0c2-44d3-8e6c-4fe7fbd7b7bd")
 		(sheetname "Root")
 		(sheetfile "panel.kicad_sch")
-		(attr smd)
+		(attr smd dnp)
 		(fp_line
 			(start 0.146267 0.51)
 			(end -0.146267 0.51)
@@ -28687,7 +28686,7 @@
 		(path "/31678bb7-1dce-4861-828d-bb2f1db4508b")
 		(sheetname "Root")
 		(sheetfile "panel.kicad_sch")
-		(attr smd)
+		(attr smd dnp)
 		(fp_line
 			(start 0.146267 0.51)
 			(end -0.146267 0.51)
@@ -61199,7 +61198,7 @@
 		(path "/b5b41047-91bc-4113-9958-16c1601dfdbf")
 		(sheetname "Root")
 		(sheetfile "panel.kicad_sch")
-		(attr smd)
+		(attr smd dnp)
 		(fp_line
 			(start -4.47 1.58)
 			(end -3.22 1.58)
