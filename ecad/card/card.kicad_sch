@@ -24161,7 +24161,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "05e18c8b-9cb8-4708-b7e4-22f3d376412a")
 		(property "Reference" "J2"
 			(at 291.846 38.862 0)
@@ -26655,7 +26655,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "2039affd-2e45-40c5-9ed1-c751db72d5b6")
 		(property "Reference" "R6"
 			(at 146.05 64.516 90)
@@ -32538,7 +32538,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_Push"
+		(property "Value" "TS-1187A-B-A-B"
 			(at 30.48 94.742 0)
 			(effects
 				(font
@@ -39809,7 +39809,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "b28e3337-3468-4e44-bca0-a9ff6ff28917")
 		(property "Reference" "R5"
 			(at 146.05 57.404 90)
@@ -46708,7 +46708,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_Push"
+		(property "Value" "TS-1187A-B-A-B"
 			(at 32.512 205.74 0)
 			(effects
 				(font
