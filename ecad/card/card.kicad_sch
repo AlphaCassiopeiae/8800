@@ -29178,7 +29178,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "31f7d0e9-d2d3-427b-87b3-4d60d2e958bb")
 		(property "Reference" "U3"
 			(at 257.556 114.046 0)
@@ -35927,7 +35927,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "7d4e3852-aa17-49cb-b207-850637932422")
 		(property "Reference" "U5"
 			(at 257.556 195.326 0)
