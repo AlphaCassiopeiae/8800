@@ -27665,7 +27665,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "RP2350_80QFN"
+		(property "Value" "RP2350B"
 			(at 123.952 198.374 0)
 			(effects
 				(font
@@ -29607,6 +29607,15 @@
 		)
 		(property "Supplier" "LCSC"
 			(at 63.5 68.834 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C42411119"
+			(at 59.69 68.58 90)
 			(effects
 				(font
 					(size 1.27 1.27)

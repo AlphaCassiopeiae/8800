@@ -669,7 +669,7 @@
 		(path "/7d4e3852-aa17-49cb-b207-850637932422")
 		(sheetname "Root")
 		(sheetfile "card.kicad_sch")
-		(attr smd)
+		(attr smd dnp)
 		(fp_line
 			(start -3.86 -9.06)
 			(end -3.86 -8.815)
@@ -3939,7 +3939,7 @@
 				)
 			)
 		)
-		(property "Value" "RP2350_80QFN"
+		(property "Value" "RP2350B"
 			(at 0 6.549999 45)
 			(layer "F.Fab")
 			(uuid "6953762d-b40b-4869-af13-1d7e3e9cf168")
@@ -6700,7 +6700,7 @@
 		(path "/31f7d0e9-d2d3-427b-87b3-4d60d2e958bb")
 		(sheetname "Root")
 		(sheetfile "card.kicad_sch")
-		(attr smd)
+		(attr smd dnp)
 		(fp_line
 			(start -3.86 -9.06)
 			(end -3.86 -8.815)
@@ -14987,7 +14987,7 @@
 				)
 			)
 		)
-		(path "/e4924533-03ed-47f5-bef4-d770535e1461")
+		(path "/cad66b31-d454-4d38-b64e-d29ca39fbb19")
 		(sheetname "Root")
 		(sheetfile "card.kicad_sch")
 		(attr smd)
@@ -21594,6 +21594,19 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "e8233ba5-bc83-4dc6-b7f1-030700f20922")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "LCSC Part #" "C42411119"
+			(at 0 0 -135)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "8cf1f771-6299-4740-b6e9-d292cfb78c6a")
 			(effects
 				(font
 					(size 1 1)

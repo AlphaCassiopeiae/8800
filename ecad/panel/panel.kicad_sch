@@ -34924,6 +34924,15 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC Part #" "C639770"
+			(at 176.53 360.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "14"
 			(uuid "5668b6af-b4cf-451d-8adc-50b2ec77ea49")
 		)
@@ -42026,6 +42035,15 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC Part #" "C2286"
+			(at 300.99 162.56 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "55f25523-1b51-40bf-b69c-77cefb403c8d")
 		)
@@ -47530,6 +47548,15 @@
 		)
 		(property "Supplier" "LCSC"
 			(at 127 85.344 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C42411119"
+			(at 123.19 85.09 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -56123,6 +56150,15 @@
 			)
 		)
 		(property "Description" "16-bit I/O expander, I2C, interrupts, w pull-ups, GPA/B7 output only (https://microchip.my.site.com/s/article/GPA7---GPB7-Cannot-Be-Used-as-Inputs-In-MCP23017), QFN-28"
+			(at 114.3 361.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C639770"
 			(at 114.3 361.95 0)
 			(effects
 				(font

@@ -10923,6 +10923,20 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC Part #" "C2286"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "225206a3-b34e-41db-8638-ed2334ab3c41")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
 		(property ki_fp_filters "LED* LED_SMD:* LED_THT:*")
 		(path "/61db1872-af02-472b-b450-ced5e5d19f5c")
 		(sheetname "Root")
@@ -29608,30 +29622,6 @@
 				(justify mirror)
 			)
 		)
-		(property "JLC_3DModel" "1fea8f9ef5b64dc68dc98052e0860c3b"
-			(at 0 -2 -90)
-			(layer "Cmts.User")
-			(hide yes)
-			(uuid "ad198ffc-c0d6-43d9-8b50-1e62639067cd")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "JLC_3D_Size" "2 1.61"
-			(at 0 4 -90)
-			(layer "Cmts.User")
-			(hide yes)
-			(uuid "b9057010-ecb5-4838-b6b2-b178891e4a2e")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
 		(property "Manufacturer Part" "AOTA-B201610S3R3-101-T"
 			(at 0 0 -90)
 			(unlocked yes)
@@ -29680,6 +29670,20 @@
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "c6bbeffe-5500-470a-a403-f6bbc19e9e1a")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part #" "C42411119"
+			(at 0 0 90)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "be0ef92d-22a1-4972-b035-0733caf129db")
 			(effects
 				(font
 					(size 1 1)
@@ -31403,6 +31407,20 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part #" "C639770"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "b37f89fd-5ed2-4e9e-99b9-96af488985ed")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 				(justify mirror)
@@ -52393,6 +52411,20 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC Part #" "C639770"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "82b32edf-b6bf-46cf-beae-3cbc941dd22e")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 				(justify mirror)
