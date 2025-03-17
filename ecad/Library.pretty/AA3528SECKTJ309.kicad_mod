@@ -218,6 +218,7 @@
 		(uuid "27fed452-2724-49cc-8f7a-d918a75f017e")
 	)
 	(model "AA3528-09.STEP"
+		(hide yes)
 		(offset
 			(xyz -218.87 14.45 29.4)
 		)
@@ -226,6 +227,17 @@
 		)
 		(rotate
 			(xyz 0 0 0)
+		)
+	)
+	(model "80472LED_SMD_PLCC-2_reverse_gullwing.stp"
+		(offset
+			(xyz 0 0 1.6)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 180 90)
 		)
 	)
 )
