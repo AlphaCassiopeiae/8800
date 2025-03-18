@@ -28046,7 +28046,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 146.05 60.452 90)
 			(effects
 				(font
@@ -30466,7 +30466,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "3e1dca1d-3ed5-435f-a1cb-3bdb215f275f")
 		(property "Reference" "U4"
@@ -31482,7 +31482,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "4882e3a6-a5f3-4a99-b97b-8fb49967d675")
 		(property "Reference" "R10"
 			(at 236.982 73.66 0)
@@ -31500,7 +31500,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 231.902 74.93 90)
 			(effects
 				(font
@@ -32830,7 +32830,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "5bfe8e60-733f-4261-8a9c-ba79bfa7a253")
 		(property "Reference" "C23"
@@ -35056,7 +35056,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "6f164284-ea8f-4286-82dc-d4e7eb536381")
 		(property "Reference" "R7"
 			(at 28.194 191.77 0)
@@ -35074,7 +35074,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 32.258 191.77 90)
 			(effects
 				(font
@@ -35530,7 +35530,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "74ec6014-967b-4eb3-9ed8-e48ce3e4273d")
 		(property "Reference" "C22"
@@ -37296,7 +37296,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "9021a98a-75ff-408f-bb49-485cf1519f83")
 		(property "Reference" "D1"
@@ -37431,7 +37431,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "93b49b7d-7f49-4d3a-8f92-de0c1157086e")
 		(property "Reference" "C21"
@@ -37452,7 +37452,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 213.0552 36.83 0)
 			(effects
 				(font
@@ -38108,7 +38108,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "9efed47a-fac9-4443-a0ac-2d3edd62700b")
 		(property "Reference" "R9"
 			(at 229.362 73.66 0)
@@ -38126,7 +38126,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 224.282 74.93 90)
 			(effects
 				(font
@@ -38644,7 +38644,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "a4989299-8dcc-4915-b80c-a41deb42dd24")
 		(property "Reference" "J3"
 			(at 361.696 131.064 0)
@@ -40356,7 +40356,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "ad473f50-7044-4163-a883-077a804259b8")
 		(property "Reference" "J3"
@@ -41611,7 +41611,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 146.05 61.468 90)
 			(effects
 				(font
@@ -43356,7 +43356,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "cad66b31-d454-4d38-b64e-d29ca39fbb19")
 		(property "Reference" "J3"
 			(at 361.95 21.336 0)
@@ -46574,7 +46574,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "e4924533-03ed-47f5-bef4-d770535e1461")
 		(property "Reference" "J3"

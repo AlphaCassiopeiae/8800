@@ -65304,7 +65304,7 @@
 			(justify left bottom mirror)
 		)
 	)
-	(gr_text "αCassiopeiae 8800 Computer\nFront Panel Board\nrev. 01 3/14/2025"
+	(gr_text "αCassiopeiae 8800 Computer\nFront Panel Board\nrev. 01 3/17/2025"
 		(at 196 66.1 0)
 		(layer "B.SilkS")
 		(uuid "f65f623b-697b-4a6b-9ecf-fbb347242d9d")

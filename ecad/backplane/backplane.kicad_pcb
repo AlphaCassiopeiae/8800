@@ -49,7 +49,7 @@
 			)
 			(layer "F.Mask"
 				(type "Top Solder Mask")
-				(color "Black")
+				(color "Green")
 				(thickness 0.01)
 			)
 			(layer "F.Cu"
@@ -69,7 +69,7 @@
 			)
 			(layer "B.Mask"
 				(type "Bottom Solder Mask")
-				(color "Black")
+				(color "Green")
 				(thickness 0.01)
 			)
 			(layer "B.Paste"
@@ -20298,7 +20298,7 @@
 			(justify left bottom mirror)
 		)
 	)
-	(gr_text "rev. 01 3/14/2025"
+	(gr_text "rev. 01 3/17/2025"
 		(at 289.6 217.15 0)
 		(layer "B.SilkS")
 		(uuid "7325c17d-16f1-40ea-a3e9-077973959600")
