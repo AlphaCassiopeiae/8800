@@ -24686,474 +24686,6 @@
 			)
 		)
 	)
-	(symbol "TYPE-C 16PLC-H10.0"
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(property "Reference" "U?"
-			(at 8.128 14.732 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "TYPE-C 16PLC-H10.0"
-			(at 0 -15.494 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer Part" "TYPE-C 16PLC-H10.0"
-			(at 0.508 16.51 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer" "SHOU HAN(首韩)"
-			(at 0 -20.066 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Part" "C3151747"
-			(at 0 -17.78 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier" "LCSC"
-			(at 0 18.542 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(symbol "TYPE-C 16PLC-H10.0_0_0"
-			(rectangle
-				(start -8.89 13.97)
-				(end 8.89 -13.97)
-				(stroke
-					(width 0.254)
-					(type solid)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(circle
-				(center -7.62 12.7)
-				(radius 0.254)
-				(stroke
-					(width 0.254)
-					(type solid)
-				)
-				(fill
-					(type outline)
-				)
-			)
-			(pin unspecified line
-				(at -11.43 11.43 0)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "A1"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at 11.43 6.35 180)
-				(length 2.54)
-				(name "A10"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "A10"
-					(effects
-						(font
-							(size 0.8466 0.8466)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at -11.43 -6.35 0)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "A12"
-					(effects
-						(font
-							(size 0.8466 0.8466)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at 11.43 3.81 180)
-				(length 2.54)
-				(name "A2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "A2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at -11.43 8.89 0)
-				(length 2.54)
-				(name "VBUS"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "A4"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at -11.43 6.35 0)
-				(length 2.54)
-				(name "CC1"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "A5"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at -11.43 3.81 0)
-				(length 2.54)
-				(name "D+"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "A6"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at -11.43 1.27 0)
-				(length 2.54)
-				(name "D-"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "A7"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at -11.43 -1.27 0)
-				(length 2.54)
-				(name "SBU1"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "A8"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at -11.43 -3.81 0)
-				(length 2.54)
-				(name "VBUS"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "A9"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at -11.43 -8.89 0)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "B1"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at 11.43 11.43 180)
-				(length 2.54)
-				(name "B10"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "B10"
-					(effects
-						(font
-							(size 0.8466 0.8466)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at 11.43 1.27 180)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "B12"
-					(effects
-						(font
-							(size 0.8466 0.8466)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at 11.43 8.89 180)
-				(length 2.54)
-				(name "B2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "B2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at -11.43 -11.43 0)
-				(length 2.54)
-				(name "VBUS"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "B4"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at 11.43 -11.43 180)
-				(length 2.54)
-				(name "CC2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "B5"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at 11.43 -8.89 180)
-				(length 2.54)
-				(name "D+"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "B6"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at 11.43 -6.35 180)
-				(length 2.54)
-				(name "D-"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "B7"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at 11.43 -3.81 180)
-				(length 2.54)
-				(name "SBU2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "B8"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin unspecified line
-				(at 11.43 -1.27 180)
-				(length 2.54)
-				(name "VBUS"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "B9"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-		)
-	)
 	(symbol "USB4105-GF-A"
 		(pin_names
 			(offset 1.016)
@@ -26060,40 +25592,45 @@
 			)
 		)
 	)
-	(symbol "XL-2520SURC/TR10"
+	(symbol "VLRK31Q1R2-GS08"
+		(pin_names
+			(offset 0.254)
+		)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(property "Reference" "LED?"
-			(at 0 5.08 0)
+		(property "Reference" "CR"
+			(at 5.08 4.445 0)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(size 1.524 1.524)
 				)
 			)
 		)
-		(property "Value" "XL-2520SURC/TR10"
-			(at 0 -3.556 0)
+		(property "Value" "VLRK31Q1R2-GS08"
+			(at 5.08 -3.81 0)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(size 1.524 1.524)
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "DO_SOD_VLRE"
 			(at 0 0 0)
 			(effects
 				(font
 					(size 1.27 1.27)
+					(italic yes)
 				)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "VLRK31Q1R2-GS08"
 			(at 0 0 0)
 			(effects
 				(font
 					(size 1.27 1.27)
+					(italic yes)
 				)
 				(hide yes)
 			)
@@ -26107,8 +25644,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer Part" "XL-2520SURC/TR10"
-			(at 0.254 9.906 0)
+		(property "ki_locked" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "VLRK31Q1R2-GS08"
+			(at 0 0 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -26116,8 +25661,8 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer" "XINGLIGHT(成兴光)"
-			(at 0.254 12.192 0)
+		(property "ki_fp_filters" "DO_SOD_VLRE DO_SOD_VLRE-M DO_SOD_VLRE-L"
+			(at 0 0 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -26125,44 +25670,14 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Part" "C7545697"
-			(at 0.254 14.224 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier" "LCSC"
-			(at 0 7.874 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(symbol "XL-2520SURC/TR10_0_0"
+		(symbol "VLRK31Q1R2-GS08_1_1"
 			(polyline
 				(pts
-					(xy -2.286 1.524) (xy -3.302 2.54)
+					(xy 2.54 0) (xy 3.4798 0)
 				)
 				(stroke
-					(width 0.254)
-					(type solid)
-				)
-				(fill
-					(type outline)
-				)
-			)
-			(polyline
-				(pts
-					(xy -1.27 0) (xy -2.54 0)
-				)
-				(stroke
-					(width 0.254)
-					(type solid)
+					(width 0.2032)
+					(type default)
 				)
 				(fill
 					(type none)
@@ -26170,11 +25685,11 @@
 			)
 			(polyline
 				(pts
-					(xy -1.27 1.778) (xy -1.27 -1.778)
+					(xy 3.175 0) (xy 3.81 0)
 				)
 				(stroke
-					(width 0.254)
-					(type solid)
+					(width 0.2032)
+					(type default)
 				)
 				(fill
 					(type none)
@@ -26182,23 +25697,11 @@
 			)
 			(polyline
 				(pts
-					(xy -1.27 2.54) (xy -2.286 3.556)
+					(xy 3.81 -1.905) (xy 6.35 0)
 				)
 				(stroke
-					(width 0.254)
-					(type solid)
-				)
-				(fill
-					(type outline)
-				)
-			)
-			(polyline
-				(pts
-					(xy 2.54 0) (xy 1.27 0)
-				)
-				(stroke
-					(width 0.254)
-					(type solid)
+					(width 0.2032)
+					(type default)
 				)
 				(fill
 					(type none)
@@ -26206,11 +25709,11 @@
 			)
 			(polyline
 				(pts
-					(xy -4.064 3.302) (xy -3.048 2.794) (xy -3.556 2.286) (xy -4.064 3.302)
+					(xy 3.81 1.905) (xy 3.81 -1.905)
 				)
 				(stroke
-					(width 0.254)
-					(type solid)
+					(width 0.2032)
+					(type default)
 				)
 				(fill
 					(type none)
@@ -26218,11 +25721,11 @@
 			)
 			(polyline
 				(pts
-					(xy -3.048 4.318) (xy -2.032 3.81) (xy -2.54 3.302) (xy -3.048 4.318)
+					(xy 6.35 -1.905) (xy 6.35 1.905)
 				)
 				(stroke
-					(width 0.254)
-					(type solid)
+					(width 0.2032)
+					(type default)
 				)
 				(fill
 					(type none)
@@ -26230,48 +25733,182 @@
 			)
 			(polyline
 				(pts
-					(xy 1.27 1.778) (xy -1.27 0) (xy 1.27 -1.778) (xy 1.27 1.778)
+					(xy 6.35 0) (xy 3.81 1.905)
 				)
 				(stroke
-					(width 0.254)
-					(type solid)
+					(width 0.2032)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 6.35 0) (xy 7.62 0)
+				)
+				(stroke
+					(width 0.2032)
+					(type default)
 				)
 				(fill
 					(type none)
 				)
 			)
 			(pin unspecified line
-				(at 5.08 0 180)
+				(at 10.16 0 180)
 				(length 2.54)
-				(name "A"
+				(name ""
 					(effects
 						(font
-							(size 0.0254 0.0254)
+							(size 1.27 1.27)
 						)
 					)
 				)
 				(number "1"
 					(effects
 						(font
-							(size 0.0254 0.0254)
+							(size 1.27 1.27)
 						)
 					)
 				)
 			)
 			(pin unspecified line
-				(at -5.08 0 0)
+				(at 0 0 0)
 				(length 2.54)
-				(name "K"
+				(name ""
 					(effects
 						(font
-							(size 0.0254 0.0254)
+							(size 1.27 1.27)
 						)
 					)
 				)
 				(number "2"
 					(effects
 						(font
-							(size 0.0254 0.0254)
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(symbol "VLRK31Q1R2-GS08_1_2"
+			(polyline
+				(pts
+					(xy -1.905 3.81) (xy 1.905 3.81)
+				)
+				(stroke
+					(width 0.2032)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 2.54) (xy 0 3.4798)
+				)
+				(stroke
+					(width 0.2032)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 3.175) (xy 0 3.81)
+				)
+				(stroke
+					(width 0.2032)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 6.35) (xy -1.905 3.81)
+				)
+				(stroke
+					(width 0.2032)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 6.35) (xy 0 7.62)
+				)
+				(stroke
+					(width 0.2032)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 1.905 3.81) (xy 0 6.35)
+				)
+				(stroke
+					(width 0.2032)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 1.905 6.35) (xy -1.905 6.35)
+				)
+				(stroke
+					(width 0.2032)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(pin unspecified line
+				(at 0 10.16 270)
+				(length 2.54)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin unspecified line
+				(at 0 0 90)
+				(length 2.54)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
 						)
 					)
 				)
