@@ -14,6 +14,8 @@ use embassy_rp::peripherals::I2C0;
 use embassy_time::Timer;
 use embedded_hal_async::i2c::I2c;
 use {defmt_rtt as _, panic_probe as _};
+use gpio::{Level, Output};
+use embassy_rp::gpio;
 
 bind_interrupts!(struct Irqs {
     I2C0_IRQ => InterruptHandler<I2C0>;
@@ -21,7 +23,7 @@ bind_interrupts!(struct Irqs {
 
 #[allow(dead_code)]
 mod mcp23017 {
-    pub const ADDR: u8 = 0x00; // default addr
+    pub const ADDR: u8 = 0x20; // default addr
 
     macro_rules! mcpregs {
         ($($name:ident : $val:expr),* $(,)?) => {
@@ -70,37 +72,48 @@ mod mcp23017 {
 #[embassy_executor::main]
 async fn main(_spawner: Spawner) {
 
-    
-
     // let p = embassy_rp::init(Default::default());
-
-    // let sda = p.PIN_0;
-    // let scl = p.PIN_1;
-
-    // info!("set up i2c ");
-    // let mut i2c = i2c::I2c::new_async(p.I2C0, scl, sda, Irqs, Config::default());
-
-    // use mcp23017::*;
-
-    // info!("init mcp23017 config for IxpandO");
-    // // init - a inputs, b inputs
-    // i2c.write(ADDR, &[IODIRA, 0xff]).await.unwrap(); // all inputs
-    // i2c.write(ADDR, &[IODIRB, 0xff]).await.unwrap(); // all inputs
-    // i2c.write(ADDR, &[GPPUA, 0xff]).await.unwrap(); // pull up inputs
-    // i2c.write(ADDR, &[GPPUB, 0xff]).await.unwrap(); // pull up inputs
+    // let mut led = Output::new(p.PIN_47, Level::Low);
 
     // loop {
-    //     let mut porta = [0];
-    //     let mut portb = [0];
+    //     info!("led on!");
+    //     led.set_high();
+    //     Timer::after_millis(250).await;
 
-    //     // Read from port A (buttons)
-    //     i2c.blocking_read(ADDR, &mut porta).unwrap();
-    //     info!("porta = {:02x}", porta[0]);
-        
-    //     // Read from port B (switches)
-    //     i2c.blocking_read(ADDR, &mut portb).unwrap();
-    //     info!("portb = {:02x}", portb[0]);
-
-    //     Timer::after_millis(100).await;
+    //     info!("led off!");
+    //     led.set_low();
+    //     Timer::after_millis(250).await;
     // }
+
+    let p = embassy_rp::init(Default::default());
+
+    let sda = p.PIN_0;
+    let scl = p.PIN_1;
+
+    info!("set up i2c ");
+    let mut i2c = i2c::I2c::new_async(p.I2C0, scl, sda, Irqs, Config::default());
+
+    use mcp23017::*;
+
+    info!("init mcp23017 config for IxpandO");
+    // init - a inputs, b inputs
+    i2c.write(ADDR, &[IODIRA, 0xff]).await.unwrap(); // all inputs
+    i2c.write(ADDR, &[IODIRB, 0xff]).await.unwrap(); // all inputs
+    i2c.write(ADDR, &[GPPUA, 0xff]).await.unwrap(); // pull up inputs
+    i2c.write(ADDR, &[GPPUB, 0xff]).await.unwrap(); // pull up inputs
+
+    loop {
+        let mut porta = [0];
+        let mut portb = [0];
+
+        // Read from port A (buttons)
+        //i2c.blocking_read(ADDR, &mut porta).unwrap();
+        //info!("porta = {:02x}", porta[0]);
+        
+        // Read from port B (switches)
+        i2c.write_read(ADDR, &[GPIOB], &mut portb).await.unwrap();
+        info!("portb = {:02x}", portb[0]);
+
+        Timer::after_millis(500).await;
+    }
 }

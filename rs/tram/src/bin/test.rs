@@ -88,7 +88,7 @@ pub static PICOTOOL_ENTRIES: [embassy_rp::binary_info::EntryAddr; 4] = [
 #[embassy_executor::main]
 async fn main(_spawner: Spawner) {
     let p = embassy_rp::init(Default::default());
-    let mut led = Output::new(p.PIN_25, Level::Low);
+    let mut led = Output::new(p.PIN_47, Level::Low);
 
     loop {
         info!("led on!");
