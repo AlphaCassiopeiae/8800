@@ -110,8 +110,9 @@
         "hole_clearance|56577371|55878386|a58afcb2-43a7-48c1-b1bd-930170177f3b|cbf52afe-c8b4-4bbe-83ba-72ac1e6e348c",
         "hole_clearance|62377371|55878386|c651129a-8af2-4595-ad21-478341bed218|ff2c015d-cc8b-40ec-9e40-3eab094ad873",
         "lib_footprint_mismatch|116815000|65280000|6683f85b-9c25-4e30-b4be-94293f7761cd|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_mismatch|58102371|53360886|e366fd4f-6bf7-49f3-8753-848c55e6cfeb|00000000-0000-0000-0000-000000000000",
+        "lib_footprint_mismatch|57799871|53360886|e366fd4f-6bf7-49f3-8753-848c55e6cfeb|00000000-0000-0000-0000-000000000000",
         "lib_footprint_mismatch|71157661|53574326|779e48eb-a17f-4c94-960c-cc9ef01dd6aa|00000000-0000-0000-0000-000000000000",
+        "lib_footprint_mismatch|76299871|62577826|1708f0ee-e5a7-414b-bda4-13570a0c80a2|00000000-0000-0000-0000-000000000000",
         "silk_edge_clearance|55007371|49155000|4b8742a2-fba7-47a2-9805-8f6fb8a476f0|68a67089-e4ec-44e4-8e2a-6bb4acffbcc3",
         "silk_edge_clearance|63947371|49155000|4b8742a2-fba7-47a2-9805-8f6fb8a476f0|1558a1d1-63df-44da-9e88-ca285043b523"
       ],
@@ -177,16 +178,16 @@
         "min_copper_edge_clearance": 0.2,
         "min_hole_clearance": 0.2,
         "min_hole_to_hole": 0.2,
-        "min_microvia_diameter": 0.25,
-        "min_microvia_drill": 0.15,
+        "min_microvia_diameter": 0.45,
+        "min_microvia_drill": 0.3,
         "min_resolved_spokes": 1,
         "min_silk_clearance": 0.0,
         "min_text_height": 0.8,
         "min_text_thickness": 0.08,
-        "min_through_hole_diameter": 0.15,
+        "min_through_hole_diameter": 0.3,
         "min_track_width": 0.1,
-        "min_via_annular_width": 0.05,
-        "min_via_diameter": 0.25,
+        "min_via_annular_width": 0.075,
+        "min_via_diameter": 0.45,
         "solder_mask_to_copper_clearance": 0.005,
         "use_height_for_length_calcs": true
       },
@@ -271,8 +272,8 @@
           "drill": 0.0
         },
         {
-          "diameter": 0.25,
-          "drill": 0.15
+          "diameter": 0.45,
+          "drill": 0.2
         },
         {
           "diameter": 0.6,
