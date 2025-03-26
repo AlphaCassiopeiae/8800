@@ -22,3 +22,26 @@ impl RAM {
     self.memory[addr] = data;
   }  
 }
+
+// TODO: figure out what tram/recall need to send to eachother
+// enum of some kind, but not a bus request directly
+
+struct Recall {
+  memory: RAM,
+  pub send_channel: std::sync::mpsc::Sender<>,
+  pub recv_channel: std::sync::mpsc::Reciever<>,
+}
+
+impl Recall {
+  pub fn new() -> Self {
+    memory: RAM::new(),
+  }
+
+  pub fn send(&self, message: BusMessage) {
+    self.send_channel.send(message).unwrap();
+  }
+
+  pub fn recv(&self) -> Option<BusMessage> {
+    self.recv_channel.recv().ok()
+  }
+}

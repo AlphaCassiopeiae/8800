@@ -10,6 +10,8 @@ pub enum BusMessage {
     ReadResponse{to: String, data: u8},
 }
 
+// still should work on one physical wire, but need to split logic
+// between sender and reciever
 pub struct TramSim {
     pub recv_channel: std::sync::mpsc::Receiver<BusMessage>,
     pub send_channel: std::sync::mpsc::Sender<BusMessage>,
@@ -25,3 +27,18 @@ impl TramSim {
         self.recv_channel.recv().ok()
     }
 }
+
+/*
+
+pub struct Bus {
+    combination of GPIO pins
+}
+
+pub struct Tram {
+    bus: Bus,
+}
+
+impl Tram {
+
+}
+*/

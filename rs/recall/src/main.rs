@@ -5,12 +5,18 @@ use recall::RAM;
 
 use tram::{TramSim, BusMessage};
 
+use std::sync::mpsc::channel;
 
+// not useful for simulation, will be needed for actual implementation
 fn main() -> ! {
 
+    let (tx, rx) = channel();
+
+    // instances of RAM and tram
+    // main file outside of all of this will link channels together
     let mut ram: RAM = RAM::new();
-    // TODO: still need a TramSim instance to send responses back
-    let mut tram: TramSim = 0; // idk 
+    let mut tram: TramSim = TramSim{recv_channel:rx, send_channel:tx};
+
     loop {
         // use Option to detect if request for memory has come in
         // recall itself should be completely blind to machine cycles
