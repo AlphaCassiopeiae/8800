@@ -24,12 +24,8 @@ pub static PICOTOOL_ENTRIES: [embassy_rp::binary_info::EntryAddr; 4] = [
     embassy_rp::binary_info::rp_program_build_attribute!(),
 ];
 
-
-/* Figuring out how to communicate with Recall */
-enum BusRequest {
-    Read {addr: u16},
-    Write {addr: u16, data: u8},
-}
+mod lib;
+use lib::{BusRequest, BusResponse};
 
 // TO BE USED BY CYCLE
 
@@ -68,7 +64,6 @@ async fn cpu_mem_write(addr: u16, data: u8) {
 // i understand it now
 // request should trigger stuff in recall and return data to CPU
 pub async fn cpu_mem_read_req(addr: u16) -> u8 {
-    // hold my beer
     // create BusRequest{}
     // send()
     // recall will recognize request at some point
@@ -80,6 +75,14 @@ pub async fn cpu_mem_read_req(addr: u16) -> u8 {
     // use tram::{...}
     // call this fn when needed and await response
     // returns u8 which is what CPU needs
+
+    // will need to be a combination of bus signals eventually
+    // probably call a PIO routine
+
+    // for testing purposes rn jsut gonna use the BusRequest enum
+    let request: BusRequest = BusRequest::Read{from:("cpu"), addr:(addr)};
+    // send request on channel
+
 }
 
 async fn cpu_mem_write_req() {

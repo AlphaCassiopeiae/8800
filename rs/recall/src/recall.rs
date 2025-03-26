@@ -18,7 +18,7 @@ impl RAM {
     self.memory[addr]
   }
 
-  pub fn write(&mut self, addr: usize, byte: u8) {
-    self.memory[addr] = byte;
+  pub fn write(&mut self, addr: usize, data: u8) {
+    self.memory[addr] = data;
   }  
 }

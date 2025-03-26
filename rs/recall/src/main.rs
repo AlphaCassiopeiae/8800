@@ -2,25 +2,31 @@
 // might just move contents of recall.rs here since its small anyway
 mod recall;
 use recall::RAM;
-// TODO: figure out how to use tram stuff (BusRequest/Response) here
+
+use tram::{TramSim, BusMessage};
 
 
 fn main() -> ! {
 
     let mut ram: RAM = RAM::new();
-
+    // TODO: still need a TramSim instance to send responses back
+    let mut tram: TramSim = 0; // idk 
     loop {
         // use Option to detect if request for memory has come in
         // recall itself should be completely blind to machine cycles
         // just respond to requests as they come in
-        if let Some(request) = tram.recieve() {
+        if let Some(request) = tram.recv() {
             match request {
                 // do more here
-                BusRequest::Read{addr} => {
+                BusMessage::ReadRequest{from, addr} => {
                     // read and return data on bus
+                    let response: BusMessage = BusMessage::ReadResponse{to:(from), data:(ram.read(addr))};
+                    // still need to send response on TramSim send_channel
+                    
                 }
-                BusRequest::Write{addr, data} => {
+                BusRequest::WriteRequest{from, addr, data} => {
                     // write data to mem at addr
+                    ram.write(addr, data);
                 } 
                 _ => {} // should never happen but who knows
             }
