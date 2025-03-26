@@ -1,8 +1,44 @@
+// Embassy stuff
+#![no_std]
+#![no_main]
+
+use defmt::*;
+
+use defmt::*;
+use embassy_executor::Spawner;
+use embassy_rp::gpio;
+use embassy_rp::gpio::{Input, Pull};
+use embassy_rp::Peripherals;
+use embassy_time::{Timer, Duration};
+use gpio::{Level, Output};
+use {defmt_rtt as _, panic_probe as _};
+
+#[link_section = ".bi_entries"]
+#[used]
+pub static PICOTOOL_ENTRIES: [embassy_rp::binary_info::EntryAddr; 4] = [
+    embassy_rp::binary_info::rp_program_name!(c"tram"),
+    embassy_rp::binary_info::rp_program_description!(
+        c"bus control with PIO routines, interfaces recall/runner/etc."
+    ),
+    embassy_rp::binary_info::rp_cargo_version!(),
+    embassy_rp::binary_info::rp_program_build_attribute!(),
+];
+
+
+/* Figuring out how to communicate with Recall */
+enum BusRequest {
+    Read {addr: u16},
+    Write {addr: u16, data: u8},
+}
+
 // TO BE USED BY CYCLE
 
 // state machine to handle CPU reading from memory
 // returns data
-async fn cpu_mem_read(addr) {
+// need to go GPIO stuff in these functions or call PIO routines
+async fn cpu_mem_read(addr: u16) -> u8 {
+    // EXAMPLE USAGE: let val: u8 = cpu_mem_read(addr).await;
+
     // CHECK IN RUN MODE
 
     // T1
@@ -22,23 +58,50 @@ async fn cpu_mem_read(addr) {
     // data available
     // deassert smemr and pdbin
 
-    return data;
 }
-
 
 // state machine to handle CPU writing to memory
-async fn cpu_mem_write(addr, data) {
-
-
-    
+async fn cpu_mem_write(addr: u16, data: u8) {
+    // EXAMPLE USAGE: cpu_mem_write(addr, data).await;
 }
 
+// i understand it now
+// request should trigger stuff in recall and return data to CPU
+pub async fn cpu_mem_read_req(addr: u16) -> u8 {
+    // hold my beer
+    // create BusRequest{}
+    // send()
+    // recall will recognize request at some point
+    // will call read()/write()
+    // will tell it's tram instance to send response (CPU emulator is awaiting)
+    // CPU emulator gets the data (u8)
 
-// TO BE USED BY RECALL
-async fn mem_cpu_read() {
-
+    // CPU emulator
+    // use tram::{...}
+    // call this fn when needed and await response
+    // returns u8 which is what CPU needs
 }
 
-fn mem_cpu_write() {
-
+async fn cpu_mem_write_req() {
+    // ?
+    // this should call recall's write() function at some point in the machine cycles
+    // no data returned, maybe need to return some flags to the CPU indicating write finished?
 }
+
+#[embassy_executor::main]
+async fn main(_spawner: Spawner) {
+
+    let p: Peripherals = embassy_rp::init(Default::default());
+
+    let mut led: Output<'_> = Output::new(p.PIN_25, Level::Low);
+
+    loop {
+        info!("led on!");
+        led.set_high();
+        Timer::after(Duration::from_millis(500)).await;
+
+        info!("led off!");
+        led.set_low();
+        Timer::after(Duration::from_millis(500)).await;
+    }
+} // just trying to blink an LED for now
