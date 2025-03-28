@@ -30,29 +30,35 @@ pub struct BusState {
 // this will only ever be used by tram instances
 // ex: clk is input for runner and recall, but output for front panel
 pub struct Bus {
-    // clock
-    pub clk: Anypin,
-    // address and data lines
-    pub addr: [AnyPin; 16],
-    pub data: [AnyPin; 8],
-    // control signals
-    pub pinte: AnyPin,
-    pub prot: AnyPin,
-    pub smemr: AnyPin,
-    pub sinp: AnyPin,
-    pub sm1: AnyPin,
-    pub sout: AnyPin,
-    pub shlta: AnyPin,
-    pub sstack: AnyPin,
-    pub swo: AnyPin,
-    pub sinta: AnyPin,
-    pub xrdy: AnyPin,
-    pub pwait: AnyPin,
-    pub prdy: AnyPin,
-    pub n_pint: AnyPin,
-    pub n_preset: AnyPin,
-    pub n_phold: AnyPin,
-    pub pdbin: AnyPin,
-    pub mwrt: AnyPin,
-    pub panel: AnyPin,
+    // control                  
+    pub clk: Anypin,        // Pin 4
+    pub n_preset: AnyPin,   // Pin 5
+    // UI
+    pub panel: AnyPin,      // Pin 6
+    pub prot: AnyPin,       // Pin 7
+    pub sm1: AnyPin,        // Pin 8
+    // status
+    pub shlta: AnyPin,      // Pin 9
+    pub sstack: AnyPin,     // Pin 10
+    // DMA
+    pub n_phold: AnyPin,    // Pin 11
+    // R/W
+    pub pdbin: AnyPin,      // Pin 12
+    pub swo: AnyPin,        // Pin 13
+    pub pwait: AnyPin,      // Pin 14
+    // I/O
+    pub prdy: AnyPin,       // Pin 15
+    pub sout: AnyPin,       // Pin 16
+    pub sinp: AnyPin,       // Pin 17
+    // memory
+    pub xrdy: AnyPin,       // Pin 18
+    pub mwrt: AnyPin,       // Pin 19
+    pub smemr: AnyPin,      // Pin 20
+    // interrupt
+    pub n_pint: AnyPin,     // Pin 21
+    pub sinta: AnyPin,      // Pin 22
+    pub pinte: AnyPin,      // Pin 23
+    // A/D lines
+    pub addr: [AnyPin; 16], // Pins 24-39
+    pub data: [AnyPin; 8],  // Pins 40-47
 }
