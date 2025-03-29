@@ -24,6 +24,7 @@ bind_interrupts!(struct Irqs {
 #[allow(dead_code)]
 mod mcp23017 {
     pub const ADDR: u8 = 0x20; // default addr
+    pub const ADDR1: u8 = 0x21;
 
     macro_rules! mcpregs {
         ($($name:ident : $val:expr),* $(,)?) => {
@@ -103,17 +104,94 @@ async fn main(_spawner: Spawner) {
     i2c.write(ADDR, &[GPPUB, 0xff]).await.unwrap(); // pull up inputs
 
     loop {
-        let mut porta = [0];
-        let mut portb = [0];
+        let mut addr0 = [0];
+        let mut addr1 = [0];
+        let mut data = [0];
 
-        // Read from port A (buttons)
-        //i2c.blocking_read(ADDR, &mut porta).unwrap();
-        //info!("porta = {:02x}", porta[0]);
+        if (reset) {
+            nRst = 0;
+            addr = 0;
+        }
+        else {
+            nRst = 1;
+            if (clr) {
+                addr = 0;
+                data = hiz;
+                clock = clock;
+            }
+            else if (stop) {
+                clock = clock;
+            }
+            else if (run) {
+                clock = !clock;
+            }
+            else if (single_step) {
+                single_step = 1;
+            }
+            else if (examine) {
+                // read addr pins
+                i2c.write_read(ADDR, &[GPIOB], &mut addr0).await.unwrap();
+                i2c.write_read(ADDR1, &[GPIOA], &mut addr1).await.unwrap();
+
+                // flog loan word instruction over the bus
+                panel = 1;
+                // send addr
+                panel = 0;
+            }
+            else if (examine_next) {
+                // flog loan word with next addr
+                panel = 1;
+                panel = 0;
+            }
+            else if (deposit) {
+                panel = 1;
+                // read data
+                i2c.write_read(ADDR, &[GPIOA], &mut data).await.unwrap();
+                // send data sw (addr)
+                panel = 0;
+            }
+            else if (deposit_next) {
+                panel = 1;
+                // read data
+                i2c.write_read(ADDR, &[GPIOA], &mut data).await.unwrap();
+                // send data sw addr + 1
+                panel = 0;
+            }
+        }
+
+        // Read from port A, top IC (data)
+        i2c.write_read(ADDR, &[GPIOA], &mut data).await.unwrap();
+        info!("data = {:02x}", data[0]);
         
-        // Read from port B (switches)
-        i2c.write_read(ADDR, &[GPIOB], &mut portb).await.unwrap();
-        info!("portb = {:02x}", portb[0]);
+        // Read from port B, top IC (lower addr)
+        i2c.write_read(ADDR, &[GPIOB], &mut addr0).await.unwrap();
+        info!("addr0 = {:02x}", addr0[0]);
+
+        // Read from port A, bottom IC (top addr)
+        i2c.write_read(ADDR1, &[GPIOA], &mut addr1).await.unwrap();
+        info!("addr1 = {:02x}", addr1[0]);
+
+
 
         Timer::after_millis(500).await;
     }
+}
+
+fn setup_pio_task_sm1<'a>(pio: &mut Common<'a, PIO0>, sm: &mut StateMachine<'a, PIO0, 1>) {
+    // Setupm sm1
+
+    // Read 0b10101 repeatedly until ISR is full
+    let prg = pio_asm!(
+        "set x, 0x15",
+        ".wrap_target",
+        "in x, 5 [31]",
+        ".wrap",
+    );
+
+    let mut cfg = Config::default();
+    cfg.use_program(&pio.load_program(&prg.program), &[]);
+    cfg.clock_divider = (U56F8!(125_000_000) / 2000).to_fixed();
+    cfg.shift_in.auto_fill = true;
+    cfg.shift_in.direction = ShiftDirection::Right;
+    sm.set_config(&cfg);
 }
