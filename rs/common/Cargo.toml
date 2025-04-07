@@ -1,0 +1,8 @@
+[package]
+name = "common"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+embassy-rp = { version = "0.3.0", git = "https://github.com/embassy-rs/embassy", rev = "00ef474b94d99a1fd933e79bd66628cd3a16e3c4", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl", "rp235xb", "binary-info"] }
+embassy-sync = { version = "0.6.2", git = "https://github.com/embassy-rs/embassy", rev = "00ef474b94d99a1fd933e79bd66628cd3a16e3c4", features = ["defmt"] }

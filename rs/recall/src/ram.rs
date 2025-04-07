@@ -1,5 +1,5 @@
 // simple rust code to support basic read/write functionality of RAM
-const MEMORY_SIZE: usize = 65536;
+const MEMORY_SIZE: usize = 65536; 
 
 pub struct RAM {
   memory: [u8; MEMORY_SIZE] // support 16-bit addresses
