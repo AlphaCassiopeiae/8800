@@ -3,18 +3,18 @@
 #![no_std]
 
 use embassy_sync::channel::{Channel, Sender, Receiver};
-use embassy_sync::blocking_mutex::raw::NoopRawMutex;
+use embassy_sync::blocking_mutex::raw::CriticalSectionRawMutex;
 use embassy_rp::gpio::AnyPin;
 
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 pub enum Message {
     MemoryReadRequest{addr: usize},
     MemoryWriteRequest{addr: usize, data: u8},
     MemoryReadResponse{data: u8},
 }
 
-pub type TX = Sender<'static, NoopRawMutex, Message, 4>;
-pub type RX = Receiver<'static, NoopRawMutex, Message, 4>;
+pub type TX = Sender<'static, CriticalSectionRawMutex, Message, 4>;
+pub type RX = Receiver<'static, CriticalSectionRawMutex, Message, 4>;
 
 // for wrapping GPIO pins into something meaningful
 #[derive(Debug)]
