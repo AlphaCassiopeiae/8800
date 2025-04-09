@@ -1,8 +1,3 @@
-//! This example shows how to communicate asynchronous using i2c with external chips.
-//!
-//! Example written for the [`MCP23017 16-Bit I2C I/O Expander with Serial Interface`] chip.
-//! (https://www.microchip.com/en-us/product/mcp23017)
-
 #![no_std]
 #![no_main]
 
@@ -10,15 +5,18 @@ use defmt::*;
 use embassy_executor::Spawner;
 use embassy_rp::bind_interrupts;
 use embassy_rp::i2c::{self, Config, InterruptHandler};
-use embassy_rp::peripherals::I2C0;
+use embassy_rp::peripherals::{I2C0, PIO0};
+use embassy_rp::pio::program::pio_asm;
+use embassy_rp::pio::{Common, Config as PioConfig, InterruptHandler as PioInterruptHandler, Pio, Pin, ShiftDirection, StateMachine};
 use embassy_time::Timer;
 use embedded_hal_async::i2c::I2c;
+use fixed::traits::ToFixed;
+use fixed_macro::types::U56F8;
 use {defmt_rtt as _, panic_probe as _};
-use gpio::{Level, Output};
-use embassy_rp::gpio;
 
 bind_interrupts!(struct Irqs {
     I2C0_IRQ => InterruptHandler<I2C0>;
+    PIO0_IRQ_0 => PioInterruptHandler<PIO0>;
 });
 
 #[allow(dead_code)]
@@ -70,29 +68,61 @@ mod mcp23017 {
     }
 }
 
+/// Configure PIO to output data to pins 40-47
+fn setup_pio_output<'a>(pio: &mut Common<'a, PIO0>, sm: &mut StateMachine<'a, PIO0, 0>, pins: &[&Pin<'a, PIO0>]) {
+    // PIO program to output data to 8 pins (40-47)
+    let prg = pio_asm!(
+        "set pindirs, 1",  // Set pins as outputs
+        ".wrap_target",
+        "out pins, 8",     // Output 8 bits to pins
+        "pull block",      // Wait for more data from FIFO
+        ".wrap",
+    );
+
+    let mut cfg = PioConfig::default();
+    cfg.use_program(&pio.load_program(&prg.program), &[]);
+    
+    // Configure pins for output
+    cfg.set_out_pins(pins);
+    cfg.clock_divider = (U56F8!(125_000_000) / 10000).to_fixed(); // 10 kHz update rate
+    cfg.shift_out.auto_fill = true; // Corrected field name
+    cfg.shift_out.direction = ShiftDirection::Right;
+    
+    sm.set_config(&cfg);
+    
+    // Configure pins as outputs
+    sm.set_pin_dirs(embassy_rp::pio::Direction::Out, pins); // Corrected method signature
+}
+
 #[embassy_executor::main]
-async fn main(_spawner: Spawner) {
-
-    // let p = embassy_rp::init(Default::default());
-    // let mut led = Output::new(p.PIN_47, Level::Low);
-
-    // loop {
-    //     info!("led on!");
-    //     led.set_high();
-    //     Timer::after_millis(250).await;
-
-    //     info!("led off!");
-    //     led.set_low();
-    //     Timer::after_millis(250).await;
-    // }
-
+async fn main(spawner: Spawner) {
     let p = embassy_rp::init(Default::default());
 
+    // I2C setup
     let sda = p.PIN_0;
     let scl = p.PIN_1;
-
-    info!("set up i2c ");
     let mut i2c = i2c::I2c::new_async(p.I2C0, scl, sda, Irqs, Config::default());
+
+    // PIO setup for output pins 40-47
+    let Pio { mut common, mut sm0, .. } = Pio::new(p.PIO0, Irqs);
+    
+    // Create pin references for pins 40-47 using `common.make_pio_pin`
+    let pins = [
+        &common.make_pio_pin(p.PIN_40),
+        &common.make_pio_pin(p.PIN_41),
+        &common.make_pio_pin(p.PIN_42),
+        &common.make_pio_pin(p.PIN_43),
+        &common.make_pio_pin(p.PIN_44),
+        &common.make_pio_pin(p.PIN_45),
+        &common.make_pio_pin(p.PIN_46),
+        &common.make_pio_pin(p.PIN_47),
+    ];
+    
+    // Configure PIO for output
+    setup_pio_output(&mut common, &mut sm0, &pins);
+    
+    // Enable the state machine
+    sm0.set_enable(true);
 
     use mcp23017::*;
 
@@ -108,90 +138,22 @@ async fn main(_spawner: Spawner) {
         let mut addr1 = [0];
         let mut data = [0];
 
-        if (reset) {
-            nRst = 0;
-            addr = 0;
-        }
-        else {
-            nRst = 1;
-            if (clr) {
-                addr = 0;
-                data = hiz;
-                clock = clock;
-            }
-            else if (stop) {
-                clock = clock;
-            }
-            else if (run) {
-                clock = !clock;
-            }
-            else if (single_step) {
-                single_step = 1;
-            }
-            else if (examine) {
-                // read addr pins
-                i2c.write_read(ADDR, &[GPIOB], &mut addr0).await.unwrap();
-                i2c.write_read(ADDR1, &[GPIOA], &mut addr1).await.unwrap();
-
-                // flog loan word instruction over the bus
-                panel = 1;
-                // send addr
-                panel = 0;
-            }
-            else if (examine_next) {
-                // flog loan word with next addr
-                panel = 1;
-                panel = 0;
-            }
-            else if (deposit) {
-                panel = 1;
-                // read data
-                i2c.write_read(ADDR, &[GPIOA], &mut data).await.unwrap();
-                // send data sw (addr)
-                panel = 0;
-            }
-            else if (deposit_next) {
-                panel = 1;
-                // read data
-                i2c.write_read(ADDR, &[GPIOA], &mut data).await.unwrap();
-                // send data sw addr + 1
-                panel = 0;
-            }
-        }
-
-        // Read from port A, top IC (data)
-        i2c.write_read(ADDR, &[GPIOA], &mut data).await.unwrap();
+        // Read from port B, top IC (data)
+        i2c.write_read(ADDR, &[GPIOB], &mut data).await.unwrap();
         info!("data = {:02x}", data[0]);
         
-        // Read from port B, top IC (lower addr)
-        i2c.write_read(ADDR, &[GPIOB], &mut addr0).await.unwrap();
-        info!("addr0 = {:02x}", addr0[0]);
+        // // Read from port B, top IC (lower addr)
+        // i2c.write_read(ADDR, &[GPIOB], &mut addr0).await.unwrap();
+        // info!("addr0 = {:02x}", addr0[0]);
 
-        // Read from port A, bottom IC (top addr)
-        i2c.write_read(ADDR1, &[GPIOA], &mut addr1).await.unwrap();
-        info!("addr1 = {:02x}", addr1[0]);
+        // // Read from port A, bottom IC (top addr)
+        // i2c.write_read(ADDR1, &[GPIOA], &mut addr1).await.unwrap();
+        // info!("addr1 = {:02x}", addr1[0]);
 
-
-
-        Timer::after_millis(500).await;
+        // Send the data to the PIO FIFO - this will be output to pins 40-47
+        sm0.tx().wait_push(data[0] as u32).await;
+        
+        // Optional: Add delay between updates
+        Timer::after_millis(50).await;
     }
-}
-
-fn setup_pio_task_sm1<'a>(pio: &mut Common<'a, PIO0>, sm: &mut StateMachine<'a, PIO0, 1>) {
-    // Setupm sm1
-
-    // Read 0b10101 repeatedly until ISR is full
-    let prg = pio_asm!(
-        "set x, 0x15",
-        ".wrap_target",
-        "in x, 5 [31]",
-        ".wrap",
-    );
-
-    let mut cfg = Config::default();
-    cfg.use_program(&pio.load_program(&prg.program), &[]);
-    cfg.clock_divider = (U56F8!(125_000_000) / 2000).to_fixed();
-    cfg.shift_in.auto_fill = true;
-    cfg.shift_in.direction = ShiftDirection::Right;
-    sm.set_config(&cfg);
 }

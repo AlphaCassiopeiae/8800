@@ -72,14 +72,12 @@ use embassy_time::Timer;
 use gpio::{Level, Output};
 use {defmt_rtt as _, panic_probe as _};
 
-// Program metadata for `picotool info`.
-// This isn't needed, but it's recomended to have these minimal entries.
 #[link_section = ".bi_entries"]
 #[used]
 pub static PICOTOOL_ENTRIES: [embassy_rp::binary_info::EntryAddr; 4] = [
-    embassy_rp::binary_info::rp_program_name!(c"Blinky Example"),
+    embassy_rp::binary_info::rp_program_name!(c"Blinky Example Expanded"),
     embassy_rp::binary_info::rp_program_description!(
-        c"This example tests the RP Pico on board LED, connected to gpio 25"
+        c"This example cycles through gpio pins 0-47 (skipping 42-45), turning each on and off."
     ),
     embassy_rp::binary_info::rp_cargo_version!(),
     embassy_rp::binary_info::rp_program_build_attribute!(),
@@ -88,15 +86,64 @@ pub static PICOTOOL_ENTRIES: [embassy_rp::binary_info::EntryAddr; 4] = [
 #[embassy_executor::main]
 async fn main(_spawner: Spawner) {
     let p = embassy_rp::init(Default::default());
-    let mut led = Output::new(p.PIN_47, Level::Low);
+
+    // Create outputs for pins 0-41 and 46-47 (skipping 42, 43, 44, 45).
+    let mut outputs = [
+        Output::new(p.PIN_0, Level::Low),
+        Output::new(p.PIN_1, Level::Low),
+        Output::new(p.PIN_2, Level::Low),
+        Output::new(p.PIN_3, Level::Low),
+        Output::new(p.PIN_4, Level::Low),
+        Output::new(p.PIN_5, Level::Low),
+        Output::new(p.PIN_6, Level::Low),
+        Output::new(p.PIN_7, Level::Low),
+        Output::new(p.PIN_8, Level::Low),
+        Output::new(p.PIN_9, Level::Low),
+        Output::new(p.PIN_10, Level::Low),
+        Output::new(p.PIN_11, Level::Low),
+        Output::new(p.PIN_12, Level::Low),
+        Output::new(p.PIN_13, Level::Low),
+        Output::new(p.PIN_14, Level::Low),
+        Output::new(p.PIN_15, Level::Low),
+        Output::new(p.PIN_16, Level::Low),
+        Output::new(p.PIN_17, Level::Low),
+        Output::new(p.PIN_18, Level::Low),
+        Output::new(p.PIN_19, Level::Low),
+        Output::new(p.PIN_20, Level::Low),
+        Output::new(p.PIN_21, Level::Low),
+        Output::new(p.PIN_22, Level::Low),
+        Output::new(p.PIN_23, Level::Low),
+        Output::new(p.PIN_24, Level::Low),
+        Output::new(p.PIN_25, Level::Low),
+        Output::new(p.PIN_26, Level::Low),
+        Output::new(p.PIN_27, Level::Low),
+        Output::new(p.PIN_28, Level::Low),
+        Output::new(p.PIN_29, Level::Low),
+        Output::new(p.PIN_30, Level::Low),
+        Output::new(p.PIN_31, Level::Low),
+        Output::new(p.PIN_32, Level::Low),
+        Output::new(p.PIN_33, Level::Low),
+        Output::new(p.PIN_34, Level::Low),
+        Output::new(p.PIN_35, Level::Low),
+        Output::new(p.PIN_36, Level::Low),
+        Output::new(p.PIN_37, Level::Low),
+        Output::new(p.PIN_38, Level::Low),
+        Output::new(p.PIN_39, Level::Low),
+        Output::new(p.PIN_40, Level::Low),
+        Output::new(p.PIN_41, Level::Low),
+        Output::new(p.PIN_46, Level::Low),
+        Output::new(p.PIN_47, Level::Low),
+    ];
 
     loop {
-        info!("led on!");
-        led.set_high();
-        Timer::after_millis(250).await;
+        for (i, pin) in outputs.iter_mut().enumerate() {
+            info!("Turning on output {}...", i);
+            pin.set_high();
+            Timer::after_millis(250).await;
 
-        info!("led off!");
-        led.set_low();
-        Timer::after_millis(250).await;
+            info!("Turning off output {}...", i);
+            pin.set_low();
+            Timer::after_millis(250).await;
+        }
     }
 }
