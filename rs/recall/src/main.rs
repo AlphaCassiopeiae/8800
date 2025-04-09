@@ -40,7 +40,7 @@ static RECALL_TO_TRAM: Channel<CriticalSectionRawMutex, Message, 4> = Channel::n
 async fn main(_spawner: Spawner) {
     // instances of RAM and tram, channel assignments
     let mut recall: Recall = Recall::new(RECALL_TO_TRAM.sender(), TRAM_TO_RECALL.receiver());
-    let mut tram: Tram     = Tram::new(TRAM_TO_RECALL.sender(), RECALL_TO_TRAM.receiver());
+    let mut tram: Tram = Tram::new(TRAM_TO_RECALL.sender(), RECALL_TO_TRAM.receiver());
 
     loop {
         // recall itself should be completely blind to machine cycles

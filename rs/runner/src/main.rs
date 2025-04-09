@@ -1,74 +1,55 @@
-struct CPU {
-    // 8-bit general-purpose registers
-    a: u8, // Accumulator
-    b: u8,
-    c: u8,
-    d: u8,
-    e: u8,
-    h: u8,
-    l: u8,
+// main.rs - main of 8080 emulator
+// will set up channels to communicate with its tram instance
+#![no_std]
+#![no_main]
 
-    // Special registers
-    sp: u16, // Stack Pointer
-    pc: u16, // Program Counter
+mod cpu;
+mod runner;
 
-    // Flags
-    z: bool,  // Zero flag
-    s: bool,  // Sign flag
-    p: bool,  // Parity flag
-    cy: bool, // Carry flag
-    ac: bool, // Auxiliary carry flag
-}
+use common::Message;
+use defmt::*;
+use {defmt_rtt as _, panic_probe as _};
+use embassy_executor::Spawner;
+use embassy_rp::gpio::{Input, Output, Pull, Level};
+use embassy_rp::Peripherals;
+use embassy_time::{Timer, Duration};
+use embassy_sync::channel::Channel;
+use embassy_sync::blocking_mutex::raw::CriticalSectionRawMutex;
 
-impl CPU {
-    /// Create a new CPU with all registers set to 0
-    fn new() -> Self {
-        CPU {
-            a: 0,
-            b: 0,
-            c: 0,
-            d: 0,
-            e: 0,
-            h: 0,
-            l: 0,
-            sp: 0,
-            pc: 0,
-            z: false,
-            s: false,
-            p: false,
-            cy: false,
-            ac: false,
-        }
-    }
+use common::*;
+use tram::*;
+use runner::*;
 
-    /// Example of how to execute a single instruction
-    fn execute_instruction(&mut self, instruction: u8) {
-        match instruction {
-            0x00 => { /* NOP (No Operation) */ }
-            0x04 => {
-                // MVI
+#[link_section = ".bi_entries"]
+#[used]
+pub static PICOTOOL_ENTRIES: [embassy_rp::binary_info::EntryAddr; 4] = [
+    embassy_rp::binary_info::rp_program_name!(c"runner"),
+    embassy_rp::binary_info::rp_program_description!(
+        c"8080 emulator that listens to external clock"
+    ),
+    embassy_rp::binary_info::rp_cargo_version!(),
+    embassy_rp::binary_info::rp_program_build_attribute!(),
+];
 
-            }
-            0x76 => { self.halt(); } // HLT (Halt)
-            _ => { /* Handle other instructions */ }
-        }
-    }
+static RUNNER_TO_TRAM: Channel<CriticalSectionRawMutex, Message, 4> = Channel::new();
+static TRAM_TO_RUNNER: Channel<CriticalSectionRawMutex, Message, 4> = Channel::new();
 
-    /// Halt the CPU
-    fn halt(&mut self) {
-        // Logic for halting the CPU
-        // For example, setting a halt flag or stopping the main loop
-    }
-}
+#[embassy_executor::main]
+async fn main(_spawner: Spawner) {
+    // instances of runner and tram, channels connected
+    let mut runner: Runner = Runner::new(RUNNER_TO_TRAM.sender(), TRAM_TO_RUNNER.receiver());
+    let mut tram: Tram = Tram::new(TRAM_TO_RUNNER.sender(), RUNNER_TO_TRAM.receiver());
 
+    // initialize GPIO stuff
+    let p: Peripherals = embassy_rp::init(Default::default());
 
-fn get_mem() {} // write to memory on the s100 bus
+    let mut clk: Input<'_> = Input::new(p.PIN_4, Pull::Down);
 
-
-fn write_mem() {}// write to memory on the s100 bus
-
-fn main() -> ! {
     loop {
-
+        // check if GPIO 4's level has changed from low->high
+        // if it has, toggle LED
+        // result is an LED that toggles with every positive clock edge
+        clk.wait_for_rising_edge().await;
+        info!("positive clk edge!");
     }
 }
