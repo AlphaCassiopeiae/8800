@@ -1,3 +1,4 @@
+#![no_std]
 // cpu.rs - defines the CPU struct that will be a part of runner
 // handles all CPU-specific functionality
 

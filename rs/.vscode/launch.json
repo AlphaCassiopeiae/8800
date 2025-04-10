@@ -3,29 +3,54 @@
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [
-
+    "configurations": [  
         {
-            //"preLaunchTask": "rust: cargo build --target thumbv8m.main-none-eabihf",
-            "type": "probe-rs-debug",
+            "preLaunchTask": "Build interchange",
+            "cwd": "${workspaceRoot}",
+            "executable": "./target/thumbv8m.main-none-eabihf/debug/interchange",
+            "name": "OpenOCD interchange",
             "request": "launch",
-            "name": "probe-rs Test",
-            "cwd": "${workspaceFolder}",
-            "connectUnderReset": false,
-            "chip": "rp2350",
-            "flashingConfig": {
-                "flashingEnabled": true,
-                "haltAfterReset": false
-            },
-            "coreConfigs": [
-                {
-                    "coreIndex": 0,
-                    "programBinary": "./target/thumbv8m.main-none-eabihf/debug/${fileBasenameNoExtension}",
-                    "rttEnabled": true
-                }
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "svdFile": "RP2350.svd",
+            "configFiles": [
+                "interface/cmsis-dap.cfg",
+                "target/rp2350.cfg"
             ],
-            "consoleLogLevel": "Info", //Error, Warn, Info, Debug, Trace
-            "wireProtocol": "Swd"
-        }
+            "searchDir": [
+                "./tcl"
+            ],
+            "openOCDLaunchCommands": [
+                "rp2350.dap.core1 cortex_m reset_config sysresetreq",
+                "adapter speed 5000",
+                "program ./target/thumbv8m.main-none-eabihf/debug/interchange verify",
+                "reset"
+            ],
+            "postLaunchCommands": [
+                "monitor rtt server start 8765 0",
+                // rust-nm -S .\target\thumbv8m.main-none-eabihf\debug\interchange | grep RTT
+                "monitor rtt setup 0x20000000 0x30 \"SEGGER RTT\"",
+                "monitor rtt start",
+            ],
+            "rttConfig": {
+                "enabled": true,
+                "address": "auto",
+                "decoders": [
+                    {
+                        "type": "advanced",
+                        "decoder": "./rtt-defmt.js",
+                        "config": {
+                            "cwd": "${workspaceRoot}",
+                            "executable": "./target/thumbv8m.main-none-eabihf/debug/interchange",
+                        },
+                        "label": "RTT",
+                        "port": 0,
+                        "ports": [0]
+                    },
+                ]
+            },
+            "runToEntryPoint": "main",
+            "showDevDebugOutput": "none"
+        },
     ]
 }

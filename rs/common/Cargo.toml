@@ -1,11 +1,12 @@
 [package]
 name = "common"
-version = "0.1.0"
-edition = "2024"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
 
 [dependencies]
-embassy-rp = { version = "0.3.0", git = "https://github.com/embassy-rs/embassy", rev = "00ef474b94d99a1fd933e79bd66628cd3a16e3c4", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl", "rp235xb", "binary-info"] }
-embassy-sync = { version = "0.6.2", git = "https://github.com/embassy-rs/embassy", rev = "00ef474b94d99a1fd933e79bd66628cd3a16e3c4", features = ["defmt"] }
-defmt = "0.3"
-defmt-rtt = "0.4"
-panic-probe = { version = "0.3", features = ["print-defmt"] }
+embassy-rp.workspace = true
+embassy-sync.workspace = true
+defmt.workspace = true
+defmt-rtt.workspace = true
+panic-probe.workspace = true
