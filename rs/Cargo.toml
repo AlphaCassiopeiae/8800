@@ -1,6 +1,10 @@
 [workspace]
 resolver = "2"
 
-members = [ "cycle", "interchange", "pico", "recall", "runner",
+members = [ "common", "cycle", "interchange", "pico", "recall", "runner",
     "tram", "ubahn",
 ]
+
+[workspace.dependencies]
+common = {path="common"}
+tram = {path="tram"}

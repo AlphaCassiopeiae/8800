@@ -200,6 +200,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "common"
+version = "0.1.0"
+dependencies = [
+ "defmt",
+ "defmt-rtt",
+ "embassy-rp",
+ "embassy-sync 0.6.2 (git+https://github.com/embassy-rs/embassy?rev=00ef474b94d99a1fd933e79bd66628cd3a16e3c4)",
+ "panic-probe",
+]
+
+[[package]]
 name = "cortex-m"
 version = "0.7.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -715,6 +726,7 @@ version = "0.1.0"
 dependencies = [
  "assign-resources",
  "byte-slice-cast",
+ "common",
  "cortex-m",
  "cortex-m-rt",
  "critical-section",
@@ -754,6 +766,7 @@ dependencies = [
  "smart-leds 0.3.0",
  "static_cell",
  "tb6612fng",
+ "tram",
  "usbd-hid",
 ]
 
@@ -2207,6 +2220,52 @@ dependencies = [
 [[package]]
 name = "runner"
 version = "0.1.0"
+dependencies = [
+ "assign-resources",
+ "byte-slice-cast",
+ "common",
+ "cortex-m",
+ "cortex-m-rt",
+ "critical-section",
+ "cyw43",
+ "cyw43-pio",
+ "defmt",
+ "defmt-rtt",
+ "display-interface",
+ "display-interface-spi",
+ "embassy-embedded-hal",
+ "embassy-executor 0.7.0",
+ "embassy-futures",
+ "embassy-net",
+ "embassy-net-wiznet",
+ "embassy-rp",
+ "embassy-sync 0.6.2 (git+https://github.com/embassy-rs/embassy?rev=00ef474b94d99a1fd933e79bd66628cd3a16e3c4)",
+ "embassy-time",
+ "embassy-usb",
+ "embassy-usb-logger",
+ "embedded-graphics",
+ "embedded-hal 1.0.0",
+ "embedded-hal-async",
+ "embedded-hal-bus",
+ "embedded-io-async",
+ "embedded-sdmmc",
+ "embedded-storage",
+ "fixed",
+ "fixed-macro",
+ "heapless 0.8.0",
+ "log",
+ "mipidsi",
+ "panic-probe",
+ "portable-atomic",
+ "rand",
+ "serde",
+ "serde-json-core",
+ "smart-leds 0.3.0",
+ "static_cell",
+ "tb6612fng",
+ "tram",
+ "usbd-hid",
+]
 
 [[package]]
 name = "rustc_version"
@@ -2551,6 +2610,7 @@ version = "0.1.0"
 dependencies = [
  "assign-resources",
  "byte-slice-cast",
+ "common",
  "cortex-m",
  "cortex-m-rt",
  "critical-section",

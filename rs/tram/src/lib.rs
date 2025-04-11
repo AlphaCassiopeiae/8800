@@ -1,64 +1,42 @@
-// lib.rs
-// defines types to be used by tram
-use std::sync::mpsc::channel;
+// defines the tram struct used to communicate with packages
+#![no_std]
+use common::*;
 
-use embassy_rp::gpio::{AnyPin, Pull, Level, Pin};
-
-// add more to these if components need more info
-// tram itself should be able to figure out what bus signals to assert
-// => shouldn't need to be in these messages
-pub enum Message {
-    MemoryReadRequest{addr: usize},
-    MemoryWriteRequest{addr: usize, data: u8},
-    MemoryReadResponse{data: u8},
+pub struct Tram {
+    pub recv_channel: RX,
+    pub send_channel: TX,
 }
 
-type TX = std::sync::mpsc::Sender<Message>
-type RX = std::sync::mpsc::Reciever<Message>
+impl Tram {
+    pub fn new(tx: TX, rx: RX) -> Self {
+        Self {
+            recv_channel: rx,
+            send_channel: tx,
+        }
+    }
 
-// for wrapping GPIO pins into something meaningful
-pub struct BusState {
-    pub addr: usize,
-    pub data: u8,
-    pub read_request: bool,
-    pub write_request: bool,
-    pub read_response: bool,
-}
+    /* functions for communication with packages */
+    pub async fn send_msg(&self, message: Message) {
+        self.send_channel.send(message).await;
+    }
 
-// struct of GPIO pins
-// defines names for easier use, actual assignments will be done in packages
-// this will only ever be used by tram instances
-// ex: clk is input for runner and recall, but output for front panel
-pub struct Bus {
-    // control                  
-    pub clk: Anypin,        // Pin 4
-    pub n_preset: AnyPin,   // Pin 5
-    // UI
-    pub panel: AnyPin,      // Pin 6
-    pub prot: AnyPin,       // Pin 7
-    pub sm1: AnyPin,        // Pin 8
-    // status
-    pub shlta: AnyPin,      // Pin 9
-    pub sstack: AnyPin,     // Pin 10
-    // DMA
-    pub n_phold: AnyPin,    // Pin 11
-    // R/W
-    pub pdbin: AnyPin,      // Pin 12
-    pub swo: AnyPin,        // Pin 13
-    pub pwait: AnyPin,      // Pin 14
-    // I/O
-    pub prdy: AnyPin,       // Pin 15
-    pub sout: AnyPin,       // Pin 16
-    pub sinp: AnyPin,       // Pin 17
-    // memory
-    pub xrdy: AnyPin,       // Pin 18
-    pub mwrt: AnyPin,       // Pin 19
-    pub smemr: AnyPin,      // Pin 20
-    // interrupt
-    pub n_pint: AnyPin,     // Pin 21
-    pub sinta: AnyPin,      // Pin 22
-    pub pinte: AnyPin,      // Pin 23
-    // A/D lines
-    pub addr: [AnyPin; 16], // Pins 24-39
-    pub data: [AnyPin; 8],  // Pins 40-47
+    pub async fn recv_msg(&self) -> Message {
+        self.recv_channel.receive().await
+    }
+
+    /* functions for driving bus (GPIO, PIO, etc.) */
+    // detect bus request using GPIO signals, translate into message to send to recall
+    // TODO: add GPIO pins as argument to this function
+    pub fn detect_memory_request(&self) -> BusState {
+        // TODO: update this with GPIO assignments/logic to set bool flags
+        // check if active memory request on GPIO pins
+        let addr: usize = 0;
+        let data: u8 = 0;
+        let read_request: bool = false;
+        let write_request: bool = false;
+        let read_response: bool = false;
+
+        // return corresponding bus state
+        BusState {addr, data, read_request, write_request, read_response}
+    }
 }

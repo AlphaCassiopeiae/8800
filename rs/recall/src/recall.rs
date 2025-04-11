@@ -1,11 +1,6 @@
-// this code defines the recall struct that will communicate with tram
-mod ram;
-mod lib;
-
-use ram::RAM;
-use lib::{Message, TX, RX};
-
-use std::sync::mpsc::channel;
+// recall.rs - creates Recall struct to house RAM and communicate with tram
+use crate::ram::*;
+use common::*;
 
 // recall never directly uses GPIO
 pub struct Recall {
@@ -17,7 +12,7 @@ pub struct Recall {
 
 impl Recall {
     
-    fn new(rx: RX, tx: TX) -> Self {
+    pub fn new(tx: TX, rx: RX) -> Self {
         // define channels and connect in main.rs
         Recall { 
             ram: RAM::new(),
@@ -26,12 +21,12 @@ impl Recall {
         }
     }
 
-    pub fn send_msg(&self, message: Message) {
-        self.send_channel.send(message).unwrap();
+    pub async fn send_msg(&self, message: Message) {
+        self.send_channel.send(message).await;
     }
 
-    pub fn recv_msg(&self) -> Option<Message> {
-        self.recv_channel.recv().ok()
+    pub async fn recv_msg(&self) -> Message {
+        self.recv_channel.receive().await
     }
 
     // RAM reads and writes called like recall.ram.read(), recall.ram.write()
