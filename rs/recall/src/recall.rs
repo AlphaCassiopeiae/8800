@@ -30,4 +30,11 @@ impl Recall {
     }
 
     // RAM reads and writes called like recall.ram.read(), recall.ram.write()
+    pub fn read(&self, addr: usize) -> u8 {
+        self.ram.read(addr)
+    }
+
+    pub fn write(&self, addr: usize, data: u8) {
+        self.ram.write(addr, data);
+    }
 }
