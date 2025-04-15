@@ -74,7 +74,7 @@ fn main() -> ! {
     );
 
     // Configure GPIO25 as an output
-    let mut led_pin = pins.gpio25.into_push_pull_output();
+    let mut led_pin = pins.gpio40.into_push_pull_output();
     loop {
         led_pin.set_high().unwrap();
         timer.delay_ms(500);
