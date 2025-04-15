@@ -2,7 +2,7 @@
 // mostly used for interfacing with tram
 #![no_std]
 
-use embassy_sync::channel::{Channel, Sender, Receiver};
+use embassy_sync::channel::{Sender, Receiver};
 use embassy_sync::blocking_mutex::raw::CriticalSectionRawMutex;
 use embassy_rp::gpio::AnyPin;
 

@@ -1,0 +1,52 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "options": {
+        "env": {
+            "OPENOCD_SCRIPTS": "${workspaceRoot}/tcl"
+        }
+    },
+    "tasks": [
+        {
+            "label": "Build cycle",
+            "type": "shell",
+            "command": "cargo build --bin cycle",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Build recall",
+            "type": "shell",
+            "command": "cargo build --bin recall",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Build interchange",
+            "type": "shell",
+            "command": "cargo build --bin interchange",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Build ubahn",
+            "type": "shell",
+            "command": "cargo build --bin ubahn",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Build tramtest",
+            "type": "shell",
+            "command": "cargo build --bin tramtest",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+    ]
+}
