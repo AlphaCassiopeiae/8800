@@ -71,12 +71,12 @@ pub struct Instruction {
     pub num_data_bytes: u8,
 }
 
-impl Instruction {
-    fn decode_instr(instr: u8) -> Instruction {
-        // lo
-    }
+// impl Instruction {
+//     fn decode_instr(instr: u8) -> Instruction {
+//         // lo
+//     }
 
-    fn new(instr: u8) -> Self {
-        decode_instr(instr)
-    }
-}
+//     fn new(instr: u8) -> Self {
+//         decode_instr(instr)
+//     }
+// }

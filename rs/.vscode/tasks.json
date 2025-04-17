@@ -9,9 +9,9 @@
     },
     "tasks": [
         {
-            "label": "Build cycle",
+            "label": "Build carrd",
             "type": "shell",
-            "command": "cargo build --bin cycle",
+            "command": "cargo build --package cycle --bin carrd",
             "problemMatcher": [
                 "$rustc"
             ]

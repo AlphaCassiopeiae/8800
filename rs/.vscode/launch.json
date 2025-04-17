@@ -5,9 +5,9 @@
     "version": "0.2.0",
     "configurations": [  
         {
-            "preLaunchTask": "Build interchange",
+            "preLaunchTask": "Build carrd",
             "cwd": "${workspaceRoot}",
-            "executable": "./target/thumbv8m.main-none-eabihf/debug/interchange",
+            "executable": "./target/thumbv8m.main-none-eabihf/debug/carrd",
             "name": "OpenOCD interchange",
             "request": "launch",
             "type": "cortex-debug",
@@ -21,6 +21,7 @@
                 "./tcl"
             ],
             "openOCDLaunchCommands": [
+                "rp2350.dap.core0 cortex_m reset_config sysresetreq",
                 "rp2350.dap.core1 cortex_m reset_config sysresetreq",
                 "adapter speed 5000",
                 "program ./target/thumbv8m.main-none-eabihf/debug/interchange verify",
@@ -41,7 +42,7 @@
                         "decoder": "./rtt-defmt.js",
                         "config": {
                             "cwd": "${workspaceRoot}",
-                            "executable": "./target/thumbv8m.main-none-eabihf/debug/interchange",
+                            "executable": "./target/thumbv8m.main-none-eabihf/debug/carrd",
                         },
                         "label": "RTT",
                         "port": 0,

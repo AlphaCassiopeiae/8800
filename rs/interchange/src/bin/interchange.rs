@@ -4,6 +4,7 @@
 use defmt::*;
 use embassy_executor::Spawner;
 use embassy_rp::bind_interrupts;
+use embassy_rp::gpio::{Level, Output};
 use embassy_rp::i2c::{self, Config, InterruptHandler};
 use embassy_rp::peripherals::{I2C1, PIO0};
 use embassy_rp::pio::program::pio_asm;
@@ -74,8 +75,8 @@ fn setup_pio_output<'a>(pio: &mut Common<'a, PIO0>, sm: &mut StateMachine<'a, PI
     let prg = pio_asm!(
         "set pindirs, 1",  // Set pins as outputs
         ".wrap_target",
-        "out pins, 8",     // Output 8 bits to pins
         "pull block",      // Wait for more data from FIFO
+        "out pins, 8",     // Output 8 bits to pins
         ".wrap",
     );
 
@@ -97,6 +98,9 @@ fn setup_pio_output<'a>(pio: &mut Common<'a, PIO0>, sm: &mut StateMachine<'a, PI
 #[embassy_executor::main]
 async fn main(spawner: Spawner) {
     let p = embassy_rp::init(Default::default());
+
+    // non parallel leds
+    let mut led = Output::new(p.PIN_4, Level::Low);
 
     // I2C setup
     let sda = p.PIN_38;
