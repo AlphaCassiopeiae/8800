@@ -26,30 +26,27 @@ fn setup_mem_data_control<'a>(
     sm: &mut StateMachine<'a, PIO0, 1>,
     data_pins: &[&Pin<'a, PIO0>],
     addr_pins: &[&Pin<'a, PIO0>],
-    xrdy_pin: &Pin<'a, PIO0>
+    xrdy_pin: &Pin<'a, PIO0>,
+    smemr_pin: &Pin<'a, PIO0>,
 ) {
     //control xrdy and data
     let prg = pio_asm!(
-        "set pins, 1", // set default xrdy
-
         ".wrap_target",
-        "wait 1 gpio 6",      // Wait for SMEMR# to be asserted
+        "set pins, 0", // set default xrdy
+        "wait 0 gpio 29",      // Wait for SMEMR# to be asserted
 
-        "irq 3",
+        // "irq 3",
 
-        // Wait for address monitor to signal address is ready
-        // "in pins, 16",         // Sample the 16-bit address
-        // "push block",          // Push address to RX FIFO
+        // // Wait for address monitor to signal address is ready
+        "in pins, 16",         // Sample the 16-bit address
+        "push block",          // Push address to RX FIFO
         
         // // Pull data value to output to data bus
-        // "pull block",          // Get data value from TX FIFO
-        // "out pins, 8",         // Output data to pins
+        "pull block",          // Get data value from TX FIFO
+        "out pins, 8",         // Output data to pins
 
         // // Signal memory is ready by asserting XRDY
-        // "set pins, 0 [30]",    // Set XRDY high with delay for setup
-        
-        // // De-assert XRDY and clear data bus
-        // "set pins, 1 [30]",         // Clear XRDY and data
+        "set pins, 1 [30]",    // Set XRDY high with delay for setup
         
         // Ready for next cycle
         ".wrap",           // Loop back for next transaction
@@ -64,15 +61,15 @@ fn setup_mem_data_control<'a>(
     cfg.set_set_pins(&[xrdy_pin]);
     
     // Set clock rate
-    cfg.clock_divider = (U56F8!(125_000_000) / 100_000).to_fixed(); // 100kHz operation
+    cfg.clock_divider = (U56F8!(125_000_000) / 20 / 200).to_fixed(); // 100kHz operation
     
     // Configure shift registers
-    cfg.shift_out.auto_fill = true;
+    cfg.shift_out.auto_fill = false;
     cfg.shift_out.direction = ShiftDirection::Right;
 
     // Configure shift registers
-    cfg.shift_in.auto_fill = true;
-    cfg.shift_in.direction = ShiftDirection::Right;
+    cfg.shift_in.auto_fill = false;
+    cfg.shift_in.direction = ShiftDirection::Left;
     
     sm.set_config(&cfg);
     
@@ -82,6 +79,7 @@ fn setup_mem_data_control<'a>(
     
     // Set XRDY pin as output
     sm.set_pin_dirs(embassy_rp::pio::Direction::Out, &[xrdy_pin]);
+    sm.set_pin_dirs(embassy_rp::pio::Direction::In, &[smemr_pin]);
 }
 
 #[embassy_executor::main]
@@ -125,9 +123,10 @@ async fn main(_spawner: Spawner) {
 
     // Setup pin for XRDY signal
     let xrdy_pin = &common.make_pio_pin(p.PIN_30);
+    let smemr_pin = &common.make_pio_pin(p.PIN_29);
     
     // Configure PIO state machines
-    setup_mem_data_control(&mut common, &mut sm1, &data_pins, &addr_pins, xrdy_pin);
+    setup_mem_data_control(&mut common, &mut sm1, &data_pins, &addr_pins, xrdy_pin, smemr_pin);
     
     // Create a simple memory array (for demo purposes)
     let memory = create_test_memory();
@@ -138,21 +137,27 @@ async fn main(_spawner: Spawner) {
     info!("Memory simulator ready");
     
     loop {
-        info!("Waiting for memory access request...");
+        // info!("Waiting for memory access request...");
         // Wait for address monitor to receive an address
-        // let address = sm1.rx().wait_pull().await as u16;
-        irq3.wait().await;
-        info!("recieved");
+        let address = sm1.rx().wait_pull().await as u32;
+        // irq3.wait().await;
+        // info!("recieved");
+        // // print rx level
+        // let level = sm1.rx().level();
+        // info!("rx level = {:02x}", level);
         
-        // // Log the memory access
-        // info!("Memory read request: address 0x{:04X}", address);
+        // Log the memory access
+        info!("Memory read request: address 0x{:08X}", address);
         
-        // // Look up the data at this address
-        // let data = memory[address as usize];
-        // info!("Returning data: 0x{:02X}", data);
+        // Look up the data at this address
+        let data = memory[address as usize];
+        info!("Returning data: 0x{:02X}", data);
         
-        // // Push the data to the data control SM
-        // sm1.tx().wait_push(data as u32).await;
+        // Push the data to the data control SM
+        sm1.tx().wait_push(data as u32).await;
+        // print tx level
+        // let level = sm1.tx().level();
+        // info!("tx level = {:02x}", level);
 
         // info!("Data pushed to data control");
     }

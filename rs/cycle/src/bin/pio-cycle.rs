@@ -23,37 +23,31 @@ fn setup_cpu_control<'a>(
     sm: &mut StateMachine<'a, PIO0, 1>,
     control_pins: &[&Pin<'a, PIO0>],
     addr_pins: &[&Pin<'a, PIO0>],
-    data_pins: &[&Pin<'a, PIO0>]
+    data_pins: &[&Pin<'a, PIO0>],
+    xrdy_pin: &[&Pin<'a, PIO0>]
 ) {
     // CPU Control Signals PIO program
     let prg = pio_asm!(
-        // T1: Start of cycle - all signals inactive
-        ".wrap_target",
-        "set pins, 1 [30]",      // SMEMR# high (2nd bit)
-        // "pull block",
-        // "out pins, 16",
-        "set pins, 0 [30]",
+        "set pins, 1",      // SMEMR# default 28
+        ".wrap_target",        
+
+        // Wait for instruction from main CPU
+        "pull block",
+
+        // send addr
+        "out pins, 16",
+        
+        // T2: Assert SMEMR# (active low)
+        "set pins, 0", //  set smemr 29 low
+        
+        // Wait for XRDY to indicate data is ready
+        "wait 1 gpio 30", // Wait for XRDY high
+        "set pins, 1",      // SMEMR# default 28
+        
+        "in pins, 8",          // Read 8-bit data from pins
+        "push block",          // Push data to RX FIFO
+
         ".wrap"
-        
-        // ".wrap_target",
-        // // Wait for instruction from main CPU
-        // "pull block",
-
-        // // send addr
-        // "out pins, 16",
-        
-        // // T2: Assert SMEMR# (active low)
-        // "set pins, 0b00 [30]", // SMEMR# low, pDBIN still high
-        
-        // // Wait for XRDY to indicate data is ready
-        // "wait 0 gpio 30", // Wait for XRDY low
-        
-        // "in pins, 8",          // Read 8-bit data from pins
-        // "push block",          // Push data to RX FIFO
-
-        // // End of T3: De-assert all signals
-        // "set pins, 0b01",      // Return all signals to inactive
-        // ".wrap"
     );
 
     let mut cfg = PioConfig::default();
@@ -63,10 +57,10 @@ fn setup_cpu_control<'a>(
     cfg.set_set_pins(control_pins);
 
     // // Configure address pins for output
-    // cfg.set_out_pins(addr_pins);
+    cfg.set_out_pins(addr_pins);
 
     // // Configure data pins for input (during read)
-    // cfg.set_in_pins(data_pins);
+    cfg.set_in_pins(data_pins);
     
     // Set clock rate
     cfg.clock_divider = (U56F8!(125_000_000) / 20 / 200).to_fixed(); // 100kHz operation
@@ -75,18 +69,20 @@ fn setup_cpu_control<'a>(
     cfg.shift_out.auto_fill = true;
     cfg.shift_out.direction = ShiftDirection::Right;
     cfg.shift_in.auto_fill = true;
-    cfg.shift_in.direction = ShiftDirection::Right;
+    cfg.shift_in.direction = ShiftDirection::Left;
+    
+    sm.set_config(&cfg);
 
     // Set address pins as outputs
     sm.set_pin_dirs(embassy_rp::pio::Direction::Out, addr_pins);
     
     // Set data pins as inputs for reading
     sm.set_pin_dirs(embassy_rp::pio::Direction::In, data_pins);
-
-    sm.set_config(&cfg);
     
     // Set control pins as outputs
     sm.set_pin_dirs(embassy_rp::pio::Direction::Out, control_pins);
+
+    sm.set_pin_dirs(embassy_rp::pio::Direction::In, xrdy_pin);
 }
 
 #[embassy_executor::main]
@@ -130,11 +126,13 @@ async fn main(_spawner: Spawner) {
 
     // Setup pins for control signals
     let control_pins = [
-        &common.make_pio_pin(p.PIN_34), // SMEMR#
+        &common.make_pio_pin(p.PIN_29), // SMEMR#
     ];
 
+    let xrdy_pin = [&common.make_pio_pin(p.PIN_30)];
+
     // Configure PIO state machines
-    setup_cpu_control(&mut common, &mut sm1, &control_pins, &addr_pins, &data_pins);
+    setup_cpu_control(&mut common, &mut sm1, &control_pins, &addr_pins, &data_pins, &xrdy_pin);
     
     // Enable state machines
     sm1.set_enable(true);
@@ -153,22 +151,27 @@ async fn main(_spawner: Spawner) {
     
     loop {
         // Get the next address to read
-        // let address = test_addresses[current_address];
-        // current_address = (current_address + 1) % test_addresses.len();
-        info!("hi");
-        // // Start a new read transaction
-        // info!("Initiating read from address 0x{:04X}", address);
+        let address = test_addresses[current_address];
+        current_address = (current_address + 1) % test_addresses.len();
+        // Start a new read transaction
+        info!("Initiating read from address 0x{:08X}", address);
+        // print tx level
+        // let level = sm1.tx().level();
+        // info!("tx level = {:02x}", level);
         
-        // // Push address to address/data state machine
-        // sm1.tx().wait_push(address as u32).await;
+        // Push address to address/data state machine
+        sm1.tx().wait_push(address as u32).await;
 
         // info!("sent data");
 
-        // // Read the data received
-        // let data = sm1.rx().wait_pull().await as u8;
-        // info!("Read data 0x{:02X} from address 0x{:04X}", data, address);
+        // Read the data received
+        let data = sm1.rx().wait_pull().await as u32;
+        info!("Read data 0x{:02X} from address 0x{:08X}", data, address);
+        // print rx level
+        // let level = sm1.rx().level();
+        // info!("rx level = {:02x}", level);
         
         // Wait before next transaction
-        Timer::after_millis(1000).await;
+        Timer::after_millis(500).await;
     }
 }
