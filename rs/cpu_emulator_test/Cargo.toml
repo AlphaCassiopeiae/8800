@@ -1,0 +1,9 @@
+[package]
+name="emu_test"
+version="0.1.0"
+edition="2021"
+
+[dependencies]
+tokio={version="1", features=["full"]}
+crossterm="0.27"
+futures="0.3"

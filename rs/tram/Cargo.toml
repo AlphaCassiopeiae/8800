@@ -56,3 +56,5 @@ portable-atomic.workspace = true
 log.workspace = true
 rand .workspace = true
 embedded-sdmmc.workspace = true
+
+common = {workspace = true}

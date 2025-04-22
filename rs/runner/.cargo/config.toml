@@ -1,0 +1,11 @@
+[target.'cfg(all(target_arch = "arm", target_os = "none"))']
+#runner = "openocd -f cmsis-dap.cfg -f rp2350.cfg -c 'adapter speed 5000' -c 'program target/thumbv8m.main-none-eabihf/release/test verify reset exit'"
+runner = "probe-rs run --chip rp2350"
+#runner = "elf2uf2-rs -d"
+#runner = "picotool load -u -v -x -t elf"
+
+[build]
+target = "thumbv8m.main-none-eabihf"
+
+[env]
+DEFMT_LOG = "debug"
