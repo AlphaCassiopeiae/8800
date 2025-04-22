@@ -63,20 +63,3 @@ pub struct Bus {
     pub addr: [AnyPin; 16], // Pins 24-39
     pub data: [AnyPin; 8],  // Pins 40-47
 }
-
-// not entirely happy with this
-// pub struct Instruction {
-//     pub instruction: u8,
-//     pub num_cycles: u8,
-//     pub num_data_bytes: u8,
-// }
-
-// impl Instruction {
-//     fn decode_instr(instr: u8) -> Instruction {
-//         // lo
-//     }
-
-//     fn new(instr: u8) -> Self {
-//         decode_instr(instr)
-//     }
-// }

@@ -9,9 +9,6 @@ members = [
     "runner",
     "tram",
     # "ubahn",
-]
-
-exclude = [
     "cpu_emulator_test",
 ]
 

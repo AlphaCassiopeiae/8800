@@ -213,6 +213,57 @@ dependencies = [
 ]
 
 [[package]]
+name = "cpu_emulator"
+version = "0.1.0"
+dependencies = [
+ "assign-resources",
+ "byte-slice-cast",
+ "common",
+ "cortex-m",
+ "cortex-m-rt",
+ "critical-section",
+ "cyw43",
+ "cyw43-pio",
+ "defmt",
+ "defmt-rtt",
+ "display-interface",
+ "display-interface-spi",
+ "embassy-embedded-hal",
+ "embassy-executor",
+ "embassy-futures",
+ "embassy-net",
+ "embassy-net-wiznet",
+ "embassy-rp",
+ "embassy-sync 0.6.2 (git+https://github.com/embassy-rs/embassy?rev=3a85ecebef61017069da9f1e1d48d20c3889b76b)",
+ "embassy-time",
+ "embassy-usb",
+ "embassy-usb-logger",
+ "embedded-graphics",
+ "embedded-hal 1.0.0",
+ "embedded-hal-async",
+ "embedded-hal-bus",
+ "embedded-io-async",
+ "embedded-sdmmc",
+ "embedded-storage",
+ "fixed",
+ "fixed-macro",
+ "heapless 0.8.0",
+ "log",
+ "mipidsi",
+ "panic-probe",
+ "portable-atomic",
+ "rand",
+ "runner",
+ "serde",
+ "serde-json-core",
+ "smart-leds 0.3.0",
+ "static_cell",
+ "tb6612fng",
+ "tram",
+ "usbd-hid",
+]
+
+[[package]]
 name = "cpufeatures"
 version = "0.2.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"

@@ -1,6 +1,14 @@
-use std::fmt;
 use crate::instructions::*;
 use crate::ram::*;
+use core::prelude::rust_2024::derive;
+use core::marker::Copy;
+use core::clone::Clone;
+use core::fmt::Debug;
+use core::convert::From;
+use core::panic;
+use core::fmt;
+use core::writeln;
+use defmt::println;
 
 // masks for flags
 const FLAG_S: u8  = 0b1000_0000; // Sign
@@ -38,7 +46,7 @@ impl From<u8> for Reg {
     }
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct CPU {
     // registers
     registers: [u8; 8],
@@ -217,16 +225,16 @@ impl CPU {
         self.carry = (flags & 0x01) == 0x01;
     }
 
-    pub fn format_flags(&self) -> String {
-        format!(
-            "[{}{}{}{}{}]",
-            if self.sign { "S" } else { "." },  // Sign
-            if self.zero { "Z" } else { "." },  // Zero
-            if self.auxc { "A" } else { "." },  // Aux Carry
-            if self.parity { "P" } else { "." },  // Parity
-            if self.carry { "C" } else { "." },  // Carry
-        )
-    }
+    // pub fn format_flags(&self) -> String {
+    //     format!(
+    //         "[{}{}{}{}{}]",
+    //         if self.sign { "S" } else { "." },  // Sign
+    //         if self.zero { "Z" } else { "." },  // Zero
+    //         if self.auxc { "A" } else { "." },  // Aux Carry
+    //         if self.parity { "P" } else { "." },  // Parity
+    //         if self.carry { "C" } else { "." },  // Carry
+    //     )
+    // }
 
     pub fn fetch_instruction(&self) -> u8 {
         // TODO: update for making tram request
@@ -236,7 +244,7 @@ impl CPU {
     pub fn execute_instruction(&mut self, instruction: u8) {
         println!("instruction: 0x{:X}\r", instruction);
         let info: InstructionInfo = INSTRUCTION_TABLE[usize::from(instruction)];
-        println!("info: {}\r", info);
+        // println!("info: {}\r", info);
 
         // next_pc logic
         // for instructions that need bytes of data, next_pc will be updated differently
@@ -681,7 +689,7 @@ impl fmt::Display for CPU {
         writeln!(f, "    B: 0x{:02X}  C: 0x{:02X}\r", self.registers[0b000 as usize ^ 1], self.registers[0b001 as usize ^ 1])?;
         writeln!(f, "    D: 0x{:02X}  E: 0x{:02X}\r", self.registers[0b010 as usize ^ 1], self.registers[0b011 as usize ^ 1])?;
         writeln!(f, "    H: 0x{:02X}  L: 0x{:02X}\r", self.registers[0b100 as usize ^ 1], self.registers[0b101 as usize ^ 1])?;
-        writeln!(f, "    FLAGS: {}\r", self.format_flags())?;
+        // writeln!(f, "    FLAGS: {}\r", self.format_flags())?;
         writeln!(f, "----------------------------------\r")
     }
 }

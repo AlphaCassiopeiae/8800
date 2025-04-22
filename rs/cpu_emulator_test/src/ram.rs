@@ -1,3 +1,8 @@
+use core::prelude::rust_2024::derive;
+use core::marker::Copy;
+use core::clone::Clone;
+use core::fmt::Debug;
+
 const MEM_SIZE: usize = 65536;
 
 #[derive(Debug, Clone, Copy)]
