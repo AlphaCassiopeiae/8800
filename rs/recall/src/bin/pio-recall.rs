@@ -33,7 +33,7 @@ fn setup_mem_data_control<'a>(
     let prg = pio_asm!(
         ".wrap_target",
         "set pins, 0", // set default xrdy
-        "wait 0 gpio 29",      // Wait for SMEMR# to be asserted
+        "wait 0 gpio 34",      // Wait for SMEMR# to be asserted
 
         // "irq 3",
 
@@ -87,30 +87,14 @@ async fn main(_spawner: Spawner) {
     let p = embassy_rp::init(Default::default());
 
     // Create PIO state machines
-    let Pio { mut common, mut irq3, mut sm1, .. } = Pio::new(p.PIO0, Irqs);
+    let Pio { mut common, mut sm1, .. } = Pio::new(p.PIO0, Irqs);
     
     // Setup pins for address bus (A15-A0) (pins 4-19)
     let addr_pins = [
-        &common.make_pio_pin(p.PIN_4),
-        &common.make_pio_pin(p.PIN_5),
-        &common.make_pio_pin(p.PIN_6),
-        &common.make_pio_pin(p.PIN_7),
-        &common.make_pio_pin(p.PIN_8),
-        &common.make_pio_pin(p.PIN_9),
-        &common.make_pio_pin(p.PIN_10),
-        &common.make_pio_pin(p.PIN_11),
-        &common.make_pio_pin(p.PIN_12),
-        &common.make_pio_pin(p.PIN_13),
-        &common.make_pio_pin(p.PIN_14),
-        &common.make_pio_pin(p.PIN_15),
         &common.make_pio_pin(p.PIN_16),
         &common.make_pio_pin(p.PIN_17),
         &common.make_pio_pin(p.PIN_18),
         &common.make_pio_pin(p.PIN_19),
-    ];
-
-    // Setup pins for data bus (D7-D0) (pins 20-27)
-    let data_pins = [
         &common.make_pio_pin(p.PIN_20),
         &common.make_pio_pin(p.PIN_21),
         &common.make_pio_pin(p.PIN_22),
@@ -119,11 +103,28 @@ async fn main(_spawner: Spawner) {
         &common.make_pio_pin(p.PIN_25),
         &common.make_pio_pin(p.PIN_26),
         &common.make_pio_pin(p.PIN_27),
+        &common.make_pio_pin(p.PIN_28),
+        &common.make_pio_pin(p.PIN_29),
+        &common.make_pio_pin(p.PIN_30),
+        &common.make_pio_pin(p.PIN_31),
+
+    ];
+
+    // Setup pins for data bus (D7-D0) (pins 20-27)
+    let data_pins = [
+        &common.make_pio_pin(p.PIN_8),
+        &common.make_pio_pin(p.PIN_9),
+        &common.make_pio_pin(p.PIN_10),
+        &common.make_pio_pin(p.PIN_11),
+        &common.make_pio_pin(p.PIN_12),
+        &common.make_pio_pin(p.PIN_13),
+        &common.make_pio_pin(p.PIN_14),
+        &common.make_pio_pin(p.PIN_15),
     ];
 
     // Setup pin for XRDY signal
-    let xrdy_pin = &common.make_pio_pin(p.PIN_30);
-    let smemr_pin = &common.make_pio_pin(p.PIN_29);
+    let xrdy_pin = &common.make_pio_pin(p.PIN_4);
+    let smemr_pin = &common.make_pio_pin(p.PIN_34);
     
     // Configure PIO state machines
     setup_mem_data_control(&mut common, &mut sm1, &data_pins, &addr_pins, xrdy_pin, smemr_pin);

@@ -17,49 +17,68 @@ bind_interrupts!(struct Irqs {
     PIO0_IRQ_0 => PioInterruptHandler<PIO0>;
 });
 
-/// Configure PIO for CPU Control signals (SMEMR#, pDBIN)
-fn setup_cpu_control<'a>(
+/// Configure PIO for SMEMR# control (pin 34)
+fn setup_smemr_control<'a>(
     pio: &mut Common<'a, PIO0>, 
-    sm: &mut StateMachine<'a, PIO0, 1>,
-    control_pins: &[&Pin<'a, PIO0>],
-    addr_pins: &[&Pin<'a, PIO0>],
-    data_pins: &[&Pin<'a, PIO0>],
-    xrdy_pin: &[&Pin<'a, PIO0>]
+    sm: &mut StateMachine<'a, PIO0, 0>,
+    smemr_pin: &Pin<'a, PIO0>,
 ) {
-    // CPU Control Signals PIO program
+    // PIO program to control SMEMR# signal
     let prg = pio_asm!(
-        "set pins, 1",      // SMEMR# default 28
-        ".wrap_target",        
-
-        // Wait for instruction from main CPU
-        "pull block",
-
-        // send addr
-        "out pins, 16",
-        
-        // T2: Assert SMEMR# (active low)
-        "set pins, 0", //  set smemr 29 low
-        
-        // Wait for XRDY to indicate data is ready
-        "wait 1 gpio 30", // Wait for XRDY high
-        "set pins, 1",      // SMEMR# default 28
-        
-        "in pins, 8",          // Read 8-bit data from pins
-        "push block",          // Push data to RX FIFO
-
+        "set pins, 1",       // SMEMR# default high (inactive)
+        ".wrap_target",
+        "wait 1 irq 1",        // Wait for signal from main SM to start cycle
+        "set pins, 0",       // Assert SMEMR# (active low)
+        "wait 1 irq 2",        // Wait for signal to end cycle
+        "set pins, 1",       // Deassert SMEMR# (inactive high)
         ".wrap"
     );
 
     let mut cfg = PioConfig::default();
     cfg.use_program(&pio.load_program(&prg.program), &[]);
     
-    // Configure control pins
-    cfg.set_set_pins(control_pins);
+    // Configure SMEMR pin for output
+    cfg.set_set_pins(&[smemr_pin]);
+    
+    // Set clock rate
+    cfg.clock_divider = (U56F8!(125_000_000) / 20 / 200).to_fixed(); // 100kHz operation
+    
+    sm.set_config(&cfg);
+    
+    // Set SMEMR pin as output
+    sm.set_pin_dirs(embassy_rp::pio::Direction::Out, &[smemr_pin]);
+}
 
-    // // Configure address pins for output
+/// Configure PIO for address output and data input
+fn setup_addr_data_control<'a>(
+    pio: &mut Common<'a, PIO0>, 
+    sm: &mut StateMachine<'a, PIO0, 1>,
+    addr_pins: &[&Pin<'a, PIO0>],
+    data_pins: &[&Pin<'a, PIO0>]
+) {
+    // PIO program for address output and data input
+    let prg = pio_asm!(
+        ".wrap_target",        
+        // Wait for instruction from main CPU
+        "pull block",         // Get address from TX FIFO
+        
+        "out pins, 16",       // Output address to pins
+        
+        "irq 1",              // Signal SMEMR# SM to assert SMEMR#
+        
+        "wait 1 gpio 4",      // Wait for XRDY high
+        "irq 2",              // Signal SMEMR# SM to deassert SMEMR#
+        
+        "in pins, 8",         // Read 8-bit data from pins
+        "push block",         // Push data to RX FIFO
+        ".wrap"
+    );
+
+    let mut cfg = PioConfig::default();
+    cfg.use_program(&pio.load_program(&prg.program), &[]);
+    
+    // Configure pins
     cfg.set_out_pins(addr_pins);
-
-    // // Configure data pins for input (during read)
     cfg.set_in_pins(data_pins);
     
     // Set clock rate
@@ -73,16 +92,9 @@ fn setup_cpu_control<'a>(
     
     sm.set_config(&cfg);
 
-    // Set address pins as outputs
+    // Set pin directions
     sm.set_pin_dirs(embassy_rp::pio::Direction::Out, addr_pins);
-    
-    // Set data pins as inputs for reading
     sm.set_pin_dirs(embassy_rp::pio::Direction::In, data_pins);
-    
-    // Set control pins as outputs
-    sm.set_pin_dirs(embassy_rp::pio::Direction::Out, control_pins);
-
-    sm.set_pin_dirs(embassy_rp::pio::Direction::In, xrdy_pin);
 }
 
 #[embassy_executor::main]
@@ -90,30 +102,14 @@ async fn main(_spawner: Spawner) {
     let p = embassy_rp::init(Default::default());
 
     // Create PIO state machines
-    let Pio { mut common, mut sm1, .. } = Pio::new(p.PIO0, Irqs);
+    let Pio { mut common, mut sm0, mut sm1, .. } = Pio::new(p.PIO0, Irqs);
     
-    // Setup pins for address bus (A15-A0) (pins 4-19)
+    // Setup pins for address bus (A15-A0)
     let addr_pins = [
-        &common.make_pio_pin(p.PIN_4),
-        &common.make_pio_pin(p.PIN_5),
-        &common.make_pio_pin(p.PIN_6),
-        &common.make_pio_pin(p.PIN_7),
-        &common.make_pio_pin(p.PIN_8),
-        &common.make_pio_pin(p.PIN_9),
-        &common.make_pio_pin(p.PIN_10),
-        &common.make_pio_pin(p.PIN_11),
-        &common.make_pio_pin(p.PIN_12),
-        &common.make_pio_pin(p.PIN_13),
-        &common.make_pio_pin(p.PIN_14),
-        &common.make_pio_pin(p.PIN_15),
         &common.make_pio_pin(p.PIN_16),
         &common.make_pio_pin(p.PIN_17),
         &common.make_pio_pin(p.PIN_18),
         &common.make_pio_pin(p.PIN_19),
-    ];
-
-    // Setup pins for data bus (D7-D0) (pins 20-27)
-    let data_pins = [
         &common.make_pio_pin(p.PIN_20),
         &common.make_pio_pin(p.PIN_21),
         &common.make_pio_pin(p.PIN_22),
@@ -122,19 +118,33 @@ async fn main(_spawner: Spawner) {
         &common.make_pio_pin(p.PIN_25),
         &common.make_pio_pin(p.PIN_26),
         &common.make_pio_pin(p.PIN_27),
+        &common.make_pio_pin(p.PIN_28),
+        &common.make_pio_pin(p.PIN_29),
+        &common.make_pio_pin(p.PIN_30),
+        &common.make_pio_pin(p.PIN_31),
     ];
 
-    // Setup pins for control signals
-    let control_pins = [
-        &common.make_pio_pin(p.PIN_29), // SMEMR#
+    // Setup pins for data bus (D7-D0)
+    let data_pins = [
+        &common.make_pio_pin(p.PIN_8),
+        &common.make_pio_pin(p.PIN_9),
+        &common.make_pio_pin(p.PIN_10),
+        &common.make_pio_pin(p.PIN_11),
+        &common.make_pio_pin(p.PIN_12),
+        &common.make_pio_pin(p.PIN_13),
+        &common.make_pio_pin(p.PIN_14),
+        &common.make_pio_pin(p.PIN_15),
     ];
 
-    let xrdy_pin = [&common.make_pio_pin(p.PIN_30)];
+    // Setup pin for SMEMR# control
+    let smemr_pin = &common.make_pio_pin(p.PIN_34);
 
     // Configure PIO state machines
-    setup_cpu_control(&mut common, &mut sm1, &control_pins, &addr_pins, &data_pins, &xrdy_pin);
+    setup_smemr_control(&mut common, &mut sm0, smemr_pin);
+    setup_addr_data_control(&mut common, &mut sm1, &addr_pins, &data_pins);
     
     // Enable state machines
+    sm0.set_enable(true);
     sm1.set_enable(true);
 
     // Define test addresses for our read operations
@@ -147,29 +157,22 @@ async fn main(_spawner: Spawner) {
     
     let mut current_address = 0;
     
-    info!("Starting CPU read transaction loop");
+    info!("Starting CPU read transaction loop with split state machines");
     
     loop {
         // Get the next address to read
         let address = test_addresses[current_address];
         current_address = (current_address + 1) % test_addresses.len();
+        
         // Start a new read transaction
         info!("Initiating read from address 0x{:08X}", address);
-        // print tx level
-        // let level = sm1.tx().level();
-        // info!("tx level = {:02x}", level);
         
         // Push address to address/data state machine
         sm1.tx().wait_push(address as u32).await;
 
-        // info!("sent data");
-
         // Read the data received
         let data = sm1.rx().wait_pull().await as u32;
         info!("Read data 0x{:02X} from address 0x{:08X}", data, address);
-        // print rx level
-        // let level = sm1.rx().level();
-        // info!("rx level = {:02x}", level);
         
         // Wait before next transaction
         Timer::after_millis(500).await;
