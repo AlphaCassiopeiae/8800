@@ -45,22 +45,22 @@ async fn main(_spawner: Spawner) {
         Output::new(p.PIN_21, Level::Low),
         Output::new(p.PIN_22, Level::Low),
         Output::new(p.PIN_23, Level::Low),
-        // Output::new(p.PIN_24, Level::Low),
-        // Output::new(p.PIN_25, Level::Low),
-        // Output::new(p.PIN_26, Level::Low),
-        // Output::new(p.PIN_27, Level::Low),
-        // Output::new(p.PIN_28, Level::Low),
-        // Output::new(p.PIN_29, Level::Low),
+        Output::new(p.PIN_24, Level::Low),
+        Output::new(p.PIN_25, Level::Low),
+        Output::new(p.PIN_26, Level::Low),
+        Output::new(p.PIN_27, Level::Low),
+        Output::new(p.PIN_28, Level::Low),
+        Output::new(p.PIN_29, Level::Low),
         Output::new(p.PIN_30, Level::Low),
         Output::new(p.PIN_31, Level::Low),
         Output::new(p.PIN_32, Level::Low),
         Output::new(p.PIN_33, Level::Low),
         Output::new(p.PIN_34, Level::Low),
         Output::new(p.PIN_35, Level::Low),
-        // Output::new(p.PIN_36, Level::Low),
-        // Output::new(p.PIN_37, Level::Low),
-        // Output::new(p.PIN_38, Level::Low),
-        // Output::new(p.PIN_39, Level::Low),
+        Output::new(p.PIN_36, Level::Low),
+        Output::new(p.PIN_37, Level::Low),
+        Output::new(p.PIN_38, Level::Low),
+        Output::new(p.PIN_39, Level::Low),
         Output::new(p.PIN_40, Level::Low),
         Output::new(p.PIN_41, Level::Low),
         Output::new(p.PIN_42, Level::Low),
@@ -101,6 +101,7 @@ async fn main(_spawner: Spawner) {
             led.set_high();
             Timer::after_millis(250).await;
             led.set_low();
+            Timer::after_millis(250).await;
         }
 
         // light up each data pin one by one
