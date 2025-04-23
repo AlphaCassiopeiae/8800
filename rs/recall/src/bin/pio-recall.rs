@@ -35,7 +35,6 @@ fn setup_mem_data_control<'a>(
         "set pins, 0", // set default xrdy
         "wait 0 gpio 34",      // Wait for SMEMR# to be asserted
 
-        // "irq 3",
 
         // // Wait for address monitor to signal address is ready
         "in pins, 16",         // Sample the 16-bit address

@@ -106,12 +106,12 @@ fn setup_addr_data_write_control<'a>(
     // PIO program for address output, data output, and MWRT# control
     let prg = pio_asm!(
         ".wrap_target",
+        "set pins, 1",        // Deassert MWRT# (inactive high)
         "pull block",         // Get address from TX FIFO
         "out pins, 24",       // Output address to pins
         "set pins, 0",        // Assert MWRT# (active low)
         "wait 1 gpio 4",      // Wait for XRDY high (write complete)
-        "irq 2",              // Signal SMEMR# SM to deassert SMEMR#
-        "set pins, 1",        // Deassert MWRT# (inactive high)
+        "irq 2",              // notify write complete
         ".wrap"
     );
 
@@ -133,7 +133,7 @@ async fn main(_spawner: Spawner) {
     let p = embassy_rp::init(Default::default());
 
     // Create PIO state machines
-    let Pio { mut common, mut sm0, mut sm1, mut sm2, .. } = Pio::new(p.PIO0, Irqs);
+    let Pio { mut common, mut irq2, mut sm0, mut sm1, mut sm2, .. } = Pio::new(p.PIO0, Irqs);
     
     // Setup pins for address bus (A15-A0)
     let data_addr_pins = [
@@ -180,12 +180,12 @@ async fn main(_spawner: Spawner) {
     setup_smemr_control(&mut common, &mut sm0, smemr_pin);
     setup_addr_data_control(&mut common, &mut sm1, &addr_pins, &data_pins);
 
-    // setup_addr_data_write_control(&mut common, &mut sm2, &data_addr_pins, mwrt_pin);
+    setup_addr_data_write_control(&mut common, &mut sm2, &data_addr_pins, mwrt_pin);
 
     // Enable state machines
     sm0.set_enable(true);
     sm1.set_enable(true); // Only enable when needed
-    // sm2.set_enable(false); // Only enable when needed
+    sm2.set_enable(true); // Only enable when needed
 
     // Define test addresses and data for our read/write operations
     let test_addresses = [
@@ -208,41 +208,30 @@ async fn main(_spawner: Spawner) {
     loop {
         // Alternate between read and write cycles for demonstration
         // if current_address % 2 == 0 {
-            // Read cycle
-            let address = test_addresses[current_address / 2 % test_addresses.len()];
-            info!("Initiating read from address 0x{:08X}", address);
+        //     // Read cycle
+        //     let address = test_addresses[current_address / 2 % test_addresses.len()];
+        //     info!("Initiating read from address 0x{:08X}", address);
 
-            // sm2.set_enable(false); // Disable write SM
-            // sm1.set_enable(true);  // Enable read SM
-            // Timer::after_micros(10).await; // Small delay for hardware settle
+        //     sm1.tx().wait_push(address as u32).await;
+        //     let data = sm1.rx().wait_pull().await as u32;
+        //     info!("Read data 0x{:08X} from address 0x{:08X}", data, address);
 
-            sm1.tx().wait_push(address as u32).await;
-            let data = sm1.rx().wait_pull().await as u32;
-            info!("Read data 0x{:08X} from address 0x{:08X}", data, address);
-
-            // sm1.set_enable(false); // Disable after operation
         // } else {
-        //     // Write cycle
-        //     let idx = current_address / 2 % test_addresses.len();
-        //     let address = test_addresses[idx];
-        //     let data = test_data[idx];
-        //     info!("Initiating write of 0x{:02X} to address 0x{:08X}", data, address);
+            // Write cycle
+            let idx = current_address / 2 % test_addresses.len();
+            let address = test_addresses[idx];
+            let data = test_data[idx];
+            info!("Initiating write of 0x{:02X} to address 0x{:08X}", data, address);
 
-        //     let value = (address << 8) | (data as u32);
+            let value = (address << 8) | (data as u32);
 
-        //     sm1.set_enable(false); // Disable read SM
-        //     sm2.set_enable(true);  // Enable write SM
-        //     Timer::after_micros(10).await; // Small delay for hardware settle
-
-        //     sm2.tx().wait_push(value as u32).await;
-        //     irq2.wait().await;
-        //     info!("Write complete to address 0x{:08X}", address);
-
-        //     sm2.set_enable(false); // Disable after operation
+            sm2.tx().wait_push(value as u32).await;
+            irq2.wait().await;
+            info!("Write complete to address 0x{:08X}", address);
         // }
 
         current_address = (current_address + 1) % (test_addresses.len() * 2);
 
-        Timer::after_millis(1000).await;
+        Timer::after_millis(4000).await;
     }
 }

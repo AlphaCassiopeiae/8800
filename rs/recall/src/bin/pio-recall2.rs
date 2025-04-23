@@ -82,7 +82,7 @@ fn setup_mem_write_control<'a>(
     let prg = pio_asm!(
         ".wrap_target",
         "set pins, 0", // set default xrdy low
-        "out pindirs, 1",
+        // "set pindirs, 0x000", // try inputs for now
         "wait 0 gpio 6",       // Wait for MWRT# to be asserted
 
         "in pins, 24",         // Sample the 16-bit address
@@ -164,50 +164,50 @@ async fn main(_spawner: Spawner) {
     common.make_pio_pin(p.PIN_6); // write pin
     
     // Configure PIO state machines
-    setup_mem_read_control(&mut common, &mut sm0, &data_pins, &addr_pins, xrdy_pin);
-    //setup_mem_write_control(&mut common, &mut sm1, &data_addr_pins, xrdy_pin);
+    // setup_mem_read_control(&mut common, &mut sm0, &data_pins, &addr_pins, xrdy_pin);
+    setup_mem_write_control(&mut common, &mut sm1, &data_addr_pins, xrdy_pin);
     
     // Create a mutable memory array
     let mut memory = create_test_memory();
     
     // Enable state machines
     // xrdy driven by 2 state machines
-    sm0.set_enable(true);
-    // sm1.set_enable(false);
+    // sm0.set_enable(true);
+    sm1.set_enable(true);
 
     info!("Memory simulator ready for read and write operations");
 
 
     loop {
         // Check for read operations (from SM0)
-        if !sm0.rx().empty() {
-            let address = sm0.rx().wait_pull().await as usize;
+        // if !sm0.rx().empty() {
+        //     let address = sm0.rx().wait_pull().await as usize;
             
-            // Log the memory read access
-            info!("Memory read request: address 0x{:04X}", address);
+        //     // Log the memory read access
+        //     info!("Memory read request: address 0x{:04X}", address);
             
-            // Look up the data at this address
-            let data = memory[address];
+        //     // Look up the data at this address
+        //     let data = memory[address];
 
-            info!("Returning data: 0x{:02X}", data);
-            // Push the data to the read control SM
-            sm0.tx().wait_push(data as u32).await;
-        }
+        //     info!("Returning data: 0x{:02X}", data);
+        //     // Push the data to the read control SM
+        //     sm0.tx().wait_push(data as u32).await;
+        // }
         
-        // Check for write operations (from SM1)
+        // // Check for write operations (from SM1)
         // if !sm1.rx().empty() {
-        //     let write = sm1.rx().wait_pull().await as u32;
+            let write = sm1.rx().wait_pull().await as u32;
 
-        //     // split the address and data
-        //     let address = (write >> 8) as usize; // Address is in the upper 8 bits
-        //     let data = (write & 0xFF) as u8; // Data is in the lower 8 bits
+            // split the address and data
+            let address = (write >> 8) as usize; // Address is in the upper 8 bits
+            let data = (write & 0xFF) as u8; // Data is in the lower 8 bits
             
-        //     // Log the memory write access
-        //     info!("Memory write request: address 0x{:04X}, data 0x{:02X}", address, data);
+            // Log the memory write access
+            info!("Memory write request: address 0x{:04X}, data 0x{:02X}", address, data);
             
-        //     // Update the memory
-        //     memory[address] = data;
-        //     info!("Memory updated");
+            // Update the memory
+            memory[address] = data;
+            info!("Memory updated");
         // }
         
         // Small yield to avoid tight loop
