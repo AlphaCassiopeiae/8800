@@ -5,9 +5,9 @@
     "version": "0.2.0",
     "configurations": [  
         {
-            "preLaunchTask": "Build carrd",
+            "preLaunchTask": "Build pio-recall",
             "cwd": "${workspaceRoot}",
-            "executable": "./target/thumbv8m.main-none-eabihf/debug/carrd",
+            "executable": "./target/thumbv8m.main-none-eabihf/debug/pio-recall",
             "name": "OpenOCD interchange",
             "request": "launch",
             "type": "cortex-debug",
@@ -42,7 +42,7 @@
                         "decoder": "./rtt-defmt.js",
                         "config": {
                             "cwd": "${workspaceRoot}",
-                            "executable": "./target/thumbv8m.main-none-eabihf/debug/carrd",
+                            "executable": "./target/thumbv8m.main-none-eabihf/debug/pio-recall",
                         },
                         "label": "RTT",
                         "port": 0,

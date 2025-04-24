@@ -5,9 +5,10 @@ use defmt::*;
 use embassy_executor::Spawner;
 use embassy_rp::bind_interrupts;
 use embassy_rp::gpio::{Level, Output};
-use embassy_rp::peripherals::PIO0;
+use embassy_rp::peripherals::{PIO0, PIO1};
 use embassy_rp::pio::program::pio_asm;
 use embassy_rp::pio::{Common, Config as PioConfig, InterruptHandler as PioInterruptHandler, Pio, Pin, ShiftDirection, StateMachine};
+use embassy_rp::pac; // <-- Add this import for PAC access
 use embassy_time::Timer;
 use fixed::traits::ToFixed;
 use fixed_macro::types::U56F8;
@@ -15,21 +16,23 @@ use {defmt_rtt as _, panic_probe as _};
 
 bind_interrupts!(struct Irqs {
     PIO0_IRQ_0 => PioInterruptHandler<PIO0>;
+    PIO1_IRQ_0 => PioInterruptHandler<PIO1>;
 });
 
 /// Configure PIO for SMEMR# control (pin 34)
 fn setup_smemr_control<'a>(
-    pio: &mut Common<'a, PIO0>, 
-    sm: &mut StateMachine<'a, PIO0, 0>,
-    smemr_pin: &Pin<'a, PIO0>,
+    pio: &mut Common<'a, PIO1>, 
+    sm: &mut StateMachine<'a, PIO1, 0>,
+    smemr_pin: &Pin<'a, PIO1>,
 ) {
     // PIO program to control SMEMR# signal which is out of the lower 0-31 pin range
     let prg = pio_asm!(
+        "set pindirs, 1",
         ".wrap_target",
         "set pins, 1",       // Deassert SMEMR# (inactive high)
-        "wait 1 irq 1",        // Wait for signal from main SM to start cycle
+        "pull block",        // Wait for signal from main SM to start cycle
         "set pins, 0",       // Assert SMEMR# (active low)
-        "wait 1 irq 2",        // Wait for signal to end cycle
+        "pull block",
         ".wrap"
     );
 
@@ -63,10 +66,7 @@ fn setup_addr_data_control<'a>(
         
         "out pins, 16",       // Output address to pins
         
-        "irq 1",              // Signal SMEMR# SM to assert SMEMR#
-        
         "wait 1 gpio 4",      // Wait for XRDY high
-        "irq 2",              // Signal SMEMR# SM to deassert SMEMR#
         
         "in pins, 8",         // Read 8-bit data from pins
         "push block",         // Push data to RX FIFO
@@ -101,8 +101,12 @@ async fn main(_spawner: Spawner) {
     let p = embassy_rp::init(Default::default());
 
     // Create PIO state machines
-    let Pio { mut common, mut sm0, mut sm1, .. } = Pio::new(p.PIO0, Irqs);
+    let Pio { mut common, mut sm1, .. } = Pio::new(p.PIO0, Irqs);
     
+    // make a new pio block (pio0) but don't deconstruct
+    let mut pio1 = Pio::new(p.PIO1, Irqs);
+    
+
     // Setup pins for address bus (A15-A0)
     let addr_pins = [
         &common.make_pio_pin(p.PIN_16),
@@ -136,15 +140,15 @@ async fn main(_spawner: Spawner) {
     ];
 
     // Setup pin for SMEMR# control and xrdy
-    let smemr_pin = &common.make_pio_pin(p.PIN_34);
+    let smemr_pin = &pio1.common.make_pio_pin(p.PIN_34);
     common.make_pio_pin(p.PIN_4);
 
     // Configure PIO state machines
-    setup_smemr_control(&mut common, &mut sm0, smemr_pin);
+    setup_smemr_control(&mut pio1.common, &mut pio1.sm0, smemr_pin);
     setup_addr_data_control(&mut common, &mut sm1, &addr_pins, &data_pins);
     
     // Enable state machines
-    sm0.set_enable(true);
+    pio1.sm0.set_enable(true);
     sm1.set_enable(true);
 
     // Define test addresses for our read operations
@@ -161,6 +165,9 @@ async fn main(_spawner: Spawner) {
     
     loop {
         // Get the next address to read
+         
+        // start transaction
+
         let address = test_addresses[current_address];
         current_address = (current_address + 1) % test_addresses.len();
         
@@ -170,11 +177,18 @@ async fn main(_spawner: Spawner) {
         // Push address to address/data state machine
         sm1.tx().wait_push(address as u32).await;
 
+        
+        pio1.sm0.tx().wait_push(0).await; // pull smemr low
+        
         // Read the data received
         let data = sm1.rx().wait_pull().await as u32;
         info!("Read data 0x{:02X} from address 0x{:08X}", data, address);
+
         
+        pio1.sm0.tx().wait_push(0).await; // pull smemr high
+
+
         // Wait before next transaction
-        Timer::after_millis(500).await;
+        Timer::after_millis(4000).await;
     }
 }

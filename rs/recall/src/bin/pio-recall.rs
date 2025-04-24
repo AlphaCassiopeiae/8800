@@ -5,7 +5,7 @@ use defmt::*;
 use embassy_executor::Spawner;
 use embassy_rp::bind_interrupts;
 use embassy_rp::gpio::{Level, Output};
-use embassy_rp::peripherals::PIO0;
+use embassy_rp::peripherals::{PIO0, PIO1};
 use embassy_rp::pio::program::pio_asm;
 use embassy_rp::pio::{Common, Config as PioConfig, InterruptHandler as PioInterruptHandler, Pio, Pin, ShiftDirection, StateMachine};
 use embassy_time::Timer;
@@ -15,7 +15,37 @@ use {defmt_rtt as _, panic_probe as _};
 
 bind_interrupts!(struct Irqs {
     PIO0_IRQ_0 => PioInterruptHandler<PIO0>;
+    PIO1_IRQ_0 => PioInterruptHandler<PIO1>;
 });
+
+fn setup_smemr_control<'a>(
+    pio: &mut Common<'a, PIO1>, 
+    sm: &mut StateMachine<'a, PIO1, 0>,
+    smemr_pin: &Pin<'a, PIO1>,
+) {
+    // PIO program to control SMEMR# signal which is out of the lower 0-31 pin range
+    let prg = pio_asm!(
+        "set pindirs, 0",
+        ".wrap_target",
+        "wait 0 gpio 18",    // PIN 34 offset 16   // Deassert SMEMR# (inactive high)
+        "irq 1",        // Wait for signal from main SM to start cycle
+        "wait 1 gpio 18", //  ensure transaction done
+        // "irq 2",
+        ".wrap"
+    );
+
+    let mut cfg = PioConfig::default();
+    cfg.use_program(&pio.load_program(&prg.program), &[]);
+    
+    cfg.set_in_pins(&[smemr_pin]); // even though now an in pin we set this to trigger the gpiobase. MUST BE SET
+    
+    // Set clock rate
+    cfg.clock_divider = (U56F8!(125_000_000) / 20 / 200).to_fixed(); // 100kHz operation
+    
+    sm.set_pin_dirs(embassy_rp::pio::Direction::In, &[smemr_pin]);
+
+    sm.set_config(&cfg);
+}
 
 // Define the memory contents (simple ROM for testing)
 const MEMORY_SIZE: usize = 0x10000; // 64KB address space
@@ -27,14 +57,13 @@ fn setup_mem_data_control<'a>(
     data_pins: &[&Pin<'a, PIO0>],
     addr_pins: &[&Pin<'a, PIO0>],
     xrdy_pin: &Pin<'a, PIO0>,
-    smemr_pin: &Pin<'a, PIO0>,
 ) {
     //control xrdy and data
     let prg = pio_asm!(
         ".wrap_target",
         "set pins, 0", // set default xrdy
-        "wait 0 gpio 34",      // Wait for SMEMR# to be asserted
 
+        "pull block",
 
         // // Wait for address monitor to signal address is ready
         "in pins, 16",         // Sample the 16-bit address
@@ -46,7 +75,9 @@ fn setup_mem_data_control<'a>(
 
         // // Signal memory is ready by asserting XRDY
         "set pins, 1 [30]",    // Set XRDY high with delay for setup
-        
+
+        "irq 2",        // tell cpu set
+
         // Ready for next cycle
         ".wrap",           // Loop back for next transaction
     );
@@ -78,7 +109,6 @@ fn setup_mem_data_control<'a>(
     
     // Set XRDY pin as output
     sm.set_pin_dirs(embassy_rp::pio::Direction::Out, &[xrdy_pin]);
-    sm.set_pin_dirs(embassy_rp::pio::Direction::In, &[smemr_pin]);
 }
 
 #[embassy_executor::main]
@@ -86,7 +116,9 @@ async fn main(_spawner: Spawner) {
     let p = embassy_rp::init(Default::default());
 
     // Create PIO state machines
-    let Pio { mut common, mut sm1, .. } = Pio::new(p.PIO0, Irqs);
+    let Pio { mut common, mut irq2, mut sm1, .. } = Pio::new(p.PIO0, Irqs);
+
+    let mut pio1 = Pio::new(p.PIO1, Irqs);
     
     // Setup pins for address bus (A15-A0) (pins 4-19)
     let addr_pins = [
@@ -123,24 +155,28 @@ async fn main(_spawner: Spawner) {
 
     // Setup pin for XRDY signal
     let xrdy_pin = &common.make_pio_pin(p.PIN_4);
-    let smemr_pin = &common.make_pio_pin(p.PIN_34);
+    let smemr_pin = &pio1.common.make_pio_pin(p.PIN_34);
     
     // Configure PIO state machines
-    setup_mem_data_control(&mut common, &mut sm1, &data_pins, &addr_pins, xrdy_pin, smemr_pin);
+    setup_mem_data_control(&mut common, &mut sm1, &data_pins, &addr_pins, xrdy_pin);
+    setup_smemr_control(&mut pio1.common, &mut pio1.sm0, smemr_pin);
     
     // Create a simple memory array (for demo purposes)
     let memory = create_test_memory();
     
     // Enable state machines
     sm1.set_enable(true);
+    pio1.sm0.set_enable(true);
 
     info!("Memory simulator ready");
     
     loop {
         // info!("Waiting for memory access request...");
         // Wait for address monitor to receive an address
+        pio1.irq1.wait().await; // wait for smemr
+
+        sm1.tx().wait_push(0).await;
         let address = sm1.rx().wait_pull().await as u32;
-        // irq3.wait().await;
         // info!("recieved");
         // // print rx level
         // let level = sm1.rx().level();
@@ -155,6 +191,9 @@ async fn main(_spawner: Spawner) {
         
         // Push the data to the data control SM
         sm1.tx().wait_push(data as u32).await;
+        irq2.wait().await; // wait for transaction to be done
+
+        // pio1.sm0.tx().push(0); // push to smemr control to let it know we are done
         // print tx level
         // let level = sm1.tx().level();
         // info!("tx level = {:02x}", level);

@@ -9,9 +9,9 @@
     },
     "tasks": [
         {
-            "label": "Build carrd",
+            "label": "Build pio-recall",
             "type": "shell",
-            "command": "cargo build --package cycle --bin carrd",
+            "command": "cargo build --package recall --bin pio-recall",
             "problemMatcher": [
                 "$rustc"
             ]

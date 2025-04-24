@@ -38,11 +38,11 @@ fn setup_mem_read_control<'a>(
         "push block",          // Push address to RX FIFO
         
         "pull block",          // Get data value from TX FIFO
-        "out pins, 8",         // Output data to pins
+        "out pins, 8 [30]",         // Output data to pins
 
         "set pins, 1 [30]",    // Set XRDY high with delay for setup
         
-        //"wait 1 gpio 34",      // Wait for SMEMR# to be deasserted
+        // "wait 1 gpio 34",      // Wait for SMEMR# to be deasserted
         
         ".wrap"
     );
@@ -164,7 +164,7 @@ async fn main(_spawner: Spawner) {
     common.make_pio_pin(p.PIN_6); // write pin
     
     // Configure PIO state machines
-    // setup_mem_read_control(&mut common, &mut sm0, &data_pins, &addr_pins, xrdy_pin);
+    setup_mem_read_control(&mut common, &mut sm0, &data_pins, &addr_pins, xrdy_pin);
     setup_mem_write_control(&mut common, &mut sm1, &data_addr_pins, xrdy_pin);
     
     // Create a mutable memory array
@@ -172,7 +172,7 @@ async fn main(_spawner: Spawner) {
     
     // Enable state machines
     // xrdy driven by 2 state machines
-    // sm0.set_enable(true);
+    sm0.set_enable(true);
     sm1.set_enable(true);
 
     info!("Memory simulator ready for read and write operations");
@@ -180,22 +180,22 @@ async fn main(_spawner: Spawner) {
 
     loop {
         // Check for read operations (from SM0)
-        // if !sm0.rx().empty() {
-        //     let address = sm0.rx().wait_pull().await as usize;
+        if !sm0.rx().empty() {
+            let address = sm0.rx().wait_pull().await as usize;
             
-        //     // Log the memory read access
-        //     info!("Memory read request: address 0x{:04X}", address);
+            // Log the memory read access
+            info!("Memory read request: address 0x{:04X}", address);
             
-        //     // Look up the data at this address
-        //     let data = memory[address];
+            // Look up the data at this address
+            let data = memory[address];
 
-        //     info!("Returning data: 0x{:02X}", data);
-        //     // Push the data to the read control SM
-        //     sm0.tx().wait_push(data as u32).await;
-        // }
+            info!("Returning data: 0x{:02X}", data);
+            // Push the data to the read control SM
+            sm0.tx().wait_push(data as u32).await;
+        }
         
-        // // Check for write operations (from SM1)
-        // if !sm1.rx().empty() {
+        // Check for write operations (from SM1)
+        if !sm1.rx().empty() {
             let write = sm1.rx().wait_pull().await as u32;
 
             // split the address and data
@@ -208,7 +208,7 @@ async fn main(_spawner: Spawner) {
             // Update the memory
             memory[address] = data;
             info!("Memory updated");
-        // }
+        }
         
         // Small yield to avoid tight loop
         Timer::after_micros(10).await;

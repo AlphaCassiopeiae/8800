@@ -26,10 +26,10 @@ fn setup_smemr_control<'a>(
     // PIO program to control SMEMR# signal which is out of the lower 0-31 pin range
     let prg = pio_asm!(
         ".wrap_target",
-        "set pins, 1",       // Deassert SMEMR# (inactive high)
-        "wait 1 irq 1",        // Wait for signal from main SM to start cycle
-        "set pins, 0",       // Assert SMEMR# (active low)
-        "wait 1 irq 2",        // Wait for signal to end cycle
+        "set pins, 1 [30]",       // Deassert SMEMR# (inactive high)
+        // "wait 1 irq 1",        // Wait for signal from main SM to start cycle
+        "set pins, 0 [30]",       // Assert SMEMR# (active low)
+        // "wait 1 irq 2",        // Wait for signal to end cycle
         ".wrap"
     );
 
@@ -171,7 +171,7 @@ async fn main(_spawner: Spawner) {
     let data_pins = &data_addr_pins[0..8];
 
     // Setup pin for SMEMR# control
-    let smemr_pin = &common.make_pio_pin(p.PIN_34);
+    let smemr_pin = &common.make_pio_pin(p.PIN_35);
 
     // Setup pin for MWRT# control
     let mwrt_pin = &common.make_pio_pin(p.PIN_6);
@@ -208,26 +208,26 @@ async fn main(_spawner: Spawner) {
     loop {
         // Alternate between read and write cycles for demonstration
         // if current_address % 2 == 0 {
-        //     // Read cycle
-        //     let address = test_addresses[current_address / 2 % test_addresses.len()];
-        //     info!("Initiating read from address 0x{:08X}", address);
+            // Read cycle
+            let address = test_addresses[current_address / 2 % test_addresses.len()];
+            info!("Initiating read from address 0x{:08X}", address);
 
-        //     sm1.tx().wait_push(address as u32).await;
-        //     let data = sm1.rx().wait_pull().await as u32;
-        //     info!("Read data 0x{:08X} from address 0x{:08X}", data, address);
+            sm1.tx().wait_push(address as u32).await;
+            let data = sm1.rx().wait_pull().await as u32;
+            info!("Read data 0x{:08X} from address 0x{:08X}", data, address);
 
         // } else {
-            // Write cycle
-            let idx = current_address / 2 % test_addresses.len();
-            let address = test_addresses[idx];
-            let data = test_data[idx];
-            info!("Initiating write of 0x{:02X} to address 0x{:08X}", data, address);
+        //     // Write cycle
+        //     let idx = current_address / 2 % test_addresses.len();
+        //     let address = test_addresses[idx];
+        //     let data = test_data[idx];
+        //     info!("Initiating write of 0x{:02X} to address 0x{:08X}", data, address);
 
-            let value = (address << 8) | (data as u32);
+        //     let value = (address << 8) | (data as u32);
 
-            sm2.tx().wait_push(value as u32).await;
-            irq2.wait().await;
-            info!("Write complete to address 0x{:08X}", address);
+        //     sm2.tx().wait_push(value as u32).await;
+        //     irq2.wait().await;
+        //     info!("Write complete to address 0x{:08X}", address);
         // }
 
         current_address = (current_address + 1) % (test_addresses.len() * 2);
