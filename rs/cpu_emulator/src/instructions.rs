@@ -1,4 +1,5 @@
 // instructions.rs - defines instruction lookup table
+use defmt::*;
 use core::prelude::rust_2024::derive;
 use core::marker::Copy;
 use core::clone::Clone;
@@ -6,7 +7,7 @@ use core::fmt::Debug;
 use core::fmt;
 use core::writeln;
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Format)]
 pub struct InstructionInfo {
     pub mnemonic: &'static str,
     pub bytes: u8,

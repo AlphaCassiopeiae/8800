@@ -9,7 +9,7 @@ members = [
     "runner",
     "tram",
     # "ubahn",
-    "cpu_emulator_test",
+    "cpu_emulator",
 ]
 
 [profile.release]
