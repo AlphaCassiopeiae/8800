@@ -103,6 +103,7 @@ impl CPU {
         self.auxc = false;
         self.parity = false;
         self.carry = false;
+        self.halt = true;
     }
 
     pub fn read_bc(&self) -> u16 {
@@ -170,6 +171,9 @@ impl CPU {
     }
 
     pub fn halted(&self) -> bool {self.halt}
+
+    pub fn halt(&mut self) {self.halt = true;}
+    pub fn unhalt(&mut self) {self.halt = false;}
 
     pub fn read_reg(&self, reg: Reg) -> u8 {
         match reg {

@@ -39,6 +39,9 @@ async fn main(_spawner: Spawner) {
     // GPIO initialization
     let p: Peripherals = embassy_rp::init(Default::default());
     let mut rst = Input::new(p.PIN_3, Pull::Up);
+    let mut prdy = Input::new(p.PIN_2, Pull::Down);
+    let mut hlta = Output::new(p.PIN_36, Level::Low);
+    let mut panel = Output::new(p.PIN_1, Level::High); // low active
     // setup of components/channels
     let mut ram: RAM = RAM::new();
     ram.init();
@@ -49,25 +52,30 @@ async fn main(_spawner: Spawner) {
         // just gonna fetch instructions until halt, then exit
         // i.e. get run mode working first
 
-        rst.wait_for_falling_edge().await;
-        info!("Reset Occurred!");
-        // fetch instruction will also need to make a tram request
-        // instead of reading local RAM instance
-        let instr: u8 = cpu.fetch_instruction();
-
-        // execute_instruction will need to be modified to make tram requests 
-        // instead of reading/writing local RAM instance
-        cpu.execute_instruction(instr);
-        cpu.show_state();
-
-        // will just want to pause, not break from loop
-        // so this will need to be changed
         if cpu.halted() {
-            info!("HLT detected, exiting...\r");
-            break;
+            panel.set_low();
+            hlta.set_high();
+        }
+
+        // rst.wait_for_falling_edge().await;
+        if rst.get_level() == Level::Low {
+            info!("Reset Occurred!");
+            cpu.reset();
+        }
+        else if prdy.get_level() == Level::High {
+            info!("cpu running...");
+            panel.set_high();
+            cpu.unhalt();
+
+            let instr: u8 = cpu.fetch_instruction();
+            cpu.execute_instruction(instr);
+            cpu.show_state();
+
+            cpu.halt();
+            panel.set_low();
         }
 
         // not necessary for final implementation but nice for terminal debugging
-        Timer::after_millis(250).await;
+        Timer::after_millis(50).await;
     }
 }

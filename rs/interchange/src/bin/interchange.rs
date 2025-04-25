@@ -70,39 +70,18 @@ mod mcp23017 {
     }
 }
 
-fn write_address_to_pins(address: u16, pins: &mut [&mut Output<'_, AnyPin>]) {
-    for (i, pin) in pins.iter_mut().enumerate() {
-        if ((address >> i) & 1) != 0 {
-            pin.set_high();
-        } else {
-            pin.set_low();
-        }
-    }
-}
+// fn write_address_to_pins(address: u16, pins: &mut [&mut Output<'_, AnyPin>]) {
+//     for (i, pin) in pins.iter_mut().enumerate() {
+//         if ((address >> i) & 1) != 0 {
+//             pin.set_high();
+//         } else {
+//             pin.set_low();
+//         }
+//     }
+// }
 
-// Example usage in your main function setup:
-let mut a_pins: Vec<Output<'_, AnyPin>> = vec![
-    Output::new(p.PIN_31, Level::Low),
-    Output::new(p.PIN_41, Level::Low),
-    Output::new(p.PIN_33, Level::Low),
-    Output::new(p.PIN_35, Level::Low),
-    Output::new(p.PIN_16, Level::Low),
-    Output::new(p.PIN_18, Level::Low),
-    Output::new(p.PIN_22, Level::Low),
-    Output::new(p.PIN_20, Level::Low),
-    Output::new(p.PIN_42, Level::Low),
-    Output::new(p.PIN_43, Level::Low),
-    Output::new(p.PIN_45, Level::Low),
-    Output::new(p.PIN_3, Level::Low),
-    Output::new(p.PIN_12, Level::Low),
-    Output::new(p.PIN_10, Level::Low),
-    Output::new(p.PIN_7, Level::Low),
-    Output::new(p.PIN_4, Level::Low),
-];
-let mut pin_refs: Vec<&mut Output<'_, AnyPin>> = a_pins.iter_mut().collect();
-write_address_to_pins(0xABC, &mut pin_refs);
 
-/// Configure PIO to output d   ata to pins 40-47
+/// Configure PIO to output data to pins 40-47
 fn setup_pio_output<'a>(pio: &mut Common<'a, PIO0>, sm: &mut StateMachine<'a, PIO0, 0>, pins: &[&Pin<'a, PIO0>]) {
     // PIO program to output data to 8 pins (40-47)
     let prg = pio_asm!(
@@ -128,10 +107,6 @@ fn setup_pio_output<'a>(pio: &mut Common<'a, PIO0>, sm: &mut StateMachine<'a, PI
     sm.set_pin_dirs(embassy_rp::pio::Direction::Out, pins); // Corrected method signature
 }
 
-/* NOTES */
-// Buttons are all on one expander, Address switches on other
-// All buttons are active low
-
 // rework: negative edge detection across entire 8-bit bank
 fn negative_edges(last_state: u8, curr_state: u8) -> u8{
     last_state & !curr_state
@@ -156,18 +131,14 @@ fn get_deponext(edges: u8) -> bool {
 fn get_clr(edges: u8) -> bool {
     ((edges >> 5) & 0x01) != 0
 }
-fn get_unprot(edges: u8) -> bool {
-    ((edges >> 6) & 0x01) != 0
-}
-fn get_aux1(edges: u8) -> bool {
-    ((edges >> 7) & 0x01) != 0
-}
+// fn get_unprot(edges: u8) -> bool {
+//     ((edges >> 6) & 0x01) != 0
+// }
+// fn get_aux1(edges: u8) -> bool {
+//     ((edges >> 7) & 0x01) != 0
+// }
 
 // BUTTONS B
-fn get_prot(edges: u8) -> bool {
-    // bit 0
-    (edges & 0x01) != 0
-}
 fn get_reset(edges: u8) -> bool {
     // assuming reset signal stored in bit 1
     ((edges >> 1) & 0x01) != 0
@@ -180,17 +151,54 @@ fn get_examine(edges: u8) -> bool {
     // bit 3
     ((edges >> 3) & 0x01) != 0
 }
-fn get_aux2(edges: u8) -> bool {
-    // bit 4
-    ((edges >> 4) & 0x01) != 0
+// fn get_prot(edges: u8) -> bool {
+//     // bit 0
+//     (edges & 0x01) != 0
+// }
+// fn get_aux2(edges: u8) -> bool {
+//     // bit 4
+//     ((edges >> 4) & 0x01) != 0
+// }
+
+// for correcting address from MCP
+fn reverse_bits(mut x: u8) -> u8 {
+    x = (x >> 1 & 0x55) | (x << 1 & 0xaa);
+    x = (x >> 2 & 0x33) | (x << 2 & 0xcc);
+    x = (x >> 4 & 0x0f) | (x << 4 & 0xf0);
+    x
 }
 
 #[embassy_executor::main]
 async fn main(spawner: Spawner) {
+    // Example usage in your main function setup:
+    // let mut a_pins: Vec<Output<'_, AnyPin>> = vec![
+    //     Output::new(p.PIN_31, Level::Low),
+    //     Output::new(p.PIN_41, Level::Low),
+    //     Output::new(p.PIN_33, Level::Low),
+    //     Output::new(p.PIN_35, Level::Low),
+    //     Output::new(p.PIN_16, Level::Low),
+    //     Output::new(p.PIN_18, Level::Low),
+    //     Output::new(p.PIN_22, Level::Low),
+    //     Output::new(p.PIN_20, Level::Low),
+    //     Output::new(p.PIN_42, Level::Low),
+    //     Output::new(p.PIN_43, Level::Low),
+    //     Output::new(p.PIN_45, Level::Low),
+    //     Output::new(p.PIN_3, Level::Low),
+    //     Output::new(p.PIN_12, Level::Low),
+    //     Output::new(p.PIN_10, Level::Low),
+    //     Output::new(p.PIN_7, Level::Low),
+    //     Output::new(p.PIN_4, Level::Low),
+    // ];
+    // let mut pin_refs: Vec<&mut Output<'_, AnyPin>> = a_pins.iter_mut().collect();
+    // write_address_to_pins(0xABC, &mut pin_refs);
+
     let p = embassy_rp::init(Default::default());
 
     // GPIO setup
     let mut rst = Output::new(p.PIN_29, Level::High);
+    let mut prdy = Output::new(p.PIN_46, Level::Low);
+    let hlta = Input::new(p.PIN_0, Pull::Down);
+    let panel = Input::new(p.PIN_27, Pull::Up);
 
     // I2C setup
     let sda = p.PIN_38;
@@ -239,10 +247,11 @@ async fn main(spawner: Spawner) {
     let mut switches_b = [0];
     let mut last_buttons_a = [0xFF];
     let mut last_buttons_b = [0xFF];
-    let mut last_switches_a = [0xFF];
-    let mut last_switches_b = [0xFF];
 
+    let mut run_mode: bool = false;
+    
     loop {
+        /* I2C Stuff */
         // Read port A, buttons IC
         // Gives [EXAMNEXT,RUN,STOP,SINGSTEP,DEPONEXT,CLR,UNPROT,AUX1] (potentially reversed)
         i2c.write_read(BUTTONS_ADDR, &[GPIOA], &mut buttons_a).await.unwrap();
@@ -250,135 +259,90 @@ async fn main(spawner: Spawner) {
         // Gives [PROT,RESET,DEPOSIT,EXAMINE,AUX2,NULL,NULL,NULL] (potentially reversed)
         i2c.write_read(BUTTONS_ADDR, &[GPIOB], &mut buttons_b).await.unwrap();;
         // Read port A, switches IC
-        // Gives A15-A8
+        // Gives A8-A15
         i2c.write_read(ASWITCHES_ADDR, &[GPIOA], &mut switches_a).await.unwrap();
         // Read port B, switches IC
-        // Gives A7-A0
+        // Gives A0-A7
         i2c.write_read(ASWITCHES_ADDR, &[GPIOB], &mut switches_b).await.unwrap();
 
         // info!("buttons = {:02x}  {:02x}\naddress = {:02x}  {:02x}", buttons_a[0], buttons_b[0], switches_a[0],  switches_b[0]);
 
         // combine addr0 and addr1 into a single address
-        // let address: u16 = ((switches_a[0] as u16) << 8) | (switches_b[0] as u16);
+        let address: u16 = ((reverse_bits(switches_a[0]) as u16) << 8) | (reverse_bits(switches_b[0]) as u16);
         let button_a_edges = negative_edges(last_buttons_a[0], buttons_a[0]);
         let button_b_edges = negative_edges(last_buttons_b[0], buttons_b[0]);
+        // info!("current address: {}", address);
 
-        // structure these conditions to achieve desired functionality
-        if get_reset(button_b_edges) {
-            info!("RESET Pressed!");
-            rst.set_low();
-        }
-        else if get_prot(button_b_edges) {
-            info!("PROT Pressed!");
-        }
-        else if get_deposit(button_b_edges) {
-            info!("DEPOSIT Pressed!");
-        }
-        else if get_examine(button_b_edges) {
-            info!("EXAMINE Pressed!");
-        }
-        else if get_aux2(button_b_edges) {
-            info!("AUX2 Pressed!");
-        }
-        else if get_examnext(button_a_edges) {
-            info!("EXAMINE NEXT Pressed!");
-        }
-        else if get_run(button_a_edges) {
-            info!("RUN Pressed!");
-        }
-        else if get_stop(button_a_edges) {
-            info!("STOP Pressed!");
-        }
-        else if get_singstep(button_a_edges) {
-            info!("SINGLE STEP Pressed!");
-        }
-        else if get_deponext(button_a_edges) {
-            info!("DEPOSIT NEXT Pressed!");
-        }
-        else if get_clr(button_a_edges) {
-            info!("CLEAR Pressed!");
-        }
-        else if get_unprot(button_a_edges) {
-            info!("UNPROT Pressed!");
-        }
-        else if get_aux1(button_a_edges) {
-            info!("AUX1 Pressed!");
-        }
+        /* GPIO Logic */
+        // default values for control signals, works well for pulsing signals after button press
+        rst.set_high();
 
+        if !run_mode {prdy.set_low();}
+        
+        // button press logic
+        if panel.get_level() == Level::Low {
+            // stuff that can only be done if panel has control (enter run, single step, examine/deposit, etc.)
+            // cpu is halted 
+            if get_reset(button_b_edges) {
+                info!("RESET triggered!");
+                rst.set_low();
+            }
+            else if get_singstep(button_a_edges) {
+                info!("SINGLE STEP Pressed!");
+                prdy.set_high();
+            }
+            else if get_run(button_a_edges) {
+                info!("RUN Pressed!");
+                run_mode = true;
+                prdy.set_high();
+            }
+            else if get_deposit(button_b_edges) {
+                info!("DEPOSIT Pressed!");
+                // put whatever is on the switches at value on addr LEDs
+            }
+            else if get_deponext(button_a_edges) {
+                info!("DEPOSIT NEXT Pressed!");
+                // put whatever is on the switches at value on addr LEDs, but also increments address
+            }
+            else if get_examine(button_b_edges) {
+                info!("EXAMINE Pressed!");
+                // read whatever is at the memory address on addr LEDs
+            }
+            else if get_examnext(button_a_edges) {
+                info!("EXAMINE NEXT Pressed!");
+                // read whetever is at the memory address on addr LEDs, but also increments address
+            }
+            else if get_clr(button_a_edges) {
+                info!("CLEAR Pressed!");
+                // reset addr (addr LEDs) to 0x0000
+            }
+            // else if get_prot(button_b_edges) {
+            //     info!("PROT Pressed!");
+            // }
+            // else if get_unprot(button_a_edges) {
+            //     info!("UNPROT Pressed!");
+            // }
+            // else if get_aux2(button_b_edges) {
+            //     info!("AUX2 Pressed!");
+            // }
+            // else if get_aux1(button_a_edges) {
+            //     info!("AUX1 Pressed!");
+            // }
+        } else {
+            // stuff that can be done while CPU running (reset, stop, etc.)
+            if get_reset(button_b_edges) {
+                info!("RESET triggered!");
+                rst.set_low();
+            }
+            else if get_stop(button_a_edges) {
+                info!("STOP Pressed!");
+                run_mode = false;
+            }
+        }
+        
+        // button edge detection
         last_buttons_b[0] = buttons_b[0];
         last_buttons_a[0] = buttons_a[0];
-        // else {
-        //     nRst = 1;
-        //     if (clr) {
-        //         addr = 0;
-        //         data = hiz;
-        //         clock = clock;
-        //     }
-        //     else if (stop) {
-        //         clock = clock;
-        //     }
-        //     else if (run) {
-        //         clock = !clock;
-        //     }
-        //     else if (single_step) {
-        //         single_step = 1;
-        //     }
-        //     else if (examine) {
-        //         // read switches under data
-        //         i2c.write_read(ADDR, &[GPIOB], &mut addr0).await.unwrap();
-
-
-        //         write(address, data)
-
-        //         // flog loan word instruction over the bus
-        //         panel = 1;
-        //         // send addr
-        //         panel = 0;
-        //     }
-        //     else if (examine_next) {
-        //         // flog loan word with next addr
-        //         panel = 1;
-        //         panel = 0;
-        //     }
-        //     else if (deposit) {
-        //         panel = 1;
-        //         // read data
-        //         i2c.write_read(ADDR, &[GPIOA], &mut data).await.unwrap();
-        //         // send data sw (addr)
-        //         panel = 0;
-        //     }
-        //     else if (deposit_next) {
-        //         panel = 1;
-        //         // read data
-        //         i2c.write_read(ADDR, &[GPIOA], &mut data).await.unwrap();
-        //         // send data sw addr + 1
-        //         panel = 0;
-        //     }
-        // }
-
-        // combine addr0 and addr1 into a single address
-        // let address = ((addr1[0] as u32) << 8) | (addr0[0] as u32);
-
-        // if (reset) {
-        //     nRst = 0;
-        //     addr = 0;
-        // }
-        // else {
-        //     nRst = 1;
-        //     if (clr) {
-        //         addr = 0;
-        //         data = hiz;
-        //         clock = clock;
-        //     }
-        //     else if (stop) {
-        //         clock = clock;
-        //     }
-        //     else if (run) {
-        //         clock = !clock;
-        //     }
-        //     else if (single_step) {
-        //         single_step = 1;
-        //     }
         //     else if (examine) {
         //         // read addr pins
         //         i2c.write_read(ADDR, &[GPIOB], &mut addr0).await.unwrap();
@@ -410,9 +374,6 @@ async fn main(spawner: Spawner) {
         //     }
         // }
 
-        // Send the data to the PIO FIFO - this will be output to pins 40-47
-        // sm0.tx().wait_push(data[0] as u32).await;
-        
         // Optional: Add delay between updates
         Timer::after_millis(50).await;
     }

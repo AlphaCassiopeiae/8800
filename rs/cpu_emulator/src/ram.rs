@@ -19,10 +19,10 @@ impl RAM {
 
     // for simulating instructions being present in memory, do nothing for now
     pub fn init(&mut self) {
-        // self.bytes[0] = 0x15;
-        // self.bytes[1] = 0xD3;
-        // self.bytes[2] = 0x76;
-        self.bytes[0] = 0x76;
+        self.bytes[0] = 0x15;
+        self.bytes[1] = 0xD3;
+        self.bytes[2] = 0x76;
+        // self.bytes[0] = 0x76;
     }
 
     pub fn read(&self, addr: usize) -> u8 {
