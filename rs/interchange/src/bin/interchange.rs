@@ -322,6 +322,60 @@ async fn main(spawner: Spawner) {
         //     }
         // }
 
+        // combine addr0 and addr1 into a single address
+        let address = ((addr1[0] as u32) << 8) | (addr0[0] as u32);
+
+        if (reset) {
+            nRst = 0;
+            addr = 0;
+        }
+        else {
+            nRst = 1;
+            if (clr) {
+                addr = 0;
+                data = hiz;
+                clock = clock;
+            }
+            else if (stop) {
+                clock = clock;
+            }
+            else if (run) {
+                clock = !clock;
+            }
+            else if (single_step) {
+                single_step = 1;
+            }
+            else if (examine) {
+                // read addr pins
+                i2c.write_read(ADDR, &[GPIOB], &mut addr0).await.unwrap();
+                i2c.write_read(ADDR1, &[GPIOA], &mut addr1).await.unwrap();
+
+                // flog loan word instruction over the bus
+                panel = 1;
+                // send addr
+                panel = 0;
+            }
+            else if (examine_next) {
+                // flog loan word with next addr
+                panel = 1;
+                panel = 0;
+            }
+            else if (deposit) {
+                panel = 1;
+                // read data
+                i2c.write_read(ADDR, &[GPIOA], &mut data).await.unwrap();
+                // send data sw (addr)
+                panel = 0;
+            }
+            else if (deposit_next) {
+                panel = 1;
+                // read data
+                i2c.write_read(ADDR, &[GPIOA], &mut data).await.unwrap();
+                // send data sw addr + 1
+                panel = 0;
+            }
+        }
+
         // Send the data to the PIO FIFO - this will be output to pins 40-47
         // sm0.tx().wait_push(data[0] as u32).await;
         
