@@ -278,22 +278,6 @@ C2: core::ops::AsyncFnMut(u32, u8),
     }
 
     pub async fn write(&mut self, address: usize, data: u8) {
-        // self.sm2.tx().wait_push(0xFFFFFF).await;
-
-        // info!("Initiating write of 0x{:02X} to address 0x{:08X}", data, address);
-
-        // Timer::after_millis(4000).await;
-
-        // let value = ((address as u32) << 8) | (data as u32);
-
-        // self.sm2.tx().wait_push(value as u32).await;
-
-        // self.irq2.wait().await;
-        // // set address to output and data to input pindirs
-        // self.sm2.tx().wait_push(0xFFFF00).await;
-
         self.write_fn.async_call_mut((address as u32, data)).await;
-
-        // info!("Write complete to address 0x{:08X}", address);
     }
 }
