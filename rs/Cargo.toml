@@ -33,6 +33,7 @@ license = "MIT OR Apache-2.0"
 common = { path = "common" }
 runner = { path = "runner" }
 tram = { path = "tram" }
+cpu_emulator = { path = "cpu_emulator" }
 
 embassy-embedded-hal = { version = "0.3.0", git = "https://github.com/embassy-rs/embassy", rev = "3a85ecebef61017069da9f1e1d48d20c3889b76b", features = [
     "defmt",

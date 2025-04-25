@@ -59,10 +59,10 @@ pub struct CPU {
     // registers
     registers: [u8; 8],
     // special registers
-    pc: usize,
+    pub pc: usize,
     sp: usize,
     // halt flag
-    halt: bool,
+    pub halt: bool,
     // interrupt enable
     interrput_enable: bool,
     // other flags

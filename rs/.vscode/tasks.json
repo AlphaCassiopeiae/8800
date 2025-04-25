@@ -9,9 +9,9 @@
     },
     "tasks": [
         {
-            "label": "Build cycle",
+            "label": "Build pio-cycle3",
             "type": "shell",
-            "command": "cargo build --bin cycle",
+            "command": "cargo build --package cycle --bin pio-cycle3",
             "problemMatcher": [
                 "$rustc"
             ]

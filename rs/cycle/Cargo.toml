@@ -9,6 +9,7 @@ license.workspace = true
 common.workspace = true
 runner.workspace = true
 tram.workspace = true
+cpu_emulator.workspace = true
 
 embassy-embedded-hal.workspace = true
 embassy-sync.workspace = true

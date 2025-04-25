@@ -312,6 +312,7 @@ dependencies = [
  "common",
  "cortex-m",
  "cortex-m-rt",
+ "cpu_emulator",
  "critical-section",
  "cyw43",
  "cyw43-pio",
