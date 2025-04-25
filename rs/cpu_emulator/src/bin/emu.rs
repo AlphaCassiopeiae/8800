@@ -290,6 +290,9 @@ async fn main(_spawner: Spawner) {
     ram.init().await;
     let mut cpu: CPU<_,_> = CPU::new(ram);
 
+    // Settle time
+    Timer::after_millis(50).await;
+
     loop {
         // just gonna fetch instructions until halt, then exit
         // i.e. get run mode working first
@@ -299,23 +302,23 @@ async fn main(_spawner: Spawner) {
             hlta.set_high();
         }
 
-        // rst.wait_for_falling_edge().await;
-        if rst.get_level() == Level::Low {
-            info!("Reset Occurred!");
-            cpu.reset();
-        }
-        else if prdy.get_level() == Level::High {
-            info!("cpu running...");
-            panel.set_high();
-            cpu.unhalt();
+        // // rst.wait_for_falling_edge().await;
+        // if rst.get_level() == Level::Low {
+        //     info!("Reset Occurred!");
+        //     cpu.reset();
+        // // }
+        // else if prdy.get_level() == Level::High {
+        //     info!("cpu running...");
+        //     // panel.set_high();
+        //     // cpu.unhalt();
 
             let instr: u8 = cpu.fetch_instruction().await;
             cpu.execute_instruction(instr).await;
             cpu.show_state().await;
 
-            cpu.halt();
-            panel.set_low();
-        }
+        //     cpu.halt();
+        //     panel.set_low();
+        // }
 
         // not necessary for final implementation but nice for terminal debugging
         Timer::after_millis(50).await;

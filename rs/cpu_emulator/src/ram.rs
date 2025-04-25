@@ -14,10 +14,7 @@ use fixed::traits::ToFixed;
 use fixed_macro::types::U56F8;
 use {defmt_rtt as _, panic_probe as _};
 
-pub struct RAM<
-C1: core::ops::AsyncFnMut(u32) -> u8,
-C2: core::ops::AsyncFnMut(u32, u8),
-> {
+pub struct RAM<C1: core::ops::AsyncFnMut(u32) -> u8, C2: core::ops::AsyncFnMut(u32, u8)> {
     read_fn: C1,
     write_fn: C2,
 }
@@ -154,11 +151,7 @@ C2: core::ops::AsyncFnMut(u32, u8),
 //     sm.set_pin_dirs(embassy_rp::pio::Direction::Out, &[mwrt_pin]);
 // }
 
-impl<
-C1: core::ops::AsyncFnMut(u32) -> u8,
-C2: core::ops::AsyncFnMut(u32, u8),
-> RAM<C1, C2>
-{
+impl<C1: core::ops::AsyncFnMut(u32) -> u8, C2: core::ops::AsyncFnMut(u32, u8)> RAM<C1, C2> {
     /// Configure PIO for SMEMR# control (pin 34)
 
     pub async fn new(read_fn: C1, write_fn: C2) -> Self {
@@ -253,24 +246,35 @@ C2: core::ops::AsyncFnMut(u32, u8),
         // self.bytes[1] = 0xD3;
         // self.bytes[2] = 0x76;
         // self.bytes[0] = 0x76;
-        Timer::after_millis(500).await;
-        self.write(0x0, 0x76).await;
-        Timer::after_millis(500).await;
-        self.write(0x1, 0xD3).await;
-        Timer::after_millis(500).await;
-        self.write(0x2, 0x76).await;
-        Timer::after_millis(500).await;
-        self.write(0x3, 0x76).await;
-        Timer::after_millis(500).await;
+        // Timer::after_millis(500).await;
+        // self.write(0x0, 0x76).await;
+        // Timer::after_millis(500).await;
+        // self.write(0x1, 0xD3).await;
+        // Timer::after_millis(500).await;
+        // self.write(0x2, 0x76).await;
+        // Timer::after_millis(500).await;
+        // self.write(0x3, 0x76).await;
+        // Timer::after_millis(500).await;
+        Timer::after_millis(50).await;
+        self.write(0x0, 0x3E).await;
+        Timer::after_millis(50).await;
+        self.write(0x1, 0x05).await;
+        Timer::after_millis(50).await;
+        self.write(0x2, 0xC6).await;
+        Timer::after_millis(50).await;
+        self.write(0x3, 0x07).await;
+        Timer::after_millis(50).await;
+        self.write(0x4, 0x76).await;
+        Timer::after_millis(50).await;
 
-        info!("0x0 READ {:X}", self.read(0x0).await);
-        Timer::after_millis(500).await;
-        info!("0x1 READ {:X}", self.read(0x1).await);
-        Timer::after_millis(500).await;
-        info!("0x2 READ {:X}", self.read(0x2).await);
-        Timer::after_millis(500).await;
-        info!("0x3 READ {:X}", self.read(0x3).await);
-        Timer::after_millis(500).await;
+        // info!("0x0 READ {:X}", self.read(0x0).await);
+        // Timer::after_millis(500).await;
+        // info!("0x1 READ {:X}", self.read(0x1).await);
+        // Timer::after_millis(500).await;
+        // info!("0x2 READ {:X}", self.read(0x2).await);
+        // Timer::after_millis(500).await;
+        // info!("0x3 READ {:X}", self.read(0x3).await);
+        // Timer::after_millis(500).await;
     }
 
     pub async fn read(&mut self, addr: usize) -> u8 {
