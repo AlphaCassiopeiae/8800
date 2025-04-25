@@ -8,13 +8,9 @@ use defmt::*;
 // use core::stringify;
 use embassy_executor::Spawner;
 use embassy_time::Timer;
-use embassy_rp::gpio::{Input, Output, Level, Pull};
+use embassy_rp::gpio::{Input, Pull};
 use embassy_rp::Peripherals;
 use {defmt_rtt as _, panic_probe as _};
-
-// channels for communication with Tram
-use embassy_sync::blocking_mutex::raw::CriticalSectionRawMutex;
-use embassy_sync::channel::Channel;
 
 use cpu_emulator::cpu::CPU;
 use cpu_emulator::ram::RAM;
@@ -44,7 +40,7 @@ async fn main(_spawner: Spawner) {
     let mut panel = Output::new(p.PIN_1, Level::High); // low active
     // setup of components/channels
     let mut ram: RAM = RAM::new();
-    ram.init();
+    ram.init().await;
     let mut cpu: CPU = CPU::new(ram);
     cpu.reset();
 

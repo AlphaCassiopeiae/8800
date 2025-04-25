@@ -54,7 +54,6 @@ impl From<Reg> for u8 {
     }
 }
 
-#[derive(Debug, Clone, Copy)]
 pub struct CPU {
     // registers
     registers: [u8; 8],
@@ -106,79 +105,78 @@ impl CPU {
         self.halt = true;
     }
 
-    pub fn read_bc(&self) -> u16 {
-        ((self.read_reg(Reg::B) as u16) << 8) | (self.read_reg(Reg::C) as u16)
+    pub async fn read_bc(&mut self) -> u16 {
+        ((self.read_reg(Reg::B).await as u16) << 8) | (self.read_reg(Reg::C).await as u16)
     }
     
-    pub fn read_de(&self) -> u16 {
-        ((self.read_reg(Reg::D) as u16) << 8) | (self.read_reg(Reg::E) as u16)
+    pub async fn read_de(&mut self) -> u16 {
+        ((self.read_reg(Reg::D).await as u16) << 8) | (self.read_reg(Reg::E).await as u16)
     }
     
-    pub fn read_hl(&self) -> u16 {
+    pub fn read_hl(&mut self) -> u16 {
         // concatentation of H and L
-        ((self.read_reg(Reg::H) as u16) << 8) | (self.read_reg(Reg::L) as u16)
+        ((self.registers[0b100] as u16) << 8) | (self.registers[0b101] as u16)
     }
 
-    pub fn read_psw(&self) -> u16 {
-        ((self.read_reg(Reg::A) as u16) << 8) | (self.pack_flags() as u16)
+    pub async fn read_psw(&mut self) -> u16 {
+        ((self.read_reg(Reg::A).await as u16) << 8) | (self.pack_flags() as u16)
     }
 
-    pub fn set_bc(&mut self, val: u16) {
+    pub async fn set_bc(&mut self, val: u16) {
         let upper: u8 = ((val & 0xFF00) >> 8) as u8;
         let lower: u8 = (val & 0x00FF) as u8;
 
-        self.set_reg(Reg::B, upper);
-        self.set_reg(Reg::C, lower);
+        self.set_reg(Reg::B, upper).await;
+        self.set_reg(Reg::C, lower).await;
     }
 
-    pub fn set_de(&mut self, val: u16) {
+    pub async fn set_de(&mut self, val: u16) {
         let upper: u8 = ((val & 0xFF00) >> 8) as u8;
         let lower: u8 = (val & 0x00FF) as u8;
         
-        self.set_reg(Reg::D, upper);
-        self.set_reg(Reg::E, lower);
+        self.set_reg(Reg::D, upper).await;
+        self.set_reg(Reg::E, lower).await;
     }
     
-    pub fn set_hl(&mut self, val: u16) {
+    pub async fn set_hl(&mut self, val: u16) {
         let upper: u8 = ((val & 0xFF00) >> 8) as u8;
         let lower: u8 = (val & 0x00FF) as u8;
 
-        self.set_reg(Reg::H, upper);
-        self.set_reg(Reg::L, lower);
+        self.set_reg(Reg::H, upper).await;
+        self.set_reg(Reg::L, lower).await;
     }
 
-    pub fn set_psw(&mut self, val: u16) {
+    pub async fn set_psw(&mut self, val: u16) {
         let upper: u8 = ((val & 0xFF00) >> 8) as u8;
         let lower: u8 = (val & 0x00FF) as u8;
 
-        self.set_reg(Reg::A, upper);
+        self.set_reg(Reg::A, upper).await;
         // unpack u8 into flags
         self.unpack_flags(lower);
 
     }
 
     /* M Register */
-    pub fn read_m(&self) -> u8 {
+    pub async fn read_m(&mut self) -> u8 {
         let addr: u16 = self.read_hl();
         // tram read request, ram for now
-        self.ram.read(addr as usize) //placeholder
+        self.ram.read(addr as usize).await //placeholder
     }
 
-    pub fn write_m(&mut self, val: u8) {
+    pub async fn write_m(&mut self, val: u8) {
         let addr: u16 = self.read_hl();
         // tram write request
-        self.ram.write(addr as usize, val);
+        self.ram.write(addr as usize, val).await;
     }
 
     pub fn halted(&self) -> bool {self.halt}
-
     pub fn halt(&mut self) {self.halt = true;}
     pub fn unhalt(&mut self) {self.halt = false;}
 
-    pub fn read_reg(&self, reg: Reg) -> u8 {
+    pub async fn read_reg(&mut self, reg: Reg) -> u8 {
         match reg {
             Reg::M => {
-                self.read_m()
+                self.read_m().await
             }
             _ => {
                 self.registers[reg as usize ^ 1]
@@ -186,10 +184,10 @@ impl CPU {
         }
     }
 
-    pub fn set_reg(&mut self, reg: Reg, val: u8) {
+    pub async fn set_reg(&mut self, reg: Reg, val: u8) {
         match reg {
             Reg::M=> {
-                self.write_m(val);
+                self.write_m(val).await;
             }
             _ => {
                 self.registers[reg as usize ^ 1] = val;
@@ -237,42 +235,42 @@ impl CPU {
     //     )
     // }
 
-    pub fn fetch_instruction(&self) -> u8 {
+    pub async fn fetch_instruction(&mut self) -> u8 {
         // TODO: update for making tram request
-        self.ram.read(self.pc)
+        self.ram.read(self.pc).await
     }
 
     // designed for use with pc (for instructions that need additional bytes)
-    pub fn fetch_word(&self, pc: usize) -> u16 {
-        let lower: u8 = self.ram.read(pc + 1);
-        let higher: u8 = self.ram.read(pc + 2);
+    pub async fn fetch_word(&mut self, pc: usize) -> u16 {
+        let lower: u8 = self.ram.read(pc + 1).await;
+        let higher: u8 = self.ram.read(pc + 2).await;
         ((higher as u16) << 8) | (lower as u16)
     }
 
-    pub fn fetch_byte(&self, pc: usize) -> u8 {
-        self.ram.read(pc + 1)
+    pub async fn fetch_byte(&mut self, pc: usize) -> u8 {
+        self.ram.read(pc + 1).await
     }
 
-    pub fn stack_push(&mut self, word: u16) {
+    pub async fn stack_push(&mut self, word: u16) {
         let lower: u8 = (word & 0x00FF) as u8;
         let upper: u8 = (word >> 8) as u8;
 
         self.sp -= 1;
-        self.ram.write(self.sp, upper);
+        self.ram.write(self.sp, upper).await;
         self.sp -= 1;
-        self.ram.write(self.sp, lower);
+        self.ram.write(self.sp, lower).await;
     }
 
-    pub fn stack_pop(&mut self) -> u16 {
-        let lower: u8 = self.ram.read(self.sp);
+    pub async fn stack_pop(&mut self) -> u16 {
+        let lower: u8 = self.ram.read(self.sp).await;
         self.sp += 1;
-        let upper: u8 = self.ram.read(self.sp);
+        let upper: u8 = self.ram.read(self.sp).await;
         self.sp += 1;
 
         ((upper as u16) << 8) | (lower as u16)
     }
 
-    pub fn execute_instruction(&mut self, instruction: u8) {
+    pub async fn execute_instruction(&mut self, instruction: u8) {
         info!("instruction: 0x{:X}\r", instruction);
         let info: InstructionInfo = INSTRUCTION_TABLE[usize::from(instruction)];
         info!("info: {}\r", info);
@@ -290,9 +288,9 @@ impl CPU {
                 let reg_mask: u8 = 0b0011_1000;
                 let reg: Reg = Reg::from((instruction & reg_mask) >> 3);
 
-                let val: u8 = self.read_reg(reg);
+                let val: u8 = self.read_reg(reg).await;
                 let result: u8 = val.wrapping_add(1);
-                self.set_reg(reg, result);
+                self.set_reg(reg, result).await;
 
                 // use result to update flags (S, Z, A, P)
                 self.set_szp(result);
@@ -305,9 +303,9 @@ impl CPU {
                 let reg_mask: u8 = 0b0011_1000;
                 let reg: Reg = Reg::from((instruction & reg_mask) >> 3);
 
-                let val: u8 = self.read_reg(reg);
+                let val: u8 = self.read_reg(reg).await;
                 let result: u8 = val.wrapping_sub(1);
-                self.set_reg(reg, result);
+                self.set_reg(reg, result).await;
 
                 // use result to update flags (S, Z, A, P)
                 self.set_szp(result);
@@ -321,18 +319,18 @@ impl CPU {
                 match pair {
                     0b00 => {
                         // pair BC
-                        let val: u16 = self.read_bc();
-                        self.set_bc(val.wrapping_add(1));
+                        let val: u16 = self.read_bc().await;
+                        self.set_bc(val.wrapping_add(1)).await;
                     }
                     0b01 => {
                         // pair DE
-                        let val: u16 = self.read_de();
-                        self.set_de(val.wrapping_add(1));
+                        let val: u16 = self.read_de().await;
+                        self.set_de(val.wrapping_add(1)).await;
                     }
                     0b10 => {
                         // pair HL
                         let val: u16 = self.read_hl();
-                        self.set_hl(val.wrapping_add(1));
+                        self.set_hl(val.wrapping_add(1)).await;
                     }
                     0b11 => {
                         // SP
@@ -348,18 +346,18 @@ impl CPU {
                 match pair {
                     0b00 => {
                         // pair BC
-                        let val: u16 = self.read_bc();
-                        self.set_bc(val.wrapping_sub(1));
+                        let val: u16 = self.read_bc().await;
+                        self.set_bc(val.wrapping_sub(1)).await;
                     }
                     0b01 => {
                         // pair DE
-                        let val: u16 = self.read_de();
-                        self.set_de(val.wrapping_sub(1));
+                        let val: u16 = self.read_de().await;
+                        self.set_de(val.wrapping_sub(1)).await;
                     }
                     0b10 => {
                         // pair HL
                         let val: u16 = self.read_hl();
-                        self.set_hl(val.wrapping_sub(1));
+                        self.set_hl(val.wrapping_sub(1)).await;
                     }
                     0b11 => {
                         // SP
@@ -371,23 +369,23 @@ impl CPU {
             /* Misc Instructions */
             0x07 => {
                 // RLC
-                let a: u8 = self.read_reg(Reg::A);
+                let a: u8 = self.read_reg(Reg::A).await;
                 let msb: u8 = (a & 0x80) >> 7;
-                self.set_reg(Reg::A, (a << 1) | msb);
+                self.set_reg(Reg::A, (a << 1) | msb).await;
                 self.carry = msb == 1;
             }
             0x17 => {
                 // RAL
                 let mut carry: u8 = 0;
                 if self.carry {carry = 1;}
-                let a: u8 = self.read_reg(Reg::A);
+                let a: u8 = self.read_reg(Reg::A).await;
                 let msb: u8 = (a & 0x80) >> 7;
-                self.set_reg(Reg::A, (a << 1) | carry);
+                self.set_reg(Reg::A, (a << 1) | carry).await;
                 self.carry = msb == 1;
             }
             0x27 => {
                 // DAA
-                let a: u8 = self.read_reg(Reg::A);
+                let a: u8 = self.read_reg(Reg::A).await;
 
                 let mut adjustment: u8 = 0;
                 
@@ -402,7 +400,7 @@ impl CPU {
                 }
 
                 let result: u8 = a.wrapping_add(adjustment);
-                self.set_reg(Reg::A, result);
+                self.set_reg(Reg::A, result).await;
                 self.set_szp(result);
             }
             0x37 => {
@@ -411,23 +409,24 @@ impl CPU {
             }
             0x0F => {
                 // RRC
-                let a: u8 = self.read_reg(Reg::A);
+                let a: u8 = self.read_reg(Reg::A).await;
                 let lsb: u8 = a & 0x01;
-                self.set_reg(Reg::A, (a >> 1) | (lsb << 7));
+                self.set_reg(Reg::A, (a >> 1) | (lsb << 7)).await;
                 self.carry = lsb == 1;
             }
             0x1F => {
                 // RAR
                 let mut carry: u8 = 0;
                 if self.carry {carry = 1;}
-                let a: u8 = self.read_reg(Reg::A);
+                let a: u8 = self.read_reg(Reg::A).await;
                 let lsb: u8 = a & 0x01;
-                self.set_reg(Reg::A, (a >> 1) | (carry << 7));
+                self.set_reg(Reg::A, (a >> 1) | (carry << 7)).await;
                 self.carry = lsb == 1;
             }
             0x2F => {
                 // CMA
-                self.set_reg(Reg::A, !self.read_reg(Reg::A));
+                let value = self.read_reg(Reg::A).await;
+                self.set_reg(Reg::A, !value).await;
             }
             0x3F => {
                 // CMC
@@ -438,18 +437,18 @@ impl CPU {
                 // STAX, no flags affected
                 // store val from accumulator at addr housed in reg pair
                 let pair: u8 = (instruction & 0x10) >> 4;
-                let val: u8 = self.read_reg(Reg::A);
+                let val: u8 = self.read_reg(Reg::A).await;
 
                 match pair {
                     0 => {
                         // pair bc
-                        let addr: u16 = self.read_bc();
-                        self.ram.write(addr as usize, val);
+                        let addr: u16 = self.read_bc().await;
+                        self.ram.write(addr as usize, val).await;
                     }
                     1 => {
                         // pair de
-                        let addr: u16 = self.read_de();
-                        self.ram.write(addr as usize, val);
+                        let addr: u16 = self.read_de().await;
+                        self.ram.write(addr as usize, val).await;
                     }
                     _ => {/* Invalid Register Pair */}
                 }
@@ -462,13 +461,15 @@ impl CPU {
                 match pair {
                     0 => {
                         // pair bc
-                        let addr: u16 = self.read_bc();
-                        self.set_reg(Reg::A, self.ram.read(addr as usize));
+                        let addr: u16 = self.read_bc().await;
+                        let value = self.ram.read(addr as usize).await;
+                        self.set_reg(Reg::A, value).await;
                     }
                     1 => {
                         // pair de
-                        let addr: u16 = self.read_de();
-                        self.set_reg(Reg::A, self.ram.read(addr as usize));
+                        let addr: u16 = self.read_de().await;
+                        let value = self.ram.read(addr as usize).await;
+                        self.set_reg(Reg::A, value).await;
                     }
                     _ => {/* Invalid Register Pair */}
                 }
@@ -476,64 +477,69 @@ impl CPU {
             0x22 => {
                 // SHLD a16
                 // H -> MEM[a16], L -> MEM[a16+1]
-                let addr: u16 = self.fetch_word(self.pc);
+                let addr: u16 = self.fetch_word(self.pc).await;
 
-                self.ram.write(addr as usize, self.read_reg(Reg::H));
-                self.ram.write((addr + 1) as usize, self.read_reg(Reg::L));
+                let mut value = self.read_reg(Reg::L).await;
+                self.ram.write(addr as usize, value).await;
+
+                value = self.read_reg(Reg::L).await;
+                self.ram.write((addr + 1) as usize, value).await;
 
                 next_pc = self.pc + 3;
             }
             0x2A => {
                 // LHLD a16
                 // MEM[a16] -> L, MEM[a16+1] -> H
-                let addr: u16 = self.fetch_word(self.pc);
+                let addr: u16 = self.fetch_word(self.pc).await;
 
-                let l_byte: u8 = self.ram.read(addr as usize);
-                let h_byte: u8 = self.ram.read((addr + 1) as usize);
+                let l_byte: u8 = self.ram.read(addr as usize).await;
+                let h_byte: u8 = self.ram.read((addr + 1) as usize).await;
 
-                self.set_reg(Reg::L, l_byte);
-                self.set_reg(Reg::H, h_byte);
+                self.set_reg(Reg::L, l_byte).await;
+                self.set_reg(Reg::H, h_byte).await;
 
                 next_pc = self.pc + 3;
             }
             0x32 => {
                 // STA a16
-                let addr: u16 = self.fetch_word(self.pc);
+                let addr: u16 = self.fetch_word(self.pc).await;
 
-                self.ram.write(addr as usize, self.read_reg(Reg::A));
+                let value = self.read_reg(Reg::A).await;
+                self.ram.write(addr as usize, value).await;
 
                 next_pc = self.pc + 3;
             }
             0x3A => {
                 // LDA a16
-                let addr: u16 = self.fetch_word(self.pc);
+                let addr: u16 = self.fetch_word(self.pc).await;
 
-                self.set_reg(Reg::A, self.ram.read(addr as usize));
+                let value = self.ram.read(addr as usize).await;
+                self.set_reg(Reg::A, value).await;
 
                 next_pc = self.pc + 3;
             }
             0x01 | 0x11 | 0x21 | 0x31 => {
                 // LXI rp, d16
-                let lower: u8 = self.fetch_byte(self.pc);
-                let upper: u8 = self.fetch_byte(self.pc + 1);
+                let lower: u8 = self.fetch_byte(self.pc).await;
+                let upper: u8 = self.fetch_byte(self.pc + 1).await;
 
                 // rp encoded in bits 5-4 of opcode
                 let code: u8 = (instruction & 0x30) >> 4;
                 match code {
                     0x00 => {
                         // BC
-                        self.set_reg(Reg::B, upper);
-                        self.set_reg(Reg::C, lower);
+                        self.set_reg(Reg::B, upper).await;
+                        self.set_reg(Reg::C, lower).await;
                     }
                     0x01 => {
                         // DE
-                        self.set_reg(Reg::D, upper);
-                        self.set_reg(Reg::E, lower);
+                        self.set_reg(Reg::D, upper).await;
+                        self.set_reg(Reg::E, lower).await;
                     }
                     0x02 => {
                         // HL
-                        self.set_reg(Reg::H, upper);
-                        self.set_reg(Reg::L, lower);
+                        self.set_reg(Reg::H, upper).await;
+                        self.set_reg(Reg::L, lower).await;
                     }
                     0x03 => {
                         // SP
@@ -548,11 +554,11 @@ impl CPU {
             /* MOV Instructions */
             0x06 | 0x16 | 0x26 | 0x36 | 0x0E | 0x1E | 0x2E | 0x3E => {
                 // MVI reg, d8
-                let byte: u8 = self.fetch_byte(self.pc);
+                let byte: u8 = self.fetch_byte(self.pc).await;
                 // reg encoded in bits 5-3 of opcode
                 let reg_code: u8 = (instruction & 0x38) >> 3;
                 let reg: Reg = Reg::from(reg_code);
-                self.set_reg(reg, byte);
+                self.set_reg(reg, byte).await;
 
                 next_pc = self.pc + 2;
             }
@@ -562,16 +568,18 @@ impl CPU {
             
                 if src == Reg::M {
                     // read mem at addr HL, store value in dst
-                    self.set_reg(dst, self.read_m());
+                    let value = self.read_m().await;
+                    self.set_reg(dst, value).await;
                 }
                 else if dst == Reg::M {
                     // store value in src at mem addr HL
-                    self.write_m(self.read_reg(src));
+                    let value = self.read_reg(src).await;
+                    self.write_m(value).await;
                 }
                 else {
                     // reg -> reg mov
-                    let value: u8 = self.read_reg(src);
-                    self.set_reg(dst, value);
+                    let value: u8 = self.read_reg(src).await;
+                    self.set_reg(dst, value).await;
                 }
             }
             /* HLT */
@@ -581,10 +589,10 @@ impl CPU {
                 // ADD instructions
                 let src_reg: Reg = Reg::from(instruction & 0b111);
 
-                let a: u8 = self.read_reg(Reg::A);
-                let b: u8 = self.read_reg(src_reg);
+                let a: u8 = self.read_reg(Reg::A).await;
+                let b: u8 = self.read_reg(src_reg).await;
                 let result: u8 = a.wrapping_add(b);
-                self.set_reg(Reg::A, result);
+                self.set_reg(Reg::A, result).await;
 
                 self.set_szp(result);
                 self.carry = (a as u16 + b as u16) > 0x00FF;
@@ -597,10 +605,10 @@ impl CPU {
                 let mut carry: u8 = 0;
                 if self.carry {carry = 1;}
 
-                let a: u8 = self.read_reg(Reg::A);
-                let b: u8 = self.read_reg(src_reg);
+                let a: u8 = self.read_reg(Reg::A).await;
+                let b: u8 = self.read_reg(src_reg).await;
                 let result: u8 = a.wrapping_add(b).wrapping_add(carry);
-                self.set_reg(Reg::A, result);
+                self.set_reg(Reg::A, result).await;
 
                 self.set_szp(result);
                 self.carry = (a as u16 + b as u16 + carry as u16) > 0x00FF;
@@ -610,10 +618,10 @@ impl CPU {
                 // SUB instructions
                 let src_reg: Reg = Reg::from(instruction & 0b0000_0111);
 
-                let a: u8 = self.read_reg(Reg::A);
-                let b: u8 = self.read_reg(src_reg);
+                let a: u8 = self.read_reg(Reg::A).await;
+                let b: u8 = self.read_reg(src_reg).await;
                 let result: u8 = a.wrapping_sub(b);
-                self.set_reg(Reg::A, result);
+                self.set_reg(Reg::A, result).await;
 
                 self.set_szp(result);
                 self.carry = a < b;
@@ -626,10 +634,10 @@ impl CPU {
                 let mut carry: u8 = 0;
                 if self.carry {carry = 1;}
 
-                let a: u8 = self.read_reg(Reg::A);
-                let b: u8 = self.read_reg(src_reg);
+                let a: u8 = self.read_reg(Reg::A).await;
+                let b: u8 = self.read_reg(src_reg).await;
                 let result: u8 = a.wrapping_sub(b).wrapping_sub(carry);
-                self.set_reg(Reg::A, result);
+                self.set_reg(Reg::A, result).await;
 
                 self.set_szp(result);
                 self.carry = a < (b + carry);
@@ -639,8 +647,8 @@ impl CPU {
                 // ANA instructions
                 let src_reg: Reg = Reg::from(instruction & 0b0000_0111);
 
-                let result: u8 = self.read_reg(Reg::A) & self.read_reg(src_reg);
-                self.set_reg(Reg::A, result);
+                let result: u8 = self.read_reg(Reg::A).await & self.read_reg(src_reg).await;
+                self.set_reg(Reg::A, result).await;
 
                 self.set_szp(result);
                 self.carry = false;
@@ -650,8 +658,8 @@ impl CPU {
                 // XRA instructions
                 let src_reg: Reg = Reg::from(instruction & 0b0000_0111);
 
-                let result: u8 = self.read_reg(Reg::A) ^ self.read_reg(src_reg);
-                self.set_reg(Reg::A, result);
+                let result: u8 = self.read_reg(Reg::A).await ^ self.read_reg(src_reg).await;
+                self.set_reg(Reg::A, result).await;
 
                 self.set_szp(result);
                 self.carry = false;
@@ -661,8 +669,8 @@ impl CPU {
                 // ORA instructions
                 let src_reg: Reg = Reg::from(instruction & 0b0000_0111);
 
-                let result: u8 = self.read_reg(Reg::A) | self.read_reg(src_reg);
-                self.set_reg(Reg::A, result);
+                let result: u8 = self.read_reg(Reg::A).await | self.read_reg(src_reg).await;
+                self.set_reg(Reg::A, result).await;
 
                 self.set_szp(result);
                 self.carry = false;
@@ -673,8 +681,8 @@ impl CPU {
                 // just updates flags after subraction, A remains untouched
                 let src_reg: Reg = Reg::from(instruction & 0b0000_0111);
 
-                let a: u8 = self.read_reg(Reg::A);
-                let b: u8 = self.read_reg(src_reg);
+                let a: u8 = self.read_reg(Reg::A).await;
+                let b: u8 = self.read_reg(src_reg).await;
                 let result: u8 = a.wrapping_sub(b);
 
                 self.set_szp(result);
@@ -683,11 +691,11 @@ impl CPU {
             }
             0xC6 => {
                 // ADI d8
-                let byte: u8 = self.fetch_byte(self.pc);
-                let a: u8 = self.read_reg(Reg::A);
+                let byte: u8 = self.fetch_byte(self.pc).await;
+                let a: u8 = self.read_reg(Reg::A).await;
 
                 let result: u8 = a.wrapping_add(byte);
-                self.set_reg(Reg::A, result);
+                self.set_reg(Reg::A, result).await;
 
                 self.set_szp(result);
                 self.carry = (a as u16 + byte as u16) > 0x00FF;
@@ -697,11 +705,11 @@ impl CPU {
             }
             0xD6 => {
                 // SUI d8
-                let byte: u8 = self.fetch_byte(self.pc);
-                let a: u8 = self.read_reg(Reg::A);
+                let byte: u8 = self.fetch_byte(self.pc).await;
+                let a: u8 = self.read_reg(Reg::A).await;
 
                 let result: u8 = a.wrapping_sub(byte);
-                self.set_reg(Reg::A, result);
+                self.set_reg(Reg::A, result).await;
 
                 self.set_szp(result);
                 self.carry = a < byte;
@@ -711,11 +719,11 @@ impl CPU {
             }
             0xE6 => {
                 // ANI d8
-                let byte: u8 = self.fetch_byte(self.pc);
-                let a: u8 = self.read_reg(Reg::A);
+                let byte: u8 = self.fetch_byte(self.pc).await;
+                let a: u8 = self.read_reg(Reg::A).await;
 
                 let result: u8 = a & byte;
-                self.set_reg(Reg::A, result);
+                self.set_reg(Reg::A, result).await;
 
                 self.set_szp(result);
                 self.carry = false;
@@ -725,11 +733,11 @@ impl CPU {
             }
             0xF6 => {
                 // ORI d8
-                let byte: u8 = self.fetch_byte(self.pc);
-                let a: u8 = self.read_reg(Reg::A);
+                let byte: u8 = self.fetch_byte(self.pc).await;
+                let a: u8 = self.read_reg(Reg::A).await;
 
                 let result: u8 = a & byte;
-                self.set_reg(Reg::A, result);
+                self.set_reg(Reg::A, result).await;
 
                 self.set_szp(result);
                 self.carry = false;
@@ -739,14 +747,14 @@ impl CPU {
             }
             0xCE => {
                 // ACI d8
-                let byte: u8 = self.fetch_byte(self.pc);
-                let a: u8 = self.read_reg(Reg::A);
+                let byte: u8 = self.fetch_byte(self.pc).await;
+                let a: u8 = self.read_reg(Reg::A).await;
 
                 let mut carry: u8 = 0;
                 if self.carry {carry = 1;}
 
                 let result: u8 = a.wrapping_add(byte).wrapping_add(carry);
-                self.set_reg(Reg::A, result);
+                self.set_reg(Reg::A, result).await;
 
                 self.set_szp(result);
                 self.carry = (a as u16 + byte as u16 + carry as u16) > 0x00FF;
@@ -756,14 +764,14 @@ impl CPU {
             }
             0xDE => {
                 // SBI d8
-                let byte: u8 = self.fetch_byte(self.pc);
-                let a: u8 = self.read_reg(Reg::A);
+                let byte: u8 = self.fetch_byte(self.pc).await;
+                let a: u8 = self.read_reg(Reg::A).await;
 
                 let mut carry: u8 = 0;
                 if self.carry {carry = 1;}
 
                 let result: u8 = a.wrapping_sub(byte).wrapping_sub(carry);
-                self.set_reg(Reg::A, result);
+                self.set_reg(Reg::A, result).await;
 
                 self.set_szp(result);
                 self.carry = a < (byte + carry);
@@ -773,11 +781,11 @@ impl CPU {
             }
             0xEE => {
                 // XRI d8
-                let byte: u8 = self.fetch_byte(self.pc);
-                let a: u8 = self.read_reg(Reg::A);
+                let byte: u8 = self.fetch_byte(self.pc).await;
+                let a: u8 = self.read_reg(Reg::A).await;
 
                 let result: u8 = a ^ byte;
-                self.set_reg(Reg::A, result);
+                self.set_reg(Reg::A, result).await;
 
                 self.set_szp(result);
                 self.carry = false;
@@ -787,8 +795,8 @@ impl CPU {
             }
             0xFE => {
                 // CPI d8
-                let byte: u8 = self.fetch_byte(self.pc);
-                let a: u8 = self.read_reg(Reg::A);
+                let byte: u8 = self.fetch_byte(self.pc).await;
+                let a: u8 = self.read_reg(Reg::A).await;
 
                 let result: u8 = a.wrapping_sub(byte);
 
@@ -802,7 +810,7 @@ impl CPU {
             0xC2 => {
                 // JNZ a16, conditional jump if zero flag is 0
                 if !self.zero {
-                    let addr: u16 = self.fetch_word(self.pc);
+                    let addr: u16 = self.fetch_word(self.pc).await;
                     next_pc = addr as usize;
                 } else {
                     next_pc = self.pc + 3;
@@ -810,13 +818,13 @@ impl CPU {
             }
             0xC3 | 0xCB => {
                 // JMP a16, needs 2 bytes (lower, higher) from pc+1 and pc+2
-                let addr: u16 = self.fetch_word(self.pc);
+                let addr: u16 = self.fetch_word(self.pc).await;
                 next_pc = addr as usize;
             }
             0xCA => {
                 // JZ a16
                 if self.zero {
-                    let addr: u16 = self.fetch_word(self.pc);
+                    let addr: u16 = self.fetch_word(self.pc).await;
                     next_pc = addr as usize;
                 } else {
                     next_pc = self.pc + 3;
@@ -825,7 +833,7 @@ impl CPU {
             0xD2 => {
                 // JNC a16, conditional jump if carry = false
                 if !self.carry {
-                    let addr: u16 = self.fetch_word(self.pc);
+                    let addr: u16 = self.fetch_word(self.pc).await;
                     next_pc = addr as usize;
                 } else {
                     next_pc = self.pc + 3;
@@ -834,7 +842,7 @@ impl CPU {
             0xDA => {
                 // JC a16
                 if self.carry {
-                    let addr: u16 = self.fetch_word(self.pc);
+                    let addr: u16 = self.fetch_word(self.pc).await;
                     next_pc = addr as usize;
                 } else {
                     next_pc = self.pc + 3;
@@ -843,7 +851,7 @@ impl CPU {
             0xE2 => {
                 // JPO a16, conditional jump if parity odd (false)
                 if !self.parity {
-                    let addr: u16 = self.fetch_word(self.pc);
+                    let addr: u16 = self.fetch_word(self.pc).await;
                     next_pc = addr as usize;
                 } else {
                     next_pc = self.pc + 3;
@@ -852,7 +860,7 @@ impl CPU {
             0xEA => {
                 // JPE a16
                 if self.parity {
-                    let addr: u16 = self.fetch_word(self.pc);
+                    let addr: u16 = self.fetch_word(self.pc).await;
                     next_pc = addr as usize;
                 } else {
                     next_pc = self.pc + 3;
@@ -861,7 +869,7 @@ impl CPU {
             0xF2 => {
                 // JP a16, conditional jump if sign positive
                 if !self.sign {
-                    let addr: u16 = self.fetch_word(self.pc);
+                    let addr: u16 = self.fetch_word(self.pc).await;
                     next_pc = addr as usize;
                 } else {
                     next_pc = self.pc + 3;
@@ -870,7 +878,7 @@ impl CPU {
             0xFA => {
                 // JM a16
                 if self.sign {
-                    let addr: u16 = self.fetch_word(self.pc);
+                    let addr: u16 = self.fetch_word(self.pc).await;
                     next_pc = addr as usize;
                 } else {
                     next_pc = self.pc + 3;
@@ -879,26 +887,26 @@ impl CPU {
             /* PUSH and POP */
             0xC1 | 0xD1 | 0xE1 | 0xF1 => {
                 // POP instructions
-                let word: u16 = self.stack_pop();
+                let word: u16 = self.stack_pop().await;
 
                 let pair: u8 = (instruction & 0b00110000) >> 4;
 
                 match pair {
                     0b00 => {
                         // pair BC
-                        self.set_bc(word);
+                        self.set_bc(word).await;
                     }
                     0b01 => {
                         // pair DE
-                        self.set_de(word);
+                        self.set_de(word).await;
                     }
                     0b10 => {
                         // pair HL
-                        self.set_hl(word);
+                        self.set_hl(word).await;
                     }
                     0b11 => {
                         // PSW (A, flags)
-                        self.set_psw(word);
+                        self.set_psw(word).await;
                     }
                     _ => {/* invalid pair, shouldn't be possible */}
                 }
@@ -911,11 +919,11 @@ impl CPU {
                 match pair {
                     0b00 => {
                         // pair BC
-                        word = self.read_bc();
+                        word = self.read_bc().await;
                     }
                     0b01 => {
                        // pair DE
-                       word = self.read_de();
+                       word = self.read_de().await;
                     }
                     0b10 => {
                         // pair HL
@@ -923,12 +931,12 @@ impl CPU {
                     }
                     0b11 => {
                         // PSW (A, flags)
-                        word = self.read_psw();
+                        word = self.read_psw().await;
                     }
                     _ => {/* invalid pair, shouldn't be possible */}
                 }
 
-                self.stack_push(word);
+                self.stack_push(word).await;
             }
             /* Interrupt Enable/Disable */
             0xF3 => {
@@ -943,21 +951,21 @@ impl CPU {
             0xCD | 0xDD | 0xED | 0xFD => {
                 // CALL a16
                 // push pc+3 to stack, set pc to a16
-                let addr: u16 = self.fetch_word(self.pc);
+                let addr: u16 = self.fetch_word(self.pc).await;
 
                 let store_pc: u16 = (self.pc + 3) as u16;
 
-                self.stack_push(store_pc);
+                self.stack_push(store_pc).await;
 
                 next_pc = addr as usize;
             }
             0xC4 => {
                 // CNZ a16
-                let addr: u16 = self.fetch_word(self.pc);
+                let addr: u16 = self.fetch_word(self.pc).await;
 
                 if !self.zero {
                     let store_pc: u16 = (self.pc + 3) as u16;
-                    self.stack_push(store_pc);
+                    self.stack_push(store_pc).await;
 
                     next_pc = addr as usize;
                 } else {
@@ -966,11 +974,11 @@ impl CPU {
             }
             0xD4 => {
                 // CNC a16
-                let addr: u16 = self.fetch_word(self.pc);
+                let addr: u16 = self.fetch_word(self.pc).await;
                 
                 if !self.carry {
                     let store_pc: u16 = (self.pc + 3) as u16;
-                    self.stack_push(store_pc);
+                    self.stack_push(store_pc).await;
 
                     next_pc = addr as usize;
                 } else {
@@ -979,11 +987,11 @@ impl CPU {
             }
             0xE4 => {
                 // CPO a16
-                let addr: u16 = self.fetch_word(self.pc);
+                let addr: u16 = self.fetch_word(self.pc).await;
                 
                 if !self.parity {
                     let store_pc: u16 = (self.pc + 3) as u16;
-                    self.stack_push(store_pc);
+                    self.stack_push(store_pc).await;
 
                     next_pc = addr as usize;
                 } else {
@@ -992,11 +1000,11 @@ impl CPU {
             }
             0xF4 => {
                 // CP a16
-                let addr: u16 = self.fetch_word(self.pc);
+                let addr: u16 = self.fetch_word(self.pc).await;
                 
                 if !self.sign {
                     let store_pc: u16 = (self.pc + 3) as u16;
-                    self.stack_push(store_pc);
+                    self.stack_push(store_pc).await;
 
                     next_pc = addr as usize;
                 } else {
@@ -1005,11 +1013,11 @@ impl CPU {
             }
             0xCC => {
                 // CZ a16
-                let addr: u16 = self.fetch_word(self.pc);
+                let addr: u16 = self.fetch_word(self.pc).await;
                 
                 if self.zero {
                     let store_pc: u16 = (self.pc + 3) as u16;
-                    self.stack_push(store_pc);
+                    self.stack_push(store_pc).await;
 
                     next_pc = addr as usize;
                 } else {
@@ -1018,11 +1026,11 @@ impl CPU {
             }
             0xDC => {
                 // CC a16
-                let addr: u16 = self.fetch_word(self.pc);
+                let addr: u16 = self.fetch_word(self.pc).await;
                 
                 if self.carry {
                     let store_pc: u16 = (self.pc + 3) as u16;
-                    self.stack_push(store_pc);
+                    self.stack_push(store_pc).await;
 
                     next_pc = addr as usize;
                 } else {
@@ -1031,11 +1039,11 @@ impl CPU {
             }
             0xEC => {
                 // CPE a16
-                let addr: u16 = self.fetch_word(self.pc);
+                let addr: u16 = self.fetch_word(self.pc).await;
 
                 if self.parity {
                     let store_pc: u16 = (self.pc + 3) as u16;
-                    self.stack_push(store_pc);
+                    self.stack_push(store_pc).await;
 
                     next_pc = addr as usize;
                 } else {
@@ -1044,11 +1052,11 @@ impl CPU {
             }
             0xFC => {
                 // CM a16
-                let addr: u16 = self.fetch_word(self.pc);
+                let addr: u16 = self.fetch_word(self.pc).await;
                 
                 if self.sign {
                     let store_pc: u16 = (self.pc + 3) as u16;
-                    self.stack_push(store_pc);
+                    self.stack_push(store_pc).await;
 
                     next_pc = addr as usize;
                 } else {
@@ -1058,62 +1066,62 @@ impl CPU {
             /* RET instructions */
             0xC9 | 0xD9 => {
                 // RET, pop 2 bytes off of stack and set as new pc
-                let new_pc: u16 = self.stack_pop();
+                let new_pc: u16 = self.stack_pop().await;
                 next_pc = new_pc as usize;
             }
             0xC0 => {
                 // RNZ
                 if !self.zero {
-                    let new_pc: u16 = self.stack_pop();
+                    let new_pc: u16 = self.stack_pop().await;
                     next_pc = new_pc as usize;
                 }
             }
             0xD0 => {
                 // RNC
                 if !self.carry {
-                    let new_pc: u16 = self.stack_pop();
+                    let new_pc: u16 = self.stack_pop().await;
                     next_pc = new_pc as usize;
                 }
             }
             0xE0 => {
                 // RPO
                 if !self.parity {
-                    let new_pc: u16 = self.stack_pop();
+                    let new_pc: u16 = self.stack_pop().await;
                     next_pc = new_pc as usize;
                 }
             }
             0xF0 => {
                 // RP
                 if !self.sign {
-                    let new_pc: u16 = self.stack_pop();
+                    let new_pc: u16 = self.stack_pop().await;
                     next_pc = new_pc as usize;
                 }
             }
             0xC8 => {
                 // RZ
                 if self.zero {
-                    let new_pc: u16 = self.stack_pop();
+                    let new_pc: u16 = self.stack_pop().await;
                     next_pc = new_pc as usize;
                 }
             }
             0xD8 => {
                 // RC
                 if self.carry {
-                    let new_pc: u16 = self.stack_pop();
+                    let new_pc: u16 = self.stack_pop().await;
                     next_pc = new_pc as usize;
                 }
             }
             0xE8 => {
                 // RPE
                 if self.parity {
-                    let new_pc: u16 = self.stack_pop();
+                    let new_pc: u16 = self.stack_pop().await;
                     next_pc = new_pc as usize;
                 }
             }
             0xF8 => {
                 // RM
                 if self.sign {
-                    let new_pc: u16 = self.stack_pop();
+                    let new_pc: u16 = self.stack_pop().await;
                     next_pc = new_pc as usize;
                 }
             }
@@ -1123,20 +1131,23 @@ impl CPU {
                 let new_pc: u16 = (instruction & 0x38) as u16;
 
                 // push old pc to stack (lower then upper)
-                self.stack_push(self.pc as u16);
+                self.stack_push(self.pc as u16).await;
                 next_pc = new_pc as usize;
             }
             /* Misc Instructions */
             0xE3 => {
                 // XTHL
-                let temp_l: u8 = self.ram.read(self.sp);
-                let temp_h: u8 = self.ram.read(self.sp + 1);
+                let temp_l: u8 = self.ram.read(self.sp).await;
+                let temp_h: u8 = self.ram.read(self.sp + 1).await;
 
-                self.ram.write(self.sp, self.read_reg(Reg::L));
-                self.ram.write(self.sp + 1, self.read_reg(Reg::H));
+                let mut value = self.read_reg(Reg::L).await; 
+                self.ram.write(self.sp, value).await;
 
-                self.set_reg(Reg::H, temp_h);
-                self.set_reg(Reg::L, temp_l);
+                value = self.read_reg(Reg::H).await;
+                self.ram.write(self.sp + 1, value).await;
+
+                self.set_reg(Reg::H, temp_h).await;
+                self.set_reg(Reg::L, temp_l).await;
             }
             0xE9 => {
                 // PCHL (HL -> PC)
@@ -1145,13 +1156,15 @@ impl CPU {
             0xEB => {
                 // XCHG
                 // swaps contents of DE and HL (D <-> H, E <-> L)
-                let mut temp = self.read_reg(Reg::D);
-                self.set_reg(Reg::D, self.read_reg(Reg::H));
-                self.set_reg(Reg::H, temp);
+                let mut temp = self.read_reg(Reg::D).await;
+                let mut value = self.read_reg(Reg::H).await;
+                self.set_reg(Reg::D, value).await;
+                self.set_reg(Reg::H, temp).await;
 
-                temp = self.read_reg(Reg::E);
-                self.set_reg(Reg::E, self.read_reg(Reg::L));
-                self.set_reg(Reg::L, temp);
+                temp = self.read_reg(Reg::E).await;
+                value = self.read_reg(Reg::L).await;
+                self.set_reg(Reg::E, value).await;
+                self.set_reg(Reg::L, temp).await;
             }
             0xF9 => {
                 // SPHL (HL -> SP)
@@ -1162,13 +1175,13 @@ impl CPU {
         self.pc = next_pc;
     }
 
-    pub fn show_state(&self) {
+    pub async fn show_state(&mut self) {
         info!("------------------------------\r");
         info!("Registers:\r");
-        info!("  A: {}\r", self.read_reg(Reg::A));
-        info!("  B: {}  C: {}\r", self.read_reg(Reg::B), self.read_reg(Reg::C));
-        info!("  D: {}  E: {}\r", self.read_reg(Reg::D), self.read_reg(Reg::E));
-        info!("  H: {}  L: {}\r", self.read_reg(Reg::H), self.read_reg(Reg::L));
+        info!("  A: {}\r", self.read_reg(Reg::A).await);
+        info!("  B: {}  C: {}\r", self.read_reg(Reg::B).await, self.read_reg(Reg::C).await);
+        info!("  D: {}  E: {}\r", self.read_reg(Reg::D).await, self.read_reg(Reg::E).await);
+        info!("  H: {}  L: {}\r", self.read_reg(Reg::H).await, self.read_reg(Reg::L).await);
         info!("  FLAGS: {}\r", self.pack_flags());
         info!("------------------------------\r");
     }

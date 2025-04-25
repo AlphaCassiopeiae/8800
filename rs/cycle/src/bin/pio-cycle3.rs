@@ -4,11 +4,10 @@
 use defmt::*;
 use embassy_executor::Spawner;
 use embassy_rp::bind_interrupts;
-use embassy_rp::gpio::{Level, Output, Input, Pull};
+use embassy_rp::gpio::{Input, Pull};
 use embassy_rp::peripherals::{PIO0, PIO1};
 use embassy_rp::pio::program::pio_asm;
 use embassy_rp::pio::{Common, Config as PioConfig, InterruptHandler as PioInterruptHandler, Pio, Pin, ShiftDirection, StateMachine};
-use embassy_rp::pac; // <-- Add this import for PAC access
 use embassy_time::Timer;
 use fixed::traits::ToFixed;
 use fixed_macro::types::U56F8;
@@ -212,17 +211,34 @@ async fn main(_spawner: Spawner) {
     sm2.set_enable(true); // write machine
 
     // Define test addresses and data for our read/write operations
+    // Test addresses and data to toggle all pins and adjacent pins for bus integrity testing
     let test_addresses = [
-        0xF0F0, // Address 0x2008 (as shown in timing diagram)
-        0xF0F0, // Another test address
-        0x00FF, // Another test address
-        0xFFFF, // Highest possible address
+        0x0000, // All low
+        0xFFFF, // All high
+        0xAAAA, // Alternating 1010...
+        0x5555, // Alternating 0101...
+        0x0001, // Only lowest bit high
+        0x8000, // Only highest bit high
+        0x00FF, // Lower byte high
+        0xFF00, // Upper byte high
+        0x0F0F, // Nibble pattern
+        0xF0F0, // Inverse nibble pattern
+        0x003C, // Middle bits high
+        0x03C0, // Other middle bits high
     ];
     let test_data = [
-        0x22, // Test data
-        0x31, // Test data
-        0x41, // Test data
-        0xF1, // Test data
+        0x00, // All low
+        0xFF, // All high
+        0xAA, // Alternating 10101010
+        0x55, // Alternating 01010101
+        0x01, // Only lowest bit high
+        0x80, // Only highest bit high
+        0x0F, // Lower nibble high
+        0xF0, // Upper nibble high
+        0x33, // 00110011
+        0xCC, // 11001100
+        0x3C, // 00111100
+        0xC3, // 11000011
     ];
 
     let mut current_address = 0;
@@ -232,7 +248,7 @@ async fn main(_spawner: Spawner) {
     let state = 0;
 
     let mut stop = Input::new(p.PIN_3, Pull::None);
-    
+
 
     loop {
 
