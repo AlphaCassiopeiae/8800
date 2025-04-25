@@ -33,12 +33,6 @@ pub enum RamResponse {
     WriteComplete,
 }
 
-// Bind interrupts for PIO hardware
-bind_interrupts!(struct Irqs {
-    PIO0_IRQ_0 => PioInterruptHandler<PIO0>;
-    PIO1_IRQ_0 => PioInterruptHandler<PIO1>;
-});
-
 // Statically allocated channels
 static RAM_REQUESTS: StaticCell<RamChannel> = StaticCell::new();
 static RAM_RESPONSES: StaticCell<RamResponseChannel> = StaticCell::new();
@@ -177,98 +171,98 @@ async fn ram_task(
     requests: &'static RamChannel,
     responses: &'static RamResponseChannel,
 ) {
-    info!("Starting RAM task");
+    // info!("Starting RAM task");
     
-    let p = embassy_rp::init(Default::default());
+    // let p = embassy_rp::init(Default::default());
 
-    // Initialize PIO hardware - keep these alive for the entire task
-    let mut pio0 = Pio::new(p.PIO0, Irqs);
-    let mut pio1 = Pio::new(p.PIO1, Irqs);
+    // // Initialize PIO hardware - keep these alive for the entire task
+    // let mut pio0 = Pio::new(p.PIO0, Irqs);
+    // let mut pio1 = Pio::new(p.PIO1, Irqs);
     
-    // Create pins
-    let data_addr_pins = [
-        // data pins (D0-D7)
-        &pio0.common.make_pio_pin(p.PIN_8),
-        &pio0.common.make_pio_pin(p.PIN_9),
-        &pio0.common.make_pio_pin(p.PIN_10),
-        &pio0.common.make_pio_pin(p.PIN_11),
-        &pio0.common.make_pio_pin(p.PIN_12),
-        &pio0.common.make_pio_pin(p.PIN_13),
-        &pio0.common.make_pio_pin(p.PIN_14),
-        &pio0.common.make_pio_pin(p.PIN_15),
-        // address pins (A0-A15)
-        &pio0.common.make_pio_pin(p.PIN_16),
-        &pio0.common.make_pio_pin(p.PIN_17),
-        &pio0.common.make_pio_pin(p.PIN_18),
-        &pio0.common.make_pio_pin(p.PIN_19),
-        &pio0.common.make_pio_pin(p.PIN_20),
-        &pio0.common.make_pio_pin(p.PIN_21),
-        &pio0.common.make_pio_pin(p.PIN_22),
-        &pio0.common.make_pio_pin(p.PIN_23),
-        &pio0.common.make_pio_pin(p.PIN_24),
-        &pio0.common.make_pio_pin(p.PIN_25),
-        &pio0.common.make_pio_pin(p.PIN_26),
-        &pio0.common.make_pio_pin(p.PIN_27),
-        &pio0.common.make_pio_pin(p.PIN_28),
-        &pio0.common.make_pio_pin(p.PIN_29),
-        &pio0.common.make_pio_pin(p.PIN_30),
-        &pio0.common.make_pio_pin(p.PIN_31),
-    ];
+    // // Create pins
+    // let data_addr_pins = [
+    //     // data pins (D0-D7)
+    //     &pio0.common.make_pio_pin(p.PIN_8),
+    //     &pio0.common.make_pio_pin(p.PIN_9),
+    //     &pio0.common.make_pio_pin(p.PIN_10),
+    //     &pio0.common.make_pio_pin(p.PIN_11),
+    //     &pio0.common.make_pio_pin(p.PIN_12),
+    //     &pio0.common.make_pio_pin(p.PIN_13),
+    //     &pio0.common.make_pio_pin(p.PIN_14),
+    //     &pio0.common.make_pio_pin(p.PIN_15),
+    //     // address pins (A0-A15)
+    //     &pio0.common.make_pio_pin(p.PIN_16),
+    //     &pio0.common.make_pio_pin(p.PIN_17),
+    //     &pio0.common.make_pio_pin(p.PIN_18),
+    //     &pio0.common.make_pio_pin(p.PIN_19),
+    //     &pio0.common.make_pio_pin(p.PIN_20),
+    //     &pio0.common.make_pio_pin(p.PIN_21),
+    //     &pio0.common.make_pio_pin(p.PIN_22),
+    //     &pio0.common.make_pio_pin(p.PIN_23),
+    //     &pio0.common.make_pio_pin(p.PIN_24),
+    //     &pio0.common.make_pio_pin(p.PIN_25),
+    //     &pio0.common.make_pio_pin(p.PIN_26),
+    //     &pio0.common.make_pio_pin(p.PIN_27),
+    //     &pio0.common.make_pio_pin(p.PIN_28),
+    //     &pio0.common.make_pio_pin(p.PIN_29),
+    //     &pio0.common.make_pio_pin(p.PIN_30),
+    //     &pio0.common.make_pio_pin(p.PIN_31),
+    // ];
 
-    let addr_pins = &data_addr_pins[8..];
-    let data_pins = &data_addr_pins[0..8];
+    // let addr_pins = &data_addr_pins[8..];
+    // let data_pins = &data_addr_pins[0..8];
     
-    let smemr_pin = pio1.common.make_pio_pin(p.PIN_34);
-    pio0.common.make_pio_pin(p.PIN_4);
-    let mwrt_pin = pio0.common.make_pio_pin(p.PIN_6);
+    // let smemr_pin = pio1.common.make_pio_pin(p.PIN_34);
+    // pio0.common.make_pio_pin(p.PIN_4);
+    // let mwrt_pin = pio0.common.make_pio_pin(p.PIN_6);
 
-    // Configure state machines directly
-    setup_smemr(&mut pio1.common, &mut pio1.sm0, &smemr_pin);
-    setup_reads(&mut pio0.common, &mut pio0.sm1, addr_pins, data_pins);
-    setup_writes(&mut pio0.common, &mut pio0.sm2, &data_addr_pins, &mwrt_pin);
+    // // Configure state machines directly
+    // setup_smemr(&mut pio1.common, &mut pio1.sm0, &smemr_pin);
+    // setup_reads(&mut pio0.common, &mut pio0.sm1, addr_pins, data_pins);
+    // setup_writes(&mut pio0.common, &mut pio0.sm2, &data_addr_pins, &mwrt_pin);
 
-    // Enable state machines
-    pio1.sm0.set_enable(true);
-    pio0.sm1.set_enable(true);
-    pio0.sm2.set_enable(true);
+    // // Enable state machines
+    // pio1.sm0.set_enable(true);
+    // pio0.sm1.set_enable(true);
+    // pio0.sm2.set_enable(true);
 
-    info!("RAM hardware initialized");
+    // info!("RAM hardware initialized");
 
-    // Process requests
-    loop {
-        match requests.receive().await {
-            RamRequest::Read(address) => {
-                info!("RAM task: Initiating read from 0x{:04X}", address);
+    // // Process requests
+    // loop {
+    //     match requests.receive().await {
+    //         RamRequest::Read(address) => {
+    //             info!("RAM task: Initiating read from 0x{:04X}", address);
                 
-                // Perform read cycle using direct references to state machines
-                pio0.sm1.tx().wait_push(address as u32).await;
-                pio1.sm0.tx().wait_push(0).await; // Pull SMEMR low
+    //             // Perform read cycle using direct references to state machines
+    //             pio0.sm1.tx().wait_push(address as u32).await;
+    //             pio1.sm0.tx().wait_push(0).await; // Pull SMEMR low
                 
-                let data = pio0.sm1.rx().wait_pull().await as u8;
-                pio1.sm0.tx().wait_push(1).await; // Pull SMEMR high
+    //             let data = pio0.sm1.rx().wait_pull().await as u8;
+    //             pio1.sm0.tx().wait_push(1).await; // Pull SMEMR high
                 
-                info!("RAM task: Read 0x{:02X} from 0x{:04X}", data, address);
-                responses.send(RamResponse::ReadResult(data)).await;
-            },
+    //             info!("RAM task: Read 0x{:02X} from 0x{:04X}", data, address);
+    //             responses.send(RamResponse::ReadResult(data)).await;
+    //         },
             
-            RamRequest::Write(address, data) => {
-                info!("RAM task: Writing 0x{:02X} to 0x{:04X}", data, address);
+    //         RamRequest::Write(address, data) => {
+    //             info!("RAM task: Writing 0x{:02X} to 0x{:04X}", data, address);
                 
-                // Perform write cycle
-                pio0.sm2.tx().wait_push(0xFFFFFF).await; // Set pins to output
+    //             // Perform write cycle
+    //             pio0.sm2.tx().wait_push(0xFFFFFF).await; // Set pins to output
                 
-                let value = ((address as u32) << 8) | (data as u32);
-                pio0.sm2.tx().wait_push(value).await;
+    //             let value = ((address as u32) << 8) | (data as u32);
+    //             pio0.sm2.tx().wait_push(value).await;
                 
-                // Wait for write to complete (signaled by IRQ)
-                pio0.irq2.wait().await;
+    //             // Wait for write to complete (signaled by IRQ)
+    //             pio0.irq2.wait().await;
                 
-                // Clean up pin directions
-                pio0.sm2.tx().wait_push(0xFFFF00).await;
+    //             // Clean up pin directions
+    //             pio0.sm2.tx().wait_push(0xFFFF00).await;
                 
-                info!("RAM task: Write complete");
-                responses.send(RamResponse::WriteComplete).await;
-            }
-        }
-    }
+    //             info!("RAM task: Write complete");
+    //             responses.send(RamResponse::WriteComplete).await;
+    //         }
+    //     }
+    // }
 }

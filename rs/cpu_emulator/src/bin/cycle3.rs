@@ -7,7 +7,7 @@ use cpu_emulator::cpu::CPU;
 use defmt::*;
 use embassy_executor::Spawner;
 use embassy_rp::bind_interrupts;
-use embassy_rp::gpio::{Input, Level, Pull};
+use embassy_rp::gpio::{Input, Level, Output, Pull};
 use embassy_rp::peripherals::{PIO0, PIO1};
 use embassy_rp::pio::program::pio_asm;
 use embassy_rp::pio::{Common, Config as PioConfig, InterruptHandler as PioInterruptHandler, Pio, Pin, ShiftDirection, StateMachine};
@@ -20,6 +20,45 @@ bind_interrupts!(struct Irqs {
     PIO0_IRQ_0 => PioInterruptHandler<PIO0>;
     PIO1_IRQ_0 => PioInterruptHandler<PIO1>;
 });
+
+// struct Irqs;
+// #[automatically_derived]
+// impl ::core::marker::Copy for Irqs {}
+// #[automatically_derived]
+// impl ::core::clone::Clone for Irqs {
+//     #[inline]
+//     fn clone(&self) -> Irqs {
+//         *self
+//     }
+// }
+// #[allow(non_snake_case)]
+// #[unsafe(no_mangle)]
+// unsafe extern "C" fn PIO0_IRQ_0() {
+//     <PioInterruptHandler<
+//         PIO0,
+//     > as ::embassy_rp::interrupt::typelevel::Handler<
+//         ::embassy_rp::interrupt::typelevel::PIO0_IRQ_0,
+//     >>::on_interrupt();
+// }
+
+// unsafe impl ::embassy_rp::interrupt::typelevel::Binding<
+//     ::embassy_rp::interrupt::typelevel::PIO0_IRQ_0,
+//     PioInterruptHandler<PIO0>,
+// > for Irqs {}
+
+// #[allow(non_snake_case)]
+// #[unsafe(no_mangle)]
+// unsafe extern "C" fn PIO1_IRQ_0() {
+//     <PioInterruptHandler<
+//         PIO1,
+//     > as ::embassy_rp::interrupt::typelevel::Handler<
+//         ::embassy_rp::interrupt::typelevel::PIO1_IRQ_0,
+//     >>::on_interrupt();
+// }
+// unsafe impl ::embassy_rp::interrupt::typelevel::Binding<
+//     ::embassy_rp::interrupt::typelevel::PIO1_IRQ_0,
+//     PioInterruptHandler<PIO1>,
+// > for Irqs {}
 
 /// Configure PIO for SMEMR# control (pin 34)
 fn setup_smemr<'a>(
@@ -249,11 +288,9 @@ async fn main(_spawner: Spawner) {
         0xC3, // 11000011
     ];
 
-    let mut current_address = 0;
-
     info!("Starting CPU read/write transaction loop with split state machines");
 
-    let mut read = async |address: u32| {
+    let read = async |address: u32| {
         info!("Initiating read from address 0x{:08X}", address);
         
         // Push address to address/data state machine
@@ -272,7 +309,7 @@ async fn main(_spawner: Spawner) {
         data as u8
     };
 
-    let mut write = async |address: u32, data: u8| {
+    let write = async |address: u32, data: u8| {
         // set address to output and data to output pindirs
         sm2.tx().wait_push(0xFFFFFF).await;
 
@@ -288,9 +325,9 @@ async fn main(_spawner: Spawner) {
         info!("Write complete to address 0x{:08X}", address);
     };
 
-    let mut ram: RAM<_,_> = RAM::new(read, write);
+    let mut ram: RAM<_,_> = RAM::new(read, write).await;
     ram.init().await;
-    let mut cpu: CPU = CPU::new(ram);
+    let mut cpu: CPU<_,_> = CPU::new(ram);
 
 
     // loop {
@@ -340,8 +377,8 @@ async fn main(_spawner: Spawner) {
             cpu.unhalt();
 
             let instr: u8 = cpu.fetch_instruction().await;
-            cpu.execute_instruction(instr);
-            cpu.show_state();
+            cpu.execute_instruction(instr).await;
+            cpu.show_state().await;
 
             cpu.halt();
             panel.set_low();
