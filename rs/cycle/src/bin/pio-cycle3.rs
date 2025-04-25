@@ -4,11 +4,10 @@
 use defmt::*;
 use embassy_executor::Spawner;
 use embassy_rp::bind_interrupts;
-use embassy_rp::gpio::{Level, Output, Input, Pull};
+use embassy_rp::gpio::{Input, Pull};
 use embassy_rp::peripherals::{PIO0, PIO1};
 use embassy_rp::pio::program::pio_asm;
 use embassy_rp::pio::{Common, Config as PioConfig, InterruptHandler as PioInterruptHandler, Pio, Pin, ShiftDirection, StateMachine};
-use embassy_rp::pac; // <-- Add this import for PAC access
 use embassy_time::Timer;
 use fixed::traits::ToFixed;
 use fixed_macro::types::U56F8;
@@ -232,7 +231,7 @@ async fn main(_spawner: Spawner) {
     let state = 0;
 
     let mut stop = Input::new(p.PIN_3, Pull::None);
-    
+
 
     loop {
 
