@@ -231,7 +231,7 @@ async fn main(spawner: Spawner) {
         let button_a_edges = negative_edges(last_buttons_a[0], buttons_a[0]);
         let button_b_edges = negative_edges(last_buttons_b[0], buttons_b[0]);
 
-
+        // structure these conditions to achieve desired functionality
         if get_reset(button_b_edges) {
             info!("RESET Pressed!");
             rst.set_low();

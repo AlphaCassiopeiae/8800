@@ -38,7 +38,7 @@ pub static PICOTOOL_ENTRIES: [embassy_rp::binary_info::EntryAddr; 4] = [
 async fn main(_spawner: Spawner) {
     // GPIO initialization
     let p: Peripherals = embassy_rp::init(Default::default());
-    let clk = Input::new(p.PIN_0, Pull::Down);
+    let mut rst = Input::new(p.PIN_3, Pull::Up);
     // setup of components/channels
     let mut ram: RAM = RAM::new();
     ram.init();
@@ -49,6 +49,8 @@ async fn main(_spawner: Spawner) {
         // just gonna fetch instructions until halt, then exit
         // i.e. get run mode working first
 
+        rst.wait_for_falling_edge().await;
+        info!("Reset Occurred!");
         // fetch instruction will also need to make a tram request
         // instead of reading local RAM instance
         let instr: u8 = cpu.fetch_instruction();
