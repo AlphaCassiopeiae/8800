@@ -70,7 +70,39 @@ mod mcp23017 {
     }
 }
 
-/// Configure PIO to output data to pins 40-47
+fn write_address_to_pins(address: u16, pins: &mut [&mut Output<'_, AnyPin>]) {
+    for (i, pin) in pins.iter_mut().enumerate() {
+        if ((address >> i) & 1) != 0 {
+            pin.set_high();
+        } else {
+            pin.set_low();
+        }
+    }
+}
+
+// Example usage in your main function setup:
+let mut a_pins: Vec<Output<'_, AnyPin>> = vec![
+    Output::new(p.PIN_31, Level::Low),
+    Output::new(p.PIN_41, Level::Low),
+    Output::new(p.PIN_33, Level::Low),
+    Output::new(p.PIN_35, Level::Low),
+    Output::new(p.PIN_16, Level::Low),
+    Output::new(p.PIN_18, Level::Low),
+    Output::new(p.PIN_22, Level::Low),
+    Output::new(p.PIN_20, Level::Low),
+    Output::new(p.PIN_42, Level::Low),
+    Output::new(p.PIN_43, Level::Low),
+    Output::new(p.PIN_45, Level::Low),
+    Output::new(p.PIN_3, Level::Low),
+    Output::new(p.PIN_12, Level::Low),
+    Output::new(p.PIN_10, Level::Low),
+    Output::new(p.PIN_7, Level::Low),
+    Output::new(p.PIN_4, Level::Low),
+];
+let mut pin_refs: Vec<&mut Output<'_, AnyPin>> = a_pins.iter_mut().collect();
+write_address_to_pins(0xABC, &mut pin_refs);
+
+/// Configure PIO to output d   ata to pins 40-47
 fn setup_pio_output<'a>(pio: &mut Common<'a, PIO0>, sm: &mut StateMachine<'a, PIO0, 0>, pins: &[&Pin<'a, PIO0>]) {
     // PIO program to output data to 8 pins (40-47)
     let prg = pio_asm!(
@@ -181,10 +213,10 @@ async fn main(spawner: Spawner) {
     ];
     
     // Configure PIO for output
-    setup_pio_output(&mut common, &mut sm0, &pins);
+    // setup_pio_output(&mut common, &mut sm0, &pins);
     
-    // Enable the state machine
-    sm0.set_enable(true);
+    // // Enable the state machine
+    // sm0.set_enable(true);
 
     use mcp23017::*;
 
@@ -292,6 +324,62 @@ async fn main(spawner: Spawner) {
         //         single_step = 1;
         //     }
         //     else if (examine) {
+        //         // read switches under data
+        //         i2c.write_read(ADDR, &[GPIOB], &mut addr0).await.unwrap();
+
+
+        //         write(address, data)
+
+        //         // flog loan word instruction over the bus
+        //         panel = 1;
+        //         // send addr
+        //         panel = 0;
+        //     }
+        //     else if (examine_next) {
+        //         // flog loan word with next addr
+        //         panel = 1;
+        //         panel = 0;
+        //     }
+        //     else if (deposit) {
+        //         panel = 1;
+        //         // read data
+        //         i2c.write_read(ADDR, &[GPIOA], &mut data).await.unwrap();
+        //         // send data sw (addr)
+        //         panel = 0;
+        //     }
+        //     else if (deposit_next) {
+        //         panel = 1;
+        //         // read data
+        //         i2c.write_read(ADDR, &[GPIOA], &mut data).await.unwrap();
+        //         // send data sw addr + 1
+        //         panel = 0;
+        //     }
+        // }
+
+        // combine addr0 and addr1 into a single address
+        // let address = ((addr1[0] as u32) << 8) | (addr0[0] as u32);
+
+        // if (reset) {
+        //     nRst = 0;
+        //     addr = 0;
+        // }
+        // else {
+        //     nRst = 1;
+        //     if (clr) {
+        //         addr = 0;
+        //         data = hiz;
+        //         clock = clock;
+        //     }
+        //     else if (stop) {
+        //         clock = clock;
+        //     }
+        //     else if (run) {
+        //         clock = !clock;
+        //     }
+        //     else if (single_step) {
+        //         single_step = 1;
+        //     }
+        //     else if (examine) {
         //         // read addr pins
         //         i2c.write_read(ADDR, &[GPIOB], &mut addr0).await.unwrap();
         //         i2c.write_read(ADDR1, &[GPIOA], &mut addr1).await.unwrap();
@@ -321,60 +409,6 @@ async fn main(spawner: Spawner) {
         //         panel = 0;
         //     }
         // }
-
-        // combine addr0 and addr1 into a single address
-        let address = ((addr1[0] as u32) << 8) | (addr0[0] as u32);
-
-        if (reset) {
-            nRst = 0;
-            addr = 0;
-        }
-        else {
-            nRst = 1;
-            if (clr) {
-                addr = 0;
-                data = hiz;
-                clock = clock;
-            }
-            else if (stop) {
-                clock = clock;
-            }
-            else if (run) {
-                clock = !clock;
-            }
-            else if (single_step) {
-                single_step = 1;
-            }
-            else if (examine) {
-                // read addr pins
-                i2c.write_read(ADDR, &[GPIOB], &mut addr0).await.unwrap();
-                i2c.write_read(ADDR1, &[GPIOA], &mut addr1).await.unwrap();
-
-                // flog loan word instruction over the bus
-                panel = 1;
-                // send addr
-                panel = 0;
-            }
-            else if (examine_next) {
-                // flog loan word with next addr
-                panel = 1;
-                panel = 0;
-            }
-            else if (deposit) {
-                panel = 1;
-                // read data
-                i2c.write_read(ADDR, &[GPIOA], &mut data).await.unwrap();
-                // send data sw (addr)
-                panel = 0;
-            }
-            else if (deposit_next) {
-                panel = 1;
-                // read data
-                i2c.write_read(ADDR, &[GPIOA], &mut data).await.unwrap();
-                // send data sw addr + 1
-                panel = 0;
-            }
-        }
 
         // Send the data to the PIO FIFO - this will be output to pins 40-47
         // sm0.tx().wait_push(data[0] as u32).await;

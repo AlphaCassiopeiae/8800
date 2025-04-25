@@ -4,7 +4,7 @@
 use defmt::*;
 use embassy_executor::Spawner;
 use embassy_rp::bind_interrupts;
-use embassy_rp::gpio::{Level, Output};
+use embassy_rp::gpio::{Level, Output, Input, Pull};
 use embassy_rp::peripherals::{PIO0, PIO1};
 use embassy_rp::pio::program::pio_asm;
 use embassy_rp::pio::{Common, Config as PioConfig, InterruptHandler as PioInterruptHandler, Pio, Pin, ShiftDirection, StateMachine};
@@ -213,9 +213,9 @@ async fn main(_spawner: Spawner) {
 
     // Define test addresses and data for our read/write operations
     let test_addresses = [
-        0x2008, // Address 0x2008 (as shown in timing diagram)
-        0x3000, // Another test address
-        0x4000, // Another test address
+        0xF0F0, // Address 0x2008 (as shown in timing diagram)
+        0xF0F0, // Another test address
+        0x00FF, // Another test address
         0xFFFF, // Highest possible address
     ];
     let test_data = [
@@ -229,9 +229,14 @@ async fn main(_spawner: Spawner) {
 
     info!("Starting CPU read/write transaction loop with split state machines");
 
+    let state = 0;
+
+    let mut stop = Input::new(p.PIN_3, Pull::None);
+    
+
     loop {
 
-        // Get the next address to read
+        // if
          
         // start transaction
         if current_address % 2 == 0 {
