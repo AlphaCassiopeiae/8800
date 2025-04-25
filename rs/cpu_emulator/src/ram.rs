@@ -11,8 +11,6 @@ use fixed::traits::ToFixed;
 use fixed_macro::types::U56F8;
 use {defmt_rtt as _, panic_probe as _};
 
-const MEM_SIZE: usize = 65536;
-
 pub struct RAM {
     sm0: StateMachine<'static, PIO1, 0>,
     sm1: StateMachine<'static, PIO0, 1>,
@@ -233,14 +231,19 @@ impl RAM {
 
 
     // for simulating instructions being present in memory, do nothing for now
-    pub fn init(&mut self) {
+    pub async fn init(&mut self) {
         // self.bytes[0] = 0x15;
         // self.bytes[1] = 0xD3;
         // self.bytes[2] = 0x76;
         // self.bytes[0] = 0x76;
+
+        self.write(0x0, 0x15).await;
+        self.write(0x1, 0xD3).await;
+        self.write(0x2, 0x76).await;
+        self.write(0x3, 0x76).await;
     }
 
-    pub async fn read(&mut self, addr: u16) -> u8 {
+    pub async fn read(&mut self, addr: usize) -> u8 {
 
         info!("Initiating read from address 0x{:08X}", addr);
 
@@ -263,7 +266,7 @@ impl RAM {
         data as u8
     }
 
-    pub async fn write(&mut self, address: u16, data: u8) {
+    pub async fn write(&mut self, address: usize, data: u8) {
         self.sm2.tx().wait_push(0xFFFFFF).await;
 
         info!("Initiating write of 0x{:02X} to address 0x{:08X}", data, address);

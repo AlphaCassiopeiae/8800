@@ -8,13 +8,9 @@ use defmt::*;
 // use core::stringify;
 use embassy_executor::Spawner;
 use embassy_time::Timer;
-use embassy_rp::gpio::{Input, Output, Level, Pull};
+use embassy_rp::gpio::{Input, Pull};
 use embassy_rp::Peripherals;
 use {defmt_rtt as _, panic_probe as _};
-
-// channels for communication with Tram
-use embassy_sync::blocking_mutex::raw::CriticalSectionRawMutex;
-use embassy_sync::channel::Channel;
 
 use cpu_emulator::cpu::CPU;
 use cpu_emulator::ram::RAM;
@@ -37,11 +33,10 @@ pub static PICOTOOL_ENTRIES: [embassy_rp::binary_info::EntryAddr; 4] = [
 #[embassy_executor::main]
 async fn main(_spawner: Spawner) {
     // GPIO initialization
-    let p: Peripherals = embassy_rp::init(Default::default());
-    let clk = Input::new(p.PIN_0, Pull::Down);
+    // let clk = Input::new(p.PIN_0, Pull::Down);
     // setup of components/channels
     let mut ram: RAM = RAM::new();
-    ram.init();
+    ram.init().await;
     let mut cpu: CPU = CPU::new(ram);
     cpu.reset();
 
@@ -51,12 +46,12 @@ async fn main(_spawner: Spawner) {
 
         // fetch instruction will also need to make a tram request
         // instead of reading local RAM instance
-        let instr: u8 = cpu.fetch_instruction();
+        let instr: u8 = cpu.fetch_instruction().await;
 
         // execute_instruction will need to be modified to make tram requests 
         // instead of reading/writing local RAM instance
-        cpu.execute_instruction(instr);
-        cpu.show_state();
+        cpu.execute_instruction(instr).await;
+        cpu.show_state().await;
 
         // will just want to pause, not break from loop
         // so this will need to be changed
