@@ -76,10 +76,10 @@ fn setup_reads<'a>(
         
         // // Pull data value to output to data bus
         "pull block",          // Get data value from TX FIFO
-        "out pins, 8",         // Output data to pins
+        "out pins, 8 [10]",         // Output data to pins
 
         // // Signal memory is ready by asserting XRDY
-        "set pins, 1 [30]",    // Set XRDY high with delay for setup
+        "set pins, 1 [10]",    // Set XRDY high with delay for setup
 
         "irq 2",        // tell cpu set
 
@@ -132,7 +132,7 @@ fn setup_writes<'a>(
         ".wrap_target",
         "set pins, 0", // set default xrdy low
 
-        "wait 0 gpio 6",       // Wait for MWRT# to be asserted
+        "wait 0 gpio 6 [30]",       // Wait for MWRT# to be asserted
 
         // notify main thread to start write cycle
         "push block",        

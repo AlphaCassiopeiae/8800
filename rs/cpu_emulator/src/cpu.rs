@@ -1,6 +1,6 @@
 use defmt::*;
 use crate::instructions::*;
-use crate::ram::*;
+use crate::me::RamClient;
 
 // masks for flags
 const FLAG_S: u8  = 0b1000_0000; // Sign
@@ -71,11 +71,11 @@ pub struct CPU {
     parity: bool,
     carry: bool,
     // memory
-    ram: RAM,
+    pub ram: RamClient,
 }
 
 impl CPU {
-    pub fn new(mut _ram: RAM) -> Self {
+    pub fn new(ram:RamClient) -> Self {
         Self {
             registers: [0; 8], 
             pc: 0,
@@ -87,7 +87,7 @@ impl CPU {
             auxc: false,
             parity: false,
             carry: false,
-            ram: _ram,
+            ram,
         }
     }
 

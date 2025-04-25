@@ -9,9 +9,9 @@
     },
     "tasks": [
         {
-            "label": "Build pio-cycle3",
+            "label": "Build emu",
             "type": "shell",
-            "command": "cargo build --package cycle --bin pio-cycle3",
+            "command": "cargo build --package cpu_emulator --bin emu",
             "problemMatcher": [
                 "$rustc"
             ]
