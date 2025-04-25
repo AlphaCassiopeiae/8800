@@ -1,12 +1,12 @@
-use defmt::*;
 use crate::instructions::*;
-use crate::ram::*;
+use crate::ram::RAM;
+use defmt::*;
 
 // masks for flags
-const FLAG_S: u8  = 0b1000_0000; // Sign
-const FLAG_Z: u8  = 0b0100_0000; // Zero
+const FLAG_S: u8 = 0b1000_0000; // Sign
+const FLAG_Z: u8 = 0b0100_0000; // Zero
 const FLAG_AC: u8 = 0b0001_0000; // Auxiliary Carry
-const FLAG_P: u8  = 0b0000_0100; // Parity
+const FLAG_P: u8 = 0b0000_0100; // Parity
 const FLAG_C: u8 = 0b0000_0001; // Carry
 
 #[derive(Copy, Clone, Debug, PartialEq)]
@@ -54,7 +54,10 @@ impl From<Reg> for u8 {
     }
 }
 
-pub struct CPU {
+pub struct CPU<
+C1: core::ops::AsyncFnMut(u32) -> u8,
+C2: core::ops::AsyncFnMut(u32, u8),
+> {
     // registers
     registers: [u8; 8],
     // special registers
@@ -71,13 +74,17 @@ pub struct CPU {
     parity: bool,
     carry: bool,
     // memory
-    ram: RAM,
+    pub ram: RAM<C1, C2>,
 }
 
-impl CPU {
-    pub fn new(mut _ram: RAM) -> Self {
+impl<
+C1: core::ops::AsyncFnMut(u32) -> u8,
+C2: core::ops::AsyncFnMut(u32, u8),
+> CPU<C1, C2>
+{
+    pub fn new(ram: RAM<C1, C2>) -> Self {
         Self {
-            registers: [0; 8], 
+            registers: [0; 8],
             pc: 0,
             sp: 0,
             halt: false,
@@ -87,7 +94,7 @@ impl CPU {
             auxc: false,
             parity: false,
             carry: false,
-            ram: _ram,
+            ram,
         }
     }
 
@@ -108,11 +115,11 @@ impl CPU {
     pub async fn read_bc(&mut self) -> u16 {
         ((self.read_reg(Reg::B).await as u16) << 8) | (self.read_reg(Reg::C).await as u16)
     }
-    
+
     pub async fn read_de(&mut self) -> u16 {
         ((self.read_reg(Reg::D).await as u16) << 8) | (self.read_reg(Reg::E).await as u16)
     }
-    
+
     pub fn read_hl(&mut self) -> u16 {
         // concatentation of H and L
         ((self.registers[0b100] as u16) << 8) | (self.registers[0b101] as u16)
@@ -133,11 +140,11 @@ impl CPU {
     pub async fn set_de(&mut self, val: u16) {
         let upper: u8 = ((val & 0xFF00) >> 8) as u8;
         let lower: u8 = (val & 0x00FF) as u8;
-        
+
         self.set_reg(Reg::D, upper).await;
         self.set_reg(Reg::E, lower).await;
     }
-    
+
     pub async fn set_hl(&mut self, val: u16) {
         let upper: u8 = ((val & 0xFF00) >> 8) as u8;
         let lower: u8 = (val & 0x00FF) as u8;
@@ -153,7 +160,6 @@ impl CPU {
         self.set_reg(Reg::A, upper).await;
         // unpack u8 into flags
         self.unpack_flags(lower);
-
     }
 
     /* M Register */
@@ -169,24 +175,26 @@ impl CPU {
         self.ram.write(addr as usize, val).await;
     }
 
-    pub fn halted(&self) -> bool {self.halt}
-    pub fn halt(&mut self) {self.halt = true;}
-    pub fn unhalt(&mut self) {self.halt = false;}
+    pub fn halted(&self) -> bool {
+        self.halt
+    }
+    pub fn halt(&mut self) {
+        self.halt = true;
+    }
+    pub fn unhalt(&mut self) {
+        self.halt = false;
+    }
 
     pub async fn read_reg(&mut self, reg: Reg) -> u8 {
         match reg {
-            Reg::M => {
-                self.read_m().await
-            }
-            _ => {
-                self.registers[reg as usize ^ 1]
-            }
+            Reg::M => self.read_m().await,
+            _ => self.registers[reg as usize ^ 1],
         }
     }
 
     pub async fn set_reg(&mut self, reg: Reg, val: u8) {
         match reg {
-            Reg::M=> {
+            Reg::M => {
                 self.write_m(val).await;
             }
             _ => {
@@ -205,11 +213,21 @@ impl CPU {
     pub fn pack_flags(&self) -> u8 {
         let mut base: u8 = 0b0000_0010; // bit 1 is always 1
 
-        if self.sign   {base |= FLAG_S;}
-        if self.zero   {base |= FLAG_Z;}
-        if self.auxc   {base |= FLAG_AC;}
-        if self.parity {base |= FLAG_P;}
-        if self.carry  {base |= FLAG_C;}
+        if self.sign {
+            base |= FLAG_S;
+        }
+        if self.zero {
+            base |= FLAG_Z;
+        }
+        if self.auxc {
+            base |= FLAG_AC;
+        }
+        if self.parity {
+            base |= FLAG_P;
+        }
+        if self.carry {
+            base |= FLAG_C;
+        }
 
         base
     }
@@ -217,7 +235,7 @@ impl CPU {
     // unpacks flags from u8
     pub fn unpack_flags(&mut self, flags: u8) {
         // u8 structure: S, Z, 0, A, 0, P, 1, C
-        self.sign = (flags & 0x80) == 0x80; 
+        self.sign = (flags & 0x80) == 0x80;
         self.zero = (flags & 0x40) == 0x40;
         self.auxc = (flags & 0x10) == 0x10;
         self.parity = (flags & 0x40) == 0x40;
@@ -281,7 +299,7 @@ impl CPU {
 
         match instruction {
             /* NOP Opcodes */
-            0x00 | 0x10 | 0x20 | 0x30 | 0x08 | 0x18 | 0x28 | 0x38 => {/* NOP */}
+            0x00 | 0x10 | 0x20 | 0x30 | 0x08 | 0x18 | 0x28 | 0x38 => { /* NOP */ }
             /* Increments/Decrements */
             0x04 | 0x0C | 0x14 | 0x1C | 0x24 | 0x2C | 0x34 | 0x3C => {
                 // INR, look at bits 5-3 for register number (5 cycles)
@@ -296,7 +314,6 @@ impl CPU {
                 self.set_szp(result);
                 // aux_carry
                 self.auxc = (val & 0x0F) == 0x0F;
-
             }
             0x05 | 0x0D | 0x15 | 0x1D | 0x25 | 0x2D | 0x35 | 0x3D => {
                 // DCR, look at bits 5-3 for register number (5 cycles)
@@ -336,7 +353,7 @@ impl CPU {
                         // SP
                         self.sp = self.sp.wrapping_add(1);
                     }
-                    _ => {/* invalid pair, shouldn't be possible */}
+                    _ => { /* invalid pair, shouldn't be possible */ }
                 }
             }
             0x0B | 0x1B | 0x2B | 0x3B => {
@@ -363,7 +380,7 @@ impl CPU {
                         // SP
                         self.sp = self.sp.wrapping_sub(1);
                     }
-                    _ => {/* invalid pair, shouldn't be possible */}
+                    _ => { /* invalid pair, shouldn't be possible */ }
                 }
             }
             /* Misc Instructions */
@@ -377,7 +394,9 @@ impl CPU {
             0x17 => {
                 // RAL
                 let mut carry: u8 = 0;
-                if self.carry {carry = 1;}
+                if self.carry {
+                    carry = 1;
+                }
                 let a: u8 = self.read_reg(Reg::A).await;
                 let msb: u8 = (a & 0x80) >> 7;
                 self.set_reg(Reg::A, (a << 1) | carry).await;
@@ -388,7 +407,7 @@ impl CPU {
                 let a: u8 = self.read_reg(Reg::A).await;
 
                 let mut adjustment: u8 = 0;
-                
+
                 if (a & 0x0F) > 9 || self.auxc {
                     adjustment += 0x06;
                     self.auxc = true;
@@ -417,7 +436,9 @@ impl CPU {
             0x1F => {
                 // RAR
                 let mut carry: u8 = 0;
-                if self.carry {carry = 1;}
+                if self.carry {
+                    carry = 1;
+                }
                 let a: u8 = self.read_reg(Reg::A).await;
                 let lsb: u8 = a & 0x01;
                 self.set_reg(Reg::A, (a >> 1) | (carry << 7)).await;
@@ -450,12 +471,12 @@ impl CPU {
                         let addr: u16 = self.read_de().await;
                         self.ram.write(addr as usize, val).await;
                     }
-                    _ => {/* Invalid Register Pair */}
+                    _ => { /* Invalid Register Pair */ }
                 }
             }
             0x0A | 0x1A => {
-               // LDAX, no flags affected
-               // load val from addr housed in reg pair, put in accumulator
+                // LDAX, no flags affected
+                // load val from addr housed in reg pair, put in accumulator
                 let pair: u8 = (instruction & 0x10) >> 4;
 
                 match pair {
@@ -471,7 +492,7 @@ impl CPU {
                         let value = self.ram.read(addr as usize).await;
                         self.set_reg(Reg::A, value).await;
                     }
-                    _ => {/* Invalid Register Pair */}
+                    _ => { /* Invalid Register Pair */ }
                 }
             }
             0x22 => {
@@ -547,7 +568,7 @@ impl CPU {
                         self.sp = concat as usize;
                     }
                     _ => {}
-                } 
+                }
 
                 next_pc = self.pc + 3;
             }
@@ -562,28 +583,29 @@ impl CPU {
 
                 next_pc = self.pc + 2;
             }
-            0x40..=0x75 | 0x77..=0x7F => { // MOV instructions
+            0x40..=0x75 | 0x77..=0x7F => {
+                // MOV instructions
                 let src: Reg = Reg::from(instruction & 0b111);
                 let dst: Reg = Reg::from((instruction >> 3) & 0b111);
-            
+
                 if src == Reg::M {
                     // read mem at addr HL, store value in dst
                     let value = self.read_m().await;
                     self.set_reg(dst, value).await;
-                }
-                else if dst == Reg::M {
+                } else if dst == Reg::M {
                     // store value in src at mem addr HL
                     let value = self.read_reg(src).await;
                     self.write_m(value).await;
-                }
-                else {
+                } else {
                     // reg -> reg mov
                     let value: u8 = self.read_reg(src).await;
                     self.set_reg(dst, value).await;
                 }
             }
             /* HLT */
-            0x76 => {self.halt = true;}
+            0x76 => {
+                self.halt = true;
+            }
             /* 8-bit Register Arithmetic */
             0x80..=0x87 => {
                 // ADD instructions
@@ -603,7 +625,9 @@ impl CPU {
                 let src_reg: Reg = Reg::from(instruction & 0b111);
 
                 let mut carry: u8 = 0;
-                if self.carry {carry = 1;}
+                if self.carry {
+                    carry = 1;
+                }
 
                 let a: u8 = self.read_reg(Reg::A).await;
                 let b: u8 = self.read_reg(src_reg).await;
@@ -632,7 +656,9 @@ impl CPU {
                 let src_reg: Reg = Reg::from(instruction & 0b0000_0111);
 
                 let mut carry: u8 = 0;
-                if self.carry {carry = 1;}
+                if self.carry {
+                    carry = 1;
+                }
 
                 let a: u8 = self.read_reg(Reg::A).await;
                 let b: u8 = self.read_reg(src_reg).await;
@@ -751,7 +777,9 @@ impl CPU {
                 let a: u8 = self.read_reg(Reg::A).await;
 
                 let mut carry: u8 = 0;
-                if self.carry {carry = 1;}
+                if self.carry {
+                    carry = 1;
+                }
 
                 let result: u8 = a.wrapping_add(byte).wrapping_add(carry);
                 self.set_reg(Reg::A, result).await;
@@ -768,7 +796,9 @@ impl CPU {
                 let a: u8 = self.read_reg(Reg::A).await;
 
                 let mut carry: u8 = 0;
-                if self.carry {carry = 1;}
+                if self.carry {
+                    carry = 1;
+                }
 
                 let result: u8 = a.wrapping_sub(byte).wrapping_sub(carry);
                 self.set_reg(Reg::A, result).await;
@@ -908,7 +938,7 @@ impl CPU {
                         // PSW (A, flags)
                         self.set_psw(word).await;
                     }
-                    _ => {/* invalid pair, shouldn't be possible */}
+                    _ => { /* invalid pair, shouldn't be possible */ }
                 }
             }
             0xC5 | 0xD5 | 0xE5 | 0xF5 => {
@@ -922,18 +952,18 @@ impl CPU {
                         word = self.read_bc().await;
                     }
                     0b01 => {
-                       // pair DE
-                       word = self.read_de().await;
+                        // pair DE
+                        word = self.read_de().await;
                     }
                     0b10 => {
                         // pair HL
-                       word = self.read_hl();
+                        word = self.read_hl();
                     }
                     0b11 => {
                         // PSW (A, flags)
                         word = self.read_psw().await;
                     }
-                    _ => {/* invalid pair, shouldn't be possible */}
+                    _ => { /* invalid pair, shouldn't be possible */ }
                 }
 
                 self.stack_push(word).await;
@@ -975,7 +1005,7 @@ impl CPU {
             0xD4 => {
                 // CNC a16
                 let addr: u16 = self.fetch_word(self.pc).await;
-                
+
                 if !self.carry {
                     let store_pc: u16 = (self.pc + 3) as u16;
                     self.stack_push(store_pc).await;
@@ -988,7 +1018,7 @@ impl CPU {
             0xE4 => {
                 // CPO a16
                 let addr: u16 = self.fetch_word(self.pc).await;
-                
+
                 if !self.parity {
                     let store_pc: u16 = (self.pc + 3) as u16;
                     self.stack_push(store_pc).await;
@@ -1001,7 +1031,7 @@ impl CPU {
             0xF4 => {
                 // CP a16
                 let addr: u16 = self.fetch_word(self.pc).await;
-                
+
                 if !self.sign {
                     let store_pc: u16 = (self.pc + 3) as u16;
                     self.stack_push(store_pc).await;
@@ -1014,7 +1044,7 @@ impl CPU {
             0xCC => {
                 // CZ a16
                 let addr: u16 = self.fetch_word(self.pc).await;
-                
+
                 if self.zero {
                     let store_pc: u16 = (self.pc + 3) as u16;
                     self.stack_push(store_pc).await;
@@ -1027,7 +1057,7 @@ impl CPU {
             0xDC => {
                 // CC a16
                 let addr: u16 = self.fetch_word(self.pc).await;
-                
+
                 if self.carry {
                     let store_pc: u16 = (self.pc + 3) as u16;
                     self.stack_push(store_pc).await;
@@ -1053,7 +1083,7 @@ impl CPU {
             0xFC => {
                 // CM a16
                 let addr: u16 = self.fetch_word(self.pc).await;
-                
+
                 if self.sign {
                     let store_pc: u16 = (self.pc + 3) as u16;
                     self.stack_push(store_pc).await;
@@ -1140,7 +1170,7 @@ impl CPU {
                 let temp_l: u8 = self.ram.read(self.sp).await;
                 let temp_h: u8 = self.ram.read(self.sp + 1).await;
 
-                let mut value = self.read_reg(Reg::L).await; 
+                let mut value = self.read_reg(Reg::L).await;
                 self.ram.write(self.sp, value).await;
 
                 value = self.read_reg(Reg::H).await;
@@ -1170,7 +1200,7 @@ impl CPU {
                 // SPHL (HL -> SP)
                 self.sp = self.read_hl() as usize;
             }
-            _ => {} 
+            _ => {}
         }
         self.pc = next_pc;
     }
@@ -1179,9 +1209,21 @@ impl CPU {
         info!("------------------------------\r");
         info!("Registers:\r");
         info!("  A: {}\r", self.read_reg(Reg::A).await);
-        info!("  B: {}  C: {}\r", self.read_reg(Reg::B).await, self.read_reg(Reg::C).await);
-        info!("  D: {}  E: {}\r", self.read_reg(Reg::D).await, self.read_reg(Reg::E).await);
-        info!("  H: {}  L: {}\r", self.read_reg(Reg::H).await, self.read_reg(Reg::L).await);
+        info!(
+            "  B: {}  C: {}\r",
+            self.read_reg(Reg::B).await,
+            self.read_reg(Reg::C).await
+        );
+        info!(
+            "  D: {}  E: {}\r",
+            self.read_reg(Reg::D).await,
+            self.read_reg(Reg::E).await
+        );
+        info!(
+            "  H: {}  L: {}\r",
+            self.read_reg(Reg::H).await,
+            self.read_reg(Reg::L).await
+        );
         info!("  FLAGS: {}\r", self.pack_flags());
         info!("------------------------------\r");
     }

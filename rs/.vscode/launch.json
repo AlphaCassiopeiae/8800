@@ -5,9 +5,9 @@
     "version": "0.2.0",
     "configurations": [  
         {
-            "preLaunchTask": "Build pio-cycle3",
+            "preLaunchTask": "Build emu",
             "cwd": "${workspaceRoot}",
-            "executable": "./target/thumbv8m.main-none-eabihf/debug/pio-cycle3",
+            "executable": "./target/thumbv8m.main-none-eabihf/debug/emu",
             "name": "OpenOCD interchange",
             "request": "launch",
             "type": "cortex-debug",
@@ -42,7 +42,7 @@
                         "decoder": "./rtt-defmt.js",
                         "config": {
                             "cwd": "${workspaceRoot}",
-                            "executable": "./target/thumbv8m.main-none-eabihf/debug/pio-cycle3",
+                            "executable": "./target/thumbv8m.main-none-eabihf/debug/emu",
                         },
                         "label": "RTT",
                         "port": 0,
