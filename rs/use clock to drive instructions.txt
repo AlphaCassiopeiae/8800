@@ -1,0 +1,44 @@
+modes:
+
+run
+    mem: panel = 1
+    cpu: hlta = 0 
+
+halt
+    mem: pready = 0
+    cpu: hlta = 1 (halted)
+stop
+    pready = 1 (front panel has control)
+
+    single step
+        pos edge of clock to trigger instr 
+
+    single step
+        pos edge of clock to trigger instr
+
+
+
+single step: 
+
+
+deposit:
+get addr from bus
+get data from switches
+
+output data on bus
+mwr bring low
+    assert panel
+    cpu should release ouptut pins
+    
+
+wait for xrdy to go high
+
+deassert mwr and output data
+
+
+examine:
+get addr from pins
+
+assert jump opdcode on data
+
+

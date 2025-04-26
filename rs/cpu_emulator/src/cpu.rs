@@ -98,7 +98,7 @@ C2: core::ops::AsyncFnMut(u32, u8),
         }
     }
 
-    pub fn reset(&mut self) {
+    pub async fn reset(&mut self) {
         self.registers = [0; 8];
         self.pc = 0;
         self.sp = 0xFFFF; // default value for now
@@ -109,7 +109,6 @@ C2: core::ops::AsyncFnMut(u32, u8),
         self.auxc = false;
         self.parity = false;
         self.carry = false;
-        self.halt = true;
     }
 
     pub async fn read_bc(&mut self) -> u16 {
@@ -1227,6 +1226,10 @@ C2: core::ops::AsyncFnMut(u32, u8),
         info!("  FLAGS: {}\r", self.pack_flags());
         info!("------------------------------\r");
     }
+
+    // pub async fn disable_ram(&mut self) {
+    //     self.ram.disable();
+    // }
 }
 
 // impl fmt::Display for CPU {

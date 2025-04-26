@@ -7,7 +7,7 @@ use cpu_emulator::cpu::CPU;
 use defmt::*;
 use embassy_executor::Spawner;
 use embassy_rp::bind_interrupts;
-use embassy_rp::gpio::{Input, Level, Output, Pull};
+use embassy_rp::gpio::{Input, Level, Output, Pull, Flex};
 use embassy_rp::peripherals::{PIO0, PIO1};
 use embassy_rp::pio::program::pio_asm;
 use embassy_rp::pio::{Common, Config as PioConfig, InterruptHandler as PioInterruptHandler, Pio, Pin, ShiftDirection, StateMachine};
@@ -139,6 +139,9 @@ fn setup_writes<'a>(
     cfg.use_program(&pio.load_program(&prg.program), &[]);
     cfg.set_out_pins(data_addr_pins);
     cfg.set_set_pins(&[mwrt_pin]);
+    // cfg.out_en_sel = 0x1F;
+    // cfg.inline_out_en = true;
+    // cfg.out_sticky = true;
     cfg.clock_divider = (U56F8!(125_000_000) / 20 / 200).to_fixed(); // 100kHz operation
     cfg.shift_out.auto_fill = false;
     cfg.shift_out.direction = ShiftDirection::Right;
@@ -151,12 +154,12 @@ fn setup_writes<'a>(
 
 #[embassy_executor::main]
 async fn main(_spawner: Spawner) {
-    let p = embassy_rp::init(Default::default());
+    let mut p: embassy_rp::Peripherals = embassy_rp::init(Default::default());
 
-    let mut rst = Input::new(p.PIN_3, Pull::Up);
-    let mut prdy = Input::new(p.PIN_2, Pull::Down);
+    let rst = Input::new(p.PIN_3, Pull::Up);
     let mut hlta = Output::new(p.PIN_36, Level::Low);
-    let mut panel = Output::new(p.PIN_1, Level::High); // low active
+    let panel = Input::new(p.PIN_1, Pull::None); // low active
+    let clock = Input::new(p.PIN_0, Pull::None); // high active
 
     // Create PIO state machines
     let Pio { mut common, mut irq1, mut irq2, mut sm1, mut sm2, .. } = Pio::new(p.PIO0, Irqs);
@@ -200,10 +203,14 @@ async fn main(_spawner: Spawner) {
     // Take slice of data pins (D7-D0)
     let data_pins = &data_addr_pins[0..8];
 
+
     // Setup pin for SMEMR# control and xrdy
     let smemr_pin = &pio1.common.make_pio_pin(p.PIN_34);  // SMEMR# pin (output, active low)
     common.make_pio_pin(p.PIN_4); // XRDY pin (input, active high)
+    
+    // Flex::new(p.PIN_6.reborrow()).set_pull(Pull::Up); // set mwrt as pull up
     let mwrt_pin = &common.make_pio_pin(p.PIN_6); // active low
+    
 
 
     // Configure PIO state machines
@@ -276,7 +283,7 @@ async fn main(_spawner: Spawner) {
 
         info!("Initiating write of 0x{:02X} to address 0x{:08X}", data, address);
 
-        let value = (address << 8) | (data as u32);
+        let value = (address << 8) | (data as u32); //| if en {0x80000000} else {0x00000000};
 
         sm2.tx().wait_push(value as u32).await;
 
@@ -287,38 +294,56 @@ async fn main(_spawner: Spawner) {
     };
 
     let mut ram: RAM<_,_> = RAM::new(read, write).await;
+    
+    Timer::after_millis(2000).await;
     ram.init().await;
     let mut cpu: CPU<_,_> = CPU::new(ram);
+    cpu.reset().await;
 
     // Settle time
-    Timer::after_millis(50).await;
+
+    let mut last_clk = false;
 
     loop {
         // just gonna fetch instructions until halt, then exit
         // i.e. get run mode working first
 
-        if cpu.halted() {
-            panel.set_low();
-            hlta.set_high();
+        // reset master
+        if rst.get_level() == Level::Low {
+            info!("Reset Occurred!");
+            cpu.reset().await;
         }
 
-        // // rst.wait_for_falling_edge().await;
-        // if rst.get_level() == Level::Low {
-        //     info!("Reset Occurred!");
-        //     cpu.reset();
-        // // }
-        // else if prdy.get_level() == Level::High {
-        //     info!("cpu running...");
-        //     // panel.set_high();
-        //     // cpu.unhalt();
+        // running
+        if cpu.halted() {
+            info!("CPU halted");
+            hlta.set_high();
+        }
+        else {
+            hlta.set_low();
 
-            let instr: u8 = cpu.fetch_instruction().await;
-            cpu.execute_instruction(instr).await;
-            cpu.show_state().await;
+            // run 
+            if panel.get_level() == Level::Low {
+                // info!("cpu running...");
+                cpu.unhalt();
+    
+                let instr: u8 = cpu.fetch_instruction().await;
+                cpu.execute_instruction(instr).await;
+                cpu.show_state().await;
+            }
+            // front panel has control
+            else {
+                if (clock.get_level() == Level::High) && (last_clk == false) {
+                    // cpu.disable_ram().await;
+                    info!("Single step Triggered!");
+                    let instr: u8 = cpu.fetch_instruction().await;
+                    cpu.execute_instruction(instr).await;
+                    cpu.show_state().await;
+                }
+            }
+        }
 
-        //     cpu.halt();
-        //     panel.set_low();
-        // }
+        last_clk = clock.get_level() == Level::High;
 
         // not necessary for final implementation but nice for terminal debugging
         Timer::after_millis(50).await;

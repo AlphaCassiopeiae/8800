@@ -284,4 +284,8 @@ impl<C1: core::ops::AsyncFnMut(u32) -> u8, C2: core::ops::AsyncFnMut(u32, u8)> R
     pub async fn write(&mut self, address: usize, data: u8) {
         self.write_fn.async_call_mut((address as u32, data)).await;
     }
+
+    // pub async fn disable(&mut self,) {
+    //     self.write_fn.async_call_mut((0, 0, false)).await;
+    // }
 }
