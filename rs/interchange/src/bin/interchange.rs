@@ -272,9 +272,12 @@ async fn main(spawner: Spawner) {
         rst.set_high();
 
         if get_reset(button_b_edges) {
-            rst.set_low();
-            info!("RESET triggered!");
+            panel.set_high();
             run_mode = false;
+
+            rst.set_low();
+            
+            info!("RESET triggered!");
         }
         else if get_stop(button_a_edges) {
             panel.set_high();

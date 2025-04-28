@@ -225,37 +225,6 @@ async fn main(_spawner: Spawner) {
     sm1.set_enable(true);
     sm2.set_enable(true); // write machine
 
-    // Define test addresses and data for our read/write operations
-    // Test addresses and data to toggle all pins and adjacent pins for bus integrity testing
-    let test_addresses = [
-        0x0000, // All low
-        0xFFFF, // All high
-        0xAAAA, // Alternating 1010...
-        0x5555, // Alternating 0101...
-        0x0001, // Only lowest bit high
-        0x8000, // Only highest bit high
-        0x00FF, // Lower byte high
-        0xFF00, // Upper byte high
-        0x0F0F, // Nibble pattern
-        0xF0F0, // Inverse nibble pattern
-        0x003C, // Middle bits high
-        0x03C0, // Other middle bits high
-    ];
-    let test_data = [
-        0x00, // All low
-        0xFF, // All high
-        0xAA, // Alternating 10101010
-        0x55, // Alternating 01010101
-        0x01, // Only lowest bit high
-        0x80, // Only highest bit high
-        0x0F, // Lower nibble high
-        0xF0, // Upper nibble high
-        0x33, // 00110011
-        0xCC, // 11001100
-        0x3C, // 00111100
-        0xC3, // 11000011
-    ];
-
     info!("Starting CPU read/write transaction loop with split state machines");
 
     let read = async |address: u32| {
@@ -273,6 +242,8 @@ async fn main(_spawner: Spawner) {
 
         
         pio1.sm0.tx().wait_push(0).await; // pull smemr high
+        
+        Timer::after_millis(50).await; // needed or reads will go to fast
 
         data as u8
     };
@@ -290,6 +261,9 @@ async fn main(_spawner: Spawner) {
         irq2.wait().await;
         // set address to output and data to input pindirs
         sm2.tx().wait_push(0xFFFF00).await;
+
+        Timer::after_millis(50).await; // needed or writes will go to fast
+
         info!("Write complete to address 0x{:08X}", address);
     };
 
@@ -304,6 +278,9 @@ async fn main(_spawner: Spawner) {
 
     let mut last_clk = false;
 
+    // store next instruction so we can show it on the front panel before executing
+    let mut next_instr: u8 = cpu.fetch_instruction().await;
+
     loop {
         // just gonna fetch instructions until halt, then exit
         // i.e. get run mode working first
@@ -312,6 +289,7 @@ async fn main(_spawner: Spawner) {
         if rst.get_level() == Level::Low {
             info!("Reset Occurred!");
             cpu.reset().await;
+            next_instr = cpu.fetch_instruction().await;
         }
 
         // running
@@ -327,18 +305,18 @@ async fn main(_spawner: Spawner) {
                 // info!("cpu running...");
                 cpu.unhalt();
     
-                let instr: u8 = cpu.fetch_instruction().await;
-                cpu.execute_instruction(instr).await;
+                cpu.execute_instruction(next_instr).await;
                 cpu.show_state().await;
+                next_instr = cpu.fetch_instruction().await;
             }
             // front panel has control
             else {
                 if (clock.get_level() == Level::High) && (last_clk == false) {
                     // cpu.disable_ram().await;
                     info!("Single step Triggered!");
-                    let instr: u8 = cpu.fetch_instruction().await;
-                    cpu.execute_instruction(instr).await;
+                    cpu.execute_instruction(next_instr).await;
                     cpu.show_state().await;
+                    next_instr = cpu.fetch_instruction().await;
                 }
             }
         }

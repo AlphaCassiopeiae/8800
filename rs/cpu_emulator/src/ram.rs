@@ -255,17 +255,11 @@ impl<C1: core::ops::AsyncFnMut(u32) -> u8, C2: core::ops::AsyncFnMut(u32, u8)> R
         // Timer::after_millis(500).await;
         // self.write(0x3, 0x76).await;
         // Timer::after_millis(500).await;
-        Timer::after_millis(50).await;
         self.write(0x0, 0x3E).await;
-        Timer::after_millis(50).await;
         self.write(0x1, 0x05).await;
-        Timer::after_millis(50).await;
         self.write(0x2, 0xC6).await;
-        Timer::after_millis(50).await;
         self.write(0x3, 0x07).await;
-        Timer::after_millis(50).await;
         self.write(0x4, 0x76).await;
-        Timer::after_millis(50).await;
 
         // info!("0x0 READ {:X}", self.read(0x0).await);
         // Timer::after_millis(500).await;
