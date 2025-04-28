@@ -1,19 +1,3 @@
-use core::clone::Clone;
-use core::marker::Copy;
-use core::prelude::rust_2024::derive;
-
-use defmt::*;
-use embassy_rp::peripherals::{PIO0, PIO1};
-use embassy_rp::pio::program::pio_asm;
-use embassy_rp::pio::{
-    Common, Config as PioConfig, InterruptHandler as PioInterruptHandler, Irq, Pin, Pio,
-    ShiftDirection, StateMachine,
-};
-use embassy_time::Timer;
-use fixed::traits::ToFixed;
-use fixed_macro::types::U56F8;
-use {defmt_rtt as _, panic_probe as _};
-
 pub struct RAM<C1: core::ops::AsyncFnMut(u32) -> u8, C2: core::ops::AsyncFnMut(u32, u8)> {
     read_fn: C1,
     write_fn: C2,
