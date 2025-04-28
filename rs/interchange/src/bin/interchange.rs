@@ -6,14 +6,9 @@ use embassy_executor::Spawner;
 use embassy_rp::bind_interrupts;
 use embassy_rp::gpio::{Flex, Input, Level, Output, Pull};
 use embassy_rp::i2c::{self, Config, InterruptHandler};
-use embassy_rp::pac::usb::regs::BuffCpuShouldHandle;
-use embassy_rp::peripherals::{I2C1, PIO0};
-use embassy_rp::pio::program::pio_asm;
-use embassy_rp::pio::{Common, Config as PioConfig, InterruptHandler as PioInterruptHandler, Pio, Pin, ShiftDirection, StateMachine};
+use embassy_rp::peripherals::{I2C1};
 use embassy_time::Timer;
 use embedded_hal_async::i2c::I2c;
-use fixed::traits::ToFixed;
-use fixed_macro::types::U56F8;
 use {defmt_rtt as _, panic_probe as _};
 
 bind_interrupts!(struct Irqs {
@@ -177,7 +172,7 @@ async fn main(spawner: Spawner) {
 
     // GPIO setup
     let mut rst = Output::new(p.PIN_29, Level::High);
-    let hlta = Input::new(p.PIN_0, Pull::Down);
+    Input::new(p.PIN_0, Pull::Down); // hlta
     let mut panel = Output::new(p.PIN_27, Level::High);
     let mut clock = Output::new(p.PIN_24, Level::Low);
 
@@ -293,39 +288,43 @@ async fn main(spawner: Spawner) {
             clock.set_high();
             info!("STEP triggered");
         }
-        // else if get_deposit(button_b_edges) && run_mode == false {
-        //     info!("DEPOSIT triggered");
-        //     // get address from gpios
-        //     let address = read_address_from_pins(&mut a_pins);
+        else if get_deposit(button_b_edges) && run_mode == false {
+            info!("DEPOSIT triggered");
+            // get address from gpios
+            let bus_address = read_address_from_pins(&mut a_pins);
+            //print address
+            info!("DEPOSIT address: 0x{:04X}", bus_address);
 
-        //     // get data from switches (LSBs of address). slice address
-        //     let data = address & 0x00FF;
+            // get data from switches (LSBs of address). slice address
+            let data = address & 0x00FF;
+            // print data
+            info!("DEPOSIT data: 0x{:04X}", data);
 
-        //     // set data pins as output
-        //     set_pins_as_output(&mut data_pins);
-        //     // push data to pins
-        //     for i in 0..8 {
-        //         if ((data >> i) & 1) != 0 {
-        //             data_pins[i].set_high();
-        //         } else {
-        //             data_pins[i].set_low();
-        //         }
-        //     }
+            // set data pins as output
+            set_pins_as_output(&mut data_pins);
+            // push data to pins
+            for i in 0..8 {
+                if ((data >> i) & 1) != 0 {
+                    data_pins[i].set_high();
+                } else {
+                    data_pins[i].set_low();
+                }
+            }
 
-        //     mwrt.set_as_output();
-        //     mwrt.set_low();
+            mwrt.set_as_output();
+            mwrt.set_low();
 
-        //     xrdy.wait_for_high().await; // wait for ready
+            xrdy.wait_for_high().await; // wait for ready
 
-        //     mwrt.set_high(); // turn off write
-        //     mwrt.set_as_input(); // set back to input
+            mwrt.set_high(); // turn off write
+            mwrt.set_as_input(); // set back to input
             
-        //     // turn off data pins
-        //     set_pins_as_input(&mut data_pins);
+            // turn off data pins
+            set_pins_as_input(&mut data_pins);
             
-        //     Timer::after_millis(10).await;
+            Timer::after_millis(10).await;
 
-        // }
+        }
 
         // if !run_mode {prdy.set_low();}
         

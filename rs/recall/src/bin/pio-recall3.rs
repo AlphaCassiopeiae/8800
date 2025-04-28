@@ -83,7 +83,7 @@ fn setup_reads<'a>(
 
         "irq 2",        // tell cpu set
 
-        // set data pins to output
+        // set data pins to input
         "pull block",
         "out pindirs, 8",
 

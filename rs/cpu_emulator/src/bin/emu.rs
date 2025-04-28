@@ -15,6 +15,8 @@ use embassy_time::Timer;
 use fixed::traits::ToFixed;
 use fixed_macro::types::U56F8;
 use {defmt_rtt as _, panic_probe as _};
+use embassy_sync::mutex::Mutex;
+use embassy_sync::blocking_mutex::raw::NoopRawMutex;
 
 bind_interrupts!(struct Irqs {
     PIO0_IRQ_0 => PioInterruptHandler<PIO0>;
@@ -108,13 +110,13 @@ fn setup_writes<'a>(
     pio: &mut Common<'a, PIO0>, 
     sm: &mut StateMachine<'a, PIO0, 2>,
     data_addr_pins: &[&Pin<'a, PIO0>],
-    mwrt_pin: &Pin<'a, PIO0>,
+    // mwrt_pin: &Pin<'a, PIO0>,
 ) {
     // PIO program for address output, data output, and MWRT# control
     let prg = pio_asm!(
         ".wrap_target",
 
-        "set pins, 1",        // Deassert MWRT# (inactive high)
+        // "set pins, 1",        // Deassert MWRT# (inactive high)
 
         // set all data addr pins to output
         "pull block",
@@ -123,14 +125,14 @@ fn setup_writes<'a>(
         "pull block",         // Get address from TX FIFO
         "out pins, 24",       // Output address to pins
 
-        "set pins, 0",        // Assert MWRT# (active low)
+        // "set pins, 0",        // Assert MWRT# (active low)
 
         "wait 1 gpio 4",      // Wait for XRDY high (write complete)
         "irq 2",              // notify write complete
 
         // set data to input and addr to output
         "pull block",
-        "out pindirs, 24",    // set all data addr pins to output and data pins to input
+        "out pindirs, 24",
 
         ".wrap"
     );
@@ -138,7 +140,7 @@ fn setup_writes<'a>(
     let mut cfg = PioConfig::default();
     cfg.use_program(&pio.load_program(&prg.program), &[]);
     cfg.set_out_pins(data_addr_pins);
-    cfg.set_set_pins(&[mwrt_pin]);
+    // cfg.set_set_pins(&[mwrt_pin]);
     // cfg.out_en_sel = 0x1F;
     // cfg.inline_out_en = true;
     // cfg.out_sticky = true;
@@ -149,7 +151,7 @@ fn setup_writes<'a>(
     sm.set_config(&cfg);
 
     // set swrite pin as output
-    sm.set_pin_dirs(embassy_rp::pio::Direction::Out, &[mwrt_pin]);
+    // sm.set_pin_dirs(embassy_rp::pio::Direction::Out, &[mwrt_pin]);
 }
 
 #[embassy_executor::main]
@@ -208,16 +210,17 @@ async fn main(_spawner: Spawner) {
     let smemr_pin = &pio1.common.make_pio_pin(p.PIN_34);  // SMEMR# pin (output, active low)
     common.make_pio_pin(p.PIN_4); // XRDY pin (input, active high)
     
-    // Flex::new(p.PIN_6.reborrow()).set_pull(Pull::Up); // set mwrt as pull up
-    let mwrt_pin = &common.make_pio_pin(p.PIN_6); // active low
-    
+    let mwrt_pin = Mutex::<NoopRawMutex, _>::new(Flex::new(p.PIN_6));
+    mwrt_pin.lock().await.set_pull(Pull::Up);
+    mwrt_pin.lock().await.set_high(); // deassert mwrt
+    // let mwrt_pin = &common.make_pio_pin(p.PIN_6); // active low
 
 
     // Configure PIO state machines
     setup_smemr(&mut pio1.common, &mut pio1.sm0, smemr_pin);
     setup_reads(&mut common, &mut sm1, &addr_pins, &data_pins);
     
-    setup_writes(&mut common, &mut sm2, &data_addr_pins, mwrt_pin);
+    setup_writes(&mut common, &mut sm2, &data_addr_pins);
 
 
     // Enable state machines
@@ -251,6 +254,7 @@ async fn main(_spawner: Spawner) {
     let write = async |address: u32, data: u8| {
         // set address to output and data to output pindirs
         sm2.tx().wait_push(0xFFFFFF).await;
+        mwrt_pin.lock().await.set_as_output();
 
         info!("Initiating write of 0x{:02X} to address 0x{:08X}", data, address);
 
@@ -258,9 +262,13 @@ async fn main(_spawner: Spawner) {
 
         sm2.tx().wait_push(value as u32).await;
 
+        mwrt_pin.lock().await.set_low();
+
         irq2.wait().await;
         // set address to output and data to input pindirs
         sm2.tx().wait_push(0xFFFF00).await;
+
+        mwrt_pin.lock().await.set_high();
 
         Timer::after_millis(50).await; // needed or writes will go to fast
 
@@ -277,6 +285,7 @@ async fn main(_spawner: Spawner) {
     // Settle time
 
     let mut last_clk = false;
+
 
     // store next instruction so we can show it on the front panel before executing
     let mut next_instr: u8 = cpu.fetch_instruction().await;
@@ -311,12 +320,16 @@ async fn main(_spawner: Spawner) {
             }
             // front panel has control
             else {
+                // if single step
                 if (clock.get_level() == Level::High) && (last_clk == false) {
-                    // cpu.disable_ram().await;
                     info!("Single step Triggered!");
                     cpu.execute_instruction(next_instr).await;
                     cpu.show_state().await;
                     next_instr = cpu.fetch_instruction().await;
+                }
+                // possible deposit, release control of mwrt
+                else {
+                    mwrt_pin.lock().await.set_as_input();
                 }
             }
         }
