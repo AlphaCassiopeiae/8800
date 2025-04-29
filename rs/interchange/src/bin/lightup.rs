@@ -99,9 +99,9 @@ async fn main(_spawner: Spawner) {
 
         for led in leds.iter_mut() {
             led.set_high();
-            Timer::after_millis(250).await;
+            Timer::after_millis(500).await;
             led.set_low();
-            Timer::after_millis(250).await;
+            // Timer::after_millis(500).await;
         }
 
         // light up each data pin one by one

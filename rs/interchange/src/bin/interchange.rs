@@ -140,27 +140,27 @@ async fn main(spawner: Spawner) {
     let p = embassy_rp::init(Default::default());
 
     // Changed from Vec to fixed-size array
-    let mut a_pins: [Input<'_>; 16] = [
-        Input::new(p.PIN_31, Pull::Down),
-        Input::new(p.PIN_41, Pull::Down),
-        Input::new(p.PIN_33, Pull::Down),
-        Input::new(p.PIN_35, Pull::Down),
-        Input::new(p.PIN_16, Pull::Down),
-        Input::new(p.PIN_18, Pull::Down),
-        Input::new(p.PIN_22, Pull::Down),
-        Input::new(p.PIN_20, Pull::Down),
-        Input::new(p.PIN_42, Pull::Down),
-        Input::new(p.PIN_43, Pull::Down),
-        Input::new(p.PIN_45, Pull::Down),
-        Input::new(p.PIN_3, Pull::Down),
-        Input::new(p.PIN_12, Pull::Down),
-        Input::new(p.PIN_10, Pull::Down),
-        Input::new(p.PIN_7, Pull::Down),
-        Input::new(p.PIN_4, Pull::Down),
+    let mut a_pins: [Flex<'_>; 16] = [
+        Flex::new(p.PIN_31),
+        Flex::new(p.PIN_41),
+        Flex::new(p.PIN_33),
+        Flex::new(p.PIN_35),
+        Flex::new(p.PIN_16),
+        Flex::new(p.PIN_18),
+        Flex::new(p.PIN_22),
+        Flex::new(p.PIN_20),
+        Flex::new(p.PIN_42),
+        Flex::new(p.PIN_43),
+        Flex::new(p.PIN_45),
+        Flex::new(p.PIN_3),
+        Flex::new(p.PIN_12),
+        Flex::new(p.PIN_10),
+        Flex::new(p.PIN_7),
+        Flex::new(p.PIN_4),
     ];
     
     // Example read function: reads pin levels into a u16 - modified to work with array directly
-    fn read_address_from_pins(pins: &mut [Input<'_>]) -> u16 {
+    fn read_address_from_pins(pins: &mut [Flex<'_>]) -> u16 {
         let mut value = 0u16;
         for (i, pin) in pins.iter_mut().enumerate() {
             if pin.get_level() == Level::High {
@@ -168,6 +168,16 @@ async fn main(spawner: Spawner) {
             }
         }
         value
+    }
+
+    fn write_address_to_pins(address: u16, pins: &mut [Flex<'_>]) {
+        for (i, pin) in pins.iter_mut().enumerate() {
+            if ((address >> i) & 1) != 0 {
+                pin.set_high();
+            } else {
+                pin.set_low();
+            }
+        }
     }
 
     // GPIO setup
@@ -178,6 +188,8 @@ async fn main(spawner: Spawner) {
 
     let mut mwrt = Flex::new(p.PIN_26);
     mwrt.set_as_input();
+    let mut smemr = Flex::new(p.PIN_6);
+    smemr.set_as_input();
     let mut xrdy = Input::new(p.PIN_47, Pull::None);
 
     // I2C setup
@@ -210,6 +222,18 @@ async fn main(spawner: Spawner) {
             pins[i].set_as_output();
         }
     }
+
+    fn set_addr_pins_as_input(pins: &mut [Flex<'_>; 16]) {
+        for i in 0..16 {
+            pins[i].set_as_input();
+        }
+    }
+
+    fn set_addr_pins_as_output(pins: &mut [Flex<'_>; 16]) {
+        for i in 0..16 {
+            pins[i].set_as_output();
+        }
+    }
     
 
     use mcp23017::*;
@@ -237,6 +261,8 @@ async fn main(spawner: Spawner) {
     let mut run_mode: bool = false;
     // set_pins_as_input(&mut data_pins);
     
+    let mut bus_address: u16 = 0;
+    
     loop {
         /* I2C Stuff */
         // Read port A, buttons IC
@@ -263,8 +289,13 @@ async fn main(spawner: Spawner) {
         /* GPIO Logic */
         // default values for control signals, works well for pulsing signals after button press
         
+
         clock.set_low();
         rst.set_high();
+
+        if run_mode {
+            clock.set_high();
+        }
 
         if get_reset(button_b_edges) {
             panel.set_high();
@@ -275,12 +306,17 @@ async fn main(spawner: Spawner) {
             info!("RESET triggered!");
         }
         else if get_stop(button_a_edges) {
-            panel.set_high();
+
+            // // capture the current address
+            // bus_address = read_address_from_pins(&mut a_pins);
+
+            // front panel asserts bus control
             run_mode = false;
+
+
             info!("STOP triggered");
         }
         else if get_run(button_a_edges) {
-            panel.set_low();
             run_mode = true;
             info!("RUN triggered");
         }
@@ -292,6 +328,8 @@ async fn main(spawner: Spawner) {
             info!("DEPOSIT triggered");
             // get address from gpios
             let bus_address = read_address_from_pins(&mut a_pins);
+            
+            panel.set_low();
             //print address
             info!("DEPOSIT address: 0x{:04X}", bus_address);
 
@@ -322,9 +360,51 @@ async fn main(spawner: Spawner) {
             // turn off data pins
             set_pins_as_input(&mut data_pins);
             
+            panel.set_high();
+            
             Timer::after_millis(10).await;
+        }
+
+        else if get_examine(button_b_edges) && run_mode == false {
+            info!("EXAMINE Pressed!");
+
+            // print address
+            info!("EXAMINE address: 0x{:04X}", address);
+            
+            panel.set_high();
+
+            // set address pins as output
+            set_addr_pins_as_output(&mut a_pins);
+
+            // put address from pins on address bus
+            write_address_to_pins(address, &mut a_pins);
+
+            // assert mread
+            smemr.set_as_output();
+            smemr.set_low();
+            // wait for ready
+            xrdy.wait_for_high().await; // wait for ready
+            
+            // read data pins
+            let bus_data = read_address_from_pins(&mut data_pins);
+
+            smemr.set_high(); // turn off read
+            smemr.set_as_input(); // set back to input
+
+            // print data
+            info!("EXAMINE data: 0x{:04X}", bus_data);
+
+            panel.set_low();
+            // set address pins as input
+            set_addr_pins_as_input(&mut a_pins);
+
 
         }
+
+        // else if get_deponext(button_a_edges) {
+        //     info!("DEPOSIT NEXT Pressed!");
+        //     // put whatever is on the switches at value on addr LEDs, but also increments address
+        // }
 
         // if !run_mode {prdy.set_low();}
         

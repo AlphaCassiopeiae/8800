@@ -36,6 +36,30 @@ wait for xrdy to go high
 deassert mwr and output data
 
 
+
+clock is controlled by front. always determines to retreive and execute instr
+if panel is high, then data and addr controled by front
+addr read from both sides when switching
+
+
+
+
+deposit next:
+
+front panel captures current address
+front panel asserts control
+cpu releases addr on bus
+front panel puts address on bus
+
+on deposit next
+front panel increments address,
+puts mem and data on bus
+issues write to memory
+
+put data in next address
+and move addr on bus and in cpu to next address
+
+
 examine:
 get addr from pins
 

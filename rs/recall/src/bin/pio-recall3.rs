@@ -69,7 +69,6 @@ fn setup_reads<'a>(
         "pull block",
         "out pindirs, 8",
 
-
         // // Wait for address monitor to signal address is ready
         "in pins, 16",         // Sample the 16-bit address
         "push block",          // Push address to RX FIFO
@@ -79,7 +78,7 @@ fn setup_reads<'a>(
         "out pins, 8 [10]",         // Output data to pins
 
         // // Signal memory is ready by asserting XRDY
-        "set pins, 1 [10]",    // Set XRDY high with delay for setup
+        "set pins, 1 [30]",    // Set XRDY high with delay for setup
 
         "irq 2",        // tell cpu set
 

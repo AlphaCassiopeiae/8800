@@ -23,38 +23,6 @@ bind_interrupts!(struct Irqs {
     PIO1_IRQ_0 => PioInterruptHandler<PIO1>;
 });
 
-/// Configure PIO for SMEMR# control (pin 34)
-fn setup_smemr<'a>(
-    pio: &mut Common<'a, PIO1>, 
-    sm: &mut StateMachine<'a, PIO1, 0>,
-    smemr_pin: &Pin<'a, PIO1>,
-) {
-    // PIO program to control SMEMR# signal which is out of the lower 0-31 pin range
-    let prg = pio_asm!(
-        "set pindirs, 1",
-        ".wrap_target",
-        "set pins, 1",       // Deassert SMEMR# (inactive high)
-        "pull block",        // Wait for signal from main SM to start cycle
-        "set pins, 0",       // Assert SMEMR# (active low)
-        "pull block",
-        ".wrap"
-    );
-
-    let mut cfg = PioConfig::default();
-    cfg.use_program(&pio.load_program(&prg.program), &[]);
-    
-    // Configure SMEMR pin for output
-    cfg.set_set_pins(&[smemr_pin]);
-    
-    // Set clock rate
-    cfg.clock_divider = (U56F8!(125_000_000) / 20 / 200).to_fixed(); // 100kHz operation
-    
-    sm.set_config(&cfg);
-    
-    // Set SMEMR pin as output
-    sm.set_pin_dirs(embassy_rp::pio::Direction::Out, &[smemr_pin]);
-}
-
 /// Configure PIO for address output and data input
 fn setup_reads<'a>(
     pio: &mut Common<'a, PIO0>, 
@@ -68,8 +36,8 @@ fn setup_reads<'a>(
         // Wait for instruction from main CPU
 
         // set addr to output and data to input
-        // "pull block",
-        // "out pindirs, 24",    // set all data addr pins to output and data pins to input
+        "pull block",
+        "out pindirs, 16",    // set all data addr pins to output
 
         "pull block",         // Get address from TX FIFO
         
@@ -79,6 +47,9 @@ fn setup_reads<'a>(
         
         "in pins, 8",         // Read 8-bit data from pins
         "push block",         // Push data to RX FIFO
+
+        "pull block",
+        "out pindirs, 16",    // set all data addr pins to input
         ".wrap"
     );
 
@@ -101,7 +72,7 @@ fn setup_reads<'a>(
     sm.set_config(&cfg);
 
     // set addr pin direction
-    sm.set_pin_dirs(embassy_rp::pio::Direction::Out, addr_pins);
+    sm.set_pin_dirs(embassy_rp::pio::Direction::In, addr_pins);
     // sm.set_pin_dirs(embassy_rp::pio::Direction::In, data_pins); // not needed
 }
 
@@ -154,6 +125,41 @@ fn setup_writes<'a>(
     // sm.set_pin_dirs(embassy_rp::pio::Direction::Out, &[mwrt_pin]);
 }
 
+// funciton to just get the addr from the front panel when an examine or deposit finishes
+// just make addr pins input
+// use pull block as a trigger for the stat machine to read and then it pushes result to rx
+fn setup_read<'a>(
+    pio: &mut Common<'a, PIO0>, 
+    sm: &mut StateMachine<'a, PIO0, 3>,
+    addr_pins: &[&Pin<'a, PIO0>],
+) {
+    // PIO program for address output and data input
+    let prg = pio_asm!(
+        ".wrap_target",        
+        // Wait for instruction from main CPU
+        "pull block",
+
+        "in pins, 16",         // Read 8-bit data from pins
+        "push block",         // Push data to RX FIFO
+        ".wrap"
+    );
+
+    let mut cfg = PioConfig::default();
+    cfg.use_program(&pio.load_program(&prg.program), &[]);
+    
+    // Configure pins
+    cfg.set_in_pins(addr_pins);
+    
+    // Set clock rate
+    cfg.clock_divider = (U56F8!(125_000_000) / 20 / 200).to_fixed(); // 100kHz operation
+    
+    sm.set_config(&cfg);
+
+    // set addr pin direction
+    sm.set_pin_dirs(embassy_rp::pio::Direction::In, addr_pins);
+}
+
+
 #[embassy_executor::main]
 async fn main(_spawner: Spawner) {
     let mut p: embassy_rp::Peripherals = embassy_rp::init(Default::default());
@@ -164,10 +170,7 @@ async fn main(_spawner: Spawner) {
     let clock = Input::new(p.PIN_0, Pull::None); // high active
 
     // Create PIO state machines
-    let Pio { mut common, mut irq1, mut irq2, mut sm1, mut sm2, .. } = Pio::new(p.PIO0, Irqs);
-    
-    // make a new pio block (pio0) but don't deconstruct
-    let mut pio1 = Pio::new(p.PIO1, Irqs);
+    let Pio { mut common, mut irq1, mut irq2, mut sm1, mut sm2, mut sm3, .. } = Pio::new(p.PIO0, Irqs);
     
 
     // Setup pins for address bus (A15-A0)
@@ -207,7 +210,10 @@ async fn main(_spawner: Spawner) {
 
 
     // Setup pin for SMEMR# control and xrdy
-    let smemr_pin = &pio1.common.make_pio_pin(p.PIN_34);  // SMEMR# pin (output, active low)
+    let smemr_pin = Mutex::<NoopRawMutex, _>::new(Flex::new(p.PIN_34));
+    smemr_pin.lock().await.set_pull(Pull::Up);
+    smemr_pin.lock().await.set_high(); // deassert smemr
+
     common.make_pio_pin(p.PIN_4); // XRDY pin (input, active high)
     
     let mwrt_pin = Mutex::<NoopRawMutex, _>::new(Flex::new(p.PIN_6));
@@ -217,14 +223,13 @@ async fn main(_spawner: Spawner) {
 
 
     // Configure PIO state machines
-    setup_smemr(&mut pio1.common, &mut pio1.sm0, smemr_pin);
     setup_reads(&mut common, &mut sm1, &addr_pins, &data_pins);
     
     setup_writes(&mut common, &mut sm2, &data_addr_pins);
+    setup_read(&mut common, &mut sm3, &addr_pins);
 
 
     // Enable state machines
-    pio1.sm0.set_enable(true);
     sm1.set_enable(true);
     sm2.set_enable(true); // write machine
 
@@ -232,19 +237,21 @@ async fn main(_spawner: Spawner) {
 
     let read = async |address: u32| {
         info!("Initiating read from address 0x{:08X}", address);
+
+        // set address to output
+        sm1.tx().wait_push(0xFFFF).await;
         
         // Push address to address/data state machine
         sm1.tx().wait_push(address as u32).await;
-
-        
-        pio1.sm0.tx().wait_push(0).await; // pull smemr low
+        smemr_pin.lock().await.set_as_output();
+        smemr_pin.lock().await.set_low(); // pull smemr low
         
         // Read the data received
         let data = sm1.rx().wait_pull().await as u32;
         info!("Read data 0x{:02X} from address 0x{:08X}", data, address);
 
-        
-        pio1.sm0.tx().wait_push(0).await; // pull smemr high
+        smemr_pin.lock().await.set_high(); // pull smemr high
+        sm1.tx().wait_push(0x0000).await; // set address to input
         
         Timer::after_millis(50).await; // needed or reads will go to fast
 
@@ -285,6 +292,7 @@ async fn main(_spawner: Spawner) {
     // Settle time
 
     let mut last_clk = false;
+    let mut last_panel = false;
 
 
     // store next instruction so we can show it on the front panel before executing
@@ -309,32 +317,33 @@ async fn main(_spawner: Spawner) {
         else {
             hlta.set_low();
 
-            // run 
-            if panel.get_level() == Level::Low {
-                // info!("cpu running...");
-                cpu.unhalt();
-    
+            if (clock.get_level() == Level::High) && (last_clk == false) {
+                info!("Single step Triggered!");
                 cpu.execute_instruction(next_instr).await;
                 cpu.show_state().await;
                 next_instr = cpu.fetch_instruction().await;
             }
-            // front panel has control
-            else {
-                // if single step
-                if (clock.get_level() == Level::High) && (last_clk == false) {
-                    info!("Single step Triggered!");
-                    cpu.execute_instruction(next_instr).await;
-                    cpu.show_state().await;
-                    next_instr = cpu.fetch_instruction().await;
-                }
-                // possible deposit, release control of mwrt
-                else {
-                    mwrt_pin.lock().await.set_as_input();
-                }
+
+            // deposit or examine 
+            if panel.get_level() == Level::High {
+                mwrt_pin.lock().await.set_as_input();
+                smemr_pin.lock().await.set_as_input();
             }
+            // deposit or examine finishes
+            else if (panel.get_level() == Level::Low) && (last_panel == true) {
+                // capture address
+                sm3.tx().wait_push(0).await;
+                let addr = sm3.rx().wait_pull().await;
+
+                cpu.pc = addr as usize;
+                info!("Address: 0x{:08X}", addr);
+
+            }
+
         }
 
         last_clk = clock.get_level() == Level::High;
+        last_panel = panel.get_level() == Level::High;
 
         // not necessary for final implementation but nice for terminal debugging
         Timer::after_millis(50).await;
