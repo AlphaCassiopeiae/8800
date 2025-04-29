@@ -197,6 +197,12 @@ async fn main(spawner: Spawner) {
         Flex::new(p.PIN_23),
     ];
 
+    // set pulldowns
+    for i in 0..8 {
+        data_pins[i].set_as_input();
+        data_pins[i].set_pull(Pull::Down);
+    }
+
     // function for set each flex pin as input
     fn set_pins_as_input(pins: &mut [Flex<'_>; 8]) {
         for i in 0..8 {

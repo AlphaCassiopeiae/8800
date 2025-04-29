@@ -17,6 +17,9 @@ stop
         pos edge of clock to trigger instr
 
 
+examine
+
+
 
 single step: 
 
@@ -42,3 +45,24 @@ get addr from pins
 assert jump opdcode on data
 
 
+RIGHT now
+MEMROY 
+  data, addr ALWAYS inputs
+
+CPU
+    reads
+        addr output ALWAYS
+        data input
+
+    writes
+        data, addr output sometimes
+
+
+front panel
+    deposit
+        addr input
+        data ouput ALWAYS
+    examine 
+        addr output 
+
+    
