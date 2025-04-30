@@ -1,12 +1,14 @@
 #![no_std]
 #![no_main]
 
+use core::u8;
+
 use defmt::*;
 use embassy_executor::Spawner;
 use embassy_rp::bind_interrupts;
 use embassy_rp::gpio::{Flex, Input, Level, Output, Pull};
 use embassy_rp::i2c::{self, Config, InterruptHandler};
-use embassy_rp::peripherals::{I2C1};
+use embassy_rp::peripherals::I2C1;
 use embassy_time::Timer;
 use embedded_hal_async::i2c::I2c;
 use {defmt_rtt as _, panic_probe as _};
@@ -75,7 +77,7 @@ mod mcp23017 {
 // }
 
 // rework: negative edge detection across entire 8-bit bank
-fn negative_edges(last_state: u8, curr_state: u8) -> u8{
+fn negative_edges(last_state: u8, curr_state: u8) -> u8 {
     last_state & !curr_state
 }
 
@@ -158,7 +160,7 @@ async fn main(spawner: Spawner) {
         Input::new(p.PIN_7, Pull::Down),
         Input::new(p.PIN_4, Pull::Down),
     ];
-    
+
     // Example read function: reads pin levels into a u16 - modified to work with array directly
     fn read_address_from_pins(pins: &mut [Input<'_>]) -> u16 {
         let mut value = 0u16;
@@ -178,13 +180,15 @@ async fn main(spawner: Spawner) {
 
     let mut mwrt = Flex::new(p.PIN_26);
     mwrt.set_as_input();
-    let mut xrdy = Input::new(p.PIN_47, Pull::None);
+    let mut memr = Input::new(p.PIN_6, Pull::None);
+    let mut xrdy = Flex::new(p.PIN_47);
+    xrdy.set_as_input();
 
     // I2C setup
     let sda = p.PIN_38;
     let scl = p.PIN_39;
     let mut i2c = i2c::I2c::new_async(p.I2C1, scl, sda, Irqs, Config::default());
-    
+
     // Create pin references for pins 40-47 using `common.make_pio_pin`
     let mut data_pins: [Flex<'_>; 8] = [
         Flex::new(p.PIN_40),
@@ -203,6 +207,16 @@ async fn main(spawner: Spawner) {
         data_pins[i].set_pull(Pull::Down);
     }
 
+    fn write_data_to_pins(data: u8, pins: &mut [Flex<'_>; 8]) {
+        for i in 0..8 {
+            if ((data >> i) & 1) != 0 {
+                pins[i].set_high();
+            } else {
+                pins[i].set_low();
+            }
+        }
+    }
+
     // function for set each flex pin as input
     fn set_pins_as_input(pins: &mut [Flex<'_>; 8]) {
         for i in 0..8 {
@@ -216,7 +230,6 @@ async fn main(spawner: Spawner) {
             pins[i].set_as_output();
         }
     }
-    
 
     use mcp23017::*;
 
@@ -242,59 +255,69 @@ async fn main(spawner: Spawner) {
 
     let mut run_mode: bool = false;
     // set_pins_as_input(&mut data_pins);
-    
+    panel.set_low();
+
     loop {
         /* I2C Stuff */
         // Read port A, buttons IC
         // Gives [EXAMNEXT,RUN,STOP,SINGSTEP,DEPONEXT,CLR,UNPROT,AUX1] (potentially reversed)
-        i2c.write_read(BUTTONS_ADDR, &[GPIOA], &mut buttons_a).await.unwrap();
+        i2c.write_read(BUTTONS_ADDR, &[GPIOA], &mut buttons_a)
+            .await
+            .unwrap();
         // Read port B, buttons IC
         // Gives [PROT,RESET,DEPOSIT,EXAMINE,AUX2,NULL,NULL,NULL] (potentially reversed)
-        i2c.write_read(BUTTONS_ADDR, &[GPIOB], &mut buttons_b).await.unwrap();;
+        i2c.write_read(BUTTONS_ADDR, &[GPIOB], &mut buttons_b)
+            .await
+            .unwrap();
         // Read port A, switches IC
         // Gives A8-A15
-        i2c.write_read(ASWITCHES_ADDR, &[GPIOA], &mut switches_a).await.unwrap();
+        i2c.write_read(ASWITCHES_ADDR, &[GPIOA], &mut switches_a)
+            .await
+            .unwrap();
         // Read port B, switches IC
         // Gives A0-A7
-        i2c.write_read(ASWITCHES_ADDR, &[GPIOB], &mut switches_b).await.unwrap();
+        i2c.write_read(ASWITCHES_ADDR, &[GPIOB], &mut switches_b)
+            .await
+            .unwrap();
 
         // info!("buttons = {:02x}  {:02x}\naddress = {:02x}  {:02x}", buttons_a[0], buttons_b[0], switches_a[0],  switches_b[0]);
 
         // combine addr0 and addr1 into a single address
-        let address: u16 = ((reverse_bits(switches_a[0]) as u16) << 8) | (reverse_bits(switches_b[0]) as u16);
+        let address: u16 =
+            ((reverse_bits(switches_a[0]) as u16) << 8) | (reverse_bits(switches_b[0]) as u16);
         let button_a_edges = negative_edges(last_buttons_a[0], buttons_a[0]);
         let button_b_edges = negative_edges(last_buttons_b[0], buttons_b[0]);
         // info!("current address: {}", address);
 
         /* GPIO Logic */
         // default values for control signals, works well for pulsing signals after button press
-        
+
         clock.set_low();
+        // Timer::after_millis(2).await;
         rst.set_high();
 
+        if run_mode {
+            Timer::after_millis(50).await;
+            clock.set_high();
+        }
+
         if get_reset(button_b_edges) {
-            panel.set_high();
             run_mode = false;
 
             rst.set_low();
-            
+
             info!("RESET triggered!");
-        }
-        else if get_stop(button_a_edges) {
-            panel.set_high();
+        } else if get_stop(button_a_edges) {
             run_mode = false;
             info!("STOP triggered");
-        }
-        else if get_run(button_a_edges) {
-            panel.set_low();
+        } else if get_run(button_a_edges) {
             run_mode = true;
             info!("RUN triggered");
-        }
-        else if get_singstep(button_a_edges) && run_mode == false {
+        } else if get_singstep(button_a_edges) && run_mode == false {
             clock.set_high();
             info!("STEP triggered");
-        }
-        else if get_deposit(button_b_edges) && run_mode == false {
+            Timer::after_millis(100).await;
+        } else if get_deposit(button_b_edges) && run_mode == false {
             info!("DEPOSIT triggered");
             // get address from gpios
             let bus_address = read_address_from_pins(&mut a_pins);
@@ -309,35 +332,162 @@ async fn main(spawner: Spawner) {
             // set data pins as output
             set_pins_as_output(&mut data_pins);
             // push data to pins
-            for i in 0..8 {
-                if ((data >> i) & 1) != 0 {
-                    data_pins[i].set_high();
-                } else {
-                    data_pins[i].set_low();
-                }
-            }
+            write_data_to_pins(data as u8, &mut data_pins);
 
             mwrt.set_as_output();
             mwrt.set_low();
 
+            xrdy.set_as_input();
             xrdy.wait_for_high().await; // wait for ready
 
             mwrt.set_high(); // turn off write
             mwrt.set_as_input(); // set back to input
-            
+
             // turn off data pins
             set_pins_as_input(&mut data_pins);
-            
-            Timer::after_millis(10).await;
 
+            Timer::after_millis(10).await;
+        } else if get_examine(button_b_edges) && run_mode == false {
+            // print address
+            info!("EXAMINE address: 0x{:04X}", address);
+
+            let seq = [
+                0xC3, // JMP imm16
+                address as u8,
+                (address >> 8) as u8,
+            ];
+
+            panel.set_high();
+        
+            // set data pins as output
+            set_pins_as_output(&mut data_pins);
+
+            xrdy.set_as_output();
+            xrdy.set_low();
+
+            for &b in &seq {
+                clock.set_high();
+                Timer::after_millis(50).await;
+
+                // memr.wait_for_low().await;
+                // push data to pins
+                write_data_to_pins(b, &mut data_pins);
+
+                xrdy.set_high();
+
+                clock.set_low();
+
+                memr.wait_for_high().await;
+                xrdy.set_low();
+                Timer::after_millis(50).await;
+            }
+
+            xrdy.set_as_input();
+
+            set_pins_as_input(&mut data_pins);
+
+            panel.set_low();
+
+        } else if get_examnext(button_a_edges) && run_mode == false {
+            // print address
+            info!("EXAMINE address: 0x{:04X}", address);
+            
+            // do nop
+
+            panel.set_high();
+        
+            // set data pins as output
+            set_pins_as_output(&mut data_pins);
+
+            xrdy.set_as_output();
+            xrdy.set_low();
+
+            clock.set_high();
+            Timer::after_millis(50).await;
+
+            // push data to pins
+            write_data_to_pins(0x00, &mut data_pins);
+
+            xrdy.set_high();
+
+            clock.set_low();
+
+            memr.wait_for_high().await;
+            xrdy.set_low();
+            Timer::after_millis(50).await;
+
+            xrdy.set_as_input();
+
+            set_pins_as_input(&mut data_pins);
+
+            panel.set_low();
+
+
+        } else if get_deponext(button_a_edges) && run_mode == false {
+            info!("DEPOSIT NEXT Pressed!");
+
+            panel.set_high();
+        
+            // set data pins as output
+            set_pins_as_output(&mut data_pins);
+
+            xrdy.set_as_output();
+            xrdy.set_low();
+
+            clock.set_high();
+            Timer::after_millis(50).await;
+
+            // memr.wait_for_low().await;
+            // push data to pins
+            write_data_to_pins(0x00, &mut data_pins);
+
+            xrdy.set_high();
+
+            clock.set_low();
+
+            memr.wait_for_high().await;
+            xrdy.set_low();
+            Timer::after_millis(50).await;
+
+            xrdy.set_as_input();
+
+            set_pins_as_input(&mut data_pins);
+
+            panel.set_low();
+
+            Timer::after_millis(50).await;
+
+            // deposit
+
+            // get data from switches (LSBs of address). slice address
+            let data = address & 0x00FF;
+            // print data
+            info!("DEPOSIT data: 0x{:04X}", data);
+
+            // set data pins as output
+            set_pins_as_output(&mut data_pins);
+            // push data to pins
+            write_data_to_pins(data as u8, &mut data_pins);
+
+            mwrt.set_as_output();
+            mwrt.set_low();
+
+            xrdy.set_as_input();
+            xrdy.wait_for_high().await; // wait for ready
+
+            mwrt.set_high(); // turn off write
+            mwrt.set_as_input(); // set back to input
+
+            // turn off data pins
+            set_pins_as_input(&mut data_pins);
         }
 
         // if !run_mode {prdy.set_low();}
-        
+
         // // button press logic
         // if panel.get_level() == Level::Low {
         //     // stuff that can only be done if panel has control (enter run, single step, examine/deposit, etc.)
-        //     // cpu is halted 
+        //     // cpu is halted
         //     if get_reset(button_b_edges) {
         //         info!("RESET triggered!");
         //         rst.set_low();
@@ -394,7 +544,7 @@ async fn main(spawner: Spawner) {
         //         run_mode = false;
         //     }
         // }
-        
+
         // button edge detection
         last_buttons_b[0] = buttons_b[0];
         last_buttons_a[0] = buttons_a[0];
@@ -428,8 +578,6 @@ async fn main(spawner: Spawner) {
         //         panel = 0;
         //     }
         // }
-
-        // Optional: Add delay between updates
         Timer::after_millis(50).await;
     }
 }

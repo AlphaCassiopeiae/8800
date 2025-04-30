@@ -47,7 +47,8 @@ assert jump opdcode on data
 
 RIGHT now
 MEMROY 
-  data, addr ALWAYS inputs
+  data, addr only out for transactions seen
+  xrdy output only when needed
 
 CPU
     reads
@@ -61,8 +62,33 @@ CPU
 front panel
     deposit
         addr input
-        data ouput ALWAYS
+        data ouput sometimes
     examine 
         addr output 
 
-    
+examine
+    put data on bus
+    issue clock
+    cpu 
+
+
+instead of panel determining run.
+clk run does it
+
+if clk but no panel
+    memory reponds to mem requests
+
+
+if clk but panel
+    front panel responds to mem reads
+
+deposit
+    put data on bus
+    detrigger panel
+    mem responds
+    reassert panel
+
+examine
+    put data on bus
+    assert panel
+    assert clk x3

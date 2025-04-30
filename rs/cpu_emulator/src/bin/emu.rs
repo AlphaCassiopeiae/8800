@@ -69,13 +69,13 @@ fn setup_reads<'a>(
 
         // set addr to output and data to input
         // "pull block",
-        // "out pindirs, 24",    // set all data addr pins to output and data pins to input
+        // "out pindirs, 16",    // set all data addr pins to output and data pins to input
 
         "pull block",         // Get address from TX FIFO
         
         "out pins, 16",       // Output address to pins
         
-        "wait 1 gpio 4",      // Wait for XRDY high
+        "wait 1 gpio 4 [30]",      // Wait for XRDY high
         
         "in pins, 8",         // Read 8-bit data from pins
         "push block",         // Push data to RX FIFO
@@ -102,7 +102,7 @@ fn setup_reads<'a>(
 
     // set addr pin direction
     sm.set_pin_dirs(embassy_rp::pio::Direction::Out, addr_pins);
-    // sm.set_pin_dirs(embassy_rp::pio::Direction::In, data_pins); // not needed
+    sm.set_pin_dirs(embassy_rp::pio::Direction::In, data_pins); // not needed
 }
 
 // Configure PIO for address output and data output (write cycle, with MWRT# control)
@@ -212,7 +212,7 @@ async fn main(_spawner: Spawner) {
     
     let mwrt_pin = Mutex::<NoopRawMutex, _>::new(Flex::new(p.PIN_6));
     mwrt_pin.lock().await.set_pull(Pull::Up);
-    mwrt_pin.lock().await.set_high(); // deassert mwrt
+    mwrt_pin.lock().await.set_as_input();
     // let mwrt_pin = &common.make_pio_pin(p.PIN_6); // active low
 
 
@@ -221,7 +221,9 @@ async fn main(_spawner: Spawner) {
     setup_reads(&mut common, &mut sm1, &addr_pins, &data_pins);
     
     setup_writes(&mut common, &mut sm2, &data_addr_pins);
+    
 
+    Timer::after_millis(2000).await;
 
     // Enable state machines
     pio1.sm0.set_enable(true);
@@ -231,6 +233,7 @@ async fn main(_spawner: Spawner) {
     info!("Starting CPU read/write transaction loop with split state machines");
 
     let read = async |address: u32| {
+        // Timer::after_millis(50).await;
         info!("Initiating read from address 0x{:08X}", address);
         
         // Push address to address/data state machine
@@ -271,24 +274,28 @@ async fn main(_spawner: Spawner) {
         mwrt_pin.lock().await.set_high();
 
         Timer::after_millis(50).await; // needed or writes will go to fast
+        
+        mwrt_pin.lock().await.set_as_input();
 
         info!("Write complete to address 0x{:08X}", address);
     };
 
     let mut ram: RAM<_,_> = RAM::new(read, write).await;
+
+    Timer::after_millis(50).await; // needed or writes will go to fast
     
-    Timer::after_millis(2000).await;
-    ram.init().await;
+    // ram.init().await;
     let mut cpu: CPU<_,_> = CPU::new(ram);
     cpu.reset().await;
 
     // Settle time
+    Timer::after_millis(500).await;
 
     let mut last_clk = false;
 
 
     // store next instruction so we can show it on the front panel before executing
-    let mut next_instr: u8 = cpu.fetch_instruction().await;
+    cpu.fetch_instruction().await;
 
     loop {
         // just gonna fetch instructions until halt, then exit
@@ -298,38 +305,30 @@ async fn main(_spawner: Spawner) {
         if rst.get_level() == Level::Low {
             info!("Reset Occurred!");
             cpu.reset().await;
-            next_instr = cpu.fetch_instruction().await;
+            cpu.fetch_instruction().await;
         }
 
         // running
         if cpu.halted() {
             info!("CPU halted");
-            hlta.set_high();
         }
         else {
             hlta.set_low();
 
-            // run 
-            if panel.get_level() == Level::Low {
-                // info!("cpu running...");
-                cpu.unhalt();
-    
-                cpu.execute_instruction(next_instr).await;
+            // exec instr whether in run or single step mode
+            if (clock.get_level() == Level::High) && (last_clk == false) {
+
+                // fetch instr again
+                let instr = cpu.fetch_instruction().await;
+                cpu.execute_instruction(instr).await;
                 cpu.show_state().await;
-                next_instr = cpu.fetch_instruction().await;
-            }
-            // front panel has control
-            else {
-                // if single step
-                if (clock.get_level() == Level::High) && (last_clk == false) {
-                    info!("Single step Triggered!");
-                    cpu.execute_instruction(next_instr).await;
-                    cpu.show_state().await;
-                    next_instr = cpu.fetch_instruction().await;
+
+                if cpu.halted() {
+                    info!("CPU halted");
+                    hlta.set_high();
                 }
-                // possible deposit, release control of mwrt
                 else {
-                    mwrt_pin.lock().await.set_as_input();
+                    cpu.fetch_instruction().await; // fetch next instr to show on panel
                 }
             }
         }
